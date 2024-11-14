@@ -1,0 +1,44 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+ul
+{
+    list-style-type: none;
+}
+li
+{
+    list-style-type: none;
+}
+
+
+li
+{
+    float:left;
+    margin: 30px 30px;
+    overflow:hidden;
+}
+
+#logo
+{
+    margin-top: 12px;
+    width:200px;
+    height:100px;
+   
+    object-fit: fill;
+}
+#navigation
+{
+    background-color: black;
+    color:white;
+    overflow: hidden;
+}
+
+li:has(#logo)
+{
+    margin:0;
+
+    overflow:hidden;
+}
