@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Review;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\ProductController;
 
+use App\
 
 Route::get('/login', [AuthController::class, 'giveLogin']);
 Route::get('/',function(){
@@ -18,7 +20,8 @@ Route::get('/',function(){
 Route::post('/review',[ReviewController::class,'store'])->name('submitReview');
 
 Route::post('/_login', [AuthController::class, 'form_login']);
-
+Route::post('/_explicit_login', [AuthController::class, "explicit_login"]);
+Route::post("/_explicit_register", [AuthController::class, "explicit_register"]);
 Route::post('/_register', [AuthController::class, "form_register"]);
 
 Route::get('/review', [ReviewController::class, 'create'])->name('createReview');
@@ -29,19 +32,37 @@ Route::get('/product/{id}/review', [ReviewController::class,'showReview'])
 Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
 Route::get('logout', [AuthController::class, "logOut"]);
-Route::get('/home', function() {
+Route::get('/home', [HomeController::class, "giveHome"]);
 
-    $loggedIn = AuthController::loggedIn();
-    if ($loggedIn)
-    {
-        
-    return view("home", ["data"=>Product::all()]);
-    }
-    else{
-        return view('login');
 
-    }
+
+// Handles products
+Route::get('/product/{id}', action: [ProductController::class, "show"]);
+Route::get('/products', [ProductController::class, "index"]);
+Route::post('/products', [ProductController::class, "indexSpecific"]);
+
+Route::post("/create/product", function ()
+{
+
 });
+
+
+
+// Settings-related
+
+Route::get('/settings', [SettingController::class, 'pageSettings']);
+
+// Handles address
+Route::post('/get/address', [SettingController::class, "showAddress"]);
+Route::post('/add/address', [SettingController::class, "form_addAddress"]);
+Route::post("/delete/address", [SettingController::class, "form_removeAddress"]);
+
+
+
+
+Route::post('/get/personal', [SettingController::class, "showPersonal"]);
+
+
 
 Route::post('/get/products', function()
 {

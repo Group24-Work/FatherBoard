@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.ProductItem {
+    border: 3px solid;
+    flex-basis: 30%;
+    flex-shrink: 0;
+    margin: 20px;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+#ProductContainer {
+    display: flex;
+    padding-left:5rem;
+    overflow-x: hidden;  /* Restrict horizontal overflow */
+    flex-wrap: wrap; /* Allow items to wrap if needed */
+}
+
+
+.lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.25rem;
+  }
+
+
+.filter-sidebar{
+    padding-top: 1.563rem;
+    margin-left: 5rem;
+    width: 17.625rem;
+    height: 42.438rem;
+    min-height: 12.5rem;
+    position: -webkit-sticky;
+    position: sticky;
+    float:left;
+    top: 5%;
+}
+
+.filter-sidebar p{
+    text-align: left;
+    padding: 0.313rem;
+}
+
+.main-content{
+    margin-right: 22.375rem;
+    width: 46.8%;
+    height: 42.438rem;
+    min-height: 12.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content,
+.filter-sidebar {
+
+    background-color: FFFFFF;
+   
+    padding: 0.938rem;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
