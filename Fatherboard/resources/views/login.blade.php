@@ -1,10 +1,11 @@
 
-<x-lowlayout>
-    <x-slot:head>
-    <link rel="stylesheet" href={{ asset('css/login.css') }}>
-    <script src={{ asset('js/login.js') }}></script>
-    <title>Login</title>
-    </x-slot:head>
+<x-layout>
+    <x-slot:title>
+        s
+    </x-slot:title>
+    <x-slot:sheet>
+        login
+    </x-slot:sheet>
     <h2>Log in</h2>
 
 
@@ -23,4 +24,4 @@
     <div id="notification_container">
     </div>
     <p></p>
-</x-lowlayout>
+</x-layout>

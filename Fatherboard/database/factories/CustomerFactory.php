@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\CustomerInformation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\AddressInformation;
 /**
  */
 class CustomerFactory extends Factory
@@ -24,10 +23,5 @@ class CustomerFactory extends Factory
             "Last Name"=>fake()->lastName(),
             "Password"=>fake()->password()
         ];
-    }
-
-    public function hasAddr(int $num)
-    {
-        return $this->has(AddressInformation::factory($num), 'address');
     }
 }

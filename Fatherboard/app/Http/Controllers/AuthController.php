@@ -193,7 +193,7 @@ class AuthController extends Controller
 
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
-        return redirect("/login");
+        return self::giveLogin();
     }
     
     public static function giveRegister()
@@ -303,7 +303,7 @@ class AuthController extends Controller
         self::cookieLogout();
         self::sessionLogOut();
 
-        return redirect("/login");
+        return self::giveLogin();
     }
 
     

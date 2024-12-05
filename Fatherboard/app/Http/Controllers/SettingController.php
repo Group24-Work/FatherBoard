@@ -18,6 +18,7 @@ class SettingController extends Controller
         if ($user = AuthController::loggedIn())
         {
             $addr = $user->address;
+            $addr = $user->address;
 
             return view('settings', ["addr"=>$addr]);
 
@@ -33,6 +34,7 @@ class SettingController extends Controller
         if ($user = AuthController::loggedIn())
         {
             $addr = $user->address;
+            $addr = $user->address;
 
             return json_encode($addr);
         }
@@ -43,6 +45,7 @@ class SettingController extends Controller
     {
         if ($user = AuthController::loggedIn())
         {
+            $addr = $user;
             $addr = $user;
 
             return json_encode($addr);
