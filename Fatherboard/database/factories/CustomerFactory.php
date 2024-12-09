@@ -19,7 +19,9 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            "Username"=>fake()->userName(),
+            "Email"=>fake()->email(),
+            "First Name"=>fake()->firstName(),
+            "Last Name"=>fake()->lastName(),
             "Password"=>fake()->password()
         ];
     }
@@ -27,5 +29,10 @@ class CustomerFactory extends Factory
     public function hasAddr(int $num)
     {
         return $this->has(AddressInformation::factory($num), 'address');
+    }
+
+    public function admin()
+    {
+        $this->state(fn ($attr) => ["Admin"=>true]);
     }
 }

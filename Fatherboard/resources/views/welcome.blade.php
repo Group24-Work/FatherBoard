@@ -7,6 +7,10 @@
     <title>Central</title>
 </head>
 <body>
-    <h2>You are seeing the nrmal</h2>
+    <h1>you are seeing the normal</h1>
+
+
+
 </body>
 </html>
+
