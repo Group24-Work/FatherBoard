@@ -206,7 +206,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product',["product"=>$product]);
     }
 
     /**
@@ -214,7 +214,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view ('request', ["request"=>$request]);
     }
 
     /**
@@ -243,7 +243,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product', ["product"=>$product]); 
     }
 
     /**
@@ -251,7 +251,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        return view('product', ["reqest"=>$product]);
     }
 
     /**
@@ -259,6 +259,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        return view('product', ["product"=>$product]); 
     }
 }
