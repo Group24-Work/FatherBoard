@@ -18,38 +18,36 @@
 </section>
 
 <!-- Category Icons Section -->
-<section class="category-icons">
-<div class="category-item">
-    <a href="/products?category=memory">
-        <img src="images/front_images/memory.png" alt="Memory">
-        <p>Memory</p>
-    </a>
-</div>
-<div class="category-item">
-    <a href="/products?category=cpu">
-        <img src="images/front_images/cpu.png" alt="CPU">
-        <p>CPUs</p>
-    </a>
-</div>
-<div class="category-item">
-    <a href="/products?category=prebuilt">
-        <img src="images/front_images/prebuilt.png" alt="Prebuilt Computers">
-        <p>Prebuilt Computers</p>
-    </a>
-</div>
-<div class="category-item">
-    <a href="/products?category=gpu">
-        <img src="images/front_images/gpu.png" alt="GPU">
-        <p>GPUs</p>
-    </a>
-</div>
-<div class="category-item">
-    <a href="/products?category=psu">
-        <img src="images/front_images/psu.png" alt="PSU">
-        <p>PSUs</p>
-    </a>
-</div>
-</section>
+
+    <!-- Carousel Section -->
+    <section class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="images/front_images/banner1.jpg" alt="Featured Product 1">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/front_images/banner2.jpg" alt="Featured Product 2">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/front_images/banner3.jpg" alt="Featured Product 3">
+            </div>
+        </div>
+        <button class="carousel-btn prev">❮</button>
+        <button class="carousel-btn next">❯</button>
+    </section>
+
+    <!-- Hot Product Section -->
+    <section class="hot-product">
+        <h2>🔥 Hot Product of the Month</h2>
+        <div class="hot-product-content">
+            <img src="images/front_images/3060.png" alt="RTX 3060">
+            <div class="hot-product-details">
+                <h3>NVIDIA RTX 3060</h3>
+                <p>Experience unparalleled gaming performance with the NVIDIA RTX 3060. Perfect for gamers and creators alike.</p>
+                <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/2" class="cta-btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
 <footer class="main-footer">
 <div class="footer-container">
     <div class="social-icons">
@@ -65,6 +63,9 @@
         <a href="https://linkedin.com" target="_blank">
             <img src="images/front_images/linkedin.png" alt="LinkedIn">
         </a>
+    </div>
+    <div id="footer-link">
+        <a href="/about">About Us</a>
     </div>
     <p>&copy; 2024 FatherBoard. All Rights Reserved.</p>
 </div>
