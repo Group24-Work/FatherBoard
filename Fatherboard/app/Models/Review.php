@@ -12,15 +12,15 @@ class Review extends Model
     protected $table = 'reviews' ;
     protected $fillable = ['customer_id','product_id','review','rating'];
 
-// Need to add one to many relationship  one product has many reviews 
+// Need to add one to many relationship  one product has many reviews
 
 public function customer()
 {
-    return $this->belongsTo(User::class,'customer_id');
+    return $this->belongsTo(CustomerInformation::class,'customer_id');
 }
 
 public function product(){
     return $this->belongsTo(Product::class,'product_id');
-    
+
 }
 }

@@ -1,72 +1,113 @@
+
 <?php
 
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\HomeController;
 use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-use App\Models\Review;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
-use App\Http\Controllers\RequirementController;
+use App\Models\ContactForm;
+use App\Http\Controllers\CheckoutController;
 
 
-Route::get('/login', [AuthController::class, 'giveLogin']);
+Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 Route::get('/',function(){
-    return view('welcome');
+
+    return view('home');
 });
-
+//review side back-end
 Route::post('/review',[ReviewController::class,'store'])->name('submitReview');
-
-Route::post('/_login', [AuthController::class, 'form_login']);
-
-Route::post('/_register', [AuthController::class, "form_register"]);
-
 Route::get('/review', [ReviewController::class, 'create'])->name('createReview');
+Route::get('/product/{id}/review', [ReviewController::class,'showReview'])->name('review.show');
 
-Route::get('/product/{id}/review', [ReviewController::class,'showReview'])
-->name('review.show');
+Route::post("/add/review", [ReviewController::class, 'add']);
+
+// Login / Authentication System
+Route::post('/submit-review',[ReviewController::class,'store'])->name('submitReview');
+Route::post('/_login', [AuthController::class, 'form_login']);
+Route::post('/_explicit_login', [AuthController::class, "explicit_login"]);
+Route::post("/_explicit_register", [AuthController::class, "explicit_register"]);
+Route::post('/_register', [AuthController::class, "form_register"]);
+Route::get('logout', action: [AuthController::class, "logOut"]);
 
 Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
-Route::get('logout', [AuthController::class, "logOut"]);
-Route::get('/home', function() {
 
-    $loggedIn = AuthController::loggedIn();
-    if ($loggedIn)
-    {
-        
-    return view("home", ["data"=>Product::all()]);
-    }
-    else{
-        return view('login');
+// Home System
+Route::get('/home', [HomeController::class, "giveHome"])->name("home");
 
-    }
-});
 
-Route::post('/get/products', function()
+
+// Handles products
+Route::get('/product/{id}', action: [ProductController::class, "show"]);
+Route::get('/products', [ProductController::class, "index"])->name("products");
+Route::post('/products', [ProductController::class, "indexSpecific"]);
+
+Route::post("/create/product", function ()
 {
-    $data = Product::all();
-    return view("products", ["data"=>$data] );
+
 });
 
 
+
+// Settings-related
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
+Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
+Route::post('/update/personal', [SettingController::class, 'updatePersonal']);
 
-Route::post('/basket/add',[BasketController::class,'add'])->name('basket.add');
-Route::post('/basket/remove',[BasketController::class,'remove'])->name('basket.index');
+// Terms
+
+Route::get("/terms", function()
+{
+    return view("terms");
+})->name("terms");
+
+
+// Handles address
+Route::post('/get/address', [SettingController::class, "showAddress"]);
+Route::post('/add/address', [SettingController::class, "form_addAddress"]);
+Route::post("/delete/address", [SettingController::class, "form_removeAddress"]);
+
+// Contact Form
+
+Route::post("/add/message", [ContactFormController::class, "form_message"]);
+Route::get("/contact", [ContactFormController::class, "giveContact"]);
+
+// About Us
+
+Route::get('/about', function()
+{
+    return view('about');
+});
+
+
+
+
+
+//basket side back-end
+Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
+Route::post('/basket/add/',[BasketController::class,'add'])->name('basketAdd');
+
+Route::post('/basket/remove',[BasketController::class,'remove'])->name('basketRemove');
+Route::post('/basket/update',[BasketController::class,'update'])->name('basketUpdate');
+Route::get('/basket/checkout',[BasketController::class,'checkout'])->name('basketCheckout');
+
+//checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.process');
-Route::get('/checkout/sucess', [CheckoutController::class,'success'])->name('checkout_success');
+Route::get('/checkout/success', [CheckoutController::class,'success'])->name('checkout_success');
 
-Route::post("/create/product", [ProductController::class, 'create']);
-
-Route::post("/edit/product", [ProductController::class, 'edit']);
-
-Route::post("/update/product", [ProductController::class, 'update']);
-
-Route::post("/delete/product", [ProductController::class, 'destroy']);
-
-Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
+//Admin
+Route::get('/admin/products', [AdminProductController::class, "index"])->name('adminIndex');
+Route::get('/admin/product/create', [AdminProductController::class, "create"])->name('create');
+Route::get('/admin/product/{id}', action: [AdminProductController::class, "show"])->name('edit');
+Route::delete('/admin/products{id}', action: [AdminProductController::class, "destroy"])->name('delete');
+Route::post('/admin/product/create', [AdminProductController::class, "created"])->name('created');
+Route::put('/admin/product/{product_id}', [AdminProductController::class, "update"])->name('update');

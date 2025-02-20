@@ -11,7 +11,7 @@ class CustomerInformation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["Username","Password"];
+    protected $fillable = ["Email","Password", "First Name", "Last Name", "Admin"];
 
     public function setPasswordAttribute($value)
     {
@@ -27,5 +27,10 @@ class CustomerInformation extends Model
     public static function newFactory()
     {
         return CustomerFactory::new();
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Orders::class, "customer_id");
     }
 }

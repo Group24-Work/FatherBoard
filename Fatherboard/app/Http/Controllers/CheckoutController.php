@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -6,6 +7,9 @@ use App\Models\order_details;
 use App\Models\Orders;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\AddressInformation;
+use PhpParser\NodeVisitor\FirstFindingVisitor;
+use Symfony\Component\Console\Input\Input;
 
 class CheckoutController extends Controller
 {
@@ -15,71 +19,78 @@ class CheckoutController extends Controller
     public function index()
     {
         $AuthController = new AuthController;//Not sure if this works, attempts to check if the user is logged in.
-        if($AuthController->loggedIn() == false){
+        if(($user = $AuthController->loggedIn()) == false){
             return view('login');
         }
-        /*
-            Basket is dummy data, link to real basket.
-        */
-        $basket = [
-            [
-                'name' => 'Product 1',
-                'product_id' => 1,
-                'quantity' => 2
-            ],
-            [
-                'name' => 'Product 2',
-                'product_id' => 3,
-                'quantity' => 4
-            ],
-            [
-                'name' => 'Product 3',
-                'product_id' => 2,
-                'quantity' => 6
-            ]
-            ];
-        return view('checkout',compact('basket'));
+        $basket=session()->get('basket',[]);
+
+        $basketDetails = [];
+        foreach ($basket as $item) {
+            $product = Product::find($item['product_id']);
+            if ($product) {
+                $basketDetails[] = [
+                    'product_id' => $product->id,
+                    'name' => $product->Title,
+                    'price' => $product->Price->price,
+                    'quantity' => $item['quantity'],
+                ];
+            }
+        }
+        return view('checkout',compact('basketDetails'));
     }
     public function process(Request $request)
     {
-        /*
-            Basket is currently dummy data, link to real basket.
-        */
-        $basket = [
-            [
-                'id' => 1,
-                'products_id' => 1,
-                'quantity' => 2
-            ],
-            [
-                'id' => 2,
-                'products_id' => 3,
-                'quantity' => 4
-            ],
-            [
-                'id' => 3,
-                'products_id' => 2,
-                'quantity' => 6
-            ]
-            ];
-            /*
-                REQUIRED CODE TO GET USER DETAILS
-            */
-        $order = Orders::create([
-            'customer_id'=> 1, //Replace 1 with $user=>id
-            'order_status' => 'Pending',
+        $existingAddress = AddressInformation::where([
+            'Address Line' =>$request->input('Address_Line_1'),
+            'Country'=>$request->input('Country'),
+            'PostCode'=>$request->input('Postcode'),
+            'City'=>$request->input('City')
+        ])->first();
+        if($existingAddress== null){
+            $address = AddressInformation::create([
+                'Address Line' =>$request->input('Address_Line_1'),
+                'Country'=>$request->input('Country'),
+                'PostCode'=>$request->input('Postcode'),
+                'City'=>$request->input('City')
+            ]);
+        }
+        else
+        {
+            $address = $existingAddress;
+        }
+        $basket=session()->get('basket',[]);
 
+            $basketDetails = [];
+            foreach ($basket as $item) {
+                $product = Product::find($item['product_id']);
+                if ($product) {
+                    $basketDetails[] = [
+                        'product_id' => $product->id,
+                        'name' => $product->Title,
+                        'price' => $product->Price->price,
+                        'quantity' => $item['quantity'],
+                    ];
+                }
+            }
+            $AuthController = new AuthController;
+            if(($user = $AuthController->loggedIn()) == false){//Redirects to login if the user doesn't have an account
+                return redirect('/login');
+            }
+        $order = Orders::create([
+            'customer_id'=> $user['id'], //Replace 1 with $user=>id
+            'address_id'=>$address['id'],
+            'order_status' => 'Pending'
         ]);
 
-        foreach ($basket as $item)
+        foreach ($basketDetails as $item)
         {
             order_details::create([
                 'order_id'=> $order->id,
-                'products_id'=>$item['id'],
-                'quantity'=>$item['quantity']
+                'products_id'=>$item['product_id'],
+                'quantity'=>$item['quantity'],
             ]);
         }
-        //session()->forget('basket'); //Removes basket data after checkout finishes(?)
+        session()->forget('basket'); //Removes basket data after checkout finishes(?)
 
         return redirect()->route('checkout_success');
     }

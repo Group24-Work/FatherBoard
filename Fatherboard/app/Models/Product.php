@@ -1,27 +1,34 @@
+
 <?php
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\ProductFactory;
 
-
+use App\Models\ProductPrice;
 class Product extends Model
 {
-    public $fillable = ["Title","Description", "Owner"];
+    use HasFactory;
+    public $fillable = ["Title","Description", "Manufacturer", "Type"];
 
-public function reviews()
-{
-    return $this->hasMany(Review::class,'product_id');
-}
 
     public static function newFactory()
     {
-        return new ProductFactory;
+        return ProductFactory::new();
     }
 
-    public function order_details() //Establishes many to many relationship with Orders model through order details pivot
+    public function price()
     {
-        return $this->hasMany(order_details::class);
+        return $this->hasOne(ProductPrice::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasOne(Review::class);
+    }
+    protected $casts = [
+        'price' =>'float',
+    ];
 }
