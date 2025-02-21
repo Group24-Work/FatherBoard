@@ -5,7 +5,7 @@
         </a>
 
         <form class="SearchBar">
-            <input type="text" placeholder="Search.." name="search">
+            <input type="text" placeholder="Search..." name="search">
         </form>
 
         <nav class="main-nav">
