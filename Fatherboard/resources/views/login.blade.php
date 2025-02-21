@@ -2,8 +2,8 @@
 
 <x-lowlayout>
     <x-slot:head>
-    <link rel="stylesheet" href={{ asset('css/login.css') }}>
-    <link rel="stylesheet" href={{ asset('css/auth_message.css')}}>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth_message.css')}}">
     <script src={{ asset('js/login.js') }}></script>
     <title>Login</title>
     </x-slot:head>

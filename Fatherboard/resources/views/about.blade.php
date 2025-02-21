@@ -1,6 +1,6 @@
 <x-lowlayout>
     <x-slot:head>
-        <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
+        <link rel="stylesheet" href="{{asset('css/aboutus.css')}}">
     </x-slot:head>
     <x-header></x-header>
     <div class="split left"> <!--https://www.w3schools.com/howto/howto_css_split_screen.asp -->
