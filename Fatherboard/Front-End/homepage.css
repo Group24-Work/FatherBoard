@@ -100,3 +100,78 @@
     background: #4b004b;
     transform: scale(1.05);
 }
+
+/* Hero Section */
+.hero {
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #000000;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.testimonial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.testimonial {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(82, 79, 79, 0.1);
+    max-width: 300px;
+}
+
+.testimonial p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.testimonial span {
+    font-size: 0.9rem;
+    color: #000000;
+}
+
+/* Footer Links */
+.footer-links {
+    margin-top: 20px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Add smooth transitions */
+.carousel-slide, .carousel-btn, .indicator, .cta-btn {
+    transition: all 0.3s ease;
+}
