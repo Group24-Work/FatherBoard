@@ -126,7 +126,7 @@
 
 /* Testimonials Section */
 .testimonials {
-    background-color: #000000;
+    background-color: #383838;
     padding: 50px 20px;
     text-align: center;
 }
@@ -139,21 +139,22 @@
 }
 
 .testimonial {
-    background: rgb(255, 255, 255);
+    background: rgb(0, 0, 0);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(82, 79, 79, 0.1);
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
     max-width: 300px;
 }
 
 .testimonial p {
     font-size: 1rem;
     margin-bottom: 10px;
+    color: #ffffff;
 }
 
 .testimonial span {
     font-size: 0.9rem;
-    color: #000000;
+    color: #ffffff;
 }
 
 /* Footer Links */
