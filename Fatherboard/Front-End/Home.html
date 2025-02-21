@@ -23,9 +23,9 @@
 
             <nav class="main-nav">
                 <ul class="main-nav-list">
-                    <li><a href="#register" class="active">About Us</a></li>
-                    <li><a href="#login">Account</a></li>
-                    <li><a href="#products">Basket</a></li>
+                    <li><a href="About.html">About Us</a></li>
+                    <li><a href="Login.html"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" /><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" /></svg></a></li>
+                    <li><a href="Basket.html"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-shopping-cart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 2a1 1 0 0 1 .993 .883l.007 .117v1.068l13.071 .935a1 1 0 0 1 .929 1.024l-.01 .114l-1 7a1 1 0 0 1 -.877 .853l-.113 .006h-12v2h10a3 3 0 1 1 -2.995 3.176l-.005 -.176l.005 -.176c.017 -.288 .074 -.564 .166 -.824h-5.342a3 3 0 1 1 -5.824 1.176l-.005 -.176l.005 -.176a3.002 3.002 0 0 1 1.995 -2.654v-12.17h-1a1 1 0 0 1 -.993 -.883l-.007 -.117a1 1 0 0 1 .883 -.993l.117 -.007h2zm0 16a1 1 0 1 0 0 2a1 1 0 0 0 0 -2zm11 0a1 1 0 1 0 0 2a1 1 0 0 0 0 -2z" /></svg></a></li>
                 </ul>
             </nav>
         </div>
@@ -46,6 +46,15 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to FatherBoard</h1>
+            <p>Your one-stop shop for all your computer hardware needs.</p>
+            <a href="#hot-product" class="cta-btn">Shop Now</a>
+        </div>
+    </section>
+
     <!-- Carousel Section -->
     <section class="carousel">
         <div class="carousel-container">
@@ -64,7 +73,7 @@
     </section>
 
     <!-- Hot Product Section -->
-    <section class="hot-product">
+    <section class="hot-product" id="hot-product">
         <h2>🔥 Hot Product of the Month</h2>
         <div class="hot-product-content">
             <img src="images/gpu.png" alt="RTX 3060">
@@ -76,7 +85,22 @@
         </div>
     </section>
 
-    <!-- Footer Section (unchanged) -->
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p>"Great products and excellent customer service!"</p>
+                <span>- John Doe</span>
+            </div>
+            <div class="testimonial">
+                <p>"Fast shipping and amazing prices. Highly recommend!"</p>
+                <span>- Jane Smith</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="social-icons">
@@ -92,6 +116,12 @@
                 <a href="https://linkedin.com" target="_blank">
                     <img src="images/linkedin.png" alt="LinkedIn">
                 </a>
+            </div>
+            <div class="footer-links">
+                <a href="About.html">About Us</a>
+                <a href="Contact.html">Contact</a>
+                <a href="Privacy.html">Privacy Policy</a>
+                <a href="Terms.html">Terms of Service</a>
             </div>
             <p>&copy; 2024 FatherBoard. All Rights Reserved.</p>
         </div>

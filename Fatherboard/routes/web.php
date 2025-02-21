@@ -111,3 +111,13 @@ Route::get('/admin/product/{id}', action: [AdminProductController::class, "show"
 Route::delete('/admin/products{id}', action: [AdminProductController::class, "destroy"])->name('delete');
 Route::post('/admin/product/create', [AdminProductController::class, "created"])->name('created');
 Route::put('/admin/product/{product_id}', [AdminProductController::class, "update"])->name('update');
+
+Route::post("/create/product", [ProductController::class, 'create']);
+
+Route::post("/edit/product", [ProductController::class, 'edit']);
+
+Route::post("/update/product", [ProductController::class, 'update']);
+
+Route::post("/delete/product", [ProductController::class, 'destroy']);
+
+Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
