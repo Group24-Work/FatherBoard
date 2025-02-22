@@ -3,3 +3,28 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.title {
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    color: black;
+}
+
+.subtitle{
+    text-align: center;
+    color: #474747;
+    font-size: 1.2em;
+}
+
+h3{
+    color: black;
+}
+
+#next{
+    width: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: yellowgreen;
+    border-style: none;
+}

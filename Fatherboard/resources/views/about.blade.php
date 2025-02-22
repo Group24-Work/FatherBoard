@@ -20,7 +20,7 @@
                 We wanted to fix this, and share our enjoyment of PC parts and PC building. 
                 <br>
                 <br>
-                At FatherBoard, we believe in transparent communication. If you have any issues or queries, please <a href="Contact.html">contact us.</a>
+                At FatherBoard, we believe in transparent communication. If you have any issues or queries, please <a href="contact">contact us.</a>
             </p>
             </div>
         </div>
