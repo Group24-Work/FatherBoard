@@ -88,6 +88,10 @@ Route::get('/about', function()
 });
 
 
+Route::get('/questionnaire', function()
+{
+    return view('questionnaire');
+});
 
 
 
@@ -121,3 +125,5 @@ Route::post("/update/product", [ProductController::class, 'update']);
 Route::post("/delete/product", [ProductController::class, 'destroy']);
 
 Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
+
+
