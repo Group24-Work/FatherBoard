@@ -1,6 +1,7 @@
 
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactFormController;
@@ -124,6 +125,6 @@ Route::post("/update/product", [ProductController::class, 'update']);
 
 Route::post("/delete/product", [ProductController::class, 'destroy']);
 
-Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
+// Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
-
+Route::get('/admin', [AdminController::class, "giveAdminHub"]);

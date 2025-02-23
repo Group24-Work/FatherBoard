@@ -167,6 +167,8 @@
 
 
     <div id="settings" >
+        <div id="currentBar">
+        </div>
         <ul>
             <li>
                 <button class="option" id="button_personal">Personal</button>
