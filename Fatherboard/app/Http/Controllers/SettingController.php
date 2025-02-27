@@ -217,6 +217,25 @@ public static function form_removeAddress()
 
 }
 
+
+public static function showOrder($id)
+{
+    if ($user = AuthController::loggedIn())
+    {
+        $order_det = $user->orders->get($id)->order_details()->with("product")->get();
+
+
+        $productsArr = [];
+        foreach ($order_det as $order)
+        {
+            array_push($productsArr, $order->product()->first());
+        }
+
+        return view("order",["data"=>$productsArr]);
+        
+    }
+}
+
 public static function removeAddress($user_id, $address_id)
 {
     // AddressInformation::where("customer_information_id",$user_id)::where("address_information_id",$address_id)->delete();

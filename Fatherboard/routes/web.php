@@ -63,6 +63,7 @@ Route::get('/settings', [SettingController::class, 'pageSettings']);
 Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
 Route::post('/update/personal', [SettingController::class, 'updatePersonal']);
 
+Route::get("/orders/{id}", [SettingController::class, "showOrder"]);
 // Terms
 
 Route::get("/terms", function()

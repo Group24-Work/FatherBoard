@@ -1,0 +1,36 @@
+
+*
+{
+ margin:0;
+ padding:0;   
+}
+
+
+#order_container
+
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width:50%;
+    margin: 0 auto;
+}
+
+#return_container
+{
+    position:relative;
+    left: 3rem;
+    top:1rem;
+}
+img
+{
+    width:5rem;
+    height:5rem;
+    float:left;
+}
+
+.item_order
+{
+    margin-top: 2rem;
+    background-color: red;;
+}
