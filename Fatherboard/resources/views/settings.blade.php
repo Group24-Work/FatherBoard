@@ -195,6 +195,9 @@
             <li>
                 <button class="option" id="admin_index_button">Admin Hub</button>
             </li>
+            <li>
+                <button class="option" id="button_reports">Reports</button>
+            </li>
             <?php
             }
             ?>
