@@ -16,6 +16,7 @@
                 color: black;
             }
         </style>
+
         <h2>
             <slot name="Title">Unknown Title</slot>
         </h2>
@@ -111,6 +112,8 @@ if (count($data) > 0) {
 
 
         <product-element class="ProductItem">
+        <img src="{{ asset('images/product_images/' . $item['product_id'] . '.jpg') }}"
+        alt="product image" class="product-image">
             <p hidden class="product_identity"> {{$item["id"]}} </p>
             <span slot="Title">{{ $item['Title'] }}</span>
             <span slot="Description">{{ $item['Description'] }}</span>
