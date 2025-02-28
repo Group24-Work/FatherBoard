@@ -8,6 +8,7 @@
 }
 
 .carousel-container {
+    position: relative;
     display: flex;
     transition: transform 0.5s ease-in-out;
     width: 300%; /* Adjust for number of slides */
@@ -175,4 +176,24 @@
 /* Add smooth transitions */
 .carousel-slide, .carousel-btn, .indicator, .cta-btn {
     transition: all 0.3s ease;
+}
+
+ul li ul.dropdown {
+    display: block;
+}
+
+ul li ul.dropdown {
+    width: 160px;
+    background: black;
+    position: absolute;
+    display: none;
+    top: 80%;
+}
+
+ul li a:hover {
+    background: black;
+}
+
+ul li:hover ul.dropdown {
+    display: block;
 }
