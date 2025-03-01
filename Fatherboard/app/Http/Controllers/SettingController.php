@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\order_details;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\AuthController;
@@ -11,6 +12,8 @@ use App\Models\CustomerInformation;
 use Faker\Provider\ar_EG\Address;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Product;
+use App\Models\Orders;
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
@@ -222,16 +225,61 @@ public static function showOrder($id)
 {
     if ($user = AuthController::loggedIn())
     {
-        $order_det = $user->orders->get($id)->order_details()->with("product")->get();
+        // $order_det = $user->orders->find($id)->order_details()->with("product")->get();
 
-
-        $productsArr = [];
-        foreach ($order_det as $order)
+        $allOrderDetails = order_details::whereHas("order", function($q) use($id,$user)
         {
-            array_push($productsArr, $order->product()->first());
-        }
+            $q->where("customer_id",$user["id"]);
+        });
 
-        return view("order",["data"=>$productsArr]);
+        $order_select = DB::select("
+    SELECT * FROM (
+        SELECT *, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY created_at ASC) AS order_rank
+        FROM orders
+    ) ranked_orders
+    WHERE customer_id = ? and order_rank = ?
+", [$user["id"], $id]);
+
+
+        $orderId = $order_select[0]->id ?? null;
+
+
+        $products = DB::table('order_details')
+    ->join('products', 'order_details.products_id', '=', 'products.id')
+    ->join("product_prices", "products.id", "=", "product_prices.product_id") // Join products with order_details on product_id
+    ->where('order_details.order_id', $orderId) // Optional: Filter by specific order_id
+    ->select('products.id', 'products.Title', "product_prices.price") // Select specific columns from the products table
+    ->get();
+
+    $x = $products->map(function ($x)
+    {
+        $imageId = $x->id;
+        $imageId = $imageId > 25 ?  1 :  $imageId;
+        return ["id"=>$x->id, "Title"=>$x->Title, "price"=>$x->price, "image"=>$imageId];
+    });
+  
+
+        // $res = order_details::where("order_id",operator: $item)->get() ;
+
+        // $resProd_id = $res->pluck("products_id");
+
+        // $allProducts = Product::whereIn("id", $resProd_id)->get();
+    
+
+        // dd($products);
+        // $prodCol = $all_order_id::where("order_id",$all_order_id)->get()->map(callback: function ($order) 
+        // {
+        //     return ["id"=>$order["id"], "title"=>$order["title"]];
+        // }
+
+
+        // $productsArr = [];
+        // foreach ($order_det as $order)
+        // {
+        //     array_push($productsArr, $order->product()->first());
+        // }
+
+        return view("order",["data"=>$x]);
         
     }
 }

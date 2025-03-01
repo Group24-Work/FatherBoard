@@ -25,14 +25,13 @@
     
     
     <div id="order_block">
-        <p>{{}}</p>
     <div id="order_container">
     <?php
         foreach($data as $x)
         {
             ?>
             <div class="item_order">
-            <img src={{asset("images/product_images/" . $x["id"].".jpg")}}></img>
+            <img src={{asset("images/product_images/" . $x["image"]. ".jpg")}}></img>
             <h2>{{$x["Title"]}}</h2>
 
             </div>
