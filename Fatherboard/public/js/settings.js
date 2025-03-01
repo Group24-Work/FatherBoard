@@ -19,6 +19,8 @@ let update_personal_submit = null;
 
 let message_button = null;
 
+let currentBar = null;
+
 
 let csrf =null;
 let csrf_val =null;
@@ -35,6 +37,8 @@ update_personal_buttons = document.getElementsByClassName("update_personal_butto
 update_personal_submit = document.getElementById("update_personal_submit");
 
 admin_index_button = document.getElementById("admin_index_button");
+
+currentBar = document.getElementById("currentBar");
 
 message_button= document.getElementById("message_button");
 
@@ -99,6 +103,15 @@ function showMessages()
 
 }
 
+
+function moveCurrentBar(part)
+{
+
+    topUnit = part * "2"
+    currentBar.style.top = topUnit+"rem";
+
+
+}
 function logOut()
 {
     window.location.replace("/logout");
@@ -154,6 +167,7 @@ function addressClicked()
 {
     console.log("Address clicked");
 
+    moveCurrentBar(1);
     let csrf_val = csrf.getAttribute("content");
     fetch("./get/address", {method: "POST", headers : {"X-CSRF-TOKEN": csrf_val}}).then((x)=>x.json()).then((y)=>
         {
@@ -165,11 +179,16 @@ function addressClicked()
 
 function billingClicked()
 {
+    moveCurrentBar(2);
+
     console.log("Billing clicked");
 
 }
 function historyClicked()
 {
+
+    moveCurrentBar(3);
+
     console.log("History clicked");
     let order_hist = document.getElementById("order-info").cloneNode(true);
     order_hist.removeAttribute("hidden");
@@ -182,6 +201,8 @@ function historyClicked()
 }
 function personalClicked()
 {
+    moveCurrentBar(0);
+
     console.log("Address clicked");
 
 
