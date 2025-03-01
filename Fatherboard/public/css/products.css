@@ -85,3 +85,8 @@
   }
 
 
+  img:not(#logo){
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 0.5rem;
+}

@@ -9,6 +9,11 @@
     align-items: center;
 }
 
+.main-header .container:nth-child(2 ){
+    position: relative;
+    z-index: -100;
+}
+
 
 
 .main-header .container{ /*spacing for flexbox */
