@@ -7,6 +7,11 @@
 ul{
     list-style-type: none;
 }
+
+.order_price
+{
+    color:green;
+}
 #update_personal
 {
 
