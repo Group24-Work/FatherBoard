@@ -1,3 +1,5 @@
+<<<<<<< HEAD:Fatherboard/Front-End/checkout.css
+=======
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
@@ -8,6 +10,7 @@
 }
 
 
+>>>>>>> 387f66a76dc808074d12fc1ce5d70c466da1317b:Fatherboard/Front-End/checkout_css.css
 body {
     font-family: Montserrat;
     margin: 0;
@@ -30,6 +33,7 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
 }
 
 .shipping-information {

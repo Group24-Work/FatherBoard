@@ -11,6 +11,16 @@ body {
     padding: 0;
     background-color: #f5f5f5;
     color: #333;
+<<<<<<< HEAD
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    padding:10px 40px;
+    margin-left: 450px;
+    margin-top: 50px;
+    height: 50%;
+=======
 }
 
 .contents {
@@ -40,10 +50,11 @@ body {
 label #names{
     width: 30%;
     padding-left: 15px;
-    margin-top: 10px;
 }
 
-
+label input{
+    height: 36px;
+}
 
 h2 {
     margin-top: 0;
@@ -53,6 +64,7 @@ h2 {
 .contact-form p {
     padding-bottom: 20px;
     text-align: left;
+>>>>>>> 387f66a76dc808074d12fc1ce5d70c466da1317b
 }
 
 form .row {
@@ -66,9 +78,30 @@ form input, form select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    height: 36px;
 }
 
+<<<<<<< HEAD
+form textarea{
+    margin-top: 30px;
+
+}
+
+#contactForm label{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputPair {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+form #contSubmit {
+=======
 form button {
+>>>>>>> 387f66a76dc808074d12fc1ce5d70c466da1317b
     width: 100%;
     padding: 10px;
     background-color: #333;
