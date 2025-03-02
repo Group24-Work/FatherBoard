@@ -1,3 +1,125 @@
+/* Dark Mode - Applied to body when active */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+/* Header in Dark Mode */
+body.dark-mode .main-header, 
+body.dark-mode .main-footer {
+    background-color: #222;
+}
+
+body.dark-mode .main-header a, 
+body.dark-mode .main-footer a {
+    color: white;
+}
+
+/* Search bar dark mode */
+body.dark-mode .SearchBar input {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+/* Main nav */
+body.dark-mode .main-nav a {
+    color: white;
+}
+
+/* Dropdown menu */
+body.dark-mode ul li ul.dropdown {
+    background: #222;
+}
+
+/* Hero Section */
+body.dark-mode .hero {
+    background: linear-gradient(to bottom, #1a1a1a, #2a2a2a);
+    color: white;
+}
+
+/* Carousel */
+body.dark-mode .carousel {
+    background-color: #000;
+}
+
+/* Hot Product Section */
+body.dark-mode .hot-product {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+body.dark-mode .hot-product-content img {
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Testimonials */
+body.dark-mode .testimonials {
+    background-color: #222;
+}
+
+body.dark-mode .testimonial {
+    background-color: #111;
+    color: white;
+}
+
+/* Footer */
+body.dark-mode .footer-links a {
+    color: white;
+}
+
+body.dark-mode .testimonial p,
+body.dark-mode .testimonial span {
+    color: #e0e0e0;
+}
+
+/* CTA Button */
+body.dark-mode .cta-btn {
+    background-color: #444;
+    color: white;
+}
+
+body.dark-mode .cta-btn:hover {
+    background-color: #666;
+}
+
+/* Carousel Buttons */
+body.dark-mode .carousel-btn {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+}
+
+body.dark-mode .carousel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Dark Mode for Testimonial Cards */
+body.dark-mode .testimonial {
+    background-color: #333;
+    color: white;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Toggle button styling */
+.theme-toggle button {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.theme-toggle button:hover {
+    background: #666;
+}
+
+/* Dark mode toggle button specific when in dark mode */
+body.dark-mode .theme-toggle button {
+    background: #f1f1f1;
+    color: black;
+}
 
 .container{ /* using flexbox for the header - container is used to keep items in the header.*/
     background-color: black;
