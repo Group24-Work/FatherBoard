@@ -9,15 +9,22 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
 
 
 
 
+     private static function data_productsFormat($data)
+     {
+         $filtered_details = $data->map(function ($x)
+         {
+             $image = $x["id"] > 25 ? 1 : $x["id"];
+             return ["ID"=>$x["id"],"Title"=>$x["Title"], "Description"=>$x["Description"], "Manufacturer"=>$x["Manufacturer"],"Price"=> $x->price()->first()["price"], "Image"=>$image];
+         });
+         return $filtered_details;
+     }
 
-
+     
 
     public function index(Request $rq)
     {
@@ -115,19 +122,25 @@ class ProductController extends Controller
     $all = $category_obj->get()->intersect($priceM->get());
 
     if ($search == null) {
-        $data = Product::all();
-        return view("products", ["data" => $all]);
+        $send_data = ProductController::data_productsFormat($all);
+        return view("products", ["data" => $send_data]);
+
+        
     } else {
         $queryString = sprintf("Title REGEXP '.*%s.*'", $search);
         // $data = Product::whereRaw($queryString)->get();
         // $subQ = Product::fromSub($all, "sub")->whereRaw($queryString);
         $subQ = $all->intersect(Product::whereRaw($queryString)->get());
         // dd($subQ->ddRawSql());
-        return view("products", ["data" => $subQ]);
+        $send_data = ProductController::data_productsFormat($subQ);
+
+        return view("products", ["data" => $send_data]);
     }
+    
 
     }
 
+    
 
     // Filter by interesection of category, price and search
     public static function indexSpecific(Request $rq)
@@ -204,17 +217,22 @@ class ProductController extends Controller
         // $finalQuery = Product::fromSub($combinedQuery, 'sub')->whereRaw("description REGEXP ?", [".*{$search}.*"]);
 
         $intersect_final = $intersect_combined->intersect($data->get());
-        return json_encode($intersect_final);
+
+
+        // Formatting data 
+        $send_data = ProductController::data_productsFormat($intersect_final);
+
+        return json_encode($send_data);
 
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('product',["product"=>$product]);
-    }
+    // public function create()
+    // {
+    //     return view('product',["product"=>$product]);
+    // }
 
     /**
      * Store a newly created resource in storage.
