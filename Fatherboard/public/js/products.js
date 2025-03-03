@@ -48,7 +48,8 @@ function addLinks()
     let items = document.querySelectorAll(".ProductItem");
 
     items.forEach((x)=>{
-        let y = parseInt((x.children[0].textContent));
+        x.querySelector
+        let y = parseInt((x.getElementsByClassName(productIdentifier)[0].textContent));
 
         x.addEventListener("click",()=>productClick(y))
     });
@@ -98,7 +99,14 @@ function showProduct(info)
 
     let id_text = document.createElement("p")
     id_text.hidden = true;
-    id_text.textContent = elem["id"]
+    id_text.textContent = elem["ID"]
+    id_text.classList.add(productIdentifier)
+
+    let image_content = document.createElement("img")
+    image_content.setAttribute("slot", "ProductImage")
+    image_content.setAttribute("src", "images/product_images/" + elem["Image"] + ".jpg")
+    image_content.setAttribute("class","product-image")
+    
 
     let title_text = document.createElement("span")
     title_text.setAttribute("slot","Title");
@@ -117,7 +125,7 @@ function showProduct(info)
     product_element.appendChild(title_text);
     product_element.appendChild(description_text);
     product_element.appendChild(manufacturer_text);
-
+      product_element.appendChild(image_content)
     
     product_container.append(product_element);
 
