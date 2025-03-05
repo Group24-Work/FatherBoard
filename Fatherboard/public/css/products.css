@@ -12,6 +12,7 @@
     margin: 20px;
     text-align: center;
     border-radius: 5px;
+    background-color: white;
 
 }
 
@@ -93,4 +94,5 @@
     width: 6.25rem;
     height: 6.25rem;
     border-radius: 0.5rem;
+    margin-top: 20px;
 }
