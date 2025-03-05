@@ -21,9 +21,6 @@
             <slot name="Title">Unknown Title</slot>
         </h2>
         <p>
-            <slot name="Description">Unknown Description</slot>
-        </p>
-        <p>
             <slot class="price" name="Manufacturer">Unknown Manufacturer</slot>
         </p>
         <slot name="ProductImage">No image available</slot>
@@ -118,7 +115,6 @@ if (count($data) > 0) {
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
             <p>crazy killer u</p>
             <span slot="Title">{{ $item['Title'] }}</span>
-            <span slot="Description">{{ $item['Description'] }}</span>
             <span slot="Manufacturer"> {{ $item["Price"] }}</span>
 
         </product-element>

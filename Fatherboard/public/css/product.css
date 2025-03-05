@@ -133,10 +133,12 @@
 #review-area{
     padding-top: 50px;
     color: white;
-    border: 0.2rem solid black;
+    border: 0.2rem solid grey;
+    border-radius: 0.5rem;
     background-color: #bebebe;
     margin-top: 10px;
     align-items: center;
+    height: max-content;
 }
 
 #text-stars{
@@ -161,10 +163,16 @@
     border: 0.2rem solid white;
     background-color: white;
     height:3rem;
-    float:left;
+    float: right;
     padding: 0.5rem;
     border-radius: 5rem;
 }
+
+#review-area #review_button{
+    margin-left: 50px;
+}
+
+
 .review
 {
     border: 0.2rem solid white;
@@ -173,6 +181,7 @@
     width:100%;
     color: black;
     background-color: white;
+    height: 100%;
     
 }
 #star_container
@@ -184,6 +193,7 @@
     display:flex;
     flex-direction: column;
     width:100%;
+    height: 100%;
     
 
 }
