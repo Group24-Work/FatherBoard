@@ -62,9 +62,10 @@
         </form>
 
         <div id="review-area">
-            <h3>Reviews</h3>
+            <h3 id="review-title">Reviews</h3>
             <button id="review_button">Add review</button>
             <div id="rating_summary">
+                <b id="text-stars">{{round($rating,2)}}</b>
                 <div id="star_container">
                 <?php
 
@@ -76,7 +77,6 @@
 
                 } ?>
                 </div>
-                <b>{{$rating}}</b>
 
             </div>
 

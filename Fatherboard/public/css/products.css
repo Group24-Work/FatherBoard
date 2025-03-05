@@ -1,13 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-
 * {
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: Montserrat;
 }
 
 .ProductItem {
@@ -52,11 +45,12 @@ body {
 #filter-button
 {
     margin-top: 2rem;
-    background-color: #03fc98;
+    background-color: #800080;
     border-radius: 2rem;
     padding: 0.5rem;
     border: none;
     width:100%;
+    color: white;
 
 }
 
@@ -92,8 +86,3 @@ body {
   }
 
 
-  img:not(#logo){
-    width: 6.25rem;
-    height: 6.25rem;
-    border-radius: 0.5rem;
-}
