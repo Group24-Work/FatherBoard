@@ -43,7 +43,7 @@ ul{
     grid-template-rows: [start] 100vh [end];
     grid-template-areas: "options data"
                          "options data";
-    
+
 }
 
 address-element {
@@ -58,7 +58,7 @@ address-element {
 address-element:hover
 {
     background-color: white;;
-    
+
 }
 
 #add_address_box
@@ -101,7 +101,7 @@ address-element:hover
     display:flex;
     justify-content: center;
     flex-direction: column;
-    
+
 
     border: 1px black solid;
 }
@@ -116,8 +116,8 @@ address-element:hover
     height:150px;;
     content: "\00d7"
 } */
-#add_address_form input, 
-#add_address_form select, 
+#add_address_form input,
+#add_address_form select,
 #add_address_submit
 {
     width: 100%;

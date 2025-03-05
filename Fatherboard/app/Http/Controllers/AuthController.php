@@ -8,10 +8,10 @@ use App\Models\CustomerInformation;
 
 class AuthController extends Controller
 {
-    
+
     public static function login($email, $password): bool
     {
-        
+
         $customer = CustomerInformation::where("Email", $email)->first();
         if (!$customer) {
             return false; // User not found
@@ -19,17 +19,17 @@ class AuthController extends Controller
         /*else
         {
             return true;
-    
+
         }*/
 
         if (Hash::check($password, $customer->Password)) {
             return true; //correct password & username exists in the database, therefore true
         }
-        
-        
-        return false;  
-        
-        
+
+
+        return false;
+
+
 
     }
     public static function loginView()
@@ -62,7 +62,7 @@ class AuthController extends Controller
             else
             {
                 setcookie("email", $username, $length, "/");
-                setcookie("password", $password, $length, "/"); 
+                setcookie("password", $password, $length, "/");
                 return redirect('home');
 
             }
@@ -99,7 +99,7 @@ class AuthController extends Controller
             else
             {
                 setcookie("email", $email, $length, "/");
-                setcookie("password", $password, $length, "/"); 
+                setcookie("password", $password, $length, "/");
                 return json_encode(["conn" =>true]);
 
             }
@@ -125,7 +125,7 @@ class AuthController extends Controller
         $email_regex = "/.+@.+/";
 
         // check if the user exists already
-        
+
         if (CustomerInformation::where("Email",$email)->get()->count())
         {
             return json_encode(["conn"=>false, "reason"=>"The user already exists"]);
@@ -172,12 +172,12 @@ class AuthController extends Controller
     public static function addUser($email, $firstName, $lastName, $password)
     {
 
-    
+
         $conf = ["Email"=>$email,"First Name"=>$firstName, "Last Name"=>$lastName, "Password"=>$password];
-    
-        
+
+
         CustomerInformation::create($conf);
-    
+
         return redirect("/login");
     }
 
@@ -195,7 +195,7 @@ class AuthController extends Controller
 
         return redirect("/login");
     }
-    
+
     public static function giveRegister()
     {
         if ($x = self::loggedIn())
@@ -204,7 +204,7 @@ class AuthController extends Controller
         }
         return view('register');    }
 
- 
+
 
         public static function isCookieLogin()
         {
@@ -217,10 +217,10 @@ class AuthController extends Controller
                     return $customer;
                 }
             }
-        
+
             return false;
         }
-        
+
 
 
     // Checks if the hashed value of "password" matches the assumed hash password in the database
@@ -239,7 +239,7 @@ class AuthController extends Controller
         }
 
     }
-    
+
     // public static function check_login($username, $password)
     // {
 
@@ -273,14 +273,14 @@ class AuthController extends Controller
 
     public static function loggedIn()
     {
-        
+
         $cl = self::isCookieLogin();
         $sl = self::isSessionLogin();
-    
+
         if ($cl || $sl) {
             return $cl ?: $sl;
         }
-    
+
         return false;
     }
 
@@ -304,7 +304,7 @@ class AuthController extends Controller
 
         return false;
     }
-    
+
 
 
     public static function cookieLogout()
@@ -327,5 +327,6 @@ class AuthController extends Controller
         return redirect("/login");
     }
 
-    
+
 }
+

@@ -41,7 +41,7 @@
                 margin:0;
                 padding:0;
             }
-            
+
             </style>
 
 
@@ -84,11 +84,11 @@
         <b><slot name="Password">Unknown Password</slot></b>
         <button version="Password" class="update_personal_button">Update</button>
 
-        
+
         <br>
- 
+
     </template>
-{{-- 
+{{--
     <template id="template_add_address_box">
 
     </template> --}}
@@ -110,7 +110,7 @@
             <p>{{$x["Email"]}}</p>
 
         </div>
-        
+
         <?php
         }}
         ?>
@@ -138,7 +138,7 @@
                 <option>Spain</option>
             </select>
         </div>
-            
+
         <div>
             <label for="City">City</label>
             <input type="text" id="inp_city" name="City"></input>
@@ -165,24 +165,24 @@
     <main id="setting-container">
 
 
-    
+
     <div id="settings" >
         <ul>
             <li>
-                <button class="option" id="button_personal">Personal</button> 
+                <button class="option" id="button_personal">Personal</button>
             </li>
             <li>
-                <button class="option" id="button_address">Address</button> 
+                <button class="option" id="button_address">Address</button>
             </li>
             <li>
-                <button class="option" id="button_billing">Billing</button> 
+                <button class="option" id="button_billing">Billing</button>
             </li>
-            
+
             <li>
-                <button class="option" id="button_history">History</button> 
+                <button class="option" id="button_history">History</button>
             </li>
             <li>
-                <button class="option" id="logout_button">Logout</button> 
+                <button class="option" id="logout_button">Logout</button>
             </li>
             <?php
 
@@ -190,10 +190,10 @@
             {
                 ?>
             <li>
-                <button class="option" id="message_button">Messages</button> 
+                <button class="option" id="message_button">Messages</button>
             </li>
             <li>
-                <button class="option" id="admin_index_button">Admin Hub</button> 
+                <button class="option" id="admin_index_button">Admin Hub</button>
             </li>
             <?php
             }
@@ -208,9 +208,9 @@
 
     </div> --}}
 
-    
 
-    
+
+
 
     <div class="content" id="address-info">
         <h3>Address Information</h3>
@@ -220,7 +220,7 @@
         {
             foreach ($addr as $key => $value) {
                 # code...
-            
+
             ?>
             <address-element>
                 <span slot="Country">{{ $value["Country"] }}</span>
@@ -232,7 +232,7 @@
 
             <?php }}
         else {
-            ?> 
+            ?>
 
             <p>You do not have an address currently.</p>
 
@@ -244,3 +244,4 @@
     </main>
 
 </x-lowlayout>
+

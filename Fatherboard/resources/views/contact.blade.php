@@ -28,7 +28,7 @@
                     </label>
                         <input name="firstName" id="firstName" type="text"required="required">
 
-                    <label for="lastName"> 
+                    <label for="lastName">
                         Last Name
                     </label>
                         <input name="lastName" type="text" id="lastName" required="required">

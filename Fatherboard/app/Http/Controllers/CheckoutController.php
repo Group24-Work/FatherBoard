@@ -22,7 +22,7 @@ class CheckoutController extends Controller
             return view('login');
         }
         $basket=session()->get('basket',[]);
-        
+
         $basketDetails = [];
         foreach ($basket as $item) {
             $product = Product::find($item['product_id']);

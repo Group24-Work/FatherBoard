@@ -14,7 +14,7 @@ use App\Models\Product;
 
 class SettingController extends Controller
 {
-    
+
     public static function pageSettings()
     {
 
@@ -30,7 +30,7 @@ class SettingController extends Controller
                 {
                     $details = $x->order_details->all();
                     $orderProduct = [];
-                    
+
                     foreach ($details as $x)
                     {
                         // dd(Product::where("id",$x["products_id"])->first());
@@ -52,7 +52,7 @@ class SettingController extends Controller
                 {
                     $details = $x->order_details->all();
                     $orderProduct = [];
-                    
+
                     foreach ($details as $x)
                     {
                         // dd(Product::where("id",$x["products_id"])->first());
@@ -62,7 +62,7 @@ class SettingController extends Controller
                     }
                     array_push($orders, $orderProduct);
 
-                 
+
                 }
                 return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
             }
@@ -110,7 +110,7 @@ class SettingController extends Controller
 
 
 
-        return json_encode("");   
+        return json_encode("");
     }
 
     public static function updatePersonal()
@@ -121,7 +121,7 @@ class SettingController extends Controller
         $version = request("version");
 
         $data = [$version=>$updated];
-        
+
         $form = AuthController::whichLog();
 
         if ($version == "Password")
@@ -130,7 +130,7 @@ class SettingController extends Controller
 
         }
         CustomerInformation::where("id",$user["id"])->update($data);
-        
+
         if ($version == "Password")
         {
         if ($form == "cookie")
@@ -138,7 +138,7 @@ class SettingController extends Controller
             $length = time() + 60*60*24*30;
 
             // setcookie("email", $updated, $length, path: "/");
-            setcookie("password", $updated, $length, "/"); 
+            setcookie("password", $updated, $length, "/");
 
         }
         if ($form == "session")
@@ -153,7 +153,7 @@ class SettingController extends Controller
         {
             $length = time() + 60*60*24*30;
 
-            setcookie("email", $updated, $length, "/"); 
+            setcookie("email", $updated, $length, "/");
 
         }
         if ($form == "session")
@@ -165,7 +165,7 @@ class SettingController extends Controller
     return json_encode(["conn"=>true]);
 
         }
-    
+
 
 
     }
@@ -193,11 +193,11 @@ public static function form_addAddress()
         $addrline = $_POST["AddressLine"];
 
         $postCode = $_POST["PostCode"];
-        
+
          $addr =  self::addAddress($id,$country,$city,$addrline, $postCode);
 
          return json_encode($addr);
-        
+
     }
     return json_encode("sk");
 }
@@ -207,9 +207,9 @@ public static function form_removeAddress()
     if ($user = AuthController::loggedIn())
     {
         $_POST = json_decode(file_get_contents("php://input"),true);
-        $user_id = $user["id"];   
+        $user_id = $user["id"];
         $address_id = $_POST["address_id"];
-        
+
         self::removeAddress($user_id, $address_id);
         return json_encode("");
 
@@ -220,7 +220,7 @@ public static function form_removeAddress()
 public static function removeAddress($user_id, $address_id)
 {
     // AddressInformation::where("customer_information_id",$user_id)::where("address_information_id",$address_id)->delete();
-    
+
     CustomerInformation::where("id",$user_id)->first()->address->where("id",$address_id)->first()->delete();
 }
 }

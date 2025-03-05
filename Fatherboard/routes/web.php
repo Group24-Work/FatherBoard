@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\AdminProductController;
@@ -77,7 +78,7 @@ Route::post("/delete/address", [SettingController::class, "form_removeAddress"])
 // Contact Form
 
 Route::post("/add/message", [ContactFormController::class, "form_message"]);
-Route::get("/contact", [ContactFormController::class, "giveContact"]);
+Route::get("/contact", [ContactFormController::class, "giveContact"])->name("contact");
 
 // About Us
 
@@ -87,6 +88,10 @@ Route::get('/about', function()
 });
 
 
+Route::get('/questionnaire', function()
+{
+    return view('questionnaire');
+});
 
 
 
@@ -110,3 +115,15 @@ Route::get('/admin/product/{id}', action: [AdminProductController::class, "show"
 Route::delete('/admin/products{id}', action: [AdminProductController::class, "destroy"])->name('delete');
 Route::post('/admin/product/create', [AdminProductController::class, "created"])->name('created');
 Route::put('/admin/product/{product_id}', [AdminProductController::class, "update"])->name('update');
+
+Route::post("/create/product", [ProductController::class, 'create']);
+
+Route::post("/edit/product", [ProductController::class, 'edit']);
+
+Route::post("/update/product", [ProductController::class, 'update']);
+
+Route::post("/delete/product", [ProductController::class, 'destroy']);
+
+Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
+
+

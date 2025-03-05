@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto&display=swap');
 
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+@media screen and (max-height:35rem)
+{
+    .container:has(.lower-nav){
+    
+display:none    }
+}
 body {
     font-family: Montserrat;
     background-color: #d2d2d2 !important;
@@ -15,6 +22,7 @@ body {
 a{
     z-index: 5;
 }
+
 
 p {
     text-align: center;
@@ -66,7 +74,6 @@ body h1{
 }
 
 
-
 .main-header .container{ /*spacing for flexbox */
    justify-content: space-around;
 }
@@ -94,7 +101,15 @@ body h1{
     white-space: nowrap;
 }
 
-
+.terms-containerbox {
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 .main-nav li{ 
     display: inline;
@@ -113,6 +128,7 @@ body h1{
     padding: 0.5em 1em;
     display: block;
 }
+
 
 /* sizing for each link, and border. */
 
@@ -138,25 +154,24 @@ body h1{
     padding: .5em 3em;
 }
 
-.main-nav .active{
-        background-color: purple;
-        color: white;
-}
+
 
 /*different colour link for the page the user is on. */
 
 .main-nav a{
-    float: left;
     color: white;
+    float: left;
     text-align: center;
     text-decoration: none;
     font-size: 1.125rem;
     border-radius: 0.25rem;
+    background-color: black;
 }
 
+
 .main-nav a:hover{
-    background-color: #ddd;
-    color: black;
+    background-color: white;
+    color: black
 }
 
 /*hover effect for when a user hovers over a link */
@@ -218,8 +233,8 @@ body h1{
 }
 
 .lower-nav a:hover{
-    background-color: #ddd;
-    color: black;
+    background-color: #ddd !important;
+    color: black !important;
 }
 
 

@@ -1,3 +1,4 @@
+
 <x-lowlayout>
     <x-slot:head>
         <link rel="stylesheet" href={{ asset('css/register.css') }}>
@@ -11,15 +12,15 @@
     <form action="./_register" method="POST" id="register_form">
         <a class="exitCross" href="{{route('home')}}"></a>
         <h1>Register</h1> <p class="returnToLogin">
-            Current User? <br><a href="{{route("login")}}">Login!</a></p> 
+            Current User? <br><a href="{{route("login")}}">Login!</a></p>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        
+
         <div class="text-input">
 
             <input type="text" name="username" id="username" placeholder="Email">
-            
+
         </div>
 
 
@@ -51,7 +52,7 @@
     </form>
     </div>
 
-    
+
 </x-lowlayout>
 
 

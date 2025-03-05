@@ -1,8 +1,9 @@
 
+
 <x-lowlayout>
     <x-slot:head>
-    <link rel="stylesheet" href={{ asset('css/login.css') }}>
-    <link rel="stylesheet" href={{ asset('css/auth_message.css')}}>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth_message.css')}}">
     <script src={{ asset('js/login.js') }}></script>
     <title>Login</title>
     </x-slot:head>
@@ -26,7 +27,7 @@
 
         <div id="notification_container">
         </div>
-        
+
         <div id="persist_login">
         <label for="permanent">Persist login after close</label>
         <input type="checkbox" name="permanent" id="permanent">
@@ -36,7 +37,7 @@
             <a href="#">Forgot Password?</a>
         </div>
 
-        
+
         <input type="submit"  name="submit" id="submit" value="Login">
 
         <div class="register">
@@ -48,7 +49,7 @@
 
 
 
-    
+
     <p></p>
 </x-lowlayout>
 
@@ -80,7 +81,7 @@
             </div>
 
             <button type="submit" class="button" value="login">Login</button>
-            
+
             <div class="register">
                 <p id="newUserText">New user? <a href="Signup.html">Create a new account!</a></p>
             </div>

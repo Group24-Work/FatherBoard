@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -55,7 +56,7 @@ public function create()
         $rating = request("rating");
         $review = request("review");
         $product_id = request("product_id");
-        
+
         if ($user = AuthController::loggedIn())
         {
         $data = ["customer_id"=>$user->id,"review"=>$review, "rating"=>$rating, "product_id"=>$product_id];

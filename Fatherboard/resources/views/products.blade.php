@@ -1,5 +1,5 @@
-<x-lowlayout>
 
+<x-lowlayout>
     <x-slot:head>
         <link rel="stylesheet" href={{ asset('css/products.css') }}>
         <script src={{ asset('js/products.js') }}></script>
@@ -37,23 +37,23 @@
         <br>
         <div class="checkbox">
             <label><input type="checkbox" rel="Memory"/>Memory</label>
-            </div>   
+            </div>
         <br>
         <div class="checkbox">
             <label><input type="checkbox" rel="CPU" href="CPUs"/>CPUs</label>
-        </div>   
+        </div>
         <br>
         <div class="checkbox">
             <label><input type="checkbox" rel="Prebuilt" />Prebuilt Computers</label>
-        </div>   
+        </div>
         <br>
         <div class="checkbox">
             <label><input type="checkbox" rel="GPU" />GPUs</label>
-        </div>   
+        </div>
         <br>
         <div class="checkbox">
             <label><input type="checkbox" rel="PSU" />PSUs</label>
-        </div>   
+        </div>
         <br>
 
     </div>

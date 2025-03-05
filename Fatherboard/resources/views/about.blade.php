@@ -1,6 +1,6 @@
 <x-lowlayout>
     <x-slot:head>
-        <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
+        <link rel="stylesheet" href="{{asset('css/aboutus.css')}}">
     </x-slot:head>
     <x-header></x-header>
     <div class="split left"> <!--https://www.w3schools.com/howto/howto_css_split_screen.asp -->
@@ -20,7 +20,7 @@
                 We wanted to fix this, and share our enjoyment of PC parts and PC building. 
                 <br>
                 <br>
-                At FatherBoard, we believe in transparent communication. If you have any issues or queries, please <a href="Contact.html">contact us.</a>
+                At FatherBoard, we believe in transparent communication. If you have any issues or queries, please <a href="{{ route("contact")}}">contact us.</a>
             </p>
             </div>
         </div>

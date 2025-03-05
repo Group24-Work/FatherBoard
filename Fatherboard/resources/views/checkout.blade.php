@@ -16,7 +16,7 @@
             @csrf
             <div class="row">
                 <input type="text" placeholder="Address Line 1" name="Address Line 1"  required >
-                <input type="text" placeholder="Zip/Postal Code" name="Postcode" required>  
+                <input type="text" placeholder="Zip/Postal Code" name="Postcode" required>
             </div>
             <div class="row">
                 <select name="Country" required>
@@ -41,43 +41,43 @@
 
                 @if(empty($basketDetails))
                 <div id="basket-items" class="basket-items hidden">
-            
+
                 <p> Your Basket is Empty!</p>
                 @else
-            
+
                 <table>
                     <thead>
-            
+
                         <tr>
                             <th> Product</th>
-                            <th>Name</th>            
+                            <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>SubTotal</th>
                         </tr>
                     </thead>
-            
+
                     <tbody>
                     @foreach($basketDetails as $item)
-            
-            
+
+
                     <tr>
                         <td>     <img src="{{ asset('images/product_images/' . $item['product_id'] . '.jpg') }}" alt="product image" class ="product-image">
                         </td>
-            
+
                         <td>{{ $item['name'] }}</td>
                         <td>{{ $item['price'] }}</td>
                     </div>
                         <td>{{$item['quantity']}}</td>
-            
+
                         <td>{{ $item['price'] * (int)$item['quantity'] }} </td>
                         </tr>
-            
+
                 @endforeach
                 @endif
                     </tbody>
                     </table>
-            
+
                 </div>
 </main>
   </body>

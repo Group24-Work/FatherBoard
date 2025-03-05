@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerInformation;
 use App\Models\Product;
 use App\Utility\Utility;
 use Illuminate\Http\Request;
@@ -13,6 +12,13 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+
+
+
+
+
     public function index(Request $rq)
     {
         $search = request("search");
@@ -26,7 +32,7 @@ class ProductController extends Controller
         // $validTypes = Product::distinct()->pluck('type');
 
         // foreach ($category as $x)
-        // {   
+        // {
         //     if ($validTypes->contains(strtoupper($x)))
         //     {
         //         array_push($filteredCat,$x);
@@ -44,9 +50,9 @@ class ProductController extends Controller
             {
                 array_push($filteredCat, $cat);
             };
-        }    
+        }
 
-        $category_obj = $originalProd->where(function($query) use ($category, $filteredCat) {   
+        $category_obj = $originalProd->where(function($query) use ($category, $filteredCat) {
             foreach ($filteredCat as $x) {
                 $query->orWhere("type", $x);
             }
@@ -61,7 +67,7 @@ class ProductController extends Controller
         $prices = explode(',', $rq->query("prices", ''));
 
 
-        
+
         foreach ($prices as $pri) {
         $priceM = $priceM->orWhereHas("price", function($q) use ($pri)
         {
@@ -71,7 +77,7 @@ class ProductController extends Controller
             $curData = [];
             preg_match($reg, $pri, $matches);
             // dd($matches);
-           
+
                 // $x->price$matches[1],$matches[2])->get()
 
             if (count($matches)==5)
@@ -93,13 +99,13 @@ class ProductController extends Controller
             {
                 // $q->where("price",">=","1000");
             }
-        
+
             }
             );
 
-            
+
         }
-        
+
     }
     else
         {
@@ -143,8 +149,8 @@ class ProductController extends Controller
         {
         foreach($user_price as $cond)
         {
- 
-  
+
+
             $curData = $curData->orWhereHas("price",function ($q) use ($cond) {
                 foreach($cond as $x)
                 {
@@ -160,7 +166,7 @@ class ProductController extends Controller
                     $q->where("price",">=",$exp[0]);
                 }
 
-                    
+
                 };
                 });
             }
@@ -179,7 +185,7 @@ class ProductController extends Controller
         else if (count($user_cat) >=1)
         {
             $query2 = Product::where(function ($x) use ($user_cat){
-            
+
                 foreach ($user_cat as $category)
                 {
                     $x->orWhere("Type","=",$category);
@@ -201,12 +207,13 @@ class ProductController extends Controller
         return json_encode($intersect_final);
 
     }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('product',["product"=>$product]);
     }
 
     /**
@@ -214,7 +221,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view ('request', ["request"=>$request]);
     }
 
     /**
@@ -243,7 +250,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product', ["product"=>$product]); 
     }
 
     /**
@@ -251,7 +258,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        return view('product', ["reqest"=>$product]);
     }
 
     /**
@@ -259,6 +266,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        return view('product', ["product"=>$product]); 
     }
 }
