@@ -7,6 +7,7 @@
 
         <script src={{ asset('js/product.js') }}></script>
         <title>Product</title>
+
     </x-slot:head>
 
     <x-header>
@@ -27,13 +28,12 @@
             <h2 id="title">{{ $product->Title}} </h2>
             <p>{{ $product["Description"]}} </p>
             <p>{{ $product["Manufacturer"] }}</p>
-            <p>{{ $product["price"] }}</p>
+            <p>Price: £{{ $product->price }}</p>
 
             <form action="{{ route('basketAdd') }}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <input type="number" name="quantity" value="1" min="1">
-                <span slot="Manufacturer"> £{{ $item["Price"] }}</span>
 
                 <button type="submit" id="basket_button">Add To Basket</button>
             </form>
