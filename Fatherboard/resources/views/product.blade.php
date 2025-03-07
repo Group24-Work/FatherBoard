@@ -33,6 +33,8 @@
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <input type="number" name="quantity" value="1" min="1">
+                <span slot="Manufacturer"> £{{ $item["Price"] }}</span>
+
                 <button type="submit" id="basket_button">Add To Basket</button>
             </form>
         </div>
