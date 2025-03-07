@@ -26,6 +26,7 @@ body{
     background-size:contain;
     background-position: center;
     font-family: Montserrat;
+    background-image: src('Fatherboard\public\images\front_images\Login-background-image.webp');
 }
 
 #header1, #header2{
