@@ -28,8 +28,8 @@
             <h2 id="title">{{ $product->Title}} </h2>
             <p>{{ $product["Description"]}} </p>
             <p>{{ $product["Manufacturer"] }}</p>
-            <p>Price: £{{ $product->price }}</p>
-
+            <p>£{{ $product["Price"] }}</p> 
+            
 
             <form action="{{ route('basketAdd') }}" method="POST">
                 @csrf
