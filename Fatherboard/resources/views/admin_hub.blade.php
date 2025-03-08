@@ -7,6 +7,8 @@
 
     </x-slot:head>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <h2>Welcome Admin</h2>
     <div>
         <canvas id="myChart"></canvas>

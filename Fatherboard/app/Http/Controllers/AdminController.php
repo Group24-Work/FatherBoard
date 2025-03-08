@@ -15,6 +15,7 @@ class AdminController extends Controller
     {
 
         // Get the first and last order dates
+
         $firstOrderDate = DB::table('orders')
             ->selectRaw('MIN(DATE(created_at)) as first_date')
             ->value('first_date');
@@ -58,15 +59,20 @@ on tan.dt = x.order_date
 
         $filtered = $coll->map(function ($x)
         {
-            return ["total_sales"=>$x->total_sales ? (int)$x->total_sales : 0];
+            return ["total_sales"=>$x->total_sales ? (int)$x->total_sales : 0, "date"=>$x->dt];
         });
 
         $format = $filtered->flatten();
         
 
 
-    return json_encode($format);
+    return json_encode($filtered);
 
 
+    }
+
+    public function giveSpecificRevenue($id)
+    {
+        return $id;
     }
 }

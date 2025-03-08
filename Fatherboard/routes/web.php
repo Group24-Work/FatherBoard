@@ -133,13 +133,17 @@ Route::get("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
 Route::post("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
 
 
-Route::post("/admin/viewRevenue/{}");
+Route::post("/admin/viewRevenue/{id}", [AdminController::class, "giveSpecificRevenue"]);
 
+
+// Orders Based
 Route::post("/admin/viewTotalOrders/{}");
 
 Route::post("/admin/viewOrders/{}");
 
 
+
+// User 
 Route::post("/admin/findUser/");;
 
 
