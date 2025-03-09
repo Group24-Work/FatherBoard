@@ -17,16 +17,14 @@
             }
         </style>
 
+        <slot name="ProductImage">No image available</slot>
         <h2>
             <slot name="Title">Unknown Title</slot>
         </h2>
         <p>
-            <slot name="Description">Unknown Description</slot>
+            <b><slot class="price" name="Manufacturer">Unknown Manufacturer</slot></b>
         </p>
-        <p>
-            <slot class="price" name="Manufacturer">Unknown Manufacturer</slot>
-        </p>
-        <slot name="ProductImage">No image available</slot>
+
     </template>
     <!-- header.html -->
     <x-header></x-header>
@@ -118,8 +116,7 @@ if (count($data) > 0) {
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
             <p>crazy killer u</p>
             <span slot="Title">{{ $item['Title'] }}</span>
-            <span slot="Description">{{ $item['Description'] }}</span>
-            <span slot="Manufacturer"> {{ $item["Price"] }}</span>
+            <span slot="Manufacturer"> £{{ $item["Price"] }}</span>
 
         </product-element>
         <?php
