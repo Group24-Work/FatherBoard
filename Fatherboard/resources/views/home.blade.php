@@ -1,14 +1,8 @@
-<x-lowlayout>
-    <x-slot:head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FatherBoard - Homepage</title>
-        <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
-        <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
-        <script src="{{asset('js/carousel.js')}}" defer></script> <!-- Link for homepage-specific styles -->
-        <script src="{{asset('js/darkmode.js')}}" defer></script> <!-- Link for dark mode functionality -->
-    </x-slot:head>
+@extends('layouts.lowlayout')
 
+@section('title', 'FatherBoard - Homepage')
+
+@section('content')
     <x-header></x-header>
 
     <!-- Dark Mode Toggle Button -->
@@ -82,5 +76,5 @@
         </div>
     </footer>
     <br>
-</x-lowlayout>
+@endsection
 
