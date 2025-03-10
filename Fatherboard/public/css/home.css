@@ -252,3 +252,32 @@ header.dark-mode, footer.dark-mode {
 }
 
 /* Add more dark mode styles as needed */
+
+/* Style for the dark mode toggle button next to the search bar */
+.header-controls {
+    display: flex;
+    align-items: center;
+}
+
+.header-controls .SearchBar {
+    margin-right: 10px;
+}
+
+.header-controls #dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+/* Style for the dark mode toggle button at the bottom right corner */
+.dark-mode-toggle-bottom-right {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 1000;
+}

@@ -12,7 +12,7 @@
     <x-header></x-header>
 
     <!-- Dark Mode Toggle Button -->
-    <button id="dark-mode-toggle">Dark Mode 🌙</button>
+    <button id="dark-mode-toggle" class="dark-mode-toggle-bottom-right">🌙</button>
 
     <!-- Banner Section -->
     <section class="banner">
