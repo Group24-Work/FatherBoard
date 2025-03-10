@@ -1,10 +1,30 @@
 <x-lowlayout>
     <x-slot:head>
-        <link rel="stylesheet" href={{ asset('css/products.css') }}>
-        <script src={{ asset('js/products.js') }}></script>
-        <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
-        <title>Products</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FatherBoard - Products</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
+        <link rel="stylesheet" type="text/css" href="{{asset('css/products.css')}}"> <!-- Link for products styles -->
+        <script src="{{asset('js/darkmode.js')}}" defer></script> <!-- Link for dark mode functionality -->
     </x-slot:head>
+
+    <x-header></x-header>
+
+    <!-- Dark Mode Toggle Button -->
+    <div class="dark-mode-toggle-container">
+        <input type="checkbox" id="dark-mode-toggle" class="dark-mode-toggle">
+        <label for="dark-mode-toggle" class="dark-mode-label">
+            <span class="dark-mode-icon sun">☀️</span>
+            <span class="dark-mode-icon moon">🌙</span>
+        </label>
+    </div>
+
+    <!-- Products Content -->
+    <section class="products">
+        <h1>Our Products</h1>
+        <p>Explore our wide range of products.</p>
+        <!-- Add more content as needed -->
+    </section>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
