@@ -12,7 +12,13 @@
     <x-header></x-header>
 
     <!-- Dark Mode Toggle Button -->
-    <button id="dark-mode-toggle" class="dark-mode-toggle-bottom-right">🌙</button>
+    <div class="dark-mode-toggle-container">
+        <input type="checkbox" id="dark-mode-toggle" class="dark-mode-toggle">
+        <label for="dark-mode-toggle" class="dark-mode-label">
+            <span class="dark-mode-icon sun">☀️</span>
+            <span class="dark-mode-icon moon">🌙</span>
+        </label>
+    </div>
 
     <!-- Banner Section -->
     <section class="banner">

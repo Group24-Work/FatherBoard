@@ -281,3 +281,53 @@ header.dark-mode, footer.dark-mode {
     font-size: 1.5rem;
     z-index: 1000;
 }
+
+/* Style for the dark mode toggle button at the bottom right corner */
+.dark-mode-toggle-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.dark-mode-toggle {
+    display: none;
+}
+
+.dark-mode-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 30px;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.dark-mode-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.dark-mode-icon.sun {
+    transform: translateX(0);
+}
+
+.dark-mode-icon.moon {
+    transform: translateX(-30px);
+}
+
+.dark-mode-toggle:checked + .dark-mode-label .dark-mode-icon.sun {
+    transform: translateX(30px);
+}
+
+.dark-mode-toggle:checked + .dark-mode-label .dark-mode-icon.moon {
+    transform: translateX(0);
+}
+
+.dark-mode-toggle:checked + .dark-mode-label {
+    background-color: #333;
+}
