@@ -76,13 +76,7 @@
                 @endif
             </div>
             <div class="basket-summary">
-                @php
-                    $subtotal = 0;
-                    foreach ($basketDetails as $item) {
-                        $subtotal += $item['price'] * $item['quantity'];
-                    }
-                @endphp
-                <h2>Subtotal: £{{ $subtotal }}</h2>
+                <h2>Subtotal: £{{ ($item['price'] * (int) $item['quantity']) }}</h2>
                 <form method="GET" action="{{ route('basketCheckout') }}">
                     @csrf
                     <button id="checkout-btn">Proceed To Checkout</button>
