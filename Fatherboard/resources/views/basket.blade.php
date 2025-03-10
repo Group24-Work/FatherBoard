@@ -51,7 +51,7 @@
                                                         </td>
 
                                                         <td>{{ implode(' ', array_slice(explode(' ', $item['name']), 0, 7)) }}</td>
-                                                        <td>{{ $item['price'] }}</td>
+                                                        <td>£{{ $item['price'] }}</td>
                                         </div>
                                         <td>
                                             <form method="POST" action="{{ route('basketUpdate') }}">

@@ -41,47 +41,47 @@
                         <button type="submit">Continue to Payment</button>
                     </form>
                 </div>
+                <div class="basket-container">
+                    @if(empty($basketDetails))
+                        <div id="basket-items" class="basket-items hidden">
 
-                @if(empty($basketDetails))
-                    <div id="basket-items" class="basket-items hidden">
+                            <p> Your Basket is Empty!</p>
+                    @else
 
-                        <p> Your Basket is Empty!</p>
-                @else
+                            <table>
+                                <thead>
 
-                        <table>
-                            <thead>
-
-                                <tr>
-                                    <th> Product</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>SubTotal</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach($basketDetails as $item)
-
-
-                                                <tr>
-                                                    <td> <img src="{{ asset('images/product_images/' . $item['product_id'] . '.jpg') }}"
-                                                            alt="product image" class="product-image">
-                                                    </td>
-
-                                                    <td>{{ $item['name'] }}</td>
-                                                    <td>{{ $item['price'] }}</td>
-                                    </div>
-                                    <td>{{$item['quantity']}}</td>
-
-                                    <td>{{ $item['price'] * (int) $item['quantity'] }} </td>
+                                    <tr>
+                                        <th> Product</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>SubTotal</th>
                                     </tr>
+                                </thead>
 
-                                @endforeach
-                @endif
-                </tbody>
-                </table>
+                                <tbody>
+                                    @foreach($basketDetails as $item)
 
+
+                                                    <tr>
+                                                        <td> <img src="{{ asset('images/product_images/' . $item['product_id'] . '.jpg') }}"
+                                                                alt="product image" class="product-image">
+                                                        </td>
+
+                                                        <td>{{ $item['name'] }}</td>
+                                                        <td>{{ $item['price'] }}</td>
+                                        </div>
+                                        <td>{{$item['quantity']}}</td>
+
+                                        <td>{{ $item['price'] * (int) $item['quantity'] }} </td>
+                                        </tr>
+
+                                    @endforeach
+                    @endif
+                    </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </body>
