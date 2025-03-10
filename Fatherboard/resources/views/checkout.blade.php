@@ -41,10 +41,9 @@
                         <button type="submit">Continue to Payment</button>
                     </form>
                 </div>
-                <div class="basket-container">
 
-                    @if(empty($basketDetails))
-                        <div id="basket-items" class="basket-items hidden">
+                @if(empty($basketDetails))
+                <div id="basket-items" class="basket-items hidden">
 
                             <p> Your Basket is Empty!</p>
                     @else
@@ -70,13 +69,13 @@
                                                                 alt="product image" class="product-image">
                                                         </td>
 
-                                                        <td>{{ $item['name'] }}</td>
-                                                        <td>£{{ $item['price'] }}</td>
-                                        </div>
-                                        <td>{{$item['quantity']}}</td>
+                        <td>{{ $item['name'] }}</td>
+                        <td>{{ $item['price'] }}</td>
+                    </div>
+                        <td>{{$item['quantity']}}</td>
 
-                                        <td>£{{ $item['price'] * (int) $item['quantity'] }} </td>
-                                        </tr>
+                        <td>{{ $item['price'] * (int)$item['quantity'] }} </td>
+                        </tr>
 
                                     @endforeach
                     @endif

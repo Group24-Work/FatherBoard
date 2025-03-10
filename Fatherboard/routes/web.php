@@ -126,6 +126,29 @@ Route::post("/update/product", [ProductController::class, 'update']);
 
 Route::post("/delete/product", [ProductController::class, 'destroy']);
 
+
+
+// Reports functionality
+
+Route::post("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
+
+
+
+// Orders Based
+Route::post("/admin/viewTotalOrders/{}");
+
+Route::get("/admin/viewOrders", [AdminController::class, "giveOrders"]);
+Route::post("/admin/viewOrders/{}");
+
+
+
+// User 
+Route::post("/admin/findUser/");;
+
+
+
+
+
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
 Route::get('/admin', [AdminController::class, "giveAdminHub"]);

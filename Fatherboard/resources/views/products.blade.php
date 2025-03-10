@@ -113,13 +113,12 @@ if (count($data) > 0) {
 
 
         <product-element class="ProductItem">
-            <img slot="ProductImage" src="{{ asset('images/product_images/' . $item['Image'] . '.jpg') }}"
-                alt="product image" class="product-image">
-            <p hidden class="product_identity"> {{$item["ID"]}} </p>
-            <p>crazy killer u</p>
-            <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
-
-            <span slot="Manufacturer"> £{{ $item["Price"] }}</span>
+        <img src="{{ asset('images/product_images/' . $item['product_id'] . '.jpg') }}"
+        alt="product image" class="product-image">
+            <p hidden class="product_identity"> {{$item["id"]}} </p>
+            <span slot="Title">{{ $item['Title'] }}</span>
+            <span slot="Description">{{ $item['Description'] }}</span>
+            <span slot="Manufacturer"> {{ $item->price()->first()["price"] }}</span>
 
         </product-element>
         <?php

@@ -51,8 +51,8 @@
                                                                 alt="product image" class="product-image">
                                                         </td>
 
-                                                        <td> {{ implode(' ', array_slice(explode(' ', $item['name']), 0, 7)) }}</td>
-                                                        <td>£{{ $item['price'] }}</td>
+                                                        <td>{{ $item['name'] }}</td>
+                                                        <td>{{ $item['price'] }}</td>
                                         </div>
                                         <td>
                                             <form method="POST" action="{{ route('basketUpdate') }}">
@@ -84,6 +84,7 @@
                         <h2>Subtotal: £{{ ($item['price'] * (int) $item['quantity']) }}</h2>
                         <form method="GET" action="{{ route('basketCheckout') }}">
                             @csrf
+                            <h2>Subtotal: £{{ ($item['price'] * (int) $item['quantity']) }}</h2>
                             <button id="checkout-btn">Proceed To Checkout</button>
                         </form>
                 @endif

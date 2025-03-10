@@ -65,14 +65,23 @@ class SettingController extends Controller
 
                 foreach ($user->orders as $x)
                 {
+                    $orderPrice = DB::table('order_details')
+                    ->join('products', 'order_details.products_id', '=', 'products.id')
+                    ->join('product_prices', 'products.id', '=', 'product_prices.product_id')
+                    ->where('order_details.order_id', $x["id"])
+                    ->select(
+                
+                        DB::raw('SUM(product_prices.price * order_details.quantity) as total_amount')
+                    )->first();
+
                     $details = $x->order_details->all();
-                    $orderProduct = [];
+                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[]];
 
                     foreach ($details as $x)
                     {
                         // dd(Product::where("id",$x["products_id"])->first());
                          $product = Product::where("id",$x["products_id"])->first();
-                         array_push($orderProduct, $product["Title"]);
+                         array_push($orderProduct["elements"], $product["Title"]);
 
                     }
                     array_push($orders, $orderProduct);

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:Fatherboard/Front-End/checkout.css
 =======
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
@@ -18,6 +19,10 @@ body {
 body {
     font-family: Arial, sans-serif;
 >>>>>>> 10d9fc6ed64edd5d6b06bcab439d9aa9b7fc91c9
+=======
+body {
+    font-family: Arial, sans-serif;
+>>>>>>> 1131acedc2ca4b7c5d917f2da8d9ca7b317cdf63
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
@@ -39,9 +44,12 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin-top: 100px;
 =======
 >>>>>>> 10d9fc6ed64edd5d6b06bcab439d9aa9b7fc91c9
+=======
+>>>>>>> 1131acedc2ca4b7c5d917f2da8d9ca7b317cdf63
 }
 
 .shipping-information {
