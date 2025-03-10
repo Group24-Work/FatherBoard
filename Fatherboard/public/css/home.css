@@ -1,36 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+
+/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body */
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #d2d2d2;
+    font-family: Montserrat;
     line-height: 1.6;
+    background-color: #d2d2d2;
 }
 
-/* Header */
-header {
-    background: black;
-    color: white;
-    padding: 15px 20px;
-    text-align: center;
+#footer-link a:link,
+#footer-link a:visited,
+#footer-link a:hover {
+    color: #000;
 }
+
 
 /* Banner Section */
 .banner {
     width: 100%;
     background-color: #333;
-    color: white;
+    color:  white;
     text-align: center;
-    padding: 3rem;
+    padding: 3.125rem 1.25rem;
 }
 
 .banner h1 {
     font-size: 2.5rem;
+    margin: 0;
 }
 
 /* Category Icons Section */
@@ -38,32 +41,83 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    margin-top: 3rem;
+    gap: 1.875rem;
+    margin-top: 3.125rem;
 }
 
 .category-item {
-    background: #f4f4f4;
-    padding: 20px;
-    width: 180px;
-    height: 220px;
+    background-color: #f4f4f4;
+    padding: 1.25rem;
+    width: 12.5rem;
+    height: 15.625rem;
     text-align: center;
-    border-radius: 10px;
-    border: 2px solid transparent;
+    border-radius: 0.625rem;
+    border: 0.125rem solid transparent; /* Initial border */
     transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
     cursor: pointer;
+    text-decoration: none; /* Remove underline for links */
+    color: inherit;
 }
 
+/* Category item image */
 .category-item img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-bottom: 1.25rem;
 }
 
+/* Category item text */
+.category-item p {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+/* Glow effect on hover */
 .category-item:hover {
     transform: scale(1.05);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    border-color: rgba(11, 11, 11, 0.8);
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2), 0 0 0.625rem 0.313rem rgba(14, 14, 15, 0.7);
+    border: 0.125rem solid rgba(11, 11, 11, 0.8);
+    animation: glow 1.5s infinite alternate;
+}
+
+/* Glowing animation */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2), 0 0 0.625rem 0.125rem rgba(128, 0, 128, 0.4);
+    }
+    100% {
+        box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2), 0 0 1.25rem 0.5rem rgba(128, 0, 128, 0.8);
+    }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 37.5rem) {
+    .category-icons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category-item {
+        width: 100%;
+        max-width: 18.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .banner h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Tablet responsiveness */
+@media screen and (min-width: 37.5rem) and (max-width: 56.25rem) {
+    .category-item {
+        width: 45%;
+    }
+
+    .banner h1 {
+        font-size: 2.5rem;
+    }
 }
 
 /* Carousel Section */
@@ -71,17 +125,22 @@ header {
     position: relative;
     width: 100%;
     overflow: hidden;
-    background-color: black;
+    height: auto;
+    background-color: #000;
 }
 
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: 300%; /* Adjust for number of slides */
 }
 
-.carousel-slide {
-    width: 100%;
+.carousel-slide img {
+    max-width: 100%; /* Maintain image aspect ratio */
+    height: auto;
 }
+
+
 
 .carousel-slide img {
     width: 100%;
@@ -89,18 +148,21 @@ header {
     object-fit: cover;
 }
 
+.carousel-slide{
+    width: 100%;
+}
+
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     font-size: 2rem;
     cursor: pointer;
     padding: 10px 15px;
     z-index: 10;
-    transition: background 0.3s ease;
 }
 
 .carousel-btn.prev {
@@ -112,14 +174,14 @@ header {
 }
 
 .carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Hot Product Section */
 .hot-product {
     padding: 50px 20px;
     text-align: center;
-    background: #fff;
+    background-color: #fff;
 }
 
 .hot-product-content {
@@ -133,7 +195,7 @@ header {
 .hot-product-content img {
     max-width: 300px;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hot-product-details {
@@ -143,6 +205,12 @@ header {
 
 .hot-product-details h3 {
     font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.hot-product-details p {
+    font-size: 1rem;
+    margin-bottom: 20px;
 }
 
 .cta-btn {
@@ -157,26 +225,4 @@ header {
 .cta-btn:hover {
     background: #4b004b;
     transform: scale(1.05);
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 600px) {
-    .banner h1 {
-        font-size: 2rem;
-    }
-
-    .category-icons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .category-item {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .carousel-btn {
-        font-size: 1.5rem;
-        padding: 8px 12px;
-    }
 }
