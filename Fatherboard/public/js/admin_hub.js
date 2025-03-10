@@ -18,8 +18,21 @@ document.addEventListener("DOMContentLoaded", function()
 
     let fd = new FormData();
 
-    fd.append("sand", "doesi");
-    fetch(totalRevenueProducts, {method: "POST", headers : {"X-CSRF-TOKEN" : csrf_token_val}}).then(function(x) 
+
+
+    fd.append("startDate", "2025-03-06");
+    fd.append("endDate", "2025-03-09");
+    fd.append("productID", "-1");
+    let sendData = {
+      "endDate" : "2025-03-09",
+      "productID" : "-1"
+    }
+    fetch(totalRevenueProducts, {
+      method: "POST", 
+      headers : {"X-CSRF-TOKEN" : csrf_token_val}, 
+      body : JSON.stringify(sendData)
+    }
+  ).then(function(x) 
     {
       return x.json();
     }).then(function (l)
@@ -55,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function()
     });
   });
 
-  fetch(specificRevenueProduct_url + "2", {method: "POST", headers : {"X-CSRF-TOKEN" : csrf_token_val}}).then()
 
 
 })

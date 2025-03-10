@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
@@ -11,51 +12,49 @@ class AdminController extends Controller
         return view('admin_hub');
     }
 
+    public function getFirstSale($productID = -1)
+    {
+        if ($productID == -1)
+        {
+            $productID = request()->input("id");
+
+        }
+
+        DB::select("CALL findRange ( ?, @low, @high ) ", [$productID]);
+
+        $res = DB::select("select @low as low, @high as high");
+        return $res[0];
+    }
     public function giveRevenue()
     {
 
-        // Get the first and last order dates
 
-        $firstOrderDate = DB::table('orders')
-            ->selectRaw('MIN(DATE(created_at)) as first_date')
-            ->value('first_date');
-        
-        $lastOrderDate = DB::table('orders')
-            ->selectRaw('MAX(DATE(created_at)) as last_date')
-            ->value('last_date');
-        
-        // Compute @h (start of the week) and @max (end of the week)
-        $h = DB::selectOne("SELECT DATE_SUB(?, INTERVAL WEEKDAY(?) DAY) as h", [$firstOrderDate, $firstOrderDate])->h;
-        $max = DB::selectOne("SELECT DATE_ADD(?, INTERVAL (6 - WEEKDAY(?)) DAY) as max_date", [$lastOrderDate, $lastOrderDate])->max_date;
-        
-        $val= DB::select("with recursive tan as
-(
-select ? as dt
-union all
-select DATE_ADD(dt, INTERVAL 1 DAY)
-from tan
-where dt < ? 
-)
+        $first = self::getFirstSale();
+        // $startDate = now()->subDays(7)->format("Y-m-d");
+        // $curDate = now()->format("Y-m-d");
 
-select * from tan
-left join (
-select 
-DATE(orders.created_at) as order_date, SUM(product_prices.price * order_details.quantity) as total_sales
-from orders
-inner join order_details
-ON orders.id = order_details.order_id
-inner join products
-ON order_details.products_id = products.id
-inner join product_prices
-ON product_prices.product_id = products.id
-GROUP BY DATE(orders.created_at)
-) x
-on tan.dt = x.order_date
+        $data = file_get_contents("php://input");
+        $decodedData = json_decode($data, true);
 
-",[$h,$max]);
-        // Verify the computed values
-        // dump($val); // For debugging
-        $coll = collect($val);
+        $startDate = $decodedData["startDate"] ?? null;
+        $endDate = $decodedData["endDate"] ?? null;
+        $productID = $decodedData["productID"] ?? null;
+        if ($startDate == null || $endDate == null)
+        {
+            $startDate = $first->low;
+            $endDate = $first->high;
+
+        }
+
+        $params = [$startDate,$endDate,-1];
+        DB::statement("TRUNCATE TABLE tbl_revListing;");
+        DB::statement("CALL revenueListing ( ?, ?, ?)", $params);
+
+        $results = DB::table('tbl_revListing')->get();
+
+ 
+
+        $coll = collect($results);
 
         $filtered = $coll->map(function ($x)
         {
@@ -71,8 +70,41 @@ on tan.dt = x.order_date
 
     }
 
-    public function giveSpecificRevenue($id)
+    public function dateCreation($start, $end)
     {
-        return $id;
+        $dates = [];
+
+        $startDate = Carbon::parse($start);
+        $endDate = Carbon::parse($end);
+
+        $dateDay = $startDate;
+
+        while ($dateDay < $endDate)
+        {
+            array_push($dates, $dateDay->toDateString());
+            $dateDay->addDay();
+        }
+        return $dates;
+
+    }
+    public function giveOrders()
+    {
+        $days = self::dateCreation(now()->format("Y-m-d"), "2025-04-25");
+
+        // dd($days);
+
+        $resByDate = DB::table("orders")
+    ->join("order_details", "orders.id", "=", "order_details.order_id")
+    ->selectRaw("DATE(order_details.created_at) as cDate, SUM(quantity) as total_quantity")
+    ->groupBy("cDate")
+    ->get();
+
+        $resTotal = DB::table("orders")
+        ->join("order_details", "orders.id", "=", "order_details.order_id")
+        ->selectRaw(" SUM(quantity) as total_quantity")
+        ->get();
+
+
+dd($resTotal);
     }
 }

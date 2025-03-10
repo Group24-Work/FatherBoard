@@ -126,19 +126,18 @@ Route::post("/update/product", [ProductController::class, 'update']);
 
 Route::post("/delete/product", [ProductController::class, 'destroy']);
 
-Route::post('/admin/product/viewRevenue');
 
-Route::get("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
+
+// Reports functionality
 
 Route::post("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
 
-
-Route::post("/admin/viewRevenue/{id}", [AdminController::class, "giveSpecificRevenue"]);
 
 
 // Orders Based
 Route::post("/admin/viewTotalOrders/{}");
 
+Route::get("/admin/viewOrders", [AdminController::class, "giveOrders"]);
 Route::post("/admin/viewOrders/{}");
 
 
