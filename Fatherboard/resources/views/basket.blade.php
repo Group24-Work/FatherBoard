@@ -6,22 +6,13 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
         <link rel="stylesheet" type="text/css" href="{{asset('css/basket.css')}}"> <!-- Link for basket styles -->
         <script src="{{asset('js/basket.js')}}" defer></script>
-        <script src="{{asset('js/darkmode.js')}}" defer></script> <!-- Link for dark mode functionality -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js"
             type="text/javascript"></script> <!--Scripts needed for jQuery-->
     </x-slot:head>
 
+    <!-- Header Section (unchanged, linked to stylesheet.css) -->
     <x-header></x-header>
-
-    <!-- Dark Mode Toggle Button -->
-    <div class="dark-mode-toggle-container">
-        <input type="checkbox" id="dark-mode-toggle" class="dark-mode-toggle">
-        <label for="dark-mode-toggle" class="dark-mode-label">
-            <span class="dark-mode-icon sun">☀️</span>
-            <span class="dark-mode-icon moon">🌙</span>
-        </label>
-    </div>
 
     <body>
         <main class="basket-page">
