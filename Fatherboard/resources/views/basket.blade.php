@@ -1,11 +1,8 @@
-@extends('layouts.lowlayout')
-
-@section('title', 'FatherBoard - Basket')
-
-@section('content')
+<x-lowlayout>
     <x-slot:head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FatherBoard - Basket</title>
         <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
         <link rel="stylesheet" type="text/css" href="{{asset('css/basket.css')}}"> <!-- Link for basket styles -->
         <script src="{{asset('js/basket.js')}}" defer></script>
@@ -94,4 +91,4 @@
             </div>
         </main>
     </body>
-@endsection
+</x-lowlayout>
