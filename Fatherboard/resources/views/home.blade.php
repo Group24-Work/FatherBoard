@@ -6,19 +6,22 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
         <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
         <script src="{{asset('js/carousel.js')}}" defer></script> <!-- Link for homepage-specific styles -->
+        <script src="{{asset('js/darkmode.js')}}" defer></script> <!-- Link for dark mode functionality -->
     </x-slot:head>
-
 
     <x-header></x-header>
 
-<!-- Banner Section -->
-<section class="banner">
-    <div class="banner-text">
-        <h1>Welcome to FatherBoard</h1>
-    </div>
-</section>
+    <!-- Dark Mode Toggle Button -->
+    <button id="dark-mode-toggle">Toggle Dark Mode</button>
 
-<!-- Category Icons Section -->
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="banner-text">
+            <h1>Welcome to FatherBoard</h1>
+        </div>
+    </section>
+
+    <!-- Category Icons Section -->
 
     <!-- Carousel Section -->
     <section class="carousel">
@@ -49,28 +52,29 @@
             </div>
         </div>
     </section>
-<footer class="main-footer">
-<div class="footer-container">
-    <div class="social-icons">
-        <a href="https://facebook.com" target="_blank">
-            <img src="images/front_images/facebook.png" alt="Facebook">
-        </a>
-        <a href="https://x.com" target="_blank">
-            <img src="images/front_images/twitter.png" alt="Twitter">
-        </a>
-        <a href="https://instagram.com" target="_blank">
-            <img src="images/front_images/instagram.png" alt="Instagram">
-        </a>
-        <a href="https://linkedin.com" target="_blank">
-            <img src="images/front_images/linkedin.png" alt="LinkedIn">
-        </a>
-    </div>
-    <div id="footer-link">
-        <a href="/about">About Us</a>
-    </div>
-    <p>&copy; 2024 FatherBoard. All Rights Reserved.</p>
-</div>
-</footer>
-<br>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank">
+                    <img src="images/front_images/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://x.com" target="_blank">
+                    <img src="images/front_images/twitter.png" alt="Twitter">
+                </a>
+                <a href="https://instagram.com" target="_blank">
+                    <img src="images/front_images/instagram.png" alt="Instagram">
+                </a>
+                <a href="https://linkedin.com" target="_blank">
+                    <img src="images/front_images/linkedin.png" alt="LinkedIn">
+                </a>
+            </div>
+            <div id="footer-link">
+                <a href="/about">About Us</a>
+            </div>
+            <p>&copy; 2024 FatherBoard. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <br>
 </x-lowlayout>
 

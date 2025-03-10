@@ -15,12 +15,20 @@ body {
     background-color: #d2d2d2;
 }
 
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
 #footer-link a:link,
 #footer-link a:visited,
 #footer-link a:hover {
     color: #000;
 }
 
+header.dark-mode, footer.dark-mode {
+    background-color: #1e1e1e;
+}
 
 /* Banner Section */
 .banner {
@@ -29,6 +37,10 @@ body {
     color:  white;
     text-align: center;
     padding: 3.125rem 1.25rem;
+}
+
+.banner.dark-mode {
+    background-color: #333333;
 }
 
 .banner h1 {
@@ -135,6 +147,10 @@ body {
     width: 300%; /* Adjust for number of slides */
 }
 
+.carousel-container.dark-mode {
+    background-color: #1e1e1e;
+}
+
 .carousel-slide img {
     max-width: 100%; /* Maintain image aspect ratio */
     height: auto;
@@ -184,6 +200,10 @@ body {
     background-color: #fff;
 }
 
+.hot-product.dark-mode {
+    background-color: #1e1e1e;
+}
+
 .hot-product-content {
     display: flex;
     flex-wrap: wrap;
@@ -201,6 +221,10 @@ body {
 .hot-product-details {
     max-width: 500px;
     text-align: left;
+}
+
+.hot-product .hot-product-details.dark-mode {
+    background-color: #333333;
 }
 
 .hot-product-details h3 {
@@ -226,3 +250,5 @@ body {
     background: #4b004b;
     transform: scale(1.05);
 }
+
+/* Add more dark mode styles as needed */
