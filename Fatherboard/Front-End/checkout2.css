@@ -31,15 +31,12 @@ body {
 
 .banking-information {
 <<<<<<< HEAD
-<<<<<<< HEAD
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 =======
 >>>>>>> 10d9fc6ed64edd5d6b06bcab439d9aa9b7fc91c9
-=======
->>>>>>> 1131acedc2ca4b7c5d917f2da8d9ca7b317cdf63
     flex: 1;
 }
 

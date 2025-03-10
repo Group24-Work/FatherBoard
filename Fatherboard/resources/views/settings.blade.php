@@ -16,11 +16,9 @@
         {
             foreach($items as $order)
             {
-
                 ?>
                 <br>
                 <h2>Order</h2>
-                <h2 class="order_price">{{$order["price"]}}</h2>
 
                 <br>
                 <?php

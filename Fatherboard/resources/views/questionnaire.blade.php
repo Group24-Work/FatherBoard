@@ -17,12 +17,12 @@
     <body>
         <h1 class="title">Requirements Questionnaire</h1>
         <p class="subtitle"> This page will ask a series of questions, designed to help you pick the PC parts most suited to your needs.</p>
-            <div class="wrapper">
+
             <h3 id="question">Question Placeholder</h3>
             <select id="choices"></select>
-                <div id="buttons">
+            <div id="buttons">
                 <button id="btnNext"> Next </button>
-                </div>
             </div>
+
 
 </x-lowlayout>
