@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
         body.classList.toggle('dark-mode');
         document.querySelector('header').classList.toggle('dark-mode');
         document.querySelector('footer').classList.toggle('dark-mode');
-        document.querySelectorAll('.basket-page').forEach(el => el.classList.toggle('dark-mode'));
-        document.querySelectorAll('.basket-container').forEach(el => el.classList.toggle('dark-mode'));
+        document.querySelectorAll('.banner').forEach(el => el.classList.toggle('dark-mode'));
+        document.querySelectorAll('.carousel-container').forEach(el => el.classList.toggle('dark-mode'));
+        document.querySelectorAll('.hot-product').forEach(el => el.classList.toggle('dark-mode'));
+        document.querySelectorAll('.hot-product .hot-product-details').forEach(el => el.classList.toggle('dark-mode'));
     });
 });
