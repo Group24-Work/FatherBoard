@@ -8,9 +8,13 @@ let totalRevenueProducts = "/admin/viewRevenue"
 
 let specificRevenueProduct_url = "/admin/viewRevenue/"
 
+let categoryRevenue_url = "/admin/viewCategoryRevenue"
+
+let registeredUsers_url = "/admin/registeredUsers"
+
 document.addEventListener("DOMContentLoaded", function()
 {
-    var revenueChart = document.getElementById("myChart");
+    let revenueChart = document.getElementById("myChart").getContext("2d");
 
     csrf_token = document.getElementsByName("csrf-token")[0]
     csrf_token_val = csrf_token.getAttribute("content")
@@ -18,7 +22,20 @@ document.addEventListener("DOMContentLoaded", function()
 
     let fd = new FormData();
 
+    console.log("HEYO");
+    giveCategoryRevenue("2025-03-06", "2025-03-10").then(function (x)
+  {
+    console.log(x);
+  });
 
+    giveRegisteredUsers("2025-03-06", null).then(function (x)
+  {
+    console.log("sasa")
+    console.log(x);
+},function(z)
+{
+  console.log(z);
+});
 
     fd.append("startDate", "2025-03-06");
     fd.append("endDate", "2025-03-09");
@@ -48,26 +65,93 @@ document.addEventListener("DOMContentLoaded", function()
     });
     console.log(key);
     console.log(val);
-    new Chart(revenueChart, {
-      type: 'bar',
-      data: {
-        labels: key,
-        datasets: [{
-          label: '# of Votes',
-          data: val,
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  });
-
+    
+    createBar(key,val, revenueChart);
 
 
 })
+});
+
+
+async function giveCategoryRevenue(startDate, endDate)
+{
+  let res = null;
+  let fd = new FormData()
+  fd.append("startDate", startDate);
+  fd.append("endDate", endDate);
+
+  await fetch(categoryRevenue_url, {
+    method: "POST",
+    headers: {"X-CSRF-TOKEN" : csrf_token_val},
+    body: fd
+}).then((x)=>x.json()).then(function (x)
+{
+res=x;
+});
+
+return res;
+
+}
+
+
+// Returns registered 
+
+function giveRegisteredUsers_total()
+{
+  return giveRegisteredUsers(-1,-1);
+}
+async function giveRegisteredUsers(startDate, endDate)
+{
+  let res = null;
+  let fd = new FormData()
+  fd.append("startDate", startDate);
+  fd.append("endDate", endDate);
+
+  console.log("what?");
+  try
+  {
+  let response = await fetch(registeredUsers_url, {
+    method: "POST",
+    headers: {"X-CSRF-TOKEN" : csrf_token_val},
+    body: fd
+}).then((x)=>x.json());
+
+if (!response.ok)
+{
+  console.log("whast?");
+
+}
+return res;
+
+  }
+  catch (error)
+  {
+    console.error("Error fetching registered users:", error);
+    return null;
+  }
+
+
+}
+
+function createBar(labels, y_val, chart)
+{
+  new Chart(chart, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '# of Votes',
+        data: y_val,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+}
