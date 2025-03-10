@@ -16,7 +16,6 @@
         <input type="checkbox" id="dark-mode-toggle" class="dark-mode-toggle">
         <label for="dark-mode-toggle" class="dark-mode-label">
             <span class="dark-mode-icon sun">☀️</span>
-            <span class="dark-mode-icon moon">🌙</span>
         </label>
     </div>
 
