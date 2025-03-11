@@ -12,6 +12,8 @@ let categoryRevenue_url = "/admin/viewCategoryRevenue"
 
 let registeredUsers_url = "/admin/registeredUsers"
 
+let findUser_url = "/admin/findUser"
+
 document.addEventListener("DOMContentLoaded", function()
 {
     let revenueChart = document.getElementById("myChart").getContext("2d");
@@ -23,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function()
     let fd = new FormData();
 
     console.log("HEYO");
+    findUser("loco").then(function(x)
+    {
+      console.log(x);
+    });
     giveCategoryRevenue("2025-03-06", "2025-03-10").then(function (x)
   {
     console.log(x);
@@ -93,8 +99,27 @@ return res;
 
 }
 
+// Returns a list of users with a given email
+async function findUser(email)
+{
+  let res = null;
+  let fd = new FormData()
+  fd.append("email", email);
 
-// Returns registered 
+    await fetch(findUser_url, {
+    method: "POST",
+    headers: {"X-CSRF-TOKEN" : csrf_token_val},
+    body: fd
+}).then((x)=>x.json()).then(function (x)
+{
+res=x;
+});
+
+return res;
+
+
+}
+// Returns total registered users
 
 function giveRegisteredUsers_total()
 {
@@ -155,3 +180,4 @@ function createBar(labels, y_val, chart)
   });
 
 }
+

@@ -205,8 +205,15 @@ class AdminController extends Controller
         return $results;
     }
 
+    // Returns all accounts from a given email in the format listed below
+    // id,
+    // First Name
+    // Last Name
+    // Email
     public function findUser()
     {
-
+        $email = request()->input("email") ?? null;
+        $res =DB::table("customer_information")->where("Email", "LIKE", "$email%")->get(["id", "First Name", "Last Name", "Email"]);
+        return json_encode($res);
     }
 }

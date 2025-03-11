@@ -151,10 +151,9 @@ Route::post("/admin/findUser/");;
 
 Route::get(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
 
-
 Route::post(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
 
-
+Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
