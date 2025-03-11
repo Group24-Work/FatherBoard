@@ -65,6 +65,7 @@
 
                                         </td>
 
+                                        <td>{{ $item['price'] * (int) $item['quantity'] }} </td>
 
                                         <td>
                                             <form method="POST" action="{{ route('basketRemove') }}">
