@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\ProductStock;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
 
         Product::all()->each(function ($x)
         {
+            $x->stock()->create(["Stock"=>200]);
             $x->tags()->attach(Tag::all()->random(rand(1,3))->pluck("id")->toArray());
         });
         
