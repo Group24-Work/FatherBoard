@@ -37,6 +37,7 @@
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
+                                        <th>Subtotal</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -81,7 +82,10 @@
 
                     </div>
                     <div class="basket-summary">
-                        <h2>Subtotal: £{{ ($item['price'] * (int) $item['quantity']) }}</h2>
+
+                        <h2>Total:
+                            £{{ array_sum(array_map(fn($item) => $item['price'] * (int) $item['quantity'], $basketDetails)) }}
+                        </h2>
                         <form method="GET" action="{{ route('basketCheckout') }}">
                             @csrf
                             <button id="checkout-btn">Proceed To Checkout</button>
