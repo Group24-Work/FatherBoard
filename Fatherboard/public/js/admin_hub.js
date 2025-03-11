@@ -12,12 +12,16 @@ let categoryRevenue_url = "/admin/viewCategoryRevenue"
 
 let registeredUsers_url = "/admin/registeredUsers"
 
+let registeredUsers_cumulative_url = "/admin/registeredUsers_time"
+
 let findUser_url = "/admin/findUser"
 
 
 document.addEventListener("DOMContentLoaded", function()
 {
-    let revenueChart = document.getElementById("myChart").getContext("2d");
+    let revenueChart = document.getElementById("revenue").getContext("2d");
+
+    let registrationChart = document.getElementById("registration_chart").getContext("2d");
 
     csrf_token = document.getElementsByName("csrf-token")[0]
     csrf_token_val = csrf_token.getAttribute("content")
@@ -26,6 +30,22 @@ document.addEventListener("DOMContentLoaded", function()
     let fd = new FormData();
 
     console.log("HEYO");
+
+
+    giveRegisteredUsers_cumulative("2025-03-06", "2025-03-11").then(function(x)
+  {
+    console.log(x);
+    key = []
+    val = []
+    x.forEach(element => {
+        console.log(element)
+        key.push(element["created"]);
+        val.push(element["cumulative_registrations"]);
+    });
+
+    createLineChart(key,val,registrationChart);
+  });
+
 
     getTags(5).then(function(x)
   {
@@ -53,7 +73,8 @@ document.addEventListener("DOMContentLoaded", function()
     fd.append("endDate", "2025-03-09");
     fd.append("productID", "-1");
     let sendData = {
-      "endDate" : "2025-03-09",
+      "startDate" : "2025-03-04",
+      "endDate" : "2025-03-11",
       "productID" : "-1"
     }
     fetch(totalRevenueProducts, {
@@ -83,6 +104,11 @@ document.addEventListener("DOMContentLoaded", function()
 
 })
 });
+
+function keyVal_gen()
+{
+
+}
 
 
 async function giveCategoryRevenue(startDate, endDate)
@@ -147,6 +173,35 @@ return res;
 
 // Returns total registered users
 
+async function giveRegisteredUsers_cumulative(startDate, endDate)
+{
+  let res = null;
+  let fd = new FormData()
+  fd.append("startDate", startDate);
+  fd.append("endDate", endDate);
+
+  try
+  {
+  let response = await fetch(registeredUsers_cumulative_url, {
+    method: "POST",
+    headers: {"X-CSRF-TOKEN" : csrf_token_val},
+    body: fd
+}).then((x)=>x.json()).then(function (y)
+{
+  res = y;
+});
+
+
+return res;
+
+  }
+  catch (error)
+  {
+    console.error("Error fetching registered users:", error);
+    return null;
+  }
+
+}
 function giveRegisteredUsers_total()
 {
   return giveRegisteredUsers(-1,-1);
@@ -184,6 +239,28 @@ return res;
 
 }
 
+
+function createLineChart(labels, y_val, chart)
+{
+  new Chart(chart, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Revenue (£)',
+        data: y_val,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
 function createBar(labels, y_val, chart)
 {
   new Chart(chart, {
@@ -191,7 +268,7 @@ function createBar(labels, y_val, chart)
     data: {
       labels: labels,
       datasets: [{
-        label: '# of Votes',
+        label: 'Revenue (£)',
         data: y_val,
         borderWidth: 1
       }]

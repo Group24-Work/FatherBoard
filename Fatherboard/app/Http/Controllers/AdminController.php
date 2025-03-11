@@ -205,6 +205,32 @@ class AdminController extends Controller
         return $results;
     }
 
+    public function giveRegisteredUsers_time()
+    {
+
+        $startDate = request()->input("startDate") ?? null;
+        $endDate = request()->input("endDate") ?? null;
+
+        $res = DB::table("customer_information")->selectRaw("DATE(created_at) as created ,sum(COUNT(*)) over (partition by created) as cumulative_registrations
+")
+        ->groupBy("created")
+        ->get()->keyBy("created");
+
+        $days = self::dateCreation($startDate, $endDate);
+
+        $daysCollection = collect($days);
+
+        $resultTable =[];
+        foreach($daysCollection as $day)
+        {
+            $resultTable[] = ["created"=>$day, "cumulative_registrations"=>$res->has($day) ? $res[$day]->cumulative_registrations : 0];
+        }
+
+        
+
+        return json_encode($resultTable);
+    }
+
     // Returns all accounts from a given email in the format listed below
     // id,
     // First Name
