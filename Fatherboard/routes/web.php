@@ -55,7 +55,7 @@ Route::post("/create/product", function ()
 
 });
 
-
+Route::post("/product/tags/{id}", [ProductController::class, "giveTags"]);
 
 // Settings-related
 

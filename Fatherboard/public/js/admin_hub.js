@@ -14,6 +14,7 @@ let registeredUsers_url = "/admin/registeredUsers"
 
 let findUser_url = "/admin/findUser"
 
+
 document.addEventListener("DOMContentLoaded", function()
 {
     let revenueChart = document.getElementById("myChart").getContext("2d");
@@ -25,6 +26,11 @@ document.addEventListener("DOMContentLoaded", function()
     let fd = new FormData();
 
     console.log("HEYO");
+
+    getTags(5).then(function(x)
+  {
+    console.log(x);
+  });
     findUser("loco").then(function(x)
     {
       console.log(x);
@@ -117,8 +123,28 @@ res=x;
 
 return res;
 
-
 }
+
+
+// Returns tags from a given product id
+
+async function getTags(id)
+{
+  let tags_url = `/product/tags/${id}`
+
+  let res = null;
+  await fetch(tags_url, {
+    method: "POST",
+    headers: {"X-CSRF-TOKEN" : csrf_token_val},
+}).then((x)=>x.json()).then(function (x)
+{
+res=x;
+});
+return res;
+}
+
+
+
 // Returns total registered users
 
 function giveRegisteredUsers_total()
@@ -180,4 +206,5 @@ function createBar(labels, y_val, chart)
   });
 
 }
+
 
