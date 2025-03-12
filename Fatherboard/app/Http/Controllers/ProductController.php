@@ -263,6 +263,15 @@ class ProductController extends Controller
         return view('product',["product"=>$product,"image"=>$image, "rating"=>$curRating->avg_rating, "amount"=>$amountStar]);
     }
 
+    private function p_giveTags(int $id)
+    {
+        return Product::find($id)->tags()->get();
+    }
+
+    public function giveTags(int $id)
+    {
+        return json_encode($this->p_giveTags($id)->pluck("Name"));
+    }
     /**
      * Show the form for editing the specified resource.
      */

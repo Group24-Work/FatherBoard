@@ -79,7 +79,7 @@ class AdminController extends Controller
 
         $dateDay = $startDate;
 
-        while ($dateDay < $endDate)
+        while ($dateDay <= $endDate)
         {
             array_push($dates, $dateDay->toDateString());
             $dateDay->addDay();
@@ -89,15 +89,16 @@ class AdminController extends Controller
     }
     public function giveOrders()
     {
-        $days = self::dateCreation(now()->format("Y-m-d"), "2025-04-25");
+        $days = self::dateCreation(now()->subDays(7)->format("Y-m-d"), "2025-03-25");
 
+        $daysCollection = collect($days);
         // dd($days);
 
         $resByDate = DB::table("orders")
     ->join("order_details", "orders.id", "=", "order_details.order_id")
     ->selectRaw("DATE(order_details.created_at) as cDate, SUM(quantity) as total_quantity")
     ->groupBy("cDate")
-    ->get();
+    ->get()->keyBy("cDate");
 
         $resTotal = DB::table("orders")
         ->join("order_details", "orders.id", "=", "order_details.order_id")
@@ -105,6 +106,140 @@ class AdminController extends Controller
         ->get();
 
 
-dd($resTotal);
+        $result = [];
+        $daysCollection->each(function($x) use($resByDate, &$result)
+        {
+            $result[] = ["date"=>$x,
+             "quantity" =>$resByDate->has($x) ? $resByDate[$x]->total_quantity : 0
+            ];
+        });
+
+
+    }
+
+    public  function giveCategoryRevenue()
+    { 
+
+        $startDate = request()->input("startDate") ?? null;
+        $endDate = request()->input("endDate") ?? null;
+
+
+        $days = self::dateCreation($startDate, $endDate);
+        $daysCollection = collect($days);
+
+        // Get products by category
+        $productsCat = DB::table("orders")
+        ->join("order_details", "order_details.order_id","=","orders.id")
+        ->join("products", "products.id","=","order_details.products_id")
+        ->join("product_prices", "product_prices.product_id","=","products.id")
+        ->selectRaw("Type, SUM(quantity*price) as total_revenue, DATE(order_details.created_at) as created")
+        ->groupBy("Type", "created")
+        ->get();
+
+
+        $revByCat_all = [];
+        foreach ($days as $day)
+        {
+            $revByCat = [
+                "day"=>$day,
+                "categories"=>[]
+            ];
+
+            $sameDay = $productsCat->where("created", $day);
+            foreach($sameDay as $sday)
+            {
+                $revByCat["categories"][$sday->Type] = $sday->total_revenue;
+            }
+            $revByCat_all[] = $revByCat;
+        }
+        $result = [];
+        return $revByCat_all;
+    }
+
+
+    public function giveRegisteredUsers()
+    {
+  
+
+       
+        $startDate = request()->input("startDate") ?? null;
+        $endDate = request()->input("endDate")?? null;
+
+        if (!strtotime($startDate))
+        {
+            $startDate = null;
+            $endDate = null;
+        }
+
+        if (!strtotime($endDate))
+        {
+            $startDate = null;
+            $endDate = null;
+        }
+
+        $results = [];
+
+        if ($startDate == null || $endDate == null)
+        {
+            $resTotal = DB::table("customer_information")->selectRaw("COUNT(*) as registered")
+        ->get();
+        $results = $resTotal;
+
+        }
+        else
+        {
+        $days = self::dateCreation($startDate, $endDate);
+        $daysCollection = collect($days);
+
+        $res = DB::table("customer_information")->selectRaw("DATE(created_at) as created, COUNT(*) as registered")
+        ->groupBy("created")->get()
+        ->keyBy("created");
+
+
+
+        foreach($daysCollection as $day)
+        {
+            $results[] = ["date"=>$day, "registered"=>$res->has($day) ? $res[$day]->registered : 0];
+        }
+        }
+        return $results;
+    }
+
+    public function giveRegisteredUsers_time()
+    {
+
+        $startDate = request()->input("startDate") ?? null;
+        $endDate = request()->input("endDate") ?? null;
+
+        $res = DB::table("customer_information")->selectRaw("DATE(created_at) as created ,sum(COUNT(*)) over (partition by created) as cumulative_registrations
+")
+        ->groupBy("created")
+        ->get()->keyBy("created");
+
+        $days = self::dateCreation($startDate, $endDate);
+
+        $daysCollection = collect($days);
+
+        $resultTable =[];
+        foreach($daysCollection as $day)
+        {
+            $resultTable[] = ["created"=>$day, "cumulative_registrations"=>$res->has($day) ? $res[$day]->cumulative_registrations : 0];
+        }
+
+        
+
+        return json_encode($resultTable);
+    }
+
+    // Returns all accounts from a given email in the format listed below
+    // id,
+    // First Name
+    // Last Name
+    // Email
+    public function findUser()
+    {
+        $email = request()->input("email") ?? null;
+        $res =DB::table("customer_information")->where("Email", "LIKE", "$email%")->get(["id", "First Name", "Last Name", "Email"]);
+        return json_encode($res);
     }
 }

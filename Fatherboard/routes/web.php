@@ -55,6 +55,8 @@ Route::post("/create/product", function ()
 
 });
 
+Route::post("/product/tags/{id}", [ProductController::class, "giveTags"]);
+
 
 
 // Settings-related
@@ -141,13 +143,22 @@ Route::get("/admin/viewOrders", [AdminController::class, "giveOrders"]);
 Route::post("/admin/viewOrders/{}");
 
 
+Route::get("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryRevenue"]);
+
+Route::post("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryRevenue"]);
+
 
 // User 
 Route::post("/admin/findUser/");;
 
+Route::get(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
+
+Route::post(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
+
+Route::post(uri: "/admin/registeredUsers_time", action: [AdminController::class, "giveRegisteredUsers_time"]);
 
 
-
+Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
