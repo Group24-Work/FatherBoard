@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function()
 
     let registrationChart = document.getElementById("registration_chart").getContext("2d");
 
+    let curDay = new Date();
+
     csrf_token = document.getElementsByName("csrf-token")[0]
     csrf_token_val = csrf_token.getAttribute("content")
     console.log(csrf_token_val)
@@ -30,9 +32,10 @@ document.addEventListener("DOMContentLoaded", function()
     let fd = new FormData();
 
     console.log("HEYO");
-
-
-    giveRegisteredUsers_cumulative("2025-03-06", "2025-03-11").then(function(x)
+    
+    let curDate = curDay.getUTCFullYear().toString() + "-" + String((parseInt(curDay.getMonth())+1)).padStart(2,"0") + "-" + curDay.getUTCDate().toString();
+    console.log(curDate);
+    giveRegisteredUsers_cumulative("2025-03-06", curDate).then(function(x)
   {
     console.log(x);
     key = []

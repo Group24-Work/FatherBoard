@@ -28,11 +28,29 @@
         <p>Exit</p>
     </div>
     <div>
-        <p>Overview</p>
+        <div>
+            <p>Overview</p>
+        </div>
+        <div>
+
         <p>Revenue(Statistics)</p>
+        </div>
+
+        <div>
+
         <p>Account Management</p>
+        </div>
+
+        <div>
+
         <p>Product Management</p>
+        </div>
+
+        <div>
+
         <p>Messages</p>
+        </div>
+
     </div>
 
 </x-lowlayout>
