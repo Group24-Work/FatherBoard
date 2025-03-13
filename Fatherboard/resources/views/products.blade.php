@@ -22,7 +22,9 @@
             <slot name="Title">Unknown Title</slot>
         </h2>
         <p>
-            <b><slot class="price" name="Manufacturer">Unknown Manufacturer</slot></b>
+            <b>
+                <slot class="price" name="Manufacturer">Unknown Manufacturer</slot>
+            </b>
         </p>
 
     </template>
@@ -111,11 +113,11 @@ if (count($data) > 0) {
 
 
         <product-element class="ProductItem">
-        <img slot="ProductImage" src="{{ asset('images/product_images/' . $item['Image'] . '.jpg') }}"
-        alt="product image" class="product-image">
+            <img slot="ProductImage" src="{{ asset('images/product_images/' . $item['Image'] . '.jpg') }}"
+                alt="product image" class="product-image">
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
             <p>crazy killer u</p>
-            <span slot="Title">{{ $item['Title'] }}</span>
+            <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
             <span slot="Manufacturer"> £{{ $item["Price"] }}</span>
 
         </product-element>

@@ -37,12 +37,13 @@
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
-                                        <th>SubTotal</th>
+                                        <th>Subtotal</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
+
                                     @foreach($basketDetails as $item)
 
 
@@ -51,8 +52,8 @@
                                                                 alt="product image" class="product-image">
                                                         </td>
 
-                                                        <td>{{ $item['name'] }}</td>
-                                                        <td>{{ $item['price'] }}</td>
+                                                        <td> {{ implode(' ', array_slice(explode(' ', $item['name']), 0, 7)) }}</td>
+                                                        <td>£{{ $item['price'] }}</td>
                                         </div>
                                         <td>
                                             <form method="POST" action="{{ route('basketUpdate') }}">
@@ -64,7 +65,7 @@
 
                                         </td>
 
-                                        <td>{{ $item['price'] * (int) $item['quantity'] }} </td>
+                                        <td>£{{ $item['price'] * (int) $item['quantity'] }} </td>
 
                                         <td>
                                             <form method="POST" action="{{ route('basketRemove') }}">
@@ -82,6 +83,10 @@
 
                     </div>
                     <div class="basket-summary">
+
+                        <h2>Total:
+                            £{{ array_sum(array_map(fn($item) => $item['price'] * (int) $item['quantity'], $basketDetails)) }}
+                        </h2>
                         <form method="GET" action="{{ route('basketCheckout') }}">
                             @csrf
                             <button id="checkout-btn">Proceed To Checkout</button>

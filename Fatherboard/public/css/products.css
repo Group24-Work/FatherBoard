@@ -97,3 +97,12 @@ img:not(#logo) {
     border-radius: 0.5rem;
     margin-top: 20px;
 }
+
+
+.ProductItem:hover {
+    background-color: rgb(158, 157, 157);
+}
+
+button:hover {
+    background-color: rgb(78, 1, 78);
+}
