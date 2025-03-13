@@ -58,9 +58,7 @@
 
 }
 
-#filter-button:hover {
-    background-color: #32a83c;
-}
+
 
 .filter-sidebar p {
     text-align: left;
@@ -103,6 +101,11 @@ img:not(#logo) {
     background-color: rgb(158, 157, 157);
 }
 
-button:hover {
+.filter-button:hover {
     background-color: rgb(78, 1, 78);
+}
+
+.checkbox:hover {
+    background-color: rgb(158, 157, 157);
+
 }

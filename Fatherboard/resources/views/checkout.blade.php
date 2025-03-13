@@ -70,11 +70,11 @@
                                                         </td>
 
                                                         <td>{{ $item['name'] }}</td>
-                                                        <td>{{ $item['price'] }}</td>
+                                                        <td>£{{ $item['price'] }}</td>
                                         </div>
                                         <td>{{$item['quantity']}}</td>
 
-                                        <td>{{ $item['price'] * (int) $item['quantity'] }} </td>
+                                        <td>£{{ $item['price'] * (int) $item['quantity'] }} </td>
                                         </tr>
 
                                     @endforeach
