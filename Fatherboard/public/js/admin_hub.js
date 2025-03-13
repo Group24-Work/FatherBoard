@@ -16,6 +16,7 @@ let registeredUsers_cumulative_url = "/admin/registeredUsers_time"
 
 let findUser_url = "/admin/findUser"
 
+let tag_all_url = "/tags"
 
 // Returns current time in a format acceptable to how the database stores its time ( YYYY-MM-DD )
 function currentTime()
@@ -64,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function()
 
     console.log("HEYO");
     
+    showTags();
     let curDate = currentTime()
     giveRegisteredUsers_cumulative("2025-03-06", curDate).then(function(x)
   {
@@ -107,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function()
     fd.append("productID", "-1");
     let sendData = {
       "startDate" : "2025-03-04",
-      "endDate" : "2025-03-11",
+      "endDate" : "2025-03-13",
       "productID" : "-1"
     }
     fetch(totalRevenueProducts, {
@@ -220,6 +222,21 @@ async function getTags(id)
 res=x;
 });
 return res;
+}
+
+// Return all tags
+
+function showTags()
+{
+    fetch(tag_all_url, 
+      {
+        method: "POST",
+         headers: {"X-CSRF-TOKEN" : csrf_token_val},
+      }
+    ).then((x)=>x.json()).then(function (x)
+  {
+    console.log(x);
+  })
 }
 
 
@@ -336,6 +353,7 @@ function emailClick()
 
  
 }
+
 
 
 function createLineChart(labels, y_val, chart)

@@ -15,7 +15,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
-
+use App\Http\Controllers\TagController;
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 Route::get('/',function(){
@@ -163,3 +163,8 @@ Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
 Route::get('/admin', [AdminController::class, "giveAdminHub"]);
+
+
+// Tag
+
+Route::post("/tags", [TagController::class, "index"]);
