@@ -18,6 +18,8 @@ let findUser_url = "/admin/findUser"
 
 let tag_all_url = "/tags"
 
+
+
 // Returns current time in a format acceptable to how the database stores its time ( YYYY-MM-DD )
 function currentTime()
 {
@@ -239,6 +241,20 @@ function showTags()
   })
 }
 
+function deleteTag($id)
+{
+  let delete_tag_url = `/tags/${id}`
+
+  fetch(delete_tag_url,
+    {
+      method: "POST",
+       headers: {"X-CSRF-TOKEN" : csrf_token_val},
+    }
+  ).then((x).json()).then(function(x)
+{
+  console.log(x);
+})
+}
 
 
 // Returns total registered users
