@@ -107,7 +107,7 @@ function showMessages()
 function moveCurrentBar(part)
 {
 
-    topUnit = part * "2"
+    topUnit = part * "3"
     currentBar.style.top = topUnit+"rem";
 
 
