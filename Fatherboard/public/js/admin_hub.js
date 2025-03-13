@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function()
 
     let registrationChart = document.getElementById("registration_chart").getContext("2d");
 
+    let registrationType_Chart = document.getElementById("revenueType_chart").getContext("2d");
+
 
     csrf_token = document.getElementsByName("csrf-token")[0]
     csrf_token_val = csrf_token.getAttribute("content")
@@ -65,9 +67,27 @@ document.addEventListener("DOMContentLoaded", function()
     {
       console.log(x);
     });
-    giveCategoryRevenue("2025-03-06", "2025-03-10").then(function (x)
+    giveCategoryRevenue("2025-03-06", "2025-03-13").then(function (x)
   {
     console.log(x);
+
+    x.forEach(element => {
+      if (element["day"] == "2025-03-11")
+      {
+        console.log("si")
+        key = []
+        categories = element["categories"];
+        val = []
+        Object.keys(categories).forEach(element => {
+            key.push(element);
+        });
+        Object.values(categories).forEach(element => {
+          val.push(element);
+      });
+
+      pieChart(key,val,registrationType_Chart);
+          }
+        });
   });
 
     giveRegisteredUsers("2025-03-06", null).then(function (x)
@@ -254,6 +274,28 @@ function createLineChart(labels, y_val, chart)
 {
   new Chart(chart, {
     type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Revenue (£)',
+        data: y_val,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+function pieChart(labels, y_val, chart)
+{
+  new Chart(chart, {
+    type: 'pie',
     data: {
       labels: labels,
       datasets: [{

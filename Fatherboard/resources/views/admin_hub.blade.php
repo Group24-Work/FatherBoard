@@ -16,7 +16,7 @@
             <canvas class="chart" id="revenue"></canvas>
         </div>
         <div class="chartContainer" id="revenueTypeContainer">
-            <canvas class="chart" id="revenueType"></canvas>
+            <canvas class="chart" id="revenueType_chart"></canvas>
         </div>
 
         <div class="chartContainer" id="registrationContainer">
