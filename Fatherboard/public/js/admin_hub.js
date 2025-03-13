@@ -17,13 +17,21 @@ let registeredUsers_cumulative_url = "/admin/registeredUsers_time"
 let findUser_url = "/admin/findUser"
 
 
+// Returns current time in a format acceptable to how the database stores its time ( YYYY-MM-DD )
+function currentTime()
+{
+  let curDay = new Date();
+  return curDay.getUTCFullYear().toString() + "-" + String((parseInt(curDay.getMonth())+1)).padStart(2,"0") + "-" + curDay.getUTCDate().toString();
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function()
 {
     let revenueChart = document.getElementById("revenue").getContext("2d");
 
     let registrationChart = document.getElementById("registration_chart").getContext("2d");
 
-    let curDay = new Date();
 
     csrf_token = document.getElementsByName("csrf-token")[0]
     csrf_token_val = csrf_token.getAttribute("content")
@@ -33,8 +41,7 @@ document.addEventListener("DOMContentLoaded", function()
 
     console.log("HEYO");
     
-    let curDate = curDay.getUTCFullYear().toString() + "-" + String((parseInt(curDay.getMonth())+1)).padStart(2,"0") + "-" + curDay.getUTCDate().toString();
-    console.log(curDate);
+    let curDate = currentTime()
     giveRegisteredUsers_cumulative("2025-03-06", curDate).then(function(x)
   {
     console.log(x);

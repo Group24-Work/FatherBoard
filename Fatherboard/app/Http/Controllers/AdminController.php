@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerInfo;
+use App\Models\CustomerInformation;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -211,10 +213,39 @@ class AdminController extends Controller
         $startDate = request()->input("startDate") ?? null;
         $endDate = request()->input("endDate") ?? null;
 
-        $res = DB::table("customer_information")->selectRaw("DATE(created_at) as created ,sum(COUNT(*)) over (partition by created) as cumulative_registrations
-")
-        ->groupBy("created")
-        ->get()->keyBy("created");
+
+        DB::statement("DROP TEMPORARY TABLE IF EXISTS timeUs;");
+        DB::statement("CREATE TEMPORARY TABLE IF NOT EXISTS timeUs (dates DATE);");
+        DB::statement("INSERT INTO timeUs (dates) VALUES (DATE(?));", [$startDate]);
+
+
+        $query = "
+        WITH RECURSIVE ask (c) AS (
+            SELECT dates FROM timeUs
+            UNION ALL
+            SELECT DATE_ADD(c, INTERVAL 1 DAY)
+            FROM ask
+            WHERE c < ?
+        ) 
+        SELECT 
+            a.c AS created,
+            COUNT(ci.id) OVER (ORDER BY a.c ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_registrations
+        FROM ask a
+        LEFT JOIN customer_information ci
+        ON DATE(ci.created_at) = a.c
+    ";
+    
+    // 3. Execute Query and Get Results
+    $res = DB::select($query, [$endDate]);
+
+//         $res = DB::table("customer_information")->selectRaw("DATE(created_at) as created ,sum(COUNT(*)) over (partition by created) as cumulative_registrations
+// ")        ->groupBy("created")
+// ->get()->keyBy("created");    
+
+
+    
+
+        $res = collect($res)->keyBy("created");
 
         $days = self::dateCreation($startDate, $endDate);
 
