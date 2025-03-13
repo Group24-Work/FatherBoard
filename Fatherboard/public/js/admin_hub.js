@@ -24,7 +24,23 @@ function currentTime()
   return curDay.getUTCFullYear().toString() + "-" + String((parseInt(curDay.getMonth())+1)).padStart(2,"0") + "-" + curDay.getUTCDate().toString();
 }
 
+class EmailItem extends HTMLElement
+{
+  constructor()
+  {
+    super();
 
+    this.attachShadow({mode : "open"});
+
+    let element = document.getElementById("email_suggestion_item_template");
+
+    this.shadowRoot.append(element.content.cloneNode(true));
+  }
+
+}
+customElements.define("email-suggestion-item",
+EmailItem
+)
 
 document.addEventListener("DOMContentLoaded", function()
 {
@@ -34,6 +50,11 @@ document.addEventListener("DOMContentLoaded", function()
 
     let registrationType_Chart = document.getElementById("revenueType_chart").getContext("2d");
 
+
+    let search_button = document.getElementById("user_search_button");
+
+
+    search_button.addEventListener("click",emailClick);
 
     csrf_token = document.getElementsByName("csrf-token")[0]
     csrf_token_val = csrf_token.getAttribute("content")
@@ -63,31 +84,13 @@ document.addEventListener("DOMContentLoaded", function()
   {
     console.log(x);
   });
-    findUser("loco").then(function(x)
-    {
-      console.log(x);
-    });
+    
     giveCategoryRevenue("2025-03-06", "2025-03-13").then(function (x)
   {
     console.log(x);
+    giveChart_CategoryRevenue(x,registrationType_Chart)
 
-    x.forEach(element => {
-      if (element["day"] == "2025-03-11")
-      {
-        console.log("si")
-        key = []
-        categories = element["categories"];
-        val = []
-        Object.keys(categories).forEach(element => {
-            key.push(element);
-        });
-        Object.values(categories).forEach(element => {
-          val.push(element);
-      });
-
-      pieChart(key,val,registrationType_Chart);
-          }
-        });
+    
   });
 
     giveRegisteredUsers("2025-03-06", null).then(function (x)
@@ -158,9 +161,29 @@ res=x;
 });
 
 return res;
-
 }
 
+
+function giveChart_CategoryRevenue(x, chart)
+{
+  x.forEach(element => {
+    if (element["day"] == "2025-03-11")
+    {
+      console.log("si")
+      key = []
+      categories = element["categories"];
+      val = []
+      Object.keys(categories).forEach(element => {
+          key.push(element);
+      });
+      Object.values(categories).forEach(element => {
+        val.push(element);
+    });
+
+    pieChart(key,val,chart);
+        }
+      });
+}
 // Returns a list of users with a given email
 async function findUser(email)
 {
@@ -267,6 +290,51 @@ return res;
   }
 
 
+}
+
+
+
+function emailClick()
+{
+  let email_suggestion_container = document.getElementById("emailSuggestion_container");
+
+  console.log("searching for emails");
+
+  let email_val = document.getElementById("email").value;
+
+  email_suggestion_container.innerHTML = "";
+  findUser(email_val).then(function(x)
+  {
+
+    for (let y of x)
+      {
+         let elem = document.createElement("email-suggestion-item");
+         
+  
+         let id = document.createElement("p");
+         id.setAttribute("slot", "ID");
+         id.textContent = y["id"];
+         
+         let name = document.createElement("p");
+         name.setAttribute("slot", "Name");
+         name.textContent = y["First Name"] + " " + y["Last Name"];
+  
+  
+         let email = document.createElement("p");
+         email.setAttribute("slot", "Email");
+         email.textContent = y["Email"];
+  
+  
+         elem.appendChild(name);
+         elem.appendChild(email);
+         elem.appendChild(id)
+
+  
+         email_suggestion_container.append(elem);
+      }
+  });
+
+ 
 }
 
 

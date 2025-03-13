@@ -10,6 +10,28 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <template id="email_suggestion_item_template">
+        <style>
+            .email_item
+            {
+                border: 1px black solid;
+            }
+        </style>
+        <div class="email_item">
+            <p>
+                <span>Name : </span> <slot name="Name">No Name</slot>
+            </p>
+            <p>
+                <span>Email : </span> 
+                <slot name="Email">No First Name</slot>
+            </p>
+            <p>
+                <span>ID : </span> 
+                <slot name="ID">No ID</slot>
+            </p>
+        </div>
+    </template>
+
     <main>
         <h2>Welcome Admin</h2>
         <div class="chartContainer" id="revenueContainer">
@@ -23,6 +45,23 @@
             <canvas class="chart" id="registration_chart"></canvas>
         </div>
     </main>
+
+
+
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email">
+    </input>
+
+
+    <button id="user_search_button">Search</button>
+
+    <div id="emailSuggestion_container">
+
+    </div>
+
+
+
 
     <div>
         <p>Exit</p>
