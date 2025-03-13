@@ -15,6 +15,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\QuestionnaireController;
 
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
@@ -148,7 +149,7 @@ Route::get("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryR
 Route::post("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryRevenue"]);
 
 
-// User 
+// User
 Route::post("/admin/findUser/");;
 
 Route::get(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
@@ -163,3 +164,8 @@ Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
 Route::get('/admin', [AdminController::class, "giveAdminHub"]);
+
+//  Questionnaire :)
+
+Route::get('/questionnaire',[QuestionnaireController::class,'index'])->name('questionnaire');
+Route::post('/filter-products',[QuestionnaireController::class,'filter'])->name('filter.products');
