@@ -69,7 +69,7 @@
                                                                 alt="product image" class="product-image">
                                                         </td>
 
-                                                        <td>{{ $item['name'] }}</td>
+                                                        <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['name']), 0, 7)) }}</span>
                                                         <td>£{{ $item['price'] }}</td>
                                         </div>
                                         <td>{{$item['quantity']}}</td>
