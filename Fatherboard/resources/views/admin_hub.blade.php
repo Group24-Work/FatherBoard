@@ -34,16 +34,31 @@
 
     <main>
         <h2>Welcome Admin</h2>
-        <div class="chartContainer" id="revenueContainer">
-            <canvas class="chart" id="revenue"></canvas>
+        
+        <div id="revenue_section">
+            <button class="week">Week</button>
+            <button class="month">Month</button>
+            <div class="chartContainer" id="revenueContainer">
+                <canvas class="chart" id="revenue"></canvas>
+            </div>
         </div>
-        <div class="chartContainer" id="revenueTypeContainer">
-            <canvas class="chart" id="revenueType_chart"></canvas>
+        
+
+        <div id="revenueType_section">
+            <button>Week</button>
+            <button>Month</button>
+            <div class="chartContainer" id="revenueTypeContainer">
+                <canvas class="chart" id="revenueType_chart"></canvas>
+            </div>
         </div>
 
-        <div class="chartContainer" id="registrationContainer">
-            <canvas class="chart" id="registration_chart"></canvas>
+        <div id="registrationType_section">
+            <div class="chartContainer" id="registrationContainer">
+                <canvas class="chart" id="registration_chart"></canvas>
+            </div>
         </div>
+        
+
     </main>
 
 

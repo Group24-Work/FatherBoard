@@ -4,6 +4,9 @@
 var revenueChart = null;
 var csrf_token = null;
 
+let revenueChart_chart = null;
+
+
 let totalRevenueProducts = "/admin/viewRevenue"
 
 let specificRevenueProduct_url = "/admin/viewRevenue/"
@@ -18,14 +21,20 @@ let findUser_url = "/admin/findUser"
 
 let tag_all_url = "/tags"
 
-
+let totalRevenueData = null;
 
 // Returns current time in a format acceptable to how the database stores its time ( YYYY-MM-DD )
 function currentTime()
 {
   let curDay = new Date();
-  return curDay.getUTCFullYear().toString() + "-" + String((parseInt(curDay.getMonth())+1)).padStart(2,"0") + "-" + curDay.getUTCDate().toString();
+  return curDay;
 }
+
+function timeFormat(date)
+{
+  return date.getUTCFullYear().toString() + "-" + String((parseInt(date.getMonth())+1)).padStart(2,"0") + "-" + date.getUTCDate().toString();
+}
+
 
 class EmailItem extends HTMLElement
 {
@@ -47,15 +56,28 @@ EmailItem
 
 document.addEventListener("DOMContentLoaded", function()
 {
-    let revenueChart = document.getElementById("revenue").getContext("2d");
+    revenueChart = document.getElementById("revenue").getContext("2d");
 
     let registrationChart = document.getElementById("registration_chart").getContext("2d");
 
-    let registrationType_Chart = document.getElementById("revenueType_chart").getContext("2d");
+    let revenueType_Chart = document.getElementById("revenueType_chart").getContext("2d");
 
 
     let search_button = document.getElementById("user_search_button");
 
+    let revenueSection = document.getElementById("revenue_section");
+    let btn_revenue_week = revenueSection.getElementsByClassName("week")[0];
+    let btn_revenue_month = revenueSection.getElementsByClassName("month")[0];
+
+    btn_revenue_week.addEventListener("click", function(x)
+  {
+    revenueSectionChange(1);
+  })
+
+  btn_revenue_month.addEventListener("click", function(x)
+  {
+    revenueSectionChange(2);
+  })
 
     search_button.addEventListener("click",emailClick);
 
@@ -68,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function()
     console.log("HEYO");
     
     showTags();
-    let curDate = currentTime()
+    let curDate = timeFormat(currentTime())
     giveRegisteredUsers_cumulative("2025-03-06", curDate).then(function(x)
   {
     console.log(x);
@@ -89,10 +111,10 @@ document.addEventListener("DOMContentLoaded", function()
     console.log(x);
   });
     
-    giveCategoryRevenue("2025-03-06", "2025-03-13").then(function (x)
+    giveCategoryRevenue("2025-03-06", curDate).then(function (x)
   {
     console.log(x);
-    giveChart_CategoryRevenue(x,registrationType_Chart)
+    giveChart_CategoryRevenue(x,revenueType_Chart)
 
     
   });
@@ -111,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function()
     fd.append("productID", "-1");
     let sendData = {
       "startDate" : "2025-03-04",
-      "endDate" : "2025-03-13",
+      "endDate" : curDate,
       "productID" : "-1"
     }
     fetch(totalRevenueProducts, {
@@ -125,25 +147,83 @@ document.addEventListener("DOMContentLoaded", function()
     }).then(function (l)
   {
     console.log(l);
-
-    key = []
-    val = []
-    l.forEach(element => {
-        console.log(element)
-        key.push(element["date"]);
-        val.push(element["total_sales"]);
-    });
-    console.log(key);
-    console.log(val);
+    totalRevenueData = l;
+    console.log("total rev data")
+    console.log(l.slice(-7))
     
-    createBar(key,val, revenueChart);
+    response = keyVal_gen(l)
+
+    revenueChart_chart = createBar(response[0],response[1], revenueChart);
 
 
 })
 });
 
-function keyVal_gen()
+function keyVal_gen(data)
 {
+  key = []
+  val = []
+  data.forEach(element => {
+      console.log(element)
+      key.push(element["date"]);
+      val.push(element["total_sales"]);
+  });
+  return [key,val];
+}
+
+function revenueSectionChange(id)
+{
+  console.log(id);
+  let prevDate = new Date(currentTime());
+  prevDate.setDate(currentTime().getDate()-7);
+
+  if (totalRevenueData)
+  {
+    data = null;
+    console.log("Within cache");
+    if (id==1)
+    {
+      data = totalRevenueData.slice(-7)
+    }
+    else
+    {
+        data = totalRevenueData
+    }
+    console.log(data);
+    response = keyVal_gen(data)
+    revenueChart_chart.data.labels = response[0];
+    revenueChart_chart.data.datasets[0].data = response[1];
+  
+    console.log("updating");
+    revenueChart_chart.update();
+  }
+  else
+  {
+  let sendData = {
+    "startDate" : timeFormat(prevDate),
+    "endDate" : timeFormat(currentTime()),
+    "productID" : "-1"
+  }
+  fetch(totalRevenueProducts, {
+    method: "POST", 
+    headers : {"X-CSRF-TOKEN" : csrf_token_val}, 
+    body : JSON.stringify(sendData)
+  }
+).then(function(x) 
+  {
+    return x.json();
+  }).then(function (l)
+{
+  console.log(l);
+
+  response = keyVal_gen(l)
+
+  revenueChart_chart.data.labels = response[0];
+  revenueChart_chart.data.datasets[0].data = response[1];
+
+  revenueChart_chart.update();
+})
+  };
 
 }
 
@@ -374,16 +454,19 @@ function emailClick()
 
 function createLineChart(labels, y_val, chart)
 {
-  new Chart(chart, {
+
+  let data = {
+    labels: labels,
+    datasets: [{
+      label: 'Amount of users',
+      data: y_val,
+      borderWidth: 1
+    }]
+  }
+  
+    new Chart(chart, {
     type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Revenue (£)',
-        data: y_val,
-        borderWidth: 1
-      }]
-    },
+    data: data,
     options: {
       scales: {
         y: {
@@ -396,16 +479,19 @@ function createLineChart(labels, y_val, chart)
 
 function pieChart(labels, y_val, chart)
 {
+  let data = {
+    labels: labels,
+    datasets: [{
+      label: 'Revenue (£)',
+      data: y_val,
+      borderWidth: 1
+    }]
+  }
+
+
   new Chart(chart, {
     type: 'pie',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Revenue (£)',
-        data: y_val,
-        borderWidth: 1
-      }]
-    },
+    data: data,
     options: {
       scales: {
         y: {
@@ -415,18 +501,21 @@ function pieChart(labels, y_val, chart)
     }
   });
 }
+
+
 function createBar(labels, y_val, chart)
 {
-  new Chart(chart, {
+  let data = {
+    labels: labels,
+    datasets: [{
+      label: 'Revenue (£)',
+      data: y_val,
+      borderWidth: 1
+    }]
+  }
+  return new Chart(chart, {
     type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Revenue (£)',
-        data: y_val,
-        borderWidth: 1
-      }]
-    },
+    data: data,
     options: {
       scales: {
         y: {

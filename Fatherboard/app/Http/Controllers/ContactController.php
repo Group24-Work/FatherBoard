@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
+use App\Models\ContactForm;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Tag::all();
-        return json_encode($data);
+        return json_encode(ContactForm::all());
     }
 
     /**
@@ -21,6 +20,7 @@ class TagController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -28,14 +28,9 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input("Name");
+        $id = $request->input("Name");
+        ContactForm::create(["Name"=>$id]);
 
-        if (Tag::where("Name",$name)->exists())
-        {
-            Tag::create($name);
-            response()->json(['message'=>'Created tag'], 201);
-        }
-        response()->json(['message'=>'This name has already been taken'],409);
     }
 
     /**
@@ -43,7 +38,9 @@ class TagController extends Controller
      */
     public function show(string $id)
     {
-        //
+    
+        $acc = ContactForm::find($id);
+        return json_encode($acc);
     }
 
     /**
@@ -51,7 +48,7 @@ class TagController extends Controller
      */
     public function edit(string $id)
     {
-
+        //
     }
 
     /**
@@ -59,8 +56,7 @@ class TagController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $name = $request->input("Name");
-        Tag::find($id)->update(["Name"=>$name]);
+        //
     }
 
     /**
@@ -68,6 +64,6 @@ class TagController extends Controller
      */
     public function destroy(string $id)
     {
-        Tag::destroy($id);
+        ContactForm::destroy($id);
     }
 }
