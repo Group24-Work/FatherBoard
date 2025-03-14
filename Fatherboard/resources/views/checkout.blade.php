@@ -69,12 +69,12 @@
                                                                 alt="product image" class="product-image">
                                                         </td>
 
-                                                        <td>{{ $item['name'] }}</td>
-                                                        <td>{{ $item['price'] }}</td>
+                                                        <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
+                                                        <td>£{{ $item['price'] }}</td>
                                         </div>
                                         <td>{{$item['quantity']}}</td>
 
-                                        <td>{{ $item['price'] * (int) $item['quantity'] }} </td>
+                                        <td>£{{ $item['price'] * (int) $item['quantity'] }} </td>
                                         </tr>
 
                                     @endforeach
