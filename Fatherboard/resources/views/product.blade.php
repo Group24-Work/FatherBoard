@@ -7,6 +7,7 @@
 
         <script src={{ asset('js/product.js') }}></script>
         <title>Product</title>
+
     </x-slot:head>
 
     <x-header>
@@ -27,12 +28,14 @@
             <h2 id="title">{{ $product->Title}} </h2>
             <p>{{ $product["Description"]}} </p>
             <p>{{ $product["Manufacturer"] }}</p>
-            <p>{{ $product["price"] }}</p>
+            <p>£{{ $product["Price"] }}</p> 
+            
 
             <form action="{{ route('basketAdd') }}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <input type="number" name="quantity" value="1" min="1">
+
                 <button type="submit" id="basket_button">Add To Basket</button>
             </form>
         </div>
@@ -62,9 +65,9 @@
         </form>
 
         <div id="review-area">
-            <h3>Reviews</h3>
-            <button id="review_button">Add review</button>
+            <h3 id="review-title">Reviews</h3>
             <div id="rating_summary">
+                <b id="text-stars">{{round($rating,1)}}</b>
                 <div id="star_container">
                 <?php
 
@@ -76,7 +79,7 @@
 
                 } ?>
                 </div>
-                <b>{{$rating}}</b>
+                <button id="review_button">Add review</button>
 
             </div>
 

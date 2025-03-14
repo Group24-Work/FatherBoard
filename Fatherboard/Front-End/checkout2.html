@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <title>Checkout Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel = "stylesheet" type="text/css" href="checkout.css" /> <!-- Link for Login page stylesheet -->
-    <link rel = "stylesheet" type="text/css" href="stylesheet.css"/> <!-- Link for the header styles -->
+    <link rel = "stylesheet" type="text/css" href="checkout2.css" /> <!-- Link for Login page stylesheet -->
+    <link rel = "stylesheet" type="text/css" href="AboutUsStyle.css"/> <!-- Link for the header styles -->
    </head>
 
    <body>
@@ -41,52 +41,37 @@
   </header>
 <main>
     <div class="contents">
-    <div class="shipping-information">
-        <h2>Shipping Information</h2>
-        <form action="checkout2.html">
+    <div class="banking-information">
+        <h2>Banking Information</h2>
+        <form action="link to receipt"> <!-- ADD CODE HERE -->
             <div class="row">
-                <input type="text" placeholder="Address Line 1" required>
-                <input type="text" placeholder="Address Line 2">
+                <input type="text" placeholder="Holder Name" required>
+                <input type="checkbox" id="check" required/> <label for="check">Agree to Terms and Conditions</label>
             </div>
             <div class="row">
-                <select required>
-                    <option value="" disabled selected>Country</option>
-                        <option value="UK">United Kingom</option>
-                        <option value="USA">USA</option>
-                        <option value="France">France</option>
-                        <option value="Germany">Germany</option>
-                        <option value="Italy">Italy</option>
-                    </select>
-                    <input type="text" placeholder="Zip/Postal Code"required>
+                <input type="number" placeholder="card number" required>
+                <input type="number" placeholder="CVV"required>
                 </div>
                 <div class="row">
-                    <input type="text" placeholder="First Name" required>
-                    <input type="text" placeholder="Last Name" required>
+                    <input type="number" placeholder="Expiry" required>
                 </div>
-                <div class="row">
-                    <select required>
-                        <option value="" disabled selected>Shipping Method</option>
-                        <option value="Local delivery">Local delivery</option>
-                         </select>
-                </div>
-                <button type="submit">Continue to Payment</button>
+                <button type="submit">CHECKOUT</button>
                 </form>
                 </div>
                 <div class="summary">
-                    <!-- Placeholder Product-->
                     <div class="item">
-                        <img src="images/gpu.png" alt="Product Image"> <!-- ADD CODE/LINKS HERE -->
+                        <img src="product's image link" alt="name of the item"> <!-- ADD CODE/LINKS HERE -->
                         <div>
-                        <h3>RTX 3060</h3>
-                        <p>1</p>
+                        <p><!-- ADD name of the item here --></p>
+                        <p><!-- ADD the quantity and colour here --></p>
                         </div>
-                        <p class="price">£399.99</p>
+                        <p class="price"><!-- Price of the Item --></p>
                         </div>
                         <hr />
                         <div class="totals">
-                            <p>Subtotal: <span></span>£399.99</p>
-                            <p>Shipping: <span>£0</span></p>
-                            <p>Total: <span>£399.99</span></p>
+                            <p>Subtotal: <span></span><!-- Price of the Item --></p>
+                            <p>Shipping: <span><!-- Price of the Shipping --></span></p>
+                            <p>Total: <span><!-- Total --></span></p>
                         </div>
                         </div>
                         </div>

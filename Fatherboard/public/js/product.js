@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", function () {
 function addToBasket() {
     console.log("Adding to basket");
 
-    let product_id = document.getElementById("product_id").value;
+    let product_id = document.getElementById("product_identity").value;
     let quantity = document.getElementById("quantity").value || 1;
     let csrf_val = document.getElementsByName("csrf-token")[0];
     let token = csrf_val.content;

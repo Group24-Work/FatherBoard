@@ -24,7 +24,10 @@ body{
     min-height: 100vh;
     background-size: cover;
     background-position: center;
-
+    font-family: Montserrat;
+    background-image: url('/images/front_images/loginimage.png');
+    background-size: cover;
+    background-position: center;
 }
 
 
