@@ -16,6 +16,12 @@ class TagController extends Controller
         return json_encode($data);
     }
 
+    public function tagPage()
+    {
+        $data = Tag::all();
+
+        return view("admin.tags", ["tags"=>$data]);
+    }
     /**
      * Show the form for creating a new resource.
      */

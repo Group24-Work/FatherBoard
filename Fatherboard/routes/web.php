@@ -168,6 +168,6 @@ Route::get('/admin', [AdminController::class, "giveAdminHub"]);
 // Tag
 
 Route::post("/tags", [TagController::class, "index"]);
-
+Route::get("/tags", [TagController::class, "tagPage"]);
 
 Route::delete("/tags/{id}", [TagController::class, "destroy"]);
