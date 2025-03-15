@@ -170,4 +170,8 @@ Route::get('/admin', [AdminController::class, "giveAdminHub"]);
 Route::post("/tags", [TagController::class, "index"]);
 Route::get("/tags", [TagController::class, "tagPage"]);
 
+Route::put("/tags/create", [TagController::class, "store"]);
+
+Route::put("/tags/update/{id}", [TagController::class, "update"]);
+
 Route::delete("/tags/{id}", [TagController::class, "destroy"]);

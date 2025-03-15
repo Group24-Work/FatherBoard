@@ -18,7 +18,11 @@ class TagController extends Controller
 
     public function tagPage()
     {
-        $data = Tag::all();
+        $data = Tag::all()->map(function($x)
+    {
+        return ["Name"=>$x->Name, "ID"=>$x->id];
+    });
+
 
         return view("admin.tags", ["tags"=>$data]);
     }
@@ -34,14 +38,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input("Name");
+        $name = request()->input("Name");
 
-        if (Tag::where("Name",$name)->exists())
+        if (!Tag::where("Name",$name)->exists())
         {
-            Tag::create($name);
-            response()->json(['message'=>'Created tag'], 201);
+            Tag::create(["Name"=>$name]);
+            return response()->json(['message'=>'Created tag'], 201);
         }
-        response()->json(['message'=>'This name has already been taken'],409);
+        return response()->json(['message'=>'This name has already been taken'],409);
     }
 
     /**
@@ -66,7 +70,14 @@ class TagController extends Controller
     public function update(Request $request, string $id)
     {
         $name = $request->input("Name");
-        Tag::find($id)->update(["Name"=>$name]);
+        $tag = Tag::find($id);
+        if ($tag)
+        {
+            $tag->update(["Name"=>$name]);
+            return response()->json(['message'=>"Updated successfully"], 200);
+        }
+        return response()->json(['message'=>"Not updated"], 409);
+
     }
 
     /**
