@@ -1,0 +1,44 @@
+*
+{
+    margin:0;
+    padding:0;
+}
+
+
+.tagElement
+{
+    display:flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    
+}
+
+.delete_svg
+{
+
+
+}
+.alter_icon
+{
+    height:2rem;
+    width:2rem;
+    margin: 0 0.5rem;
+}
+.modify_svg
+{
+    
+
+}
+
+
+
+.option_container
+{
+    display: flex;
+    width: fit-content;
+}
+
+.item_title
+{
+    width:6rem;
+}

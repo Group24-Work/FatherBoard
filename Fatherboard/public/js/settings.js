@@ -99,6 +99,8 @@ function showMessages()
     message_box.removeAttribute("hidden")
     option_information.innerHTML = "";
 
+
+    
     option_information.appendChild(message_box)
 
 }
@@ -214,6 +216,7 @@ function personalClicked()
         }
     );
 }
+
 
 
 function showAddress(info)
