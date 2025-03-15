@@ -99,6 +99,8 @@ function showMessages()
     message_box.removeAttribute("hidden")
     option_information.innerHTML = "";
 
+
+    
     option_information.appendChild(message_box)
 
 }
@@ -107,7 +109,7 @@ function showMessages()
 function moveCurrentBar(part)
 {
 
-    topUnit = part * "2"
+    topUnit = part * "3"
     currentBar.style.top = topUnit+"rem";
 
 
@@ -214,6 +216,7 @@ function personalClicked()
         }
     );
 }
+
 
 
 function showAddress(info)
