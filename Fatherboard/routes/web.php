@@ -164,8 +164,3 @@ Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
 Route::get('/admin', [AdminController::class, "giveAdminHub"]);
-
-//  Questionnaire :)
-
-Route::get('/questionnaire',[QuestionnaireController::class,'index'])->name('questionnaire');
-Route::post('/filter-products',[QuestionnaireController::class,'filter'])->name('filter.products');
