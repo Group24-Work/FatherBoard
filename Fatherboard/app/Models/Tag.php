@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
+    use HasFactory;
     protected $fillable = ["Name"];
 
-    use HasFactory;
     public function products()
     {
-        return $this->belongsToMany(Product::class, "product_tag");   
+        return $this->belongsToMany(Product::class, "product_tag");
     }
 }

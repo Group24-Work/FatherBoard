@@ -7,22 +7,28 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/questionnaire.css')}}">
         <script src="{{asset('js/questionnaire.js')}}" defer></script>
 
-        
-        </x-slot:head>
+
+    </x-slot:head>
 
     <x-header>
-        
+
     </x-header>
 
-    <body>
-        <h1 class="title">Requirements Questionnaire</h1>
-        <p class="subtitle"> This page will ask a series of questions, designed to help you pick the PC parts most suited to your needs.</p>
-            <div class="wrapper">
-            <h3 id="question">Question Placeholder</h3>
-            <select id="choices"></select>
-                <div id="buttons">
-                <button id="btnNext"> Next </button>
-                </div>
+    <div class="container">
+        <form id="questionnaire-form">
+            @csrf
+            <h2> Select Your Preferences</h2>
+            <div>
+                @foreach($tags as $tag)
+                    <label>
+                        <input type="checkbox" name="tags[]" value="{{ $tag->name }}">
+                        {{ $tag->name }}
+                    </label>
+                @endforeach
             </div>
+            <button type="submit"> Apply Filter</button>
+        </form>
+    </div>
+
 
 </x-lowlayout>

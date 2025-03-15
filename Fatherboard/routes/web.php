@@ -15,7 +15,10 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
+
+
 use App\Http\Controllers\TagController;
+
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 Route::get('/',function(){
@@ -148,7 +151,7 @@ Route::get("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryR
 Route::post("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryRevenue"]);
 
 
-// User 
+// User
 Route::post("/admin/findUser/");;
 
 Route::get(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);

@@ -7,10 +7,6 @@ var QUESTIONS = [
     "choices":["Gaming", "Office Work", "CPU Intensive Tasks", "Unsure"]
     },
     {
-    "question":"What is the maximum price you are willing to spend on a PC?",
-    "choices":["<£1000", "<£1000-£2500", "£3000+", "Unsure"]
-    },
-    {
     "question":"Do you have a brand preference?",
     "choices":["NVIDIA","AMD","Intel","No preference"]
     },
@@ -21,10 +17,6 @@ var QUESTIONS = [
     {
     "question":"What kind of storage would you like?",
     "choices":["HDD","SSD","Hybrid","Unsure"]
-    },
-    {
-    "question":"Do you like colourful components?",
-    "choices":["Yes", "No", "No preference"]
     }
 ];
 
