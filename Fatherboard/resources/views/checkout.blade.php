@@ -70,8 +70,8 @@
                                                         </td>
 
 
-                                                        <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['name']), 0, 7)) }}</span>
-
+                                                        <td slot="Title">{{ implode(' ', array_slice(explode(' ', $item['name']), 0, 7)) }}
+                                                        </td>
                                                         <td>£{{ $item['price'] }}</td>
                                         </div>
                                         <td>{{$item['quantity']}}</td>
