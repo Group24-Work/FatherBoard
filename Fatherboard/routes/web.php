@@ -15,8 +15,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
-
-
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TagController;
 
 
@@ -178,3 +177,10 @@ Route::put("/tags/create", [TagController::class, "store"]);
 Route::put("/tags/update/{id}", [TagController::class, "update"]);
 
 Route::delete("/tags/{id}", [TagController::class, "destroy"]);
+
+
+// Messages
+
+Route::get("/messages", [ContactController::class, "indexPage"]);
+
+Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
