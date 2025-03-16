@@ -13,9 +13,9 @@ class BasketItem extends Model
         'product_id',
         'quantity',
     ];
-    public function basket(){
-        return $this->belongsTo(Basket::class,'basket_id');
-
+    public function basket()
+    {
+        return $this->belongsTo(Basket::class, 'basket_id');
     }
     public function product(){
         return $this->belongsTo(Product::class,'product_id');
