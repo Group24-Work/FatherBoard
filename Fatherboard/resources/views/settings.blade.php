@@ -242,17 +242,8 @@
         }
         ?>
     </div>
-    <div id="option-information">
-    {{-- <div class="content" id="personal-info">
 
-
-    </div> --}}
-
-
-
-
-
-    <div class="content" id="address-info">
+    <div class="content" id="address-info" hidden>
         <h3>Address Information</h3>
         <button id="button_show_address_gui">Add Address</button>
 
@@ -280,6 +271,21 @@
         }
 ?>
     </div>
+    <div id="option-information">
+    {{-- <div class="content" id="personal-info">
+
+
+    </div> --}}
+
+
+    <personal-element id="personal_element_first" >
+        <span slot="Email">{{$user["Email"]}}</span>
+        <span slot="Password">{{$user["Password"]}}</span>
+        <span slot="FirstName">{{$user["FirstName"]}}</span>
+        <span slot="LastName">{{$user["LastName"]}}</span>
+    </personal-element>
+
+
 </div>
     </main>
 
