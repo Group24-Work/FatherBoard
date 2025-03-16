@@ -21,6 +21,10 @@ let message_button = null;
 
 let currentBar = null;
 
+let option_information = null;
+
+let address_container = null;
+
 
 let csrf =null;
 let csrf_val =null;
@@ -35,6 +39,8 @@ history_button = document.getElementById("button_history");
 show_add_address_button = document.getElementById("button_show_address_gui");
 update_personal_buttons = document.getElementsByClassName("update_personal_button");
 update_personal_submit = document.getElementById("update_personal_submit");
+option_information = document.getElementById("option-information");
+address_container = document.getElementById("address_container");
 
 admin_index_button = document.getElementById("admin_index_button");
 
@@ -171,11 +177,12 @@ function addressClicked()
 
     moveCurrentBar(1);
     let csrf_val = csrf.getAttribute("content");
-    fetch("./get/address", {method: "POST", headers : {"X-CSRF-TOKEN": csrf_val}}).then((x)=>x.json()).then((y)=>
-        {
-            console.log(y);
-            showAddress(y)
-});
+    showAddress_cache();
+//     fetch("./get/address", {method: "POST", headers : {"X-CSRF-TOKEN": csrf_val}}).then((x)=>x.json()).then((y)=>
+//         {
+//             console.log(y);
+//             showAddress(y)
+// });
 
 }
 
@@ -209,16 +216,25 @@ function personalClicked()
 
 
     let info = null;
-    fetch("./get/personal", {method: "POST", headers : {"X-CSRF-TOKEN": csrf_val}}).then((x)=>x.json()).then(
-        (y)=>{
-            console.log(y);
-            showPersonal(y);
-        }
-    );
+    showPersonal_cache();
+    // fetch("./get/personal", {method: "POST", headers : {"X-CSRF-TOKEN": csrf_val}}).then((x)=>x.json()).then(
+    //     (y)=>{
+    //         console.log(y);
+    //         showPersonal(y);
+    //     }
+    // );
 }
 
 
+function showAddress_cache()
+{
+    let clone = address_container.cloneNode(true);
+    clone.removeAttribute("hidden");
+    option_information.innerHTML = `<h3>Address Information</h3>
+    <button id='button_show_address_gui'>Add Address</button>`;
 
+    option_information.append(clone);
+}
 function showAddress(info)
 {
     let option_information = document.getElementById("option-information");
@@ -293,6 +309,16 @@ function showAddress(info)
 }
 
 
+// AJAX acquire personal information
+function showPersonal_cache()
+{
+    let elem = document.getElementById("personal_element_first");
+
+    let elemCopy = elem.cloneNode(true);
+    elemCopy.removeAttribute("hidden");
+    option_information.innerHTML = "";
+    option_information.append(elemCopy);
+}
 
 
 function showPersonal(info)

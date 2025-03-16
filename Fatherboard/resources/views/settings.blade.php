@@ -215,7 +215,27 @@
 
         </ul>
     </div>
-
+    <personal-element id="personal_element_first" hidden>
+        <span slot="Email">{{$user["Email"]}}</span>
+        <span slot="Password">{{$user["Password"]}}</span>
+        <span slot="FirstName">{{$user["FirstName"]}}</span>
+        <span slot="LastName">{{$user["LastName"]}}</span>
+    </personal-element>
+    <div id="address_container" hidden>    
+        <?php
+        foreach($addr as $single)
+        {
+            ?>
+        <address-element>
+            <p slot="Country">{{$single["Country"]}}</p>
+            <p slot="City">{{$single["City"]}}</p>
+            <p slot="PostCode">{{$single["PostCode"]}}</p>
+            <p slot="AddressLine">{{$single["Address Line"]}}</p>
+        </address-element>
+        <?php
+        }
+        ?>
+    </div>
     <div id="option-information">
     {{-- <div class="content" id="personal-info">
 

@@ -26,6 +26,17 @@ class SettingController extends Controller
             $addr = $user->address;
             $orders = [];
 
+            $adminStatus = $user["Admin"];
+            // dd($user);
+
+            $filteredUser =collect([$user])->map(function($y)
+            {
+                return ["FirstName"=>$y["First Name"], "LastName"=>$y["Last Name"], "Email"=>$y["Email"], "Password"=>$y["Password"], "Admin"=>$y["Admin"]];
+            })->get(0);
+
+            // dd($user->address);
+
+
             if ($user["Admin"])
             {
 
@@ -88,7 +99,7 @@ class SettingController extends Controller
 
 
                 }
-                return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
+                return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders]);
             }
 
         }
