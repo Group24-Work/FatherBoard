@@ -12,7 +12,7 @@
     <div class="content" id="order-info" hidden>
         <div>
         <?php
-        if (isset($items))
+        if (isset($items) && count($items)> 0)
         {
             foreach($items as $order)
             {
@@ -32,6 +32,12 @@
                 <?php
                 }
             }
+        }
+        else
+        {
+            ?>
+            <h2>You have not bought any items</h2>
+            <?php
         }
         ?>
         </div>

@@ -87,6 +87,11 @@ ul{
 
 }
 
+#order-info h2
+{
+    text-align: center;
+}
+
 address-element {
     display: block;
     margin-bottom: 5vh;
