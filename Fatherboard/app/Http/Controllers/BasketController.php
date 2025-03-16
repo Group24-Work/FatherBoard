@@ -19,31 +19,35 @@ use Illuminate\Support\Facades\Bus;
             $productId = $request->input('product_id');
             $quantity = $request->input('quantity', 1);
 
-            $customerId = Auth::id();
+            $customerId = AuthController::loggedIn();
 
             if ($customerId) {
                $basket = Basket::firstOrCreate([
-                    'customer_information_id' => $customerId,
+                    'customer_information_id' => $customerId["id"],
                      ]);
-BasketItem::updateOrCreate([
-    'basket_id'=>$basket->id,
-    'product_id'=>$productId
-],['quantity'=>$quantity]);
+
+            $id = $customerId["id"];
+            
+            BasketItem::updateOrCreate([
+                'customer_information_id'=>$id,
+                'product_id'=>$productId
+            ],['quantity'=>$quantity]);
 
             }
-    $product = Product::findOrFail($productId);
+
+            $product = Product::findOrFail($productId);
 
             $basketSession = session()->get('basket',[]);
-    if(isset($basketSession[$product->id])){
-        $basketSession[$product->id]['quantity'] += $quantity;
-    }else{
+            if(isset($basketSession[$product->id])){
+                $basketSession[$product->id]['quantity'] += $quantity;
+            }else{
 
-                    $basketSession[$product->id]=[
-                    'product_id' => $product->id,
-                    'quantity' => $quantity,];
-                    }
+                $basketSession[$product->id]=[
+                'product_id' => $product->id,
+                'quantity' => $quantity,];
+            }
 
-                session()->put('basket',$basketSession);
+            session()->put('basket',$basketSession);
 
         return redirect()->route('basketIndex')->with(['success','Product added!']);
         }
