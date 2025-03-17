@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\CustomerInformation;
+use App\Models\BasketItem;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,16 @@ class AuthController extends Controller
         }*/
 
         if (Hash::check($password, $customer->Password)) {
+            $basketItems = BasketItem::where('customer_information_id', $customer->id)->get();
+
+        session()->put('basket', $basketItems->mapWithKeys(function ($item) { // restore basket data from the database from previous logins
+            return [$item->product_id => [
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+            ]];
+        })->toArray());
             return true; //correct password & username exists in the database, therefore true
+
         }
 
 
@@ -321,6 +331,7 @@ class AuthController extends Controller
     }
     public static function logOut()
     {
+      session()->forget('basket'); //forgets basket data when logout
         self::cookieLogout();
         self::sessionLogOut();
 

@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Bus;
                      ]);
 
             $id = $customerId["id"];
-            
+
             BasketItem::updateOrCreate([
                 'customer_information_id'=>$id,
                 'product_id'=>$productId
@@ -57,6 +57,7 @@ use Illuminate\Support\Facades\Bus;
 //display the basket
 public function index()
 {
+
     $basket = session()->get('basket', []);
 
     $basketDetails = [];
@@ -121,4 +122,5 @@ public function checkout()
 
     return view('checkout', compact('basketDetails'));
 }
+
 }
