@@ -46,6 +46,8 @@ ul{
 {
 
     background-color: white;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
     position:absolute;
     top:50%;
     left:50%;
@@ -64,9 +66,17 @@ ul{
 #update_personal_submit
 {
     width:100%;
-    background-color: green;
+    background-color: #c31eff;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
     border:none;
 }
+
+ input[type="text"]
+{
+    text-align: center;
+}
+
 
 #settings
 {
@@ -94,6 +104,11 @@ ul{
   border-radius: 1rem;
   padding: 1rem 0;
 }
+#order-info div
+{
+    display:flex;
+    flex-direction: column;
+}
 #order-info h2
 {
     text-align: center;
@@ -117,7 +132,7 @@ address-element:hover
 #add_address_box
 {
     position:fixed;
-    background-color: wheat;
+    background-color: white;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
@@ -128,8 +143,8 @@ address-element:hover
 {
     display:flex;
     flex-direction: column;
-    border: 2px solid black;
-    border-radius: 2px;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
     padding:50px;
     justify-content: center;
     align-items: stretch;
@@ -145,6 +160,14 @@ address-element:hover
     margin:0;
     padding:0;
     text-align: center;
+}
+
+#add_address_form input[type="submit"]
+{
+    background-color:#c31eff;
+    padding:0.5rem;
+    border-radius: 0.3rem;
+    border:none;
 }
 
 .message
