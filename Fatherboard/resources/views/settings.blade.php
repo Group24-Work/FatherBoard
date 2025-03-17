@@ -239,6 +239,7 @@
         {
             ?>
         <address-element>
+            <p name="address_id" value="{{$single["id"]}}" hidden>{{$single["id"]}}</p>
             <p slot="Country">{{$single["Country"]}}</p>
             <p slot="City">{{$single["City"]}}</p>
             <p slot="PostCode">{{$single["PostCode"]}}</p>
@@ -284,7 +285,7 @@
     </div> --}}
 
 
-    <personal-element id="personal_element_first" >
+    <personal-element id="personal_element_within" >
         <span slot="Email">{{$user["Email"]}}</span>
         <span slot="Password">{{$user["Password"]}}</span>
         <span slot="FirstName">{{$user["FirstName"]}}</span>

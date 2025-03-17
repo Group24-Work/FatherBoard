@@ -87,6 +87,13 @@ ul{
 
 }
 
+#order-info
+{
+ border: 0.2rem solid black;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 1rem 0;
+}
 #order-info h2
 {
     text-align: center;

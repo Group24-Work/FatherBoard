@@ -31,7 +31,7 @@ class SettingController extends Controller
 
             $filteredUser =collect([$user])->map(function($y)
             {
-                return ["FirstName"=>$y["First Name"], "LastName"=>$y["Last Name"], "Email"=>$y["Email"], "Password"=>$y["Password"], "Admin"=>$y["Admin"]];
+                return ["FirstName"=>$y["First Name"], "LastName"=>$y["Last Name"], "Email"=>$y["Email"], "Password"=>self::getPass(), "Admin"=>$y["Admin"]];
             })->get(0);
 
             // dd($user->address);
@@ -65,7 +65,7 @@ class SettingController extends Controller
                     }
                     array_push($orders, $orderProduct);
             };
-            return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
+            return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders]);
 
 
             }
@@ -120,9 +120,8 @@ class SettingController extends Controller
         return json_encode("");
     }
 
-    public static function showPersonal()
+    private static function getPass()
     {
-
         $form = AuthController::whichLog();
         $password = null;
 
@@ -136,6 +135,12 @@ class SettingController extends Controller
             $password = $_SESSION["password"];
 
         }
+        return $password;
+    }
+    public static function showPersonal()
+    {
+
+        $password = self::getPass() ?? null;
         if ($user = AuthController::loggedIn())
         {
             $addr = $user->toArray();
