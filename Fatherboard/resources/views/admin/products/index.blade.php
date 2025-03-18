@@ -31,7 +31,7 @@
     <h2>Admin - Products</h2>
     <div class="button-container">
         <a href="{{ route('create') }}"><button id='addProduct'>Add Product</button></a><a
-            href="{{ route('tagPage') }}"><button id='addTag'>Add Tag</button></a>
+            href="{{ route('tagpage') }}"><button id='addTag'>Add Tag</button></a>
 
     </div>
 
