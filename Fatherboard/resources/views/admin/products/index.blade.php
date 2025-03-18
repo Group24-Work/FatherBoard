@@ -28,10 +28,12 @@
     <!-- header.html -->
     <x-header></x-header>
 
-    <h2>Products <a href="{{ route('create') }}"><button id='addProduct'>Add Product</button></a><a
-            href="{{ route('tagpage') }}"><button id='add tag'>Add Tag</button></a></h2>
+    <h2>Admin - Products</h2>
+    <div class="button-container">
+        <a href="{{ route('create') }}"><button id='addProduct'>Add Product</button></a><a
+            href="{{ route('tagpage') }}"><button id='addTag'>Add Tag</button></a>
 
-
+    </div>
 
 
 

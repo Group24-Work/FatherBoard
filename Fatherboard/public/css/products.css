@@ -109,3 +109,47 @@ img:not(#logo) {
     background-color: rgb(158, 157, 157);
 
 }
+
+#addProduct {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#addTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addTag:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+#addProduct:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}

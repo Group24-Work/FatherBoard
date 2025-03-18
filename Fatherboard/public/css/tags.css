@@ -47,6 +47,7 @@
     align-items: center;
     width: fit-content;
     background-color: white;
+    border: black;
 }
 
 #Capa_1:hover {
