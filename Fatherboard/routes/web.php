@@ -170,7 +170,7 @@ Route::get('/admin', [AdminController::class, "giveAdminHub"]);
 // Tag
 
 Route::post("/tags", [TagController::class, "index"]);
-Route::get("/tags", [TagController::class, "tagPage"]);
+Route::get("/tags", [TagController::class, "tagPage"])->name('tagpage');
 
 Route::put("/tags/create", [TagController::class, "store"]);
 
