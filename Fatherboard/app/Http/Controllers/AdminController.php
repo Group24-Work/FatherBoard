@@ -271,11 +271,13 @@ class AdminController extends Controller
         $filteredProducts = $products->map(function($y)
         {
             return ["id"=>$y["id"],
+                "Tags"=>$y["tags"],
                 "Title"=>$y["Title"], 
             "Description"=>$y["Description"],
             "Price"=>$y["Price"],
         "Stock"=>$y["Stock"]->Stock];
         });
+        // dd($filteredProducts);
         
         // dd($filteredProducts);
         // $products

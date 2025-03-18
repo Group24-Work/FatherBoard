@@ -2,11 +2,16 @@
 <x-lowlayout>
     <x-slot:head>
         <title>Product Management</title>
+        <link rel="stylesheet" href="{{asset("/css/admin_products.css")}}">
+        <script src="{{asset("/js/admin_products.js")}}"></script>
     </x-slot:head>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <h2>Product Management</h2>
 
-    <div>
+
+    <main>
 
         {{-- <table>
             <tr>
@@ -16,7 +21,14 @@
             <tr>asdsad</tr>
 
         </table>
-        <table> --}}
+    --}}
+    <div id="product_specific_container">
+        <p id="product_title"></p>
+        <p id="product_tags"></p>
+    </div>
+    <div id="product_region">
+        <table id="product_table"> 
+
 
     <?php
 
@@ -24,19 +36,29 @@
     {
 
         ?>
-        <tr>
+        <tr class="product_row">
 
-        <td>{{$product["id"]}}</td>
-        <td>{{$product["Title"]}}</td>
-        <td>{{$product["Description"]}}</td>
+        <td class="product_id">{{$product["id"]}}</td>
+        <td name="product_title">{{$product["Title"]}}</td>
+        <td class="table_description">{{$product["Description"]}}</td>
         <td>{{$product["Stock"]}}</td>
+        <td name="product_tags">
+            <?php
+            foreach($product["Tags"] as $tag)
+            {
+                ?>
+                <span> {{$tag->Name}}</span>
 
+                <?php
+            }
+            ?>
          </tr>
 
         <?php
     }
     ?>
+    </div>
      </table>
 
-    </div>
+    </main>
 </x-lowlayout>

@@ -1,0 +1,30 @@
+
+*
+{
+    margin:0;
+    padding:0;
+}
+
+
+
+#product_table
+{
+    width:70%;
+}
+
+#product_region
+{
+    display:flex;
+    justify-content: center;
+}
+
+.product_row:hover
+{
+    background-color: lightcoral;
+}
+
+
+.table_description
+{
+    width:50%;
+}

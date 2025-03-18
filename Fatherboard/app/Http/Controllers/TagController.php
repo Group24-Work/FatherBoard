@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -70,6 +71,8 @@ class TagController extends Controller
     public function update(Request $request, string $id)
     {
         $name = $request->input("Name");
+
+        // validator::make()
         $tag = Tag::find($id);
         if ($tag)
         {
