@@ -12,6 +12,8 @@ let csrf_val = null;
 
 let tag_options = null;
 
+let tag_assoc = null;
+
 async function getTags()
 {
     let tagArray = null;
@@ -53,6 +55,38 @@ function addTag(prod_id, tag_id)
     })
 }
 
+
+function removeTag(prod_id, tag_id)
+{
+    let remove_tag_url = `/product/remove_tag/${prod_id}`;
+
+    console.log(tag_id)
+    let fd = new FormData()
+    fd.append("tag_id", tag_id)
+    fetch(remove_tag_url,
+        {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN" : csrf_val
+            },
+            body: fd
+            
+        }
+    ).then(function (x)
+    {
+        // window.location.reload();
+    })
+
+}
+
+function createTagAssociation(val)
+{
+    let res ={};
+    val.forEach(function(y) {
+        res[y["Name"]] = y["id"];
+    });
+return res;
+}
 document.addEventListener("DOMContentLoaded", function(y)
 {
     product_rows = document.querySelectorAll(".product_row")
@@ -64,10 +98,18 @@ document.addEventListener("DOMContentLoaded", function(y)
     tag_options = document.getElementById("tag_options");
 
     add_tag = document.getElementById("add_tag");
+    
 
     let title = product_region.querySelector("#product_title")
     let s_tag = product_region.querySelector("#product_tags")
     let prod_id = product_region.querySelector("#product_id")
+
+    getTags().then(function(y)
+{
+    tag_assoc = createTagAssociation(y);
+    console.log(tag_assoc)
+
+})
 
     add_tag.addEventListener("click", function(y)
 {
@@ -75,6 +117,7 @@ document.addEventListener("DOMContentLoaded", function(y)
 })
     let tagArr = getTags().then(function (x)
 {
+    
     console.log(x);
     for (elem of x)
         {
@@ -109,9 +152,27 @@ document.addEventListener("DOMContentLoaded", function(y)
         prod_id.textContent = id.textContent;
         for (let tag of all_tags)
         {
-            let tagElem = document.createElement("p")
+            let indiv_tag_container = document.createElement("div")
+            indiv_tag_container.classList.add("individual_tag")
+            let tagElem = document.createElement("span")
             tagElem.textContent = tag.textContent
-            s_tag.append(tagElem)
+
+            let removeElem = document.createElement("span")
+            removeElem.textContent = "+"
+            removeElem.addEventListener("click",function(x)
+            {
+                console.log(tag_assoc)
+                console.log(Object.keys(tag_assoc))
+                console.log(tag_assoc["Yellow"])
+                console.log(tag.textContent.tri)
+                console.log(tag_assoc[tag.textContent.trim()])
+
+                removeTag(id.textContent,tag_assoc[tag.textContent.trim()])
+        })
+            indiv_tag_container.append(tagElem)
+            indiv_tag_container.append(removeElem)
+
+            s_tag.append(indiv_tag_container)
         }
         console.log(title)
 

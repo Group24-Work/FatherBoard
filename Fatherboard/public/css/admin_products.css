@@ -37,6 +37,12 @@ main
     border: 0.2rem solid black;
     padding: 1rem;
 }
+
+.individual_tag
+{
+    display:flex;
+    justify-content: space-between;
+}
 #add_tag
 {
     border:none;

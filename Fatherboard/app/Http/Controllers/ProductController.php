@@ -300,6 +300,16 @@ class ProductController extends Controller
         dd(DB::getQueryLog());
         // return json_encode(Product::find($id));
     }
+
+    public function removeTag(int $id, Request $req)
+    {
+        $tagID = $req->input(key: "tag_id");
+        $product = Product::find($id);
+        $product->load('tags');
+        DB::enableQueryLog();
+        $product->tags()->detach($tagID);
+        // dd(DB::getQueryLog());
+    }
     /**
      * Show the form for editing the specified resource.
      */

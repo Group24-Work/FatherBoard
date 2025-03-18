@@ -139,6 +139,7 @@ Route::post("/product/tags/{id}", [ProductController::class, "giveTags"]);
 
 Route::post("/product/add_tags/{id}", [ProductController::class, "addTag"]);
 
+Route::post("/product/remove_tag/{id}", [ProductController::class, "removeTag"]);
 
 // Reports functionality
 
