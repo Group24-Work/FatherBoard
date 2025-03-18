@@ -289,6 +289,17 @@ class ProductController extends Controller
     {
         return json_encode($this->p_giveTags($id)->pluck("Name"));
     }
+
+    public function addTag(int $id, Request $req)
+    {
+        $tagID = $req->input(key: "tag_id");
+        $product = Product::find($id);
+        $product->load('tags');
+        DB::enableQueryLog();
+        $product->tags()->attach($tagID);
+        dd(DB::getQueryLog());
+        // return json_encode(Product::find($id));
+    }
     /**
      * Show the form for editing the specified resource.
      */

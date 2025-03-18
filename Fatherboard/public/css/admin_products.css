@@ -6,7 +6,10 @@
 }
 
 
-
+main
+{
+    display: flex;
+}
 #product_table
 {
     width:70%;
@@ -14,6 +17,7 @@
 
 #product_region
 {
+    width:60%;
     display:flex;
     justify-content: center;
 }
@@ -22,7 +26,23 @@
 {
     background-color: lightcoral;
 }
+#product_specific_container
+{
+    width:30%;
+    order:2;
+}
 
+#tag_container
+{
+    border: 0.2rem solid black;
+    padding: 1rem;
+}
+#add_tag
+{
+    border:none;
+    background-color: antiquewhite;
+    padding:0.5rem;
+}
 
 .table_description
 {

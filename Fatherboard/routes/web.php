@@ -57,7 +57,6 @@ Route::post("/create/product", function ()
 
 });
 
-Route::post("/product/tags/{id}", [ProductController::class, "giveTags"]);
 
 
 
@@ -115,12 +114,15 @@ Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.
 Route::get('/checkout/success', [CheckoutController::class,'success'])->name('checkout_success');
 
 //Admin
+
+// Interactive Admin
 Route::get('/admin/products', [AdminProductController::class, "index"])->name('adminIndex');
 Route::get('/admin/product/create', [AdminProductController::class, "create"])->name('create');
 Route::get('/admin/product/{id}', action: [AdminProductController::class, "show"])->name('edit');
 Route::delete('/admin/products{id}', action: [AdminProductController::class, "destroy"])->name('delete');
 Route::post('/admin/product/create', [AdminProductController::class, "created"])->name('created');
 Route::put('/admin/product/{product_id}', [AdminProductController::class, "update"])->name('update');
+
 
 Route::post("/create/product", [ProductController::class, 'create']);
 
@@ -130,6 +132,12 @@ Route::post("/update/product", [ProductController::class, 'update']);
 
 Route::post("/delete/product", [ProductController::class, 'destroy']);
 
+
+// Product
+
+Route::post("/product/tags/{id}", [ProductController::class, "giveTags"]);
+
+Route::post("/product/add_tags/{id}", [ProductController::class, "addTag"]);
 
 
 // Reports functionality

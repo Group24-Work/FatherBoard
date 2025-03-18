@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Product;
+use App\Models\Tag;
 class AdminController extends Controller
 {
     public function giveAdminHub()
@@ -277,11 +278,13 @@ class AdminController extends Controller
             "Price"=>$y["Price"],
         "Stock"=>$y["Stock"]->Stock];
         });
+
+        $allTags = Tag::all();
         // dd($filteredProducts);
         
         // dd($filteredProducts);
         // $products
-        return view("admin.products", ["products"=>$filteredProducts]);
+        return view("admin.products", ["products"=>$filteredProducts, "tags"=>$allTags]);
     }
 
     // Returns all accounts from a given email in the format listed below

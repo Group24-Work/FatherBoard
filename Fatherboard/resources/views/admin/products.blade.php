@@ -24,8 +24,17 @@
     --}}
     <div id="product_specific_container">
         <p id="product_title"></p>
-        <p id="product_tags"></p>
+        <p id="product_id" hidden></p>
+        <button id="add_tag">+</button>
+        <div id="tag_container">
+            <div id="product_tags"></div>
+        </div>
+        <div>
+            <select id="tag_options">
+            </select>
+        </div>
     </div>
+    
     <div id="product_region">
         <table id="product_table"> 
 
