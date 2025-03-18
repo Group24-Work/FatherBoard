@@ -233,3 +233,7 @@ address-element:hover
     grid-area:options;
     background-color: aliceblue;
 }
+
+.order-container{
+    overflow:none;
+}

@@ -10,7 +10,7 @@
     </x-slot:head>
 
     <div class="content" id="order-info" hidden>
-        <div>
+        <div class="order-container">
         <?php
         if (isset($items) && count($items)> 0)
         {
@@ -41,6 +41,7 @@
         }
         ?>
         </div>
+    </div>
     </div>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <template id="address-template">
