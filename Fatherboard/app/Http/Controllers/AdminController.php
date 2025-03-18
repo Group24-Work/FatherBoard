@@ -7,6 +7,8 @@ use App\Models\CustomerInformation;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+
+use App\Models\Product;
 class AdminController extends Controller
 {
     public function giveAdminHub()
@@ -260,6 +262,12 @@ class AdminController extends Controller
         
 
         return json_encode($resultTable);
+    }
+
+    public function giveProducts()
+    {
+        $products = Product::all();
+        return view("admin.products", ["products"=>$products]);
     }
 
     // Returns all accounts from a given email in the format listed below

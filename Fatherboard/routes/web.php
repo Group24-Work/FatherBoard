@@ -184,3 +184,6 @@ Route::delete("/tags/{id}", [TagController::class, "destroy"]);
 Route::get("/messages", [ContactController::class, "indexPage"]);
 
 Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
+
+
+Route::get("/admin/product_manage", [AdminController::class, "giveProducts"]);
