@@ -6,17 +6,37 @@
 
     <h2>Product Management</h2>
 
+    <div>
+
+        {{-- <table>
+            <tr>
+                <td>ninja</td>
+                <td>ninja</td>
+            </tr>
+            <tr>asdsad</tr>
+
+        </table>
+        <table> --}}
 
     <?php
 
     foreach($products as $product)
     {
+
         ?>
-        <p>{{$product["id"]}}</p>
-        <p>{{$product["Title"]}}</p>
-        <p>{{$product["Description"]}}</p>
+        <tr>
+
+        <td>{{$product["id"]}}</td>
+        <td>{{$product["Title"]}}</td>
+        <td>{{$product["Description"]}}</td>
+        <td>{{$product["Stock"]}}</td>
+
+         </tr>
 
         <?php
     }
     ?>
+     </table>
+
+    </div>
 </x-lowlayout>

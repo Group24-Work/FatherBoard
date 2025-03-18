@@ -266,8 +266,20 @@ class AdminController extends Controller
 
     public function giveProducts()
     {
-        $products = Product::all();
-        return view("admin.products", ["products"=>$products]);
+        $products = Product::with(["price", "stock", "tags"])->get();
+
+        $filteredProducts = $products->map(function($y)
+        {
+            return ["id"=>$y["id"],
+                "Title"=>$y["Title"], 
+            "Description"=>$y["Description"],
+            "Price"=>$y["Price"],
+        "Stock"=>$y["Stock"]->Stock];
+        });
+        
+        // dd($filteredProducts);
+        // $products
+        return view("admin.products", ["products"=>$filteredProducts]);
     }
 
     // Returns all accounts from a given email in the format listed below
