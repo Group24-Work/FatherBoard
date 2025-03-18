@@ -6,14 +6,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%;
 }
 
-@media screen and (max-height:35rem)
-{
-    .container:has(.lower-nav){
-    
-display:none    }
-}
+
 body {
     font-family: Montserrat;
     background-color: #d2d2d2 !important;
@@ -76,6 +72,15 @@ body h1{
 
 .main-header .container{ /*spacing for flexbox */
    justify-content: space-around;
+}
+
+.main-header .container:nth-child(2 ){
+    position: relative;
+    z-index: -100;
+}
+
+@media (max-width: 768px) {
+    .container{padding: 0rem};
 }
 
 .SearchBar{ /*managing searchbar size, so its aligned well. */
@@ -152,6 +157,11 @@ body h1{
 .main-nav a {
     display: inline-block;
     padding: .5em 3em;
+}
+
+
+.lower-nav-list{
+    font-size: 20px;
 }
 
 
@@ -298,3 +308,35 @@ body h1{
         font-size: 0.9rem;
     }
 }
+
+@media screen and (max-height:35rem)
+{
+    .container:has(.lower-nav){
+    
+display:none    }
+}
+
+@media (max-width: 768px){
+    .lower-nav-list{font-size: 5px};
+}
+
+ul li ul.dropdown {
+    display: block;
+}
+
+ul li ul.dropdown {
+    width: 160px;
+    background: black;
+    position: absolute;
+    display: none;
+    top: 80%;
+}
+
+ul li a:hover {
+    background: black;
+}
+
+ul li:hover ul.dropdown {
+    display: block;
+}
+
