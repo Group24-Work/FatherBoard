@@ -296,7 +296,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->load('tags');
         DB::enableQueryLog();
-        $product->tags()->attach($tagID);
+        $product->tags()->syncWithoutDetaching($tagID);
         dd(DB::getQueryLog());
         // return json_encode(Product::find($id));
     }

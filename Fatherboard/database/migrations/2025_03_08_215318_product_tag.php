@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create("product_tag",function($table)
         {
             $table->id();
-            $table->foreignIdFor(Product::class);
-            $table->foreignIdFor(Tag::class);
+            $table->foreignIdFor(Product::class)->constrained()->onDelete("cascade");
+            $table->foreignIdFor(Tag::class)->constrained()->onDelete("cascade");
 $table->timestamps();
+
+$table->unique(['product_id', 'tag_id']); 
+
         });
     }
 
