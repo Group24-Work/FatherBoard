@@ -15,6 +15,11 @@ class ContactController extends Controller
         return json_encode(ContactForm::all());
     }
 
+    public function indexPage()
+    {
+        $data = ContactForm::all();
+        return view("admin.messages",["messages"=>$data]);
+    }
     /**
      * Show the form for creating a new resource.
      */
