@@ -270,6 +270,16 @@ class ProductController extends Controller
         return view('product',["product"=>$product,"image"=>$image, "rating"=>$curRating->avg_rating, "amount"=>$amountStar]);
     }
 
+    // Changes stock of a given item to any number
+    public function changeStock(int $id, Request $rq)
+    {
+        $newStock = $rq->input("new_stock");
+
+        if ($newStock > 0)
+        {
+            Product::find($id)->stock->Stock = $newStock;
+        }
+    }
     private function p_giveTags(int $id)
     {
         return Product::find($id)->tags()->get();
@@ -278,6 +288,27 @@ class ProductController extends Controller
     public function giveTags(int $id)
     {
         return json_encode($this->p_giveTags($id)->pluck("Name"));
+    }
+
+    public function addTag(int $id, Request $req)
+    {
+        $tagID = $req->input(key: "tag_id");
+        $product = Product::find($id);
+        $product->load('tags');
+        DB::enableQueryLog();
+        $product->tags()->syncWithoutDetaching($tagID);
+        dd(DB::getQueryLog());
+        // return json_encode(Product::find($id));
+    }
+
+    public function removeTag(int $id, Request $req)
+    {
+        $tagID = $req->input(key: "tag_id");
+        $product = Product::find($id);
+        $product->load('tags');
+        DB::enableQueryLog();
+        $product->tags()->detach($tagID);
+        // dd(DB::getQueryLog());
     }
     /**
      * Show the form for editing the specified resource.

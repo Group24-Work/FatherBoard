@@ -7,6 +7,9 @@ use App\Models\CustomerInformation;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+
+use App\Models\Product;
+use App\Models\Tag;
 class AdminController extends Controller
 {
     public function giveAdminHub()
@@ -260,6 +263,28 @@ class AdminController extends Controller
         
 
         return json_encode($resultTable);
+    }
+
+    public function giveProducts()
+    {
+        $products = Product::with(["price", "stock", "tags"])->get();
+
+        $filteredProducts = $products->map(function($y)
+        {
+            return ["id"=>$y["id"],
+                "Tags"=>$y["tags"],
+                "Title"=>$y["Title"], 
+            "Description"=>$y["Description"],
+            "Price"=>$y["Price"],
+        "Stock"=>$y["Stock"]->Stock ?? 0];
+        });
+
+        $allTags = Tag::all();
+        // dd($filteredProducts);
+        
+        // dd($filteredProducts);
+        // $products
+        return view("admin.products", ["products"=>$filteredProducts, "tags"=>$allTags]);
     }
 
     // Returns all accounts from a given email in the format listed below
