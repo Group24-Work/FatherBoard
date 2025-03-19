@@ -4,11 +4,11 @@ import random
 import string
 import sys
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 
-env_path = "/home/polyfilter/Uni-Code/FatherBoard/Fatherboard/.env"
-load_dotenv(env_path)
+#env_path = "/home/polyfilter/Uni-Code/FatherBoard/Fatherboard/.env"
+#load_dotenv(env_path)
 
 def passGen(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
@@ -32,8 +32,11 @@ def sendEmail(address):
 
 
 if __name__=="__main__":
-    email = os.getenv("EMAIL_USER")
+    #email = os.getenv("EMAIL_USER")
 
-    password = os.getenv("EMAIL_PASS")
+    email = "fatherboard321@gmail.com"
+
+    #password = os.getenv("EMAIL_PASS")
  
+    password = "lfuj hhbm vura eewj"
     print(sendEmail(sys.argv[1]), end="")
