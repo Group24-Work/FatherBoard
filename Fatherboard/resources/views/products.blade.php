@@ -23,11 +23,18 @@
         </h2>
         <p>
             <b>
-                <slot class="price" name="Manufacturer">Unknown Manufacturer</slot>
+                <slot class="price" name="Price">Price</slot>
+
             </b>
         </p>
 
     </template>
+
+
+
+
+
+    ?>
     <!-- header.html -->
     <x-header></x-header>
 
@@ -120,7 +127,7 @@ if (count($data) > 0) {
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
             <p>crazy killer u</p>
             <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
-            <span slot="Manufacturer"> £{{ $item["Price"] }}</span>
+            <span slot="Price"> £{{ $item["Price"] }}</span>
 
         </product-element>
         <?php
