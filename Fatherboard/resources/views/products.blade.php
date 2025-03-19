@@ -110,6 +110,8 @@
 
         </div>
         <button id="filter-button" style="background-color: purple; color: white;">Filter</button>
+        <p style="margin-top:30px";>Unsure of your needs? Use our questionnaire!</p>
+        <a href=/questionnaire><button id=filter-button style="background-color: black; color: white; margin-top:0px;">Questionnaire</button></a>
 
     </div>
     <div id="ProductContainer">
