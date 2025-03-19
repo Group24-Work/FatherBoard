@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\CustomerInformation;
 use App\Models\BasketItem;
+use App\Models\PasswordReset;
 
 class AuthController extends Controller
 {
@@ -278,8 +279,73 @@ class AuthController extends Controller
     return false;
 }
 
+    public static function giveForgotCredentials()
+    {
+        return view("forgot_credentials");
+    }
+
+    public static function forgotPassword(Request $req)
+    {
+        $email = $req->input("Email"); 
+        if (!$email) {
+            return response()->json(["error" => "Email not provided"], 400);
+        }
+        $pythonScript = base_path('resources/python/emailScript.py');
+        $command = "/usr/bin/python3 " . escapeshellarg($pythonScript) . " " . escapeshellarg($email);
+    
+        // Capture errors
+
+        
+    
+        if (CustomerInformation::where("Email",$email)->exists())
+        {
+            $cust = CustomerInformation::where("Email", $email)->first();
+            $res = shell_exec($command . " 2>&1");
+            PasswordReset::create(["customer_information_id"=>$cust["id"], "code"=>$res]);
+
+            return response()->json([
+                "message" => "Sent reset message",
+                "command" => $command,
+                "output" => $res,
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                "message" => "Email does not exist"
+            ], 200);
+        }
+
+    }
+
+    public static function giveReset($code)
+    {
+        if (PasswordReset::where("code",$code)->exists())
+        {
+            return view("reset_password");
+        }
+        else
+        {
+            abort(400);
+        }
+    }
+
+    public static function resetPassword(Request $req)
+    {
+        $new_pass = $req->input("new_password");
+
+        $code = $req->input("code");
+        $reset_row = PasswordReset::where("code", $code)->firstOrFail();
+        $acc = CustomerInformation::where("id",$reset_row["customer_information_id"])->firstOrFail();
+
+        
+        $res = $acc->update(["Password"=>$new_pass]);
+        return response()->json(["message"=>"Updated Succesfully", 200]);
+
+    
 
 
+    }
 
     public static function loggedIn()
     {
