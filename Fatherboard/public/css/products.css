@@ -153,3 +153,20 @@ h2 {
     gap: 1rem;
     margin-top: 1rem;
 }
+
+#addProductTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addProductTag:hover {
+    background-color: rgb(78, 1, 78);
+}

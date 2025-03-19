@@ -30,9 +30,9 @@
 
     <h2>Admin - Products</h2>
     <div class="button-container">
-        <a href="{{ route('create') }}"><button id='addProduct'>Add Product</button></a><a
-            href="{{ route('tagpage') }}"><button id='addTag'>Add Tag</button></a>
-
+        <a href="{{ route('create') }}"><button id='addProduct'>Add Product</button></a>
+        <a href="{{ route('tagpage') }}"><button id='addTag'>Add Tag</button></a>
+        <a href="{{ route('tagindex') }}"><button id='addProductTag'>Add Product Tag</button></a>
     </div>
 
 
@@ -118,6 +118,7 @@ if (count($data) > 0) {
             <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
             <span slot="Description"> {{ $item['Description'] }}</span>
             <span slot="Manufacturer"> {{ $item['Manufacturer']  }}</span>
+
             <span slot='Buttons'>
                 <a href="{{ route('edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
                 <form action="{{ route('delete', $item->id) }}" method="POST">

@@ -6,8 +6,12 @@
         <link rel="stylesheet" href={{ asset('css/product.css') }}>
         <script src="{{asset("js/admin_tags.js")}}"></script>
     </x-slot:head>
+    <x-header>
+
+    </x-header>
     <div id="tag-menu">
         <h2>Tag Management</h2>
+
         <meta id="csrf_token" content="{{csrf_token()}}">
         <div>
             <h3>Create a tag<h3>

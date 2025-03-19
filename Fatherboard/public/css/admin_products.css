@@ -1,56 +1,137 @@
-
-*
-{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
 }
 
 
-main
-{
+main {
     display: flex;
 }
-#product_table
-{
-    width:70%;
+
+#product_table {
+    width: 70%;
 }
 
-#product_region
-{
-    width:60%;
-    display:flex;
+#product_region {
+    width: 60%;
+    display: flex;
     justify-content: center;
 }
 
-.product_row:hover
-{
+.product_row:hover {
     background-color: lightcoral;
 }
-#product_specific_container
-{
-    width:30%;
-    order:2;
+
+#product_specific_container {
+    width: 30%;
+    order: 2;
 }
 
-#tag_container
-{
+#tag_container {
     border: 0.2rem solid black;
     padding: 1rem;
 }
 
-.individual_tag
-{
-    display:flex;
+.individual_tag {
+    display: flex;
     justify-content: space-between;
 }
-#add_tag
-{
-    border:none;
+
+#add_tag {
+    border: none;
     background-color: antiquewhite;
-    padding:0.5rem;
+    padding: 0.5rem;
 }
 
-.table_description
-{
-    width:50%;
+.table_description {
+    width: 50%;
+}
+
+#addProduct {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#addTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addTag:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+#addProduct:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#addProductTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addProductTag:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+#add_tag:hover {
+    background-color: rgb(78, 1, 78);
+
+}
+
+#add_tag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+main {
+    flex-basis: 30%;
+    flex-shrink: 0;
+    margin: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+
 }

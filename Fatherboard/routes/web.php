@@ -195,4 +195,4 @@ Route::get("/messages", [ContactController::class, "indexPage"]);
 Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
 
 
-Route::get("/admin/product_manage", [AdminController::class, "giveProducts"]);
+Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
