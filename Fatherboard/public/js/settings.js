@@ -33,70 +33,101 @@ let csrf_val =null;
 
 window.addEventListener("DOMContentLoaded",()=>
 {
-address_button = document.getElementById("button_address");
-billing_button = document.getElementById("button_billing");
-personal_button = document.getElementById("button_personal");
-history_button = document.getElementById("button_history");
-show_add_address_button = document.getElementById("button_show_address_gui");
-update_personal_buttons = document.getElementsByClassName("update_personal_button");
-update_personal_submit = document.getElementById("update_personal_submit");
-option_information = document.getElementById("option-information");
-address_container = document.getElementById("address_container");
-personal_element_first = document.getElementById("personal_element_first");
+    address_button = document.getElementById("button_address");
+    billing_button = document.getElementById("button_billing");
+    personal_button = document.getElementById("button_personal");
+    history_button = document.getElementById("button_history");
+    show_add_address_button = document.getElementById("button_show_address_gui");
+    update_personal_buttons = document.getElementsByClassName("update_personal_button");
+    update_personal_submit = document.getElementById("update_personal_submit");
+    option_information = document.getElementById("option-information");
+    address_container = document.getElementById("address_container");
+    personal_element_first = document.getElementById("personal_element_first");
 
-admin_index_button = document.getElementById("admin_index_button");
+    admin_index_button = document.getElementById("admin_index_button");
 
-currentBar = document.getElementById("currentBar");
+    currentBar = document.getElementById("currentBar");
 
-message_button= document.getElementById("message_button");
-
-
-logout_button = document.getElementById("logout_button");
+    message_button= document.getElementById("message_button");
 
 
+    logout_button = document.getElementById("logout_button");
 
-csrf = document.getElementsByName("csrf-token")[0];
-csrf_val =  csrf.getAttribute("content");
 
-if (message_button)
-{
-message_button.addEventListener("click", showMessages);
-}
-if (admin_index_button)
-{
-admin_index_button.addEventListener("click",()=>window.location.href = "/admin/products");
-}
-logout_button.addEventListener("click",logOut);
-update_personal_submit.addEventListener("click", updateSubmit);
-address_button.addEventListener("click", addressClicked);
-billing_button.addEventListener("click",billingClicked);
-history_button.addEventListener("click", historyClicked);
-personal_button.addEventListener("click",personalClicked)
+    csrf = document.getElementsByName("csrf-token")[0];
+    csrf_val =  csrf.getAttribute("content");
 
-for (let el of update_personal_buttons)
-{
-    el.addEventListener("click",showPersonalForm);
-}
+    let hash = window.location.hash; // Get the full hash (e.g., "#!/divA")
 
-show_add_address_button.addEventListener("click", toggleAddAddress);
+    let part = hash.replace("#","")
 
-document.getElementById("button_show_address_gui");;
+    if (part=="" || part=="personal")
+    {
+        personalClicked()
+    }
+    else if (part == "address")
+        {
+            addressClicked()
+        }
+        else if (part == "history")
+        {
+            historyClicked()
+        }
+        else if (part=="billing")
+        {
+            billingClicked()
+        }
+        else
+        {
+            personalClicked()
+        }
+        
 
-let addrElements = document.querySelectorAll("address-element")
-for (let elem of addrElements)
-{
-    console.log(elem.shadowRoot);
-    let button = elem.shadowRoot.querySelector("[name=remove-item]")
-    button.addEventListener("click",removeAddress);
-}
 
-add_address_form.addEventListener("click",(e)=>
-{
-e.preventDefault();
-})
 
-let personal_within = document.getElementById("personal_element_within")
-personal_addCapability(personal_within);
+
+    if (message_button)
+    {
+        message_button.addEventListener("click", showMessages);
+    }
+    if (admin_index_button)
+    {
+        admin_index_button.addEventListener("click",()=>window.location.href = "/admin/products");
+    }
+    logout_button.addEventListener("click",logOut);
+    update_personal_submit.addEventListener("click", updateSubmit);
+    address_button.addEventListener("click", addressClicked);
+    billing_button.addEventListener("click",billingClicked);
+    history_button.addEventListener("click", historyClicked);
+    personal_button.addEventListener("click",personalClicked)
+
+
+    // Adding functionality at startup
+
+    for (let el of update_personal_buttons)
+    {
+        el.addEventListener("click",showPersonalForm);
+    }
+
+    show_add_address_button.addEventListener("click", toggleAddAddress);
+
+    document.getElementById("button_show_address_gui");;
+
+    let addrElements = document.querySelectorAll("address-element")
+    for (let elem of addrElements)
+    {
+        console.log(elem.shadowRoot);
+        let button = elem.shadowRoot.querySelector("[name=remove-item]")
+        button.addEventListener("click",removeAddress);
+    }
+
+    add_address_form.addEventListener("click",(e)=>
+    {
+    e.preventDefault();
+    })
+
+    // let personal_within = document.getElementById("personal_element_within")
+    // personal_addCapability(personal_within);
 });
 
 function showMessages()
@@ -178,6 +209,14 @@ function addressClicked()
 {
     console.log("Address clicked");
 
+    const nextURL = '/settings#address';
+    const nextTitle = 'Address';
+    const nextState = { additionalInformation: 'Moved to address' };
+
+    window.history.pushState(nextState, nextTitle, nextURL);
+
+
+
     moveCurrentBar(1);
     let csrf_val = csrf.getAttribute("content");
     showAddress_cache();
@@ -193,6 +232,12 @@ function billingClicked()
 {
     moveCurrentBar(2);
 
+    const nextURL = '/settings#billing';
+    const nextTitle = 'Address';
+    const nextState = { additionalInformation: 'Moved to billing' };
+
+    window.history.pushState(nextState, nextTitle, nextURL);
+
     console.log("Billing clicked");
 
 }
@@ -200,6 +245,12 @@ function historyClicked()
 {
 
     moveCurrentBar(3);
+
+    const nextURL = '/settings#history';
+    const nextTitle = 'History';
+    const nextState = { additionalInformation: 'History' };
+
+    window.history.pushState(nextState, nextTitle, nextURL);
 
     console.log("History clicked");
     let order_hist = document.getElementById("order-info").cloneNode(true);
@@ -215,6 +266,11 @@ function personalClicked()
 {
     moveCurrentBar(0);
 
+    const nextURL = '/settings';
+    const nextTitle = 'Address';
+    const nextState = { additionalInformation: 'Moved to personal' };
+
+    window.history.pushState(nextState, nextTitle, nextURL);
     console.log("Personal clicked");
 
 
@@ -409,11 +465,15 @@ function showPersonal_cache()
 {
     let elem = document.getElementById("personal_element_first");
 
+    console.log("here")
+    console.log(elem)
     let elemCopy = elem.cloneNode(true);
     elemCopy.removeAttribute("hidden");
     option_information.innerHTML = "";
     option_information.append(elemCopy);
 
+
+    // Makes the button be interactable 
     addFunctionality_personal(elemCopy);
 }
 
