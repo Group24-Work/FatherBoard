@@ -19,7 +19,7 @@
         <p class="subtitle"> This page will ask a series of questions, designed to help you pick the PC parts most suited to your needs.</p>
             <div class="wrapper">
             <h3 id="question">Question Placeholder</h3>
-            <select id="choices"></select>
+            <select id="choice"></select>
                 <div id="buttons">
                 <button id="btnNext"> Next </button>
                 </div>

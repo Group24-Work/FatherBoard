@@ -4,19 +4,30 @@ var indexAnswer = "";
 var QUESTIONS = [
     {
     "question":"What do you plan to use your PC for?",
-    "choices":["Gaming", "Office Work", "CPU Intensive Tasks", "Unsure"]
-    },
-    {
-    "question":"Do you have a brand preference?",
-    "choices":["NVIDIA","AMD","Intel","No preference"]
+    "choices":[
+        {"choice": "Gaming", "tags":["gaming"]},
+        {"choice":"Office Work", "tags": ["office"]},
+        {"choice":"Rendering","tags":["rendering"]},
+        {"choice":"Unsure", "tags":[""] } 
+        ]
     },
     {
     "question":"How much RAM do you need?",
-    "choices":["16GB","32GB","64GB","Unsure"]
+    "choices":[
+        {"choice":"16GB", "tags":["16GB"]},
+        {"choice":"32GB", "tags":["32GB"]},
+        {"choice":"64GB", "tags":["64GB"]},
+        {"choice":"Unsure", "tags":[""]}
+        ]
     },
     {
     "question":"What kind of storage would you like?",
-    "choices":["HDD","SSD","Hybrid","Unsure"]
+    "choices":[
+        {"choice":"HDD","tags":["HDD"]},
+        {"choice":"SSD","tags":["SSD"]},
+        {"choice":"Hybrid","tags":[""]},
+        {"choice":"Unsure","tags":[""]}
+        ]
     }
 ];
 
