@@ -58,7 +58,9 @@
 
 }
 
-
+#filter-button:hover{
+    cursor: pointer;
+}
 
 
 .filter-sidebar p {
@@ -100,15 +102,21 @@ img:not(#logo) {
 
 .ProductItem:hover {
     background-color: rgb(158, 157, 157);
+    cursor: pointer;
 }
 
 .filter-button:hover {
     background-color: rgb(78, 1, 78);
+    cursor: pointer;
 }
 
 .checkbox:hover {
     background-color: rgb(158, 157, 157);
 
+}
+
+a:hover{
+    cursor: pointer;
 }
 
 #addProduct {
