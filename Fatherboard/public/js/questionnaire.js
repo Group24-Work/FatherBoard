@@ -63,7 +63,7 @@ function loadQuestion(indexQuestion){
     var choices = "";
     var i = 0
     while(i<QUESTIONS[indexQuestion].choices.length){
-        choices += "<option>"+ QUESTIONS[indexQuestion].choices[i] + "</option>";
+        choices += "<option>"+ QUESTIONS[indexQuestion].choices[i].choice + "</option>";
         i++
     }
     document.getElementById("choices").innerHTML = choices;
