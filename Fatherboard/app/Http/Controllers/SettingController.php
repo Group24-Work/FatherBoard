@@ -26,6 +26,17 @@ class SettingController extends Controller
             $addr = $user->address;
             $orders = [];
 
+            $adminStatus = $user["Admin"];
+            // dd($user);
+
+            $filteredUser =collect([$user])->map(function($y)
+            {
+                return ["FirstName"=>$y["First Name"], "LastName"=>$y["Last Name"], "Email"=>$y["Email"], "Password"=>self::getPass(), "Admin"=>$y["Admin"]];
+            })->get(0);
+
+            // dd($user->address);
+
+
             if ($user["Admin"])
             {
 
@@ -54,7 +65,7 @@ class SettingController extends Controller
                     }
                     array_push($orders, $orderProduct);
             };
-            return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
+            return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders]);
 
 
             }
@@ -65,21 +76,30 @@ class SettingController extends Controller
 
                 foreach ($user->orders as $x)
                 {
+                    $orderPrice = DB::table('order_details')
+                    ->join('products', 'order_details.products_id', '=', 'products.id')
+                    ->join('product_prices', 'products.id', '=', 'product_prices.product_id')
+                    ->where('order_details.order_id', $x["id"])
+                    ->select(
+                
+                        DB::raw('SUM(product_prices.price * order_details.quantity) as total_amount')
+                    )->first();
+
                     $details = $x->order_details->all();
-                    $orderProduct = [];
+                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[]];
 
                     foreach ($details as $x)
                     {
                         // dd(Product::where("id",$x["products_id"])->first());
                          $product = Product::where("id",$x["products_id"])->first();
-                         array_push($orderProduct, $product["Title"]);
+                         array_push($orderProduct["elements"], $product["Title"]);
 
                     }
                     array_push($orders, $orderProduct);
 
 
                 }
-                return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
+                return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders]);
             }
 
         }
@@ -100,9 +120,8 @@ class SettingController extends Controller
         return json_encode("");
     }
 
-    public static function showPersonal()
+    private static function getPass()
     {
-
         $form = AuthController::whichLog();
         $password = null;
 
@@ -116,6 +135,12 @@ class SettingController extends Controller
             $password = $_SESSION["password"];
 
         }
+        return $password;
+    }
+    public static function showPersonal()
+    {
+
+        $password = self::getPass() ?? null;
         if ($user = AuthController::loggedIn())
         {
             $addr = $user->toArray();

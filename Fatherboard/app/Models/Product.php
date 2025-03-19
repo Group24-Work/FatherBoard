@@ -27,7 +27,10 @@ class Product extends Model
     {
         return $this->hasOne(Review::class);
     }
-
+    public function stock()
+    {
+        return $this->hasOne(ProductStock::class);
+    }
     public function tags()
     {
         return $this->belongsToMany(Tag::class);

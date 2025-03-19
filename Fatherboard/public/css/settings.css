@@ -1,128 +1,184 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-*
-{
-    padding:0;
-    margin:0;
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.option_icon {
+    filter: invert(58%) sepia(59%) saturate(5105%) hue-rotate(162deg) brightness(95%) contrast(101%);
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    right: 0;
+    top: 10%;
+    object-fit: contain;
+}
+
+#option_container>li {
+    width: 100%;
+    height: 3rem;
+    position: relative;
+
+}
+
+#address_icon {
+    height: 1rem;
+    width: 1rem;
+    object-fit: contain;
 }
 
 body {
     font-family: Montserrat;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
 
-.order_price
-{
-    color:green;
+.order_price {
+    color: green;
 }
-#update_personal
-{
+
+#update_personal {
 
     background-color: white;
-    position:absolute;
-    top:50%;
-    left:50%;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
-#update_personal > form
-{
-    display:none;
+
+#update_personal>form {
+    display: none;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height:10rem;
+    height: 10rem;
     padding: 1rem;
     margin: 2rem;
 }
-#update_personal_submit
-{
-    width:100%;
-    background-color: green;
-    border:none;
+
+#update_personal_submit {
+    width: 100%;
+    background-color: #c31eff;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border: none;
 }
 
-#settings
-{
-    position:relative;
-    margin-right:2rem;
+input[type="text"] {
+    text-align: center;
 }
-#setting-container
-{
 
-    margin:0;
-    padding:0;
-    display:grid;
+
+#settings {
+    position: relative;
+    margin-right: 2rem;
+}
+
+#setting-container {
+
+    margin: 0;
+    padding: 0;
+    display: grid;
     margin: 5em 8em;
     grid-template-columns: 200px auto;
     grid-template-rows: [start] 100vh [end];
     grid-template-areas: "options data"
-                         "options data";
+        "options data";
 
+
+}
+
+#order-info {
+    border: 0.2rem solid black;
+    text-align: center;
+    border-radius: 1rem;
+    padding: 1rem 0;
+    background: white;
+}
+
+#order-info:hover {
+    background: lightgrey;
+}
+
+#order-info div {
+    display: flex;
+    flex-direction: column;
+}
+
+#order-info h2 {
+    text-align: center;
 }
 
 address-element {
     display: block;
     margin-bottom: 5vh;
-    margin-top:2vh;
-    border-left:0.25rem solid gray;
+    margin-top: 2vh;
+    border-left: 0.25rem solid gray;
     padding: 1.5em 0.5em;
 }
 
 
-address-element:hover
-{
-    background-color: white;;
+address-element:hover {
+    background-color: white;
+    ;
 
 }
 
-#add_address_box
-{
-    position:fixed;
-    background-color: wheat;
-    top:50%;
-    left:50%;
+#add_address_box {
+    position: fixed;
+    background-color: white;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 
 }
 
-#add_address_form
-{
-    display:flex;
+#add_address_form {
+    display: flex;
     flex-direction: column;
-    border: 2px solid black;
-    border-radius: 2px;
-    padding:50px;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
+    padding: 50px;
     justify-content: center;
     align-items: stretch;
 }
-#add_address_form div
-{
+
+#add_address_form div {
     margin: 15px 0;
-    display:block;
+    display: block;
 }
-#add_address_form label
-{
-    display:block;
-    margin:0;
-    padding:0;
+
+#add_address_form label {
+    display: block;
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
-.message
-{
+#add_address_form input[type="submit"] {
+    background-color: #c31eff;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border: none;
+}
+
+.message {
     margin: 3rem;
     height: 5rem;
-    display:flex;
+    display: flex;
     justify-content: center;
     flex-direction: column;
 
 
     border: 1px black solid;
 }
+
 /* #add_address_form::after
 {
     display:inline-block;
@@ -136,41 +192,54 @@ address-element:hover
 } */
 #add_address_form input,
 #add_address_form select,
-#add_address_submit
-{
+#add_address_submit {
     width: 100%;
 }
 
 
-.option
-{
-    display:block;
-    width:100%;
+.option {
+    display: block;
+    width: 100%;
     background: none;
-    border:none;
+    border: none;
     height: 2rem;
 }
 
-.option:hover
-{
+.option:hover {
     background-color: lightblue;
 }
-.content
-{
+
+.content {
     grid-area: data;
-    overflow-y:scroll;
+    overflow-y: scroll;
 
 }
-#currentBar
-{
+
+#currentBar {
+    z-index: 30;
     background-color: purple;
-    width:0.3rem;
-    height:2rem;
-    position:absolute;
-    right:0;
+    width: 0.3rem;
+    height: 2rem;
+    position: absolute;
+    right: 0;
 }
-#options
-{
-    grid-area:options;
+
+#options {
+    grid-area: options;
     background-color: aliceblue;
+}
+
+.order-container {
+    overflow: none;
+
+}
+
+#personal-template {
+    flex-basis: 30%;
+    flex-shrink: 0;
+    margin: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+
 }

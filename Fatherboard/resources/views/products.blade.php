@@ -8,9 +8,12 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <?php
 
-
+                ?>
     <template id="template_product">
+
+
         <style>
             .price {
                 color: black;
@@ -19,13 +22,25 @@
 
         <slot name="ProductImage">No image available</slot>
         <h2>
-            <slot name="Title">Unknown Title</slot>
+            <slot name="Title">No Title</slot>
         </h2>
         <p>
-            <b><slot class="price" name="Manufacturer">Unknown Manufacturer</slot></b>
+            <b>
+                <slot class="price" name="Price">NaN</span>
+
+            </b>
         </p>
 
     </template>
+    <?php
+
+
+;
+?>
+
+
+
+
     <!-- header.html -->
     <x-header></x-header>
 
@@ -101,6 +116,9 @@
 
         </div>
         <button id="filter-button" style="background-color: purple; color: white;">Filter</button>
+        <p style="margin-top:30px" ;>Unsure of your needs? Use our questionnaire!</p>
+        <a href=/questionnaire><button id=filter-button
+                style="background-color: black; color: white; margin-top:0px;">Questionnaire</button></a>
 
     </div>
     <div id="ProductContainer">
@@ -111,12 +129,12 @@ if (count($data) > 0) {
 
 
         <product-element class="ProductItem">
-        <img slot="ProductImage" src="{{ asset('images/product_images/' . $item['Image'] . '.jpg') }}"
-        alt="product image" class="product-image">
+            <img slot="ProductImage" src="{{ asset('images/product_images/' . $item['Image'] . '.jpg') }}"
+                alt="product image" class="product-image">
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
             <p>crazy killer u</p>
-            <span slot="Title">{{ $item['Title'] }}</span>
-            <span slot="Manufacturer"> £{{ $item["Price"] }}</span>
+            <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
+            <span slot="Price"> £ {{$item["Price"]}}</span>
 
         </product-element>
         <?php

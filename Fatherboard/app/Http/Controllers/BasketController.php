@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Models\CustomerInformation;
+use Illuminate\Support\Facades\Bus;
 
     class BasketController extends Controller
     {
@@ -18,31 +19,35 @@ use App\Models\CustomerInformation;
             $productId = $request->input('product_id');
             $quantity = $request->input('quantity', 1);
 
-            $customerId = Auth::id();
+            $customerId = AuthController::loggedIn();
+
             if ($customerId) {
-                Basket::updateOrCreate([
-                    'customer_id' => auth::id(),
-                     'items' => json_encode([
-' product_id'=>'$product',
-'quantity' => '1'
-                     ]),
+               $basket = Basket::firstOrCreate([
+                    'customer_information_id' => $customerId["id"],
                      ]);
 
+            $id = $customerId["id"];
+
+            BasketItem::updateOrCreate([
+                'customer_information_id'=>$id,
+                'product_id'=>$productId
+            ],['quantity'=>$quantity]);
 
             }
-    $product = Product::findOrFail($productId);
 
-            $basket = session()->get('basket',[]);
-    if(isset($basket[$product->id])){
-        $basket[$product->id]['quantity']+=$quantity;
-    }else{
+            $product = Product::findOrFail($productId);
 
-                    $basket[$product->id]=[
-                    'product_id' => $product->id,
-                    'quantity' => $quantity,];
-                    }
+            $basketSession = session()->get('basket',[]);
+            if(isset($basketSession[$product->id])){
+                $basketSession[$product->id]['quantity'] += $quantity;
+            }else{
 
-                session()->put('basket',$basket);
+                $basketSession[$product->id]=[
+                'product_id' => $product->id,
+                'quantity' => $quantity,];
+            }
+
+            session()->put('basket',$basketSession);
 
         return redirect()->route('basketIndex')->with(['success','Product added!']);
         }
@@ -52,6 +57,7 @@ use App\Models\CustomerInformation;
 //display the basket
 public function index()
 {
+
     $basket = session()->get('basket', []);
 
     $basketDetails = [];
@@ -116,4 +122,5 @@ public function checkout()
 
     return view('checkout', compact('basketDetails'));
 }
+
 }

@@ -41,6 +41,7 @@ h2 {
     gap: 1.25rem;
 }
 
+
 .basket-item {
     display: flex;
     align-items: center;
@@ -87,7 +88,7 @@ table {
     text-align: center;
 }
 
-img:not(#logo){
+img:not(#logo) {
     width: 6.25rem;
     height: 6.25rem;
     border-radius: 0.5rem;

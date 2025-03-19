@@ -15,6 +15,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TagController;
 
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
@@ -57,6 +59,7 @@ Route::post("/create/product", function ()
 
 
 
+
 // Settings-related
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
@@ -95,7 +98,7 @@ Route::get('/questionnaire', function()
     return view('questionnaire');
 });
 
-
+Route::get('/questionnaire', [TagController::class, 'questionnaire']);
 
 //basket side back-end
 Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
@@ -111,12 +114,15 @@ Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.
 Route::get('/checkout/success', [CheckoutController::class,'success'])->name('checkout_success');
 
 //Admin
+
+// Interactive Admin
 Route::get('/admin/products', [AdminProductController::class, "index"])->name('adminIndex');
 Route::get('/admin/product/create', [AdminProductController::class, "create"])->name('create');
 Route::get('/admin/product/{id}', action: [AdminProductController::class, "show"])->name('edit');
 Route::delete('/admin/products{id}', action: [AdminProductController::class, "destroy"])->name('delete');
 Route::post('/admin/product/create', [AdminProductController::class, "created"])->name('created');
 Route::put('/admin/product/{product_id}', [AdminProductController::class, "update"])->name('update');
+
 
 Route::post("/create/product", [ProductController::class, 'create']);
 
@@ -126,6 +132,67 @@ Route::post("/update/product", [ProductController::class, 'update']);
 
 Route::post("/delete/product", [ProductController::class, 'destroy']);
 
+
+// Product
+
+Route::post("/product/tags/{id}", [ProductController::class, "giveTags"]);
+
+Route::post("/product/add_tags/{id}", [ProductController::class, "addTag"]);
+
+Route::post("/product/remove_tag/{id}", [ProductController::class, "removeTag"]);
+
+// Reports functionality
+
+Route::post("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
+
+
+
+// Orders Based
+Route::post("/admin/viewTotalOrders/{}");
+
+Route::get("/admin/viewOrders", [AdminController::class, "giveOrders"]);
+Route::post("/admin/viewOrders/{}");
+
+
+Route::get("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryRevenue"]);
+
+Route::post("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryRevenue"]);
+
+
+// User
+Route::post("/admin/findUser/");;
+
+Route::get(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
+
+Route::post(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
+
+Route::post(uri: "/admin/registeredUsers_time", action: [AdminController::class, "giveRegisteredUsers_time"]);
+
+
+Route::post("/admin/findUser", [AdminController::class, "findUser"]);
+
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
 Route::get('/admin', [AdminController::class, "giveAdminHub"]);
+
+
+// Tag
+
+Route::post("/tags", [TagController::class, "index"]);
+Route::get("/tags", [TagController::class, "tagPage"])->name('tagpage');
+
+Route::put("/tags/create", [TagController::class, "store"]);
+
+Route::put("/tags/update/{id}", [TagController::class, "update"]);
+
+Route::delete("/tags/{id}", [TagController::class, "destroy"]);
+
+
+// Messages
+
+Route::get("/messages", [ContactController::class, "indexPage"]);
+
+Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
+
+
+Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');

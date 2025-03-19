@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('basket_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_information_id')->references(column: 'id')->on('customer_information')->nullable()->change();
+            $table->foreignId('customer_information_id')->references(column: 'id')->on('customer_information')->nullable();
             $table->foreignId('product_id')->references(column: 'id')->on('products')->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();

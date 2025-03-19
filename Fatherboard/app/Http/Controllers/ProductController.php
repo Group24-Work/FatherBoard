@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    
+
 
 
 
@@ -19,12 +19,12 @@ class ProductController extends Controller
          $filtered_details = $data->map(function ($x)
          {
              $image = $x["id"] > 25 ? 1 : $x["id"];
-             return ["ID"=>$x["id"],"Title"=>$x["Title"], "Description"=>$x["Description"], "Manufacturer"=>$x["Manufacturer"],"Price"=> $x->price()->first()["price"], "Image"=>$image];
+             return ["ID"=>$x["id"],"Title"=>$x["Title"], "Description"=>$x["Description"], "Manufacturer"=>$x["Manufacturer"],"Price"=> $x->price()->first()["price"], "Image"=>$image, "tags"=>$x->tags->pluck('name')->toArray()];
          });
          return $filtered_details;
      }
 
-     
+
 
     public function index(Request $rq)
     {
@@ -47,7 +47,7 @@ class ProductController extends Controller
         // }
         // dd($filteredCat);
 
-        $originalProd = Product::whereRaw("1=1");
+        $originalProd = Product::with('tags')->whereRaw("1=1");
 
         $validCategories = Product::distinct()->pluck('type')->map(fn ($x) => strtolower($x))->toArray();
 
@@ -64,7 +64,13 @@ class ProductController extends Controller
                 $query->orWhere("type", $x);
             }
         });
-
+        //questionnaire
+        $selectedTags = $rq->input('tags',[]);
+        if (!empty($selectedTags)){
+            $originalProd = $originalProd->whereHas('tags', function($q) use ($selectedTags){
+                $q->whereIn('name',$selectedTags);
+            });
+        }
         // dd($category_obj->get());
 
         // Price Filtering
@@ -78,6 +84,7 @@ class ProductController extends Controller
         foreach ($prices as $pri) {
         $priceM = $priceM->orWhereHas("price", function($q) use ($pri)
         {
+
 
             $reg = "/(<=|>=)(\d+)(?:-(<=|>=)(\d+))?/";
             $matches = [];
@@ -125,7 +132,7 @@ class ProductController extends Controller
         $send_data = ProductController::data_productsFormat($all);
         return view("products", ["data" => $send_data]);
 
-        
+
     } else {
         $queryString = sprintf("Title REGEXP '.*%s.*'", $search);
         // $data = Product::whereRaw($queryString)->get();
@@ -136,11 +143,11 @@ class ProductController extends Controller
 
         return view("products", ["data" => $send_data]);
     }
-    
+
 
     }
 
-    
+
 
     // Filter by interesection of category, price and search
     public static function indexSpecific(Request $rq)
@@ -219,7 +226,7 @@ class ProductController extends Controller
         $intersect_final = $intersect_combined->intersect($data->get());
 
 
-        // Formatting data 
+        // Formatting data
         $send_data = ProductController::data_productsFormat($intersect_final);
 
         return json_encode($send_data);
@@ -263,12 +270,52 @@ class ProductController extends Controller
         return view('product',["product"=>$product,"image"=>$image, "rating"=>$curRating->avg_rating, "amount"=>$amountStar]);
     }
 
+    // Changes stock of a given item to any number
+    public function changeStock(int $id, Request $rq)
+    {
+        $newStock = $rq->input("new_stock");
+
+        if ($newStock > 0)
+        {
+            Product::find($id)->stock->Stock = $newStock;
+        }
+    }
+    private function p_giveTags(int $id)
+    {
+        return Product::find($id)->tags()->get();
+    }
+
+    public function giveTags(int $id)
+    {
+        return json_encode($this->p_giveTags($id)->pluck("Name"));
+    }
+
+    public function addTag(int $id, Request $req)
+    {
+        $tagID = $req->input(key: "tag_id");
+        $product = Product::find($id);
+        $product->load('tags');
+        DB::enableQueryLog();
+        $product->tags()->syncWithoutDetaching($tagID);
+        dd(DB::getQueryLog());
+        // return json_encode(Product::find($id));
+    }
+
+    public function removeTag(int $id, Request $req)
+    {
+        $tagID = $req->input(key: "tag_id");
+        $product = Product::find($id);
+        $product->load('tags');
+        DB::enableQueryLog();
+        $product->tags()->detach($tagID);
+        // dd(DB::getQueryLog());
+    }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
     {
-        return view('product', ["product"=>$product]); 
+        return view('product', ["product"=>$product]);
     }
 
     /**
@@ -284,6 +331,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        return view('product', ["product"=>$product]); 
+        return view('product', ["product"=>$product]);
     }
 }

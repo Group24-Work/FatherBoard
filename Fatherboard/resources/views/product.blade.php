@@ -1,4 +1,3 @@
-
 <x-lowlayout>
 
     <x-slot:head>
@@ -21,15 +20,15 @@
     <main id="product">
         <div id="image_container">
 
-            <img src={{asset("images/product_images/" . $image)}} alt="Image" id="product_image"/>
+            <img src={{asset("images/product_images/" . $image)}} alt="Image" id="product_image" />
 
         </div>
         <div id="content">
             <h2 id="title">{{ $product->Title}} </h2>
             <p>{{ $product["Description"]}} </p>
             <p>{{ $product["Manufacturer"] }}</p>
-            <p>£{{ $product["Price"] }}</p> 
-            
+            <p>£{{ $product->Price->price }}</p>
+
 
             <form action="{{ route('basketAdd') }}" method="POST">
                 @csrf
@@ -46,38 +45,37 @@
                 <label for="rating">Rating</label>
 
                 <select id="rating">
-                    <option >1</option>
-                    <option >2</option>
-                    <option >3</option>
-                    <option >4</option>
-                    <option >5</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
-                </div>
+            </div>
 
             <div class="input">
                 <label for="rating">Description</label>
 
-            <textarea name="review_text" id="review_text"></textarea>
+                <textarea name="review_text" id="review_text"></textarea>
             </div>
 
 
-            <input type="submit" name="submit" id="review_submit" value="Submit"/>
+            <input type="submit" name="submit" id="review_submit" value="Submit" />
         </form>
 
         <div id="review-area">
             <h3 id="review-title">Reviews</h3>
             <div id="rating_summary">
-                <b id="text-stars">{{round($rating,1)}}</b>
+                <b id="text-stars">{{round($rating, 1)}}</b>
                 <div id="star_container">
-                <?php
-
-                for ($i = 0; $i < $amount; $i++)
-                {
-                    ?>
-                   <img class="star" src="{{asset('images/full_star.png')}}"/>
                     <?php
 
-                } ?>
+for ($i = 0; $i < $amount; $i++) {
+                    ?>
+                    <img class="star" src="{{asset('images/full_star.png')}}" />
+                    <?php
+
+} ?>
                 </div>
                 <button id="review_button">Add review</button>
 
@@ -87,31 +85,27 @@
 
 
 
-        <div id="reviews">
+            <div id="reviews">
 
                 <?php
-                if (count($product->reviews()->get()) == 0)
-                {
+if (count($product->reviews()->get()) == 0) {
                     ?><p>There is no reviews</p><?php
-                }
-                else
-                {
-                foreach($product->reviews()->get() as $rev)
-                {
+} else {
+    foreach ($product->reviews()->get() as $rev) {
                     ?>
-                    <div class="review">
+                <div class="review">
                     <p>{{$rev["review"]}}</p>
                     <p>{{$rev["rating"]}}</p>
                     {{-- <p>{{$rev["person"]}}</p> --}}
-                    </div>
-                    <?php
-                }
-            }
+                </div>
+                <?php
+    }
+}
 
                 ?>
-            </p>
+                </p>
+            </div>
         </div>
-    </div>
 
     </main>
 

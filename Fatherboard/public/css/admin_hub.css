@@ -1,4 +1,22 @@
-*
-{
-    
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {}
+
+
+
+.chartContainer {
+    height: 500px;
+    width: 500px;
+}
+
+#revenueTypeContainer {
+    height: 300px;
+    width: 300px;
+}
+
+#image_container {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }

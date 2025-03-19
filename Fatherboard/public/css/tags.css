@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.tagElement {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+
+}
+
+.delete_svg {}
+
+.alter_icon {
+    height: 2rem;
+    width: 2rem;
+    margin: 0 0.5rem;
+}
+
+.modify_svg:hover {
+    background-color: rgb(158, 157, 157);
+
+}
+
+
+
+.option_container {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    text-align: center;
+}
+
+.item_title {
+    width: 6rem;
+}
+
+#tag-menu {
+    text-align: center;
+    align-items: center;
+}
+
+.tagElement {
+    text-align: center;
+    align-items: center;
+    width: fit-content;
+    background-color: white;
+    border: black;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#Capa_1:hover {
+    background-color: rgb(158, 157, 157);
+    text-align: center;
+    align-items: center;
+}
+
+button {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgb(78, 1, 78);
+
+}

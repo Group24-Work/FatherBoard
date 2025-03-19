@@ -24,14 +24,46 @@ body {
     font-size: 1.2em;
 }
 
+.wrapper{
+    width:50%;
+    height: 200px;
+    margin-left: 26%;
+    margin-top: 50px;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    color: #333;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    padding:10px 40px;
+}
+
+
+
 h3{
     color: black;
 }
 
-#next{
-    width: 100px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: yellowgreen;
-    border-style: none;
+#choice{
+    margin-top: 45px;
+    margin-left: 40%;
+    width: 140px;
+}
+
+#btnNext{
+    margin-top: 40px;
+    margin-left: 45%;
+    width: 50px;
+    background-color: white;
+    color: black;
+    border: 2px solid black; /* Green */
+}
+
+
+#question{
+    text-align: center;
 }

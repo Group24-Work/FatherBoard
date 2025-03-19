@@ -25,7 +25,8 @@ body {
     margin: 0 auto;
 }
 
-.shipping-information, .summary {
+.shipping-information,
+.summary {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -51,7 +52,8 @@ form .row {
     margin-bottom: 15px;
 }
 
-form input, form select {
+form input,
+form select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -89,10 +91,12 @@ form button:hover {
     margin-left: auto;
     font-weight: bold;
 }
+
 .product-image {
     height: 50px;
-    width: auto ;
+    width: auto;
 }
+
 .totals p {
     display: flex;
     justify-content: space-between;
@@ -103,4 +107,26 @@ hr {
     border: none;
     border-top: 1px solid #ccc;
     margin: 15px 0;
+}
+
+.basket-container {
+    max-width: 75rem;
+    text-align: center;
+    display: block;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.checkout-sum {
+    max-width: 75rem;
+    text-align: center;
+    display: block;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
