@@ -66,8 +66,8 @@ function loadQuestion(indexQuestion){
         choices += "<option>"+ QUESTIONS[indexQuestion].choices[i].choice + "</option>";
         i++
     }
-    document.getElementById("choices").innerHTML = choices;
-    document.getElementById("choices").addEventListener("change",selectAnswer)
+    document.getElementById("choice").innerHTML = choices;
+    document.getElementById("choice").addEventListener("change",selectAnswer)
     
 }
 document.addEventListener("DOMContentLoaded",loadApplication); 
