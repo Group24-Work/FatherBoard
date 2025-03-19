@@ -6,7 +6,7 @@
 
     <x-header></x-header>
     @if ($orders->order_status === 'Pending')
-        <form action="{{ route('orders.return', $order) }}" method="get">
+        <form action="{{ route('order.return', $orders) }}" method="get">
             @csrf
             <button type="submit" class="btn btn-danger">Return Order</button>
         </form>
@@ -38,8 +38,8 @@ foreach ($data as $x) {
         </div>
 
         <div class="return-button-container">
-            @if ($order->status !== 'returned')
-                <a href="{{ route('returns.create', $order->id) }}" class="btn btn-warning">
+            @if ($orders->status !== 'returned')
+                <a href="{{ route('returns.create', $order->id) }}" class="btn btn-warning"> --}}
                     Return Order
                 </a>
             @else
