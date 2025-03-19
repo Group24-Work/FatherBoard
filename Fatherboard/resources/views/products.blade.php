@@ -23,7 +23,7 @@ if (count($data) > 0) {
 
         <slot name="ProductImage">No image available</slot>
         <h2>
-            <slot name="Title">Unknown Title</slot>
+            <slot name="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</slot>
         </h2>
         <p>
             <b>
