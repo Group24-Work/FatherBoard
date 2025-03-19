@@ -8,9 +8,13 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
-
+    <?php
+if (count($data) > 0) {
+    foreach ($data as $item) {
+                ?>
     <template id="template_product">
+
+
         <style>
             .price {
                 color: black;
@@ -23,18 +27,22 @@
         </h2>
         <p>
             <b>
-                <slot class="price" name="Price">Price</slot>
+                <slot class="price" name="Price">£{{ $item["Price"] }}</slot>
 
             </b>
         </p>
 
     </template>
+    <?php
+
+    }
+}
+;
+?>
 
 
 
 
-
-    ?>
     <!-- header.html -->
     <x-header></x-header>
 
@@ -110,8 +118,9 @@
 
         </div>
         <button id="filter-button" style="background-color: purple; color: white;">Filter</button>
-        <p style="margin-top:30px";>Unsure of your needs? Use our questionnaire!</p>
-        <a href=/questionnaire><button id=filter-button style="background-color: black; color: white; margin-top:0px;">Questionnaire</button></a>
+        <p style="margin-top:30px" ;>Unsure of your needs? Use our questionnaire!</p>
+        <a href=/questionnaire><button id=filter-button
+                style="background-color: black; color: white; margin-top:0px;">Questionnaire</button></a>
 
     </div>
     <div id="ProductContainer">
