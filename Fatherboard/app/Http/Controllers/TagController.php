@@ -65,6 +65,14 @@ class TagController extends Controller
 
     }
 
+    public function questionnaire()
+    {
+    $tags = Tag::all();
+
+    return view("questionnaire", ["tags" => $tags]);
+    }
+
+
     /**
      * Update the specified resource in storage.
      */
