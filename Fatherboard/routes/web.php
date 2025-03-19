@@ -41,7 +41,13 @@ Route::get('logout', action: [AuthController::class, "logOut"]);
 
 Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
+Route::get("/forgot", [AuthController::class, "giveForgotCredentials"])->name("forgot");
 
+Route::post("/forgot", [AuthController::class, "forgotPassword"]);
+
+Route::get("/reset/{id}", [AuthController::class, "giveReset"]);
+
+Route::post("/reset", [AuthController::class, "resetPassword"]);
 // Home System
 Route::get('/home', [HomeController::class, "giveHome"])->name("home");
 
