@@ -17,6 +17,8 @@ use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ForgotPasswordController;
+
 
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
@@ -196,3 +198,14 @@ Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
 
 
 Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
+
+//Forgot Password
+
+Route::get("/forgot-password", function () {
+
+    return view("forgot-password");
+
+});
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForm'])->name('forgot-password');
+
