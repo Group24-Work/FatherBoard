@@ -9,8 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <?php
-if (count($data) > 0) {
-    foreach ($data as $item) {
+
                 ?>
     <template id="template_product">
 
@@ -23,11 +22,11 @@ if (count($data) > 0) {
 
         <slot name="ProductImage">No image available</slot>
         <h2>
-            <slot name="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</slot>
+            <slot name="Title">No Title</slot>
         </h2>
         <p>
             <b>
-                <slot class="price" name="Price">£{{ $item["Price"] }}</slot>
+                <slot class="price" name="Price">NaN</span>
 
             </b>
         </p>
@@ -35,8 +34,7 @@ if (count($data) > 0) {
     </template>
     <?php
 
-    }
-}
+
 ;
 ?>
 
@@ -136,7 +134,7 @@ if (count($data) > 0) {
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
             <p>crazy killer u</p>
             <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
-            <span slot="Price"> £{{ $item["Price"] }}</span>
+            <span slot="Price"> £ {{$item["Price"]}}</span>
 
         </product-element>
         <?php
