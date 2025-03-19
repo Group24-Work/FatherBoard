@@ -313,6 +313,12 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+    public function updateStock(int $id, Request $req)
+    {
+        $newStock = $req->input("new_stock");
+        Product::find($id)->stock()->first()->update(["Stock"=>$newStock]);
+    }
     public function edit(Product $product)
     {
         return view('product', ["product"=>$product]);

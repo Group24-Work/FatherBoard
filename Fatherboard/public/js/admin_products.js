@@ -14,6 +14,8 @@ let tag_options = null;
 
 let tag_assoc = null;
 
+let product_stock_area = null;
+
 async function getTags()
 {
     let tagArray = null;
@@ -87,6 +89,35 @@ function createTagAssociation(val)
     });
 return res;
 }
+
+function updateStockOnServer(newStock) {
+    let productId = document.getElementById("product_id").textContent;  // Example, you should have product ID attribute
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    if (productId!=null)
+    {
+    let fd= new FormData()
+    fd.append("new_stock", newStock)
+    fetch(`/product/update-stock/${productId}`, {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": csrf_val,
+        },
+        body: fd
+    }).then(response => {
+        if (response.ok) {
+            console.log("Stock updated successfully!");
+        } else {
+            console.log("Failed to update stock.");
+        }
+    }).catch(error => {
+        console.error("Error:", error);
+    });
+}
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function(y)
 {
     product_rows = document.querySelectorAll(".product_row")
@@ -104,6 +135,45 @@ document.addEventListener("DOMContentLoaded", function(y)
     let s_tag = product_region.querySelector("#product_tags")
     let prod_id = product_region.querySelector("#product_id")
 
+    product_stock_area = document.getElementById("product_stock_area")
+
+
+
+    product_stock_area.addEventListener("click", function(x)
+    {
+        console.log("Click")
+        let currentStock = product_stock_area.textContent;
+
+        // Create an input field with the current value
+        let input = document.createElement("input");
+        input.type = "number";
+        input.value = currentStock;
+        input.style.width = "60px";
+
+        // Replace the content of the div with the input field
+        product_stock_area.innerHTML = "";
+        product_stock_area.appendChild(input);
+
+        // Focus on the input field
+        input.focus();
+
+        input.addEventListener("blur", function() {
+            // Get the updated value
+            let newStock = input.value;
+
+            // Update the stock display with the new value
+            product_stock_area.textContent = newStock;
+
+            // Optionally, you can save the updated stock value to the server
+            updateStockOnServer(newStock);
+        });
+
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                input.blur();  // Trigger blur to save value
+            }
+        });
+    })
 
 
    

@@ -147,6 +147,8 @@ Route::post("/product/add_tags/{id}", [ProductController::class, "addTag"]);
 
 Route::post("/product/remove_tag/{id}", [ProductController::class, "removeTag"]);
 
+Route::post("/product/update-stock/{id}", [ProductController::class, "updateStock"]);
+
 // Reports functionality
 
 Route::post("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
