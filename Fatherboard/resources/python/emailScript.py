@@ -2,6 +2,13 @@ import smtplib
 from email.message import EmailMessage
 import random
 import string
+import sys
+import os
+from dotenv import load_dotenv
+
+
+env_path = "/home/polyfilter/Uni-Code/FatherBoard/Fatherboard/.env"
+load_dotenv(env_path)
 
 def passGen(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
@@ -17,11 +24,16 @@ def sendEmail(address):
     smtp_server.ehlo()
     smtp_server.starttls()
 
-    smtp_server.login("fatherboard321@gmail.com","lfuj hhbm vura eewj")
+    smtp_server.login(email,password)
 
     smtp_server.send_message(message)
     smtp_server.quit()
-    print("success!")
     return content
 
-sendEmail()
+
+if __name__=="__main__":
+    email = os.getenv("EMAIL_USER")
+
+    password = os.getenv("EMAIL_PASS")
+ 
+    print(sendEmail(sys.argv[1]), end="")
