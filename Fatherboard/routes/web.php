@@ -174,7 +174,7 @@ Route::post(uri: "/admin/registeredUsers", action: [AdminController::class, "giv
 
 Route::post(uri: "/admin/registeredUsers_time", action: [AdminController::class, "giveRegisteredUsers_time"]);
 
-
+  
 Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
@@ -199,6 +199,8 @@ Route::delete("/tags/{id}", [TagController::class, "destroy"]);
 Route::get("/messages", [ContactController::class, "indexPage"]);
 
 Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
+
+Route::post("/message/{id}", [ContactController::class, "respond"]);
 
 
 Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
