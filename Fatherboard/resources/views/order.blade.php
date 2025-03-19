@@ -5,7 +5,24 @@
     </x-slot:head>
 
     <x-header></x-header>
+    @if ($orders->order_status === 'Pending')
+        <form action="{{ route('orders.return', $order) }}" method="get">
+            @csrf
+            <button type="submit" class="btn btn-danger">Return Order</button>
+        </form>
+    @endif
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div id="order_block">
         <div id="order_container">
             <?php

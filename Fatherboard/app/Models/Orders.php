@@ -23,4 +23,8 @@ class Orders extends Model
     {
         return $this->hasOne(ReturnedOrder::class);
     }
+    public function getRouteKeyName()
+{
+    return 'id';
+}
 }
