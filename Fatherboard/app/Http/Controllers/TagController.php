@@ -25,7 +25,7 @@ class TagController extends Controller
     });
 
 
-        return view("admin.tags", ["tags"=>$data]);
+        return view("admin.tags", ["tags"=>$tags]);
     }
     /**
      * Show the form for creating a new resource.
@@ -64,6 +64,14 @@ class TagController extends Controller
     {
 
     }
+
+    public function questionnaire()
+    {
+    $tags = Tag::all();
+
+    return view("questionnaire", ["tags" => $tags]);
+    }
+
 
     /**
      * Update the specified resource in storage.

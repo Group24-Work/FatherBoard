@@ -98,7 +98,7 @@ Route::get('/questionnaire', function()
     return view('questionnaire');
 });
 
-
+Route::get('/questionnaire', [TagController::class, 'questionnaire']);
 
 //basket side back-end
 Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
