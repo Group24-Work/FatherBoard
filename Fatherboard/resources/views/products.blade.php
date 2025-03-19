@@ -34,7 +34,6 @@
 
 
 
-    ?>
     <!-- header.html -->
     <x-header></x-header>
 
