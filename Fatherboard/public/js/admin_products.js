@@ -104,6 +104,10 @@ document.addEventListener("DOMContentLoaded", function(y)
     let s_tag = product_region.querySelector("#product_tags")
     let prod_id = product_region.querySelector("#product_id")
 
+
+
+   
+
     getTags().then(function(y)
 {
     tag_assoc = createTagAssociation(y);
