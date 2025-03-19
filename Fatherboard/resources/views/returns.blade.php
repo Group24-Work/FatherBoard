@@ -1,32 +1,45 @@
 <x-lowlayout>
-    <x-slot name="head">
-        <link rel="stylesheet" type="text/css" href={{ asset("css/order_individual.css") }}>
-        <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
+    <x-slot:head>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/returns.css') }}">
+    </x-slot:head>
 
-        </x-slot:head>
+    <x-header></x-header>
 
+    <div class="container mt-5">
+        <h2>Return Order #{{ $order->id }}</h2>
 
-        <x-header></x-header>
-
-        @extends('layouts.app')
-
-        @section('content')
-            <div class="container">
-                <h2>Return Order #{{ $orders->id }}</h2>
-                <p>Status: {{ $orders->order_status }}</p>
-
-                <form action="{{ route('orders.return.store', $order) }}" method="POST">
-                    @csrf
-
-                    <div class="mb-3">
-                        <label for="reason" class="form-label">Reason for Return</label>
-                        <textarea class="form-control" id="reason" name="reason" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-danger">Confirm Return</button>
-                    <a href="{{ route('orders.show', $order) }}" class="btn btn-secondary">Cancel</a>
-                </form>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
-        @endsection
+        @endif
 
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('orders.return.store', $orders->id) }}" method="POST">
+            @csrf
+
+            <div class="form-group">
+                <label for="reason">Reason for Return:</label>
+                <textarea name="reason" id="reason" class="form-control" rows="4"
+                    required>{{ old('reason') }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Confirm Return</button>
+        </form>
+    </div>
 </x-lowlayout>

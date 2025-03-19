@@ -9,31 +9,38 @@ use Illuminate\Http\Request;
 
 class ReturnedOrderController extends Controller
 {
+    public function show(Orders $order)
+    {
+        return view('returns', ['orders' => $order]);
+    }
 
     public function create(Orders $order)
     {
         if ($order->order_status !== 'Pending') {
-            return redirect()->route('orders.show', $order)->with('error', 'Order cannot be returned.');
+            return redirect()->route('orders.show', ['order' => $order->id])
+                ->with('error', 'Order cannot be returned.');
         }
 
         return view('returns', compact('order'));
     }
 
     public function store(Request $request, Orders $order)
-    {
-        $request->validate([
-            'reason' => 'required|string|max:255',
-        ]);
+{
+    $request->validate([
+        'reason' => 'required|string|max:255',
+    ]);
 
-        ReturnedOrder::create([
-            'order_id' => $order->id,
-            'reason' => $request->reason,
-        ]);
+    ReturnedOrder::create([
+        'order_id' => $order->id,
+        'reason' => $request->reason,
+    ]);
 
-        $order->update([
-            'order_status' => 'Returned',
-        ]);
+    $order->update([
+        'order_status' => 'Returned',
+    ]);
 
-        return redirect()->route('orders.show', $order)->with('success', 'Order has been returned successfully.');
-    }
+    return redirect()->route('orders.show', ['order' => $order->id])
+        ->with('success', 'Order has been returned successfully.');
+}
+
 }
