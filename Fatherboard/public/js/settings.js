@@ -59,7 +59,7 @@ window.addEventListener("DOMContentLoaded",()=>
 
     let hash = window.location.hash; // Get the full hash (e.g., "#!/divA")
 
-    let part = hash.replace("#","")
+    let part = hash.replace("#!","")
 
     if (part=="" || part=="personal")
     {
@@ -209,7 +209,7 @@ function addressClicked()
 {
     console.log("Address clicked");
 
-    const nextURL = '/settings#address';
+    const nextURL = '/settings#!address';
     const nextTitle = 'Address';
     const nextState = { additionalInformation: 'Moved to address' };
 
@@ -232,7 +232,7 @@ function billingClicked()
 {
     moveCurrentBar(2);
 
-    const nextURL = '/settings#billing';
+    const nextURL = '/settings#!billing';
     const nextTitle = 'Address';
     const nextState = { additionalInformation: 'Moved to billing' };
 
@@ -246,7 +246,7 @@ function historyClicked()
 
     moveCurrentBar(3);
 
-    const nextURL = '/settings#history';
+    const nextURL = '/settings#!history';
     const nextTitle = 'History';
     const nextState = { additionalInformation: 'History' };
 
@@ -266,7 +266,7 @@ function personalClicked()
 {
     moveCurrentBar(0);
 
-    const nextURL = '/settings';
+    const nextURL = '/settings#!personal';
     const nextTitle = 'Address';
     const nextState = { additionalInformation: 'Moved to personal' };
 
