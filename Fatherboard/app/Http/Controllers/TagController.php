@@ -25,7 +25,7 @@ class TagController extends Controller
     });
 
 
-        return view("admin.tags", ["tags"=>$data]);
+        return view("admin.tags", ["tags"=>$tags]);
     }
     /**
      * Show the form for creating a new resource.
@@ -64,6 +64,7 @@ class TagController extends Controller
     {
 
     }
+
 
     /**
      * Update the specified resource in storage.
