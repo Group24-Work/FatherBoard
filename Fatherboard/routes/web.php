@@ -18,7 +18,6 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TagController;
 
-
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 Route::get('/',function(){
 
@@ -196,3 +195,5 @@ Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
 
 
 Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
+
+

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->foreignId('return_reason_id')->constrained('return_reasons')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
