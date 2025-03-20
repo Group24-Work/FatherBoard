@@ -16,6 +16,7 @@ use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TagController;
 
 
@@ -212,3 +213,7 @@ Route::post("/message/{id}", [ContactController::class, "respond"]);
 // Accounts
 
 Route::get("/accounts", [AuthController::class, "index"])->name("accounts");
+
+Route::post("/account/getOrders/{id}", [CustomerController::class, "giveUserOrders"]);
+
+Route::post("/account/destroy/{id}", [CustomerController::class, "destroy"]);
