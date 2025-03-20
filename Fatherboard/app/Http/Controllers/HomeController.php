@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Review;
 class HomeController extends Controller
 {
     public static function giveHome()
@@ -23,9 +24,21 @@ class HomeController extends Controller
     }
 
     public function topproduct () {
-        $toprroduct = reviews::orderby("rating")->first();
+        $topreview = Review::orderby("rating")->first();
+
+        if (!$topreview) {
+            return "No reviews found.";
+        }
+
         $topproduct = Product::find($topreview->product_id);
-        return view('home', ['topProduct' => $topproduct]);
+        if(!$topproduct) {
+
+            return "No products or reviews found.";
+        }
+
+        return view('home', ['topproduct' => $topproduct]);
+
+       
 
     }
 }

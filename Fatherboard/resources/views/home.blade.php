@@ -27,8 +27,8 @@
         <div class="hot-product-content">
             <img src="images/front_images/3060.png" alt="RTX 3060">
             <div class="hot-product-details">
-                <h3>NVIDIA RTX 3060</h3>
-                <p>Experience unparalleled gaming performance with the NVIDIA RTX 3060. Perfect for gamers and creators alike.</p>
+                <h3>{{ $topproduct->Title }}</h3>
+                <p>{{ $topproduct->Description }}</p>
                 <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/2" class="cta-btn">Shop Now</a>
             </div>
         </div>
