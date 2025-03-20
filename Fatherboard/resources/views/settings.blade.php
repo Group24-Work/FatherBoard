@@ -269,7 +269,9 @@ if ($user["Admin"]) {
                     <button class="option" id="message_button">Messages</button>
                 </li>
                 <li>
-                    <button class="option" id="admin_index_button">Admin Hub</button>
+                    <button class="option" id="admin_index_button">Admin Hub
+                    <object class="option_icon admin_icon" type="image/svg+xml" data="{{asset("/images/setting_images/admin.svg")}}"></object>
+                    </button>
                 </li>
                 <li>
                     <button class="option" id="button_reports">Reports</button>

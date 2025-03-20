@@ -74,7 +74,12 @@ input[type="text"] {
     text-align: center;
 }
 
-
+.admin_icon
+{
+    /* color:black; */
+    padding-left: 0.9rem;
+    filter: invert(58%) sepia(76%) saturate(3952%) hue-rotate(8deg) brightness(99%) contrast(93%);
+}
 #settings {
     position: relative;
     margin-right: 2rem;
