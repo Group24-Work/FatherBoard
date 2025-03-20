@@ -132,7 +132,7 @@ if (count($data) > 0) {
             <img slot="ProductImage" src="{{ asset('images/product_images/' . $item['Image'] . '.jpg') }}"
                 alt="product image" class="product-image">
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
-            <p>crazy killer u</p>
+            <p>temp</p>
             <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
             <span slot="Price"> £ {{$item["Price"]}}</span>
 
