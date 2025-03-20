@@ -13,7 +13,7 @@ body {
 
 .wrapper{
     width:50%;
-    height: 200px;
+    height: 300px;
     margin-left: 26%;
     margin-top: 50px;
     /* From https://css.glass */
@@ -31,4 +31,14 @@ body {
 
 #wrapperHeader{
     text-align: center;
+}
+
+#wrapperSubtitle{
+    text-align: center;
+}
+
+#orderNumber{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 20px;
 }

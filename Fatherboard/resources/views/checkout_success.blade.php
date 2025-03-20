@@ -12,8 +12,14 @@
     </x-slot:title>
     <div class=wrapper>
         <div id=wrapperHeader>
-            <h1>Checkout Complete</h1>
-        </div
+            <h1>Order Confirmed!</h1>
+        </div>
+        <div id=wrapperSubtitle>
+            <p>Thank you for your order!</p>
+        </div>
+        <div id=orderNumber>
+        <p>Your order number is: </p>
+
     </div>
     <x-slot:sheet>
     </x-slot:sheet>
