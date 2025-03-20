@@ -209,3 +209,6 @@ Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
 Route::post("/message/{id}", [ContactController::class, "respond"]);
 
 
+// Accounts
+
+Route::get("/accounts", [AuthController::class, "index"])->name("accounts");

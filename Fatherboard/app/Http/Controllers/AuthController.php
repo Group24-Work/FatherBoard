@@ -43,6 +43,11 @@ class AuthController extends Controller
 
 
     }
+
+    public static function index()
+    {
+        return view("admin.accounts");
+    }
     public static function loginView()
     {
         return view(view: '/login');
