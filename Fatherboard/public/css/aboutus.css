@@ -125,13 +125,24 @@ body h1{
 
 
 .main-nav a {
-    padding: 0.5em 2em;
     text-decoration: none;
-    color: white;
     font-size: 1.125rem;
     border-radius: 0.25rem;
     padding: 0.5em 1em;
-    display: block;
+    display: inline-block;
+    padding: .5em 3em;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
+    background-color: black;
+}
+
+@media (max-width: 768px) {
+    .main-nav a {
+        padding: 5px;
+    }
 }
 
 
@@ -154,12 +165,6 @@ body h1{
 /*display for the main nav items. */
 
 
-.main-nav a {
-    display: inline-block;
-    padding: .5em 3em;
-}
-
-
 .lower-nav-list{
     font-size: 20px;
 }
@@ -168,15 +173,7 @@ body h1{
 
 /*different colour link for the page the user is on. */
 
-.main-nav a{
-    color: white;
-    float: left;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.125rem;
-    border-radius: 0.25rem;
-    background-color: black;
-}
+ 
 
 
 .main-nav a:hover{
@@ -201,13 +198,24 @@ body h1{
 
 
 .lower-nav a {
-    padding: 0.5em 2em;
     text-decoration: none;
-    color: white;
     font-size: 1.125rem;
     border-radius: 0.25rem;
-    padding: 0.5em 1em;
-    display: block;
+    display: inline-block;
+    padding: .5em 3em;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .lower-nav a{padding: 20px}
+}
+
+@media (max-width: 480px) {
+    .lower-nav a{padding: 10px}
 }
 
 .lower-nav ul{
@@ -221,11 +229,6 @@ body h1{
 
 .lower-nav li{
     display: inline;
-}
-
-.lower-nav a {
-    display: inline-block;
-    padding: .5em 3em;
 }
 
 .lower-nav .active{
@@ -340,3 +343,10 @@ ul li:hover ul.dropdown {
     display: block;
 }
 
+.lower-nav-name{
+    padding: 54px;
+}
+
+.logo{
+    margin-left: 5px;
+}
