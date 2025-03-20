@@ -9,6 +9,26 @@
     width: 500px;
 }
 
+main
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+#exit
+{
+    /* background-color: black;
+    color:white; */
+    display:flex;
+    align-items:center;
+}
+
+.icon
+{
+    margin: 0 0.5rem;
+    height:2rem;
+    width:2rem;
+}
 #revenueTypeContainer {
     height: 300px;
     width: 300px;
