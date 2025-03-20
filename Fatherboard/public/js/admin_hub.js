@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async function()
 
 
     // User search
-    search_button.addEventListener("click",emailClick);
+    // search_button.addEventListener("click",emailClick);
 
 
 

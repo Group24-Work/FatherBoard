@@ -186,7 +186,7 @@ Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
-Route::get('/admin', [AdminController::class, "giveAdminHub"]);
+Route::get('/admin', [AdminController::class, "giveAdminHub"])->name("adminHub");
 
 
 // Tag
