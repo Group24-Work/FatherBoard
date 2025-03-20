@@ -24,7 +24,7 @@ class HomeController extends Controller
     }
 
     public function topproduct () {
-        $topreview = Review::orderby("rating")->first();
+        $topreview = Review::orderby("rating","desc")->first();
 
         if (!$topreview) {
             return "No reviews found.";
@@ -37,8 +37,6 @@ class HomeController extends Controller
         }
 
         return view('home', ['topproduct' => $topproduct]);
-
-       
-
+  
     }
 }
