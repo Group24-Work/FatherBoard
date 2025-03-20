@@ -17,6 +17,8 @@ class AdminController extends Controller
         return view('admin_hub');
     }
 
+ 
+
     public function getFirstSale($productID = -1)
     {
         if ($productID == -1)

@@ -81,6 +81,7 @@ class CheckoutController extends Controller
             'order_status' => 'Pending'
         ]);
 
+
         foreach ($basketDetails as $item)
         {
             order_details::create([

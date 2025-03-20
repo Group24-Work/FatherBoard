@@ -23,6 +23,26 @@ class ContactController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function respond(int $id, Request $req)
+    {
+        $response_message = $req->input("response_message");
+
+        $response_subject = "Fatherboard Answer";
+        $pythonScript = base_path('resources/python/generalEmail.py');
+        $contact = ContactForm::where("id",$id)->firstOrFail();
+        $email = $contact["Email"];
+
+        
+    
+        $command = "/usr/bin/python3 " . escapeshellarg($pythonScript) . " '" . escapeshellarg($email) . "' " . escapeshellarg($response_subject) . " " . escapeshellarg($response_message);
+
+        $res = shell_exec($command . " 2>&1");
+
+        return response()->json(["Command"=>$command, "Message"=>$res], 200);
+    
+        // dd($response_message);
+    }
     public function create()
     {
         //
