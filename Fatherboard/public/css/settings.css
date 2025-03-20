@@ -214,6 +214,11 @@ address-element:hover {
     background-color: lightblue;
 }
 
+#admin_index_button:hover
+{
+    background-color: lightsalmon;
+}
+
 .content {
     grid-area: data;
     overflow-y: scroll;
