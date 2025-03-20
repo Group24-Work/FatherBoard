@@ -66,7 +66,7 @@ Route::get('/settings', [SettingController::class, 'pageSettings']);
 Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
 Route::post('/update/personal', [SettingController::class, 'updatePersonal']);
 
-Route::get("/orders/{id}", [SettingController::class, "showOrder"]);
+Route::get("/orders/{id}", [SettingController::class, "showOrder"])->name('show.order');
 // Terms
 
 Route::get("/terms", function()
@@ -201,4 +201,5 @@ Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->n
 //Returns
 Route::get('/orders/{orders}/return', [ReturnedOrderController::class, 'create'])->name('order.return');
 Route::post('/orders/{orders}/return', [ReturnedOrderController::class, 'store'])->name('order.return.store');
-Route::get('/orders/{orders}', [ReturnedOrderController::class, 'show'])->name('orders.show');
+Route::get('/orders/{orders}', action: [ReturnedOrderController::class, 'show'])->name('orders.show');
+

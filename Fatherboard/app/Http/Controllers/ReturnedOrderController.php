@@ -9,38 +9,49 @@ use Illuminate\Http\Request;
 
 class ReturnedOrderController extends Controller
 {
-    public function show(Orders $order)
+    public function show(Orders $orders)
     {
-        return view('returns', ['orders' => $order]);
-    }
-
-    public function create(Orders $order)
-    {
-        if ($order->order_status !== 'Pending') {
-            return redirect()->route('orders.show', ['order' => $order->id])
-                ->with('error', 'Order cannot be returned.');
+        $customerId = AuthController::loggedIn();
+                if ($orders->customer_id !== $customerId->id) {
+            abort(403, 'Unauthorized action.');
         }
 
-        return view('returns', compact('order'));
+        return view('returns', ['orders' => $orders]);
     }
 
-    public function store(Request $request, Orders $order)
-{
-    $request->validate([
-        'reason' => 'required|string|max:255',
-    ]);
 
-    ReturnedOrder::create([
-        'order_id' => $order->id,
-        'reason' => $request->reason,
-    ]);
+    public function create(Orders $orders)
+    {
+        $customerId = AuthController::loggedIn();
+                if ($orders->customer_id !== $customerId->id) {
+            abort(403, 'Unauthorized action.');
+        }
 
-    $order->update([
-        'order_status' => 'Returned',
-    ]);
+        return view('returns', compact('orders'));
+    }
 
-    return redirect()->route('orders.show', ['order' => $order->id])
-        ->with('success', 'Order has been returned successfully.');
-}
 
+    public function store(Request $request, Orders $orders)
+    {
+        $customerId = AuthController::loggedIn();
+                if ($orders->customer_id !== $customerId->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $request->validate([
+            'reason' => 'required|string|max:255',
+        ]);
+
+        ReturnedOrder::create([
+            'order_id' => $orders->id,
+            'reason' => $request->reason,
+        ]);
+
+        $orders->update([
+            'order_status' => 'Returned',
+        ]);
+
+        return redirect()->route('orders.show', ['orders' => $orders->id])
+            ->with('success', 'Order has been returned successfully.');
+    }
 }
