@@ -157,7 +157,18 @@ document.addEventListener("DOMContentLoaded", async function()
         val.push(element["cumulative_registrations"]);
     });
 
-    createLineChart(key,val,registrationChart);
+    newVal = []
+    for (let i = 0; i < val.length; i++) {
+      if (i === 0) {
+          newVal.push(val[i]); 
+      } else {
+          newVal.push(val[i] + newVal[i - 1]); 
+      }
+  }
+    
+    console.log("cumulativ?")
+    console.log(newVal)
+    createLineChart(key,newVal,registrationChart);
   });
 
 
