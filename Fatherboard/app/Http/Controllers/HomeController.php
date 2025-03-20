@@ -21,4 +21,11 @@ class HomeController extends Controller
         $product = Product::all();
         return view("home",["data"=>$product]);
     }
+
+    public function topproduct () {
+        $toprroduct = reviews::orderby("rating")->first();
+        $topproduct = Product::find($topreview->product_id);
+        return view('home', ['topProduct' => $topproduct]);
+
+    }
 }
