@@ -45,8 +45,8 @@
         
 
         <div id="revenueType_section">
-            <button>Week</button>
-            <button>Month</button>
+            <button class="week">Week</button>
+            <button class="month">Month</button>
             <div class="chartContainer" id="revenueTypeContainer">
                 <canvas class="chart" id="revenueType_chart"></canvas>
             </div>

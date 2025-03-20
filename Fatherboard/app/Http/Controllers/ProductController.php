@@ -24,6 +24,10 @@ class ProductController extends Controller
          return $filtered_details;
      }
 
+     public function giveAllProductType()
+     {
+         return Product::all()->pluck("Type")->unique();
+     }
 
 
     public function index(Request $rq)

@@ -149,6 +149,7 @@ Route::post("/product/remove_tag/{id}", [ProductController::class, "removeTag"])
 
 Route::post("/product/update-stock/{id}", [ProductController::class, "updateStock"]);
 
+Route::post("/product/all-type", [ProductController::class, "giveAllProductType"]);
 // Reports functionality
 
 Route::post("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
