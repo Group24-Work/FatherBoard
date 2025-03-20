@@ -52,7 +52,9 @@
                                                                 alt="product image" class="product-image">
                                                         </td>
 
-                                                        <td> {{ implode(' ', array_slice(explode(' ', $item['name']), 0, 7)) }}</td>
+                                                        <td> <a href="{{ url('/product/' . $item['product_id']) }}">
+                                                                {{ implode(' ', array_slice(explode(' ', $item['name']), 0, 7)) }}
+                                                            </a></td>
                                                         <td>£{{ $item['price'] }}</td>
                                         </div>
                                         <td>
