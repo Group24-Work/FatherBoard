@@ -68,7 +68,7 @@ Route::post("/create/product", function ()
 
 // Settings-related
 
-Route::get('/settings', [SettingController::class, 'pageSettings']);
+Route::get('/settings', [SettingController::class, 'pageSettings'])->name("settings");
 Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
 Route::post('/update/personal', [SettingController::class, 'updatePersonal']);
 
@@ -150,6 +150,9 @@ Route::post("/product/remove_tag/{id}", [ProductController::class, "removeTag"])
 Route::post("/product/update-stock/{id}", [ProductController::class, "updateStock"]);
 
 Route::post("/product/all-type", [ProductController::class, "giveAllProductType"]);
+
+Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
+
 // Reports functionality
 
 Route::post("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
@@ -199,11 +202,10 @@ Route::delete("/tags/{id}", [TagController::class, "destroy"]);
 
 // Messages
 
-Route::get("/messages", [ContactController::class, "indexPage"]);
+Route::get("/messages", [ContactController::class, "indexPage"])->name("messages");
 
 Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
 
 Route::post("/message/{id}", [ContactController::class, "respond"]);
 
 
-Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');

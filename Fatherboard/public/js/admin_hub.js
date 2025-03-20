@@ -27,6 +27,9 @@ let totalRevenueData = null;
 
 let all_categories = null;
 
+let revenueType_Chart = null;
+
+let revenueTypeChart_chart = null;
 
 
 // Returns current time in a format acceptable to how the database stores its time ( YYYY-MM-DD )
@@ -81,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async function()
 
     let registrationChart = document.getElementById("registration_chart").getContext("2d");
 
-    let revenueType_Chart = document.getElementById("revenueType_chart").getContext("2d");
+    revenueType_Chart = document.getElementById("revenueType_chart").getContext("2d");
 
 
     let search_button = document.getElementById("user_search_button");
@@ -97,35 +100,52 @@ document.addEventListener("DOMContentLoaded", async function()
     let btn_revenueType_month = revenueTypeSection.getElementsByClassName("month")[0];
 
 
+    let curDate = timeFormat(currentTime())
+
     
     // Get CSRF token value
     csrf_token = document.getElementsByName("csrf-token")[0]
     csrf_token_val = csrf_token.getAttribute("content")
 
+      btn_revenueType_week.addEventListener("click", function(x)
+    {
+      let curTime = new Date();
+      curTime.setDate(curTime.getDate()-7);
+      revenueType_change(timeFormat(curTime), timeFormat(currentTime()))
+    })
+    btn_revenueType_month.addEventListener("click", function(x)
+    {
+      let curTime = new Date();
+      curTime.setDate();
+      revenueType_change("", timeFormat(currentTime()))    })
 
 
- 
-    btn_revenue_week.addEventListener("click", function(x)
-  {
-    revenueSectionChange(1);
-  })
+      btn_revenue_week.addEventListener("click", function(x)
+    {
+      revenueSectionChange(1);
+    })
 
-  btn_revenue_month.addEventListener("click", function(x)
-  {
-    revenueSectionChange(2);
-  })
+    btn_revenue_month.addEventListener("click", function(x)
+    {
+      revenueSectionChange(2);
+    })
 
+
+
+    // User search
     search_button.addEventListener("click",emailClick);
 
 
-    console.log(csrf_token_val)
 
     let fd = new FormData();
 
     console.log("HEYO");
     
     showTags();
-    let curDate = timeFormat(currentTime())
+
+    
+
+
     giveRegisteredUsers_cumulative("2025-03-06", curDate).then(function(x)
   {
     console.log(x);
@@ -149,7 +169,15 @@ document.addEventListener("DOMContentLoaded", async function()
     giveCategoryRevenue("2025-03-06", curDate).then(function (x)
   {
 
-    giveChart_CategoryRevenue(x,revenueType_Chart)
+    giveChart_CategoryRevenue(x,revenueType_Chart).then(
+      function(x)
+      {
+        console.log("hello")
+
+        revenueTypeChart_chart = x;
+        console.log(x)
+      }
+    )
 
     
   });
@@ -205,10 +233,59 @@ function keyVal_gen(data)
   });
   return [key,val];
 }
-function revenueType_change(id)
-{
 
+
+function revenueType_change(start_date,end_date)
+{
+  // const revenueType_chart = document.getElementById("revenueType_chart").getContext("2d");
+  console.log(revenueTypeChart_chart)
+  revenueTypeChart_chart.data.datasets[0].data = []
+  revenueTypeChart_chart.update()
+
+  giveCategoryRevenue(start_date, end_date).then(
+    function(x)
+    {
+      dict = {}
+     
+      getCategories().then(function(all_cat) {
+
+        Object.values(all_cat).forEach(category => {
+          dict[category] = 0; 
+        });
+    
+        dict["CPU"] = 350;
+        x.forEach(element => {
+          console.log("Processing element:", element);
+    
+          const categories = element["categories"];
+          
+          Object.keys(categories).forEach(category => {
+            if (dict.hasOwnProperty(category)) {
+              dict[category] += categories[category];  // Accumulate price for the category
+            }
+          });
+        });
+    
+    
+        // Transform dict object into keys and values for chart creation
+      
+        console.log("lookatmenow")
+        console.log(dict);
+        console.log(revenueChart_chart);
+          revenueTypeChart_chart.data.labels = Object.keys(dict);
+          revenueTypeChart_chart.data.datasets[0].data = Object.values(dict);
+
+          console.log(revenueChart_chart.data)
+
+        revenueTypeChart_chart.update()
+ 
+    });
+
+    }
+  )
 }
+
+
 function revenueSectionChange(id)
 {
   console.log(id);
@@ -292,6 +369,8 @@ return res;
 
 
   function giveChart_CategoryRevenue(x, chart) {
+    return new Promise((res,rej)=>
+    {
     let dict = {};  // Dictionary to store category as key and price as value
   
     // Fetch categories and then process the data
@@ -316,8 +395,16 @@ return res;
   
       // Transform dict object into keys and values for chart creation
     
-        pieChart(Object.keys(dict), Object.values(dict), chart);
+        chart = pieChart(Object.keys(dict), Object.values(dict), chart);
+        revenueTypeChart_chart = chart;
+        console.log("Completed")
+        console.log(chart);
+        res(chart);
+    }).catch((error)=>
+    {
+      rej(error);
     });
+  });
   }
   
 
@@ -517,7 +604,7 @@ function createLineChart(labels, y_val, chart)
     }]
   }
   
-    new Chart(chart, {
+    return new Chart(chart, {
     type: 'line',
     data: data,
     options: {
@@ -542,7 +629,7 @@ function pieChart(labels, y_val, chart)
   }
 
 
-  new Chart(chart, {
+  return new Chart(chart, {
     type: 'pie',
     data: data,
     options: {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerInfo;
 use App\Models\CustomerInformation;
+use Carbon\Exceptions\InvalidFormatException;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -81,9 +82,16 @@ class AdminController extends Controller
     {
         $dates = [];
 
+        try
+        {
         $startDate = Carbon::parse($start);
         $endDate = Carbon::parse($end);
 
+        }
+        catch(InvalidFormatException $ex)
+        {
+            return response()->json(['message'=>"Error with date parsing"], 400);
+        }
         $dateDay = $startDate;
 
         while ($dateDay <= $endDate)
@@ -129,9 +137,18 @@ class AdminController extends Controller
 
         $startDate = request()->input("startDate") ?? null;
         $endDate = request()->input("endDate") ?? null;
+        $first = self::getFirstSale();
 
+        // dd(request());
+        if ($startDate == null || $endDate == null)
+        {
+            // dd(request());
+            $startDate = $first->low;
+            $endDate = $first->high;
+        }
 
         $days = self::dateCreation($startDate, $endDate);
+
         $daysCollection = collect($days);
 
         // Get products by category

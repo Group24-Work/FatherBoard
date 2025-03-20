@@ -1,14 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-* {}
+* {
+    margin:0;
+    padding:0;
+}
 
 
 
 .chartContainer {
-    height: 500px;
+    height: 300px;
     width: 500px;
 }
 
+main
+{
+    display: flex;
+    justify-content: space-around;
+}
+.chart_section
+{
+    margin: 5rem 0;
+    height:25rem;
+    width:25rem;
+}
+
+#exit a
+{
+    /* background-color: black;
+    color:white; */
+    text-decoration: none;
+    display:flex;
+    align-items:center;
+    position:absolute;
+    left: 2rem;
+    top:2rem;
+}
+
+
+#exit a:hover
+{
+    color:red;
+}
+#action_container
+{
+    padding-top: 5rem;
+}
+#action_container div
+{
+    padding: 0.5rem;
+    
+}
+#action_container div:hover
+{
+background-color: lightblue;
+}
+a
+{
+    text-decoration: none;
+}
+.icon
+{
+    margin: 0 0.5rem;
+    height:2rem;
+    width:2rem;
+}
+#revenueContainer
+{
+
+}
 #revenueTypeContainer {
     height: 300px;
     width: 300px;
