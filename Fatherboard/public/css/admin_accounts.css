@@ -4,3 +4,30 @@
     margin:0;
     
 }
+
+
+main
+{
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: repeat(3, 10rem);
+}
+
+#query_email_container
+{
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#emailSuggestion_container
+{
+    grid-column-start: 2;
+    grid-row-start: 1 ;
+    grid-row-end: 3;
+    overflow:scroll;
+}
