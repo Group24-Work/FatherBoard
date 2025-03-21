@@ -181,7 +181,7 @@ Route::post(uri: "/admin/registeredUsers", action: [AdminController::class, "giv
 
 Route::post(uri: "/admin/registeredUsers_time", action: [AdminController::class, "giveRegisteredUsers_time"]);
 
-  
+
 Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
@@ -215,7 +215,6 @@ Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->n
 //Returns
 Route::get('/orders/{orders}/return', [ReturnedOrderController::class, 'create'])->name('order.return');
 Route::post('/orders/{orders}/return', [ReturnedOrderController::class, 'store'])->name('order.return.store');
-Route::get('/orders/{orders}', action: [ReturnedOrderController::class, 'show'])->name('orders.show');
 
 
 
