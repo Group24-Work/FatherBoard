@@ -135,13 +135,24 @@ if (count($data) > 0) {
             <p>temp</p>
             <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
             <span slot="Price"> £ {{$item["Price"]}}</span>
+            <?php
+            if (count($product->reviews()->get()) == 0) {
+                    ?><p>There is no reviews</p><?php
+            } else {
+                    foreach ($product->reviews()->get() as $rev) {
+                        ?>
+                <div class="review">
+                    <p>{{$rev["review"]}}</p>
+                </div>
+                <?php
 
+                ?>
         </product-element>
         <?php
 
     }
 }
-;
+
     ?>
     </div>
 </x-lowlayout>
