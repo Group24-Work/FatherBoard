@@ -16,6 +16,12 @@
         <input type="text" name="Email" id="email_input" placeholder="Email" class="text-input">
         <input type="submit" id="submit_button">
     </form>
+    <div id="info_box" hidden>
+    <h3>If this is an registered account, check your email inbox</h3>
+    </div>
+
+    <div>
+    </div>
 </div>
 
 </x-lowlayout>

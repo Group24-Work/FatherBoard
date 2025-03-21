@@ -38,4 +38,7 @@ function forgotPass()
             body : fd
         }
     )
+
+    let info_box = document.getElementById("info_box")
+    info_box.removeAttribute("hidden")
 }
