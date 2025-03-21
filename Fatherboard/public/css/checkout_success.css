@@ -42,3 +42,9 @@ body {
     padding-top: 20px;
     font-size: 20px;
 }
+
+#wrapperText{
+    text-align: center;
+
+    padding-top: 80px;
+}
