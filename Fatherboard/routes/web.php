@@ -18,7 +18,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TagController;
-
+use App\Http\Controllers\ReturnedOrderController;
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 Route::get('/',function(){
@@ -73,7 +73,7 @@ Route::get('/settings', [SettingController::class, 'pageSettings'])->name("setti
 Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
 Route::post('/update/personal', [SettingController::class, 'updatePersonal']);
 
-Route::get("/orders/{id}", [SettingController::class, "showOrder"]);
+Route::get("/orders/{id}", [SettingController::class, "showOrder"])->name('show.order');
 // Terms
 
 Route::get("/terms", function()
@@ -209,6 +209,15 @@ Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
 
 Route::post("/message/{id}", [ContactController::class, "respond"]);
 
+Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
+
+
+//Returns
+Route::get('/orders/{orders}/return', [ReturnedOrderController::class, 'create'])->name('order.return');
+Route::post('/orders/{orders}/return', [ReturnedOrderController::class, 'store'])->name('order.return.store');
+Route::get('/orders/{orders}', action: [ReturnedOrderController::class, 'show'])->name('orders.show');
+
+
 
 // Accounts
 
@@ -217,3 +226,4 @@ Route::get("/accounts", [AuthController::class, "index"])->name("accounts");
 Route::post("/account/getOrders/{id}", [CustomerController::class, "giveUserOrders"]);
 
 Route::post("/account/destroy/{id}", [CustomerController::class, "destroy"]);
+

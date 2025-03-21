@@ -280,7 +280,7 @@ public static function showOrder($id)
 
         $orderId = $order_select[0]->id ?? null;
 
-        
+        $order = Orders::find($orderId);
 
         $products = DB::table('order_details')
     ->join('products', 'order_details.products_id', '=', 'products.id')
@@ -288,6 +288,8 @@ public static function showOrder($id)
     ->where('order_details.order_id', $orderId) // Optional: Filter by specific order_id
     ->select('products.id', 'products.Title', "product_prices.price") // Select specific columns from the products table
     ->get();
+
+    
 
     $x = $products->map(function ($x)
     {
@@ -317,7 +319,7 @@ public static function showOrder($id)
         //     array_push($productsArr, $order->product()->first());
         // }
 
-        return view("order",["data"=>$x]);
+        return view("order",["data"=>$x, "orders"=>$order]);
         
     }
 }
