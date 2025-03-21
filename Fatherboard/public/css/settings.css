@@ -111,9 +111,23 @@ input[type="text"] {
     background: lightgrey;
 }
 
-#order-info div {
+#order-info > div {
     display: flex;
     flex-direction: column;
+}
+
+.single_order
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+/* .single_order_options */
+.single_order_content
+{
+    display: flex;
+    flex-direction: column;
+    width:30%;
 }
 
 #order-info h2 {
@@ -182,6 +196,19 @@ address-element:hover {
 
 
     border: 1px black solid;
+}
+
+.single_order_options
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:5rem;
+}
+.single_info_icon
+{
+    height:1rem;
+    width:1rem;
 }
 
 /* #add_address_form::after

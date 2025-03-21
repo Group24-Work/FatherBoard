@@ -14,6 +14,7 @@
             .email_item
             {
                 border: 1px solid black;
+                border-radius: 0.3rem;
                 margin: 0.5rem;
                 display:flex;
                 justify-content: space-between;

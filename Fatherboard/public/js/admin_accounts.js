@@ -206,7 +206,7 @@ function suggestion_item_click(id, onto)
         let order_item = document.createElement("div")
         order_item.classList.add("order_item")
         let price = document.createElement("p")
-        price.textContent = "Total Price :" + element["price"];
+        price.textContent = "Total Price : £" + element["price"];
 
         order_items = element["elements"];
 

@@ -13,10 +13,14 @@
         <div class="order-container">
             <?php
 if (isset($items) && count($items) > 0) {
+    $i = 0;
     foreach ($items as $order) {
+        $i = $i+1;
 
                 ?>
             <br>
+            <div class="single_order">
+                <div class="single_order_content">
             <h2>Order</h2>
             <h2 class="order_price">£ {{$order["price"]}}</h2>
 
@@ -28,6 +32,16 @@ if (isset($items) && count($items) > 0) {
             <p>{{$info}}</p>
             <?php
         }
+        ?>
+                </div>
+                <div class="single_order_options">
+                    <a href=" {{ route ('show.order', $i) }}">
+                <svg viewBox="0 0 1024 1024" class="single_info_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M320 89.6h640v76.8H320V89.6z m0 768h640v76.8H320v-76.8z m-256-768h128v76.8H64V89.6z m256 384h640v76.8H320V473.6z m-256 0h128v76.8H64V473.6z m0 384h128v76.8H64v-76.8z" fill="#000000"></path></g></svg>
+                    </a>
+                </div>
+        </div>
+        <?php
+
     }
 } else {
             ?>
@@ -133,7 +147,7 @@ if (isset($messages)) {
 }
         ?>
     </div>
-    <div id="update_personal">
+    <div id="update_personal" hidden>
         <form action="/update/personal" method="POST" id="update_personal_form">
             <meta name="type" content="">
             <input type="text" name="personal_text" placeholder="change" id="personal_text"></input>
