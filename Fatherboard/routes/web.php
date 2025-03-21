@@ -216,7 +216,7 @@ Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->n
 Route::get('/orders/{orders}/return', [ReturnedOrderController::class, 'create'])->name('order.return');
 Route::post('/orders/{orders}/return', [ReturnedOrderController::class, 'store'])->name('order.return.store');
 
-
+Route::get('/orders/{orders}', action: [ReturnedOrderController::class, 'show'])->name('orders.show');
 
 // Accounts
 
