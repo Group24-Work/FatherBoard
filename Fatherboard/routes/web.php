@@ -15,7 +15,10 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\ReturnedOrderController;
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 Route::get('/',function(){
@@ -39,7 +42,13 @@ Route::get('logout', action: [AuthController::class, "logOut"]);
 
 Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
+Route::get("/forgot", [AuthController::class, "giveForgotCredentials"])->name("forgot");
 
+Route::post("/forgot", [AuthController::class, "forgotPassword"]);
+
+Route::get("/reset/{id}", [AuthController::class, "giveReset"]);
+
+Route::post("/reset", [AuthController::class, "resetPassword"]);
 // Home System
 Route::get('/home', [HomeController::class, "giveHome"])->name("home");
 
@@ -55,17 +64,16 @@ Route::post("/create/product", function ()
 
 });
 
-Route::post("/product/tags/{id}", [ProductController::class, "giveTags"]);
 
 
 
 // Settings-related
 
-Route::get('/settings', [SettingController::class, 'pageSettings']);
+Route::get('/settings', [SettingController::class, 'pageSettings'])->name("settings");
 Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
 Route::post('/update/personal', [SettingController::class, 'updatePersonal']);
 
-Route::get("/orders/{id}", [SettingController::class, "showOrder"]);
+Route::get("/orders/{id}", [SettingController::class, "showOrder"])->name('show.order');
 // Terms
 
 Route::get("/terms", function()
@@ -97,7 +105,7 @@ Route::get('/questionnaire', function()
     return view('questionnaire');
 });
 
-
+Route::get('/questionnaire', [TagController::class, 'questionnaire']);
 
 //basket side back-end
 Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
@@ -113,12 +121,15 @@ Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.
 Route::get('/checkout/success', [CheckoutController::class,'success'])->name('checkout_success');
 
 //Admin
+
+// Interactive Admin
 Route::get('/admin/products', [AdminProductController::class, "index"])->name('adminIndex');
 Route::get('/admin/product/create', [AdminProductController::class, "create"])->name('create');
 Route::get('/admin/product/{id}', action: [AdminProductController::class, "show"])->name('edit');
 Route::delete('/admin/products{id}', action: [AdminProductController::class, "destroy"])->name('delete');
 Route::post('/admin/product/create', [AdminProductController::class, "created"])->name('created');
 Route::put('/admin/product/{product_id}', [AdminProductController::class, "update"])->name('update');
+
 
 Route::post("/create/product", [ProductController::class, 'create']);
 
@@ -129,6 +140,19 @@ Route::post("/update/product", [ProductController::class, 'update']);
 Route::post("/delete/product", [ProductController::class, 'destroy']);
 
 
+// Product
+
+Route::post("/product/tags/{id}", [ProductController::class, "giveTags"]);
+
+Route::post("/product/add_tags/{id}", [ProductController::class, "addTag"]);
+
+Route::post("/product/remove_tag/{id}", [ProductController::class, "removeTag"]);
+
+Route::post("/product/update-stock/{id}", [ProductController::class, "updateStock"]);
+
+Route::post("/product/all-type", [ProductController::class, "giveAllProductType"]);
+
+Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
 
 // Reports functionality
 
@@ -148,7 +172,7 @@ Route::get("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryR
 Route::post("/admin/viewCategoryRevenue", [AdminController::class, "giveCategoryRevenue"]);
 
 
-// User 
+// User
 Route::post("/admin/findUser/");;
 
 Route::get(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
@@ -162,4 +186,43 @@ Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
-Route::get('/admin', [AdminController::class, "giveAdminHub"]);
+Route::get('/admin', [AdminController::class, "giveAdminHub"])->name("adminHub");
+
+
+// Tag
+
+Route::post("/tags", [TagController::class, "index"]);
+Route::get("/tags", [TagController::class, "tagPage"])->name('tagpage');
+
+Route::put("/tags/create", [TagController::class, "store"]);
+
+Route::put("/tags/update/{id}", [TagController::class, "update"]);
+
+Route::delete("/tags/{id}", [TagController::class, "destroy"]);
+
+
+// Messages
+
+Route::get("/messages", [ContactController::class, "indexPage"])->name("messages");
+
+Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
+
+Route::post("/message/{id}", [ContactController::class, "respond"]);
+
+Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
+
+
+//Returns
+Route::get('/orders/{orders}/return', [ReturnedOrderController::class, 'create'])->name('order.return');
+Route::post('/orders/{orders}/return', [ReturnedOrderController::class, 'store'])->name('order.return.store');
+
+Route::get('/orders/{orders}', action: [ReturnedOrderController::class, 'show'])->name('orders.show');
+
+// Accounts
+
+Route::get("/accounts", [AuthController::class, "index"])->name("accounts");
+
+Route::post("/account/getOrders/{id}", [CustomerController::class, "giveUserOrders"]);
+
+Route::post("/account/destroy/{id}", [CustomerController::class, "destroy"]);
+

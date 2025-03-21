@@ -27,7 +27,7 @@ class OrdersController extends Controller
      */
     public function show(Orders $orders)
     {
-        //
+        return view('orders.show', compact('orders'));
     }
 
     /**
@@ -45,4 +45,5 @@ class OrdersController extends Controller
     {
         //
     }
+
 }

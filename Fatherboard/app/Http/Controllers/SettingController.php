@@ -26,6 +26,17 @@ class SettingController extends Controller
             $addr = $user->address;
             $orders = [];
 
+            $adminStatus = $user["Admin"];
+            // dd($user);
+
+            $filteredUser =collect([$user])->map(function($y)
+            {
+                return ["FirstName"=>$y["First Name"], "LastName"=>$y["Last Name"], "Email"=>$y["Email"], "Password"=>self::getPass(), "Admin"=>$y["Admin"]];
+            })->get(0);
+
+            // dd($user->address);
+
+
             if ($user["Admin"])
             {
 
@@ -54,7 +65,7 @@ class SettingController extends Controller
                     }
                     array_push($orders, $orderProduct);
             };
-            return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
+            return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders]);
 
 
             }
@@ -88,7 +99,7 @@ class SettingController extends Controller
 
 
                 }
-                return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
+                return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders]);
             }
 
         }
@@ -109,9 +120,8 @@ class SettingController extends Controller
         return json_encode("");
     }
 
-    public static function showPersonal()
+    private static function getPass()
     {
-
         $form = AuthController::whichLog();
         $password = null;
 
@@ -125,6 +135,12 @@ class SettingController extends Controller
             $password = $_SESSION["password"];
 
         }
+        return $password;
+    }
+    public static function showPersonal()
+    {
+
+        $password = self::getPass() ?? null;
         if ($user = AuthController::loggedIn())
         {
             $addr = $user->toArray();
@@ -264,7 +280,7 @@ public static function showOrder($id)
 
         $orderId = $order_select[0]->id ?? null;
 
-        
+        $order = Orders::find($orderId);
 
         $products = DB::table('order_details')
     ->join('products', 'order_details.products_id', '=', 'products.id')
@@ -272,6 +288,8 @@ public static function showOrder($id)
     ->where('order_details.order_id', $orderId) // Optional: Filter by specific order_id
     ->select('products.id', 'products.Title', "product_prices.price") // Select specific columns from the products table
     ->get();
+
+    
 
     $x = $products->map(function ($x)
     {
@@ -301,7 +319,7 @@ public static function showOrder($id)
         //     array_push($productsArr, $order->product()->first());
         // }
 
-        return view("order",["data"=>$x]);
+        return view("order",["data"=>$x, "orders"=>$order]);
         
     }
 }

@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    display: flex;
+}
+
+#product_table {
+    width: 70%;
+}
+
+#product_region {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.product_row {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+
+}
+
+.product_row:hover {
+    background-color: lightcoral;
+    border-radius: 8px;
+}
+
+#product_specific_container {
+    width: 30%;
+    order: 2;
+}
+
+#tag_container {
+    border: 0.2rem solid black;
+    padding: 1rem;
+}
+
+.individual_tag {
+    display: flex;
+    justify-content: space-between;
+}
+
+#add_tag {
+    border: none;
+    background-color: antiquewhite;
+    padding: 0.5rem;
+}
+
+.table_description {
+    width: 50%;
+}
+
+#addProduct {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#addTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addTag:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+#addProduct:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#addProductTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addProductTag:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+#add_tag:hover {
+    background-color: rgb(78, 1, 78);
+
+}
+
+#add_tag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+main {
+    flex-basis: 30%;
+    flex-shrink: 0;
+    margin: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+
+}

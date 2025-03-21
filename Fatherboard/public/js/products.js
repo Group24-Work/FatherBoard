@@ -120,8 +120,12 @@ function showProduct(info)
     manufacturer_text.setAttribute("slot","Manufacturer");
     manufacturer_text.textContent = elem["Manufacturer"];
 
-    product_element.appendChild(id_text);
+    let price_text = document.createElement("span")
+    price_text.setAttribute("slot","Price");
+    price_text.textContent = elem["Price"];
 
+    product_element.appendChild(id_text);
+      product_element.appendChild(price_text)
     product_element.appendChild(title_text);
     product_element.appendChild(description_text);
     product_element.appendChild(manufacturer_text);

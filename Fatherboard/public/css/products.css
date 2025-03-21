@@ -58,9 +58,10 @@
 
 }
 
-#filter-button:hover {
-    background-color: #32a83c;
+#filter-button:hover{
+    cursor: pointer;
 }
+
 
 .filter-sidebar p {
     text-align: left;
@@ -101,8 +102,80 @@ img:not(#logo) {
 
 .ProductItem:hover {
     background-color: rgb(158, 157, 157);
+    cursor: pointer;
 }
 
-button:hover {
+.filter-button:hover {
+    background-color: rgb(78, 1, 78);
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    background-color: rgb(158, 157, 157);
+
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+#addProduct {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#addTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addTag:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+#addProduct:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#addProductTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addProductTag:hover {
     background-color: rgb(78, 1, 78);
 }

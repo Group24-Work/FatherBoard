@@ -4,27 +4,30 @@ var indexAnswer = "";
 var QUESTIONS = [
     {
     "question":"What do you plan to use your PC for?",
-    "choices":["Gaming", "Office Work", "CPU Intensive Tasks", "Unsure"]
-    },
-    {
-    "question":"What is the maximum price you are willing to spend on a PC?",
-    "choices":["<£1000", "<£1000-£2500", "£3000+", "Unsure"]
-    },
-    {
-    "question":"Do you have a brand preference?",
-    "choices":["NVIDIA","AMD","Intel","No preference"]
+    "choices":[
+        {"choice": "Gaming", "tags":["gaming"]},
+        {"choice":"Office Work", "tags": ["office"]},
+        {"choice":"Rendering","tags":["rendering"]},
+        {"choice":"Unsure", "tags":[""] } 
+        ]
     },
     {
     "question":"How much RAM do you need?",
-    "choices":["16GB","32GB","64GB","Unsure"]
+    "choices":[
+        {"choice":"16GB", "tags":["16GB"]},
+        {"choice":"32GB", "tags":["32GB"]},
+        {"choice":"64GB", "tags":["64GB"]},
+        {"choice":"Unsure", "tags":[""]}
+        ]
     },
     {
     "question":"What kind of storage would you like?",
-    "choices":["HDD","SSD","Hybrid","Unsure"]
-    },
-    {
-    "question":"Do you like colourful components?",
-    "choices":["Yes", "No", "No preference"]
+    "choices":[
+        {"choice":"HDD","tags":["HDD"]},
+        {"choice":"SSD","tags":["SSD"]},
+        {"choice":"Hybrid","tags":[""]},
+        {"choice":"Unsure","tags":[""]}
+        ]
     }
 ];
 
@@ -60,11 +63,11 @@ function loadQuestion(indexQuestion){
     var choices = "";
     var i = 0
     while(i<QUESTIONS[indexQuestion].choices.length){
-        choices += "<option>"+ QUESTIONS[indexQuestion].choices[i] + "</option>";
+        choices += "<option>"+ QUESTIONS[indexQuestion].choices[i].choice + "</option>";
         i++
     }
-    document.getElementById("choices").innerHTML = choices;
-    document.getElementById("choices").addEventListener("change",selectAnswer)
+    document.getElementById("choice").innerHTML = choices;
+    document.getElementById("choice").addEventListener("change",selectAnswer)
     
 }
 document.addEventListener("DOMContentLoaded",loadApplication); 

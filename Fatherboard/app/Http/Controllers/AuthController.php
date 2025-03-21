@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\CustomerInformation;
+use App\Models\BasketItem;
+use App\Models\PasswordReset;
 
 class AuthController extends Controller
 {
@@ -23,7 +25,16 @@ class AuthController extends Controller
         }*/
 
         if (Hash::check($password, $customer->Password)) {
+            $basketItems = BasketItem::where('customer_information_id', $customer->id)->get();
+
+        session()->put('basket', $basketItems->mapWithKeys(function ($item) { // restore basket data from the database from previous logins
+            return [$item->product_id => [
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+            ]];
+        })->toArray());
             return true; //correct password & username exists in the database, therefore true
+
         }
 
 
@@ -31,6 +42,11 @@ class AuthController extends Controller
 
 
 
+    }
+
+    public static function index()
+    {
+        return view("admin.accounts");
     }
     public static function loginView()
     {
@@ -268,8 +284,73 @@ class AuthController extends Controller
     return false;
 }
 
+    public static function giveForgotCredentials()
+    {
+        return view("forgot_credentials");
+    }
+
+    public static function forgotPassword(Request $req)
+    {
+        $email = $req->input("Email"); 
+        if (!$email) {
+            return response()->json(["error" => "Email not provided"], 400);
+        }
+        $pythonScript = base_path('resources/python/emailScript.py');
+        $command = "/usr/bin/python3 " . escapeshellarg($pythonScript) . " " . escapeshellarg($email);
+    
+        // Capture errors
+
+        
+    
+        if (CustomerInformation::where("Email",$email)->exists())
+        {
+            $cust = CustomerInformation::where("Email", $email)->first();
+            $res = shell_exec($command . " 2>&1");
+            PasswordReset::create(["customer_information_id"=>$cust["id"], "code"=>$res]);
+
+            return response()->json([
+                "message" => "Sent reset message",
+                "command" => $command,
+                "output" => $res,
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                "message" => "Email does not exist"
+            ], 200);
+        }
+
+    }
+
+    public static function giveReset($code)
+    {
+        if (PasswordReset::where("code",$code)->exists())
+        {
+            return view("reset_password");
+        }
+        else
+        {
+            abort(400);
+        }
+    }
+
+    public static function resetPassword(Request $req)
+    {
+        $new_pass = $req->input("new_password");
+
+        $code = $req->input("code");
+        $reset_row = PasswordReset::where("code", $code)->firstOrFail();
+        $acc = CustomerInformation::where("id",$reset_row["customer_information_id"])->firstOrFail();
+
+        
+        $res = $acc->update(["Password"=>$new_pass]);
+        return response()->json(["message"=>"Updated Succesfully", 200]);
+
+    
 
 
+    }
 
     public static function loggedIn()
     {
@@ -321,6 +402,7 @@ class AuthController extends Controller
     }
     public static function logOut()
     {
+      session()->forget('basket'); //forgets basket data when logout
         self::cookieLogout();
         self::sessionLogOut();
 
