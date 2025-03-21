@@ -75,10 +75,21 @@ class CheckoutController extends Controller
             if(($user = $AuthController->loggedIn()) == false){//Redirects to login if the user doesn't have an account
                 return redirect('/login');
             }
+            $recentOrder = Orders::latest('id')->first();
+            $orderNumber = "";
+            if ($recentOrder) {
+                $recentOrderNum = $recentOrder->order_number;
+                $orderNumber = (int) substr($recentOrderNum, -9) + 1;
+            } else {
+                $orderNumber = 1;
+            }
+            $orderNumber = str_pad($orderNumber, 9, '0', STR_PAD_LEFT);
+            
         $order = Orders::create([
-            'customer_id'=> $user['id'], //Replace 1 with $user=>id
+            'customer_id'=> $user['id'],
             'address_id'=>$address['id'],
-            'order_status' => 'Pending'
+            'order_status' => 'Pending',
+            'order_number' => $orderNumber,
         ]);
 
 
@@ -92,9 +103,12 @@ class CheckoutController extends Controller
         }
         session()->forget('basket'); //Removes basket data after checkout finishes(?)
 
-        return redirect()->route('checkout_success');
+        return redirect()->route('checkout_success', ['orderNumber' => $orderNumber]);
     }
-    public function success(){
-        return view('checkout_success');
+    public function success($orderNumber)
+    {    
+        return view('checkout_success', compact('orderNumber'));
     }
-}
+    
+    }    
+    
