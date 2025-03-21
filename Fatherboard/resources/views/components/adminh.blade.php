@@ -14,5 +14,18 @@
                             <path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
                             <path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" />
                         </svg></a>
+                    <div class="container">
+                        <nav class="lower-nav">
+                            <ul class="lower-nav-list">
+                                <li>
+                                    <a href="/accounts">Account Manage</a>
+                                    <a href="/tags">Tag Manage</a>
+                                    <a href="/product_manage">Product Manage</a>
+                                    <a href="/messages">Messages</a>
+                                    <a href="/admin/products">Product Manage (Interactive)</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
 
 </header>
