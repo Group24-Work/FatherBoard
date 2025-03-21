@@ -33,6 +33,7 @@
             </b>
         </p>
 
+        <span><slot class="basketButton" name="basketButton">Add to Basket</slot></span>   
     </template>
     <?php
 
@@ -137,6 +138,12 @@ if (count($data) > 0) {
             <p>temp</p>
             <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
             <span slot="Price"> {{$item["Price"]}}</span>
+            <span slot=basketButton>
+            <form action="{{ route('basketAdd') }}" method="POST">
+                @csrf <!-- Include CSRF token for security -->
+                <input type="hidden" name="product_id" value="{{ $item['ID'] }}">
+               <button type="submit" class="basketButton" id="basket_button">Add to Basket</button></span>
+            </form>
 
         </product-element>
         <?php
