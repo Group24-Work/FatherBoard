@@ -179,3 +179,18 @@ h2 {
 #addProductTag:hover {
     background-color: rgb(78, 1, 78);
 }
+
+.basketButton{
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    color: white;
+    width: 50%;
+}
+
+.basketButton:hover{
+    cursor: pointer;
+    background-color: black;
+}
