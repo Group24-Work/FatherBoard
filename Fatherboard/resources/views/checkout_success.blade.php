@@ -26,8 +26,8 @@
             <p>You can view this order in your <a href=/settings#!history>Order History page.</a></p>
         </div>
         <div id=buttons>
-        <button id="home-button" style="background-color: purple; color: white;">Home</button>
-        <button id="products-button" style="background-color: purple; color: white;">Continue Shopping</button>
+        <a href=/home><button id="home-button" style="background-color: purple; color: white;">Home</button></a>
+        <a href=/products><button id="products-button" style="background-color: purple; color: white;">Continue Shopping</button></a>
 
 
 

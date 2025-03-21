@@ -48,3 +48,34 @@ body {
 
     padding-top: 80px;
 }
+#home-button {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 25%;
+    color: white;
+    margin-left: 200px;
+
+}
+
+#home-button:hover{
+    cursor: pointer;
+}
+
+#products-button {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 25%;
+    color: white;
+    margin-left: 20px;
+
+}
+
+#products-button:hover{
+    cursor: pointer;
+}
