@@ -7,7 +7,7 @@
     <meta id="csrf_token" content="{{csrf_token()}}">
 
 
-    <h2>Messages</h2>
+    <h2 id="title">Messages</h2>
 
 
     <div  id="message_container" >
@@ -19,8 +19,8 @@
         <div class="message">
             <div class="message_content">
             <p class="id" hidden> {{$x["id"]}}</p>
-            <p>{{$x["Message"]}}</p>
-            <p>{{$x["Email"]}}</p>
+            <p class="message_content"> Message : {{$x["Message"]}}</p>
+            <p class="message_Email"> Email: {{$x["Email"]}}</p>
             </div>
 
             <div class="modify_area">
@@ -38,10 +38,11 @@
             <h3>Message</h3>
             <p id="message_id" hidden></p>
             <textarea type="text" name="response_text" id="response_text"></textarea>
-            <input type="submit" id="submit_response">
+            <input type="submit" id="submit_response" value="Submit">
         </form>
     </div>
 
+    <x-exit_admin></x-exit_admin>
 
 
 </x-lowlayout>

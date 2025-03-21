@@ -89,7 +89,11 @@ function emailClick()
   email_suggestion_container.innerHTML = "";
   findUser(email_val).then(function(x)
   {
-
+    if (x.length == 0)
+    {
+        email_suggestion_container.innerHTML = "<h3>No matching users</h3>"
+        return;
+    }
     for (let y of x)
       {
          let elem = document.createElement("email-suggestion-item");

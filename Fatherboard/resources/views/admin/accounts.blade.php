@@ -20,6 +20,11 @@
                 align-items: center;
                 width:80%;
             }
+            .email_content
+            {
+                width:50%;
+            }
+            
             .alter_icon {
                 height: 2rem;
                 width: 2rem;
@@ -87,6 +92,7 @@
         </div>
     
         <div id="emailSuggestion_container">
+            <h3>No matching users</h3>
         </div>
 
         <div class="single_order" hidden>

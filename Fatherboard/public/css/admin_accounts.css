@@ -73,7 +73,25 @@ email-suggestion-item
     grid-row-start: 1 ;
     grid-row-end: 3;
     overflow:scroll;
+    display:flex;
+    justify-content: start;
+    flex-direction: column;
+    text-align: center;
 }
+#emailSuggestion_container h3
+{
+    align-self: center;
+    justify-self: center;
+    position:relative;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+email-suggestion-item
+{
+    width:100%
+}
+
 
 #exit a
 {

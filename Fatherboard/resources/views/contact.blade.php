@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/contact.css')}}"> <!-- Link for product-specific styles -->
     <script src="{{asset('js/contactus.js')}}" defer></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js" type="text/javascript"></script> <!--Scripts needed for jQuery-->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js" type="text/javascript"></script> <!--Scripts needed for jQuery-->
 </x-slot:head>
 
     <!-- Header Section (unchanged, linked to stylesheet.css) -->
