@@ -80,7 +80,11 @@ body h1{
 }
 
 @media (max-width: 768px) {
-    .container{padding: 0rem};
+    .container{padding: 0rem}
+}
+
+@media (max-width: 480px) {
+    .container{padding: 0rem}
 }
 
 .SearchBar{ /*managing searchbar size, so its aligned well. */
@@ -129,7 +133,7 @@ body h1{
     font-size: 1.125rem;
     border-radius: 0.25rem;
     padding: 0.5em 1em;
-    display: inline-block;
+    display: block;
     padding: .5em 3em;
     color: white;
     text-align: center;
@@ -142,7 +146,13 @@ body h1{
 @media (max-width: 768px) {
     .main-nav a {
         padding: 5px;
+        font-size: 0.625rem;
     }
+}
+
+@media (max-width: 480px) {
+    .main-nav a {padding: 1px;
+    font-size: 0.1rem;}
 }
 
 
@@ -253,7 +263,6 @@ body h1{
 
 @media screen and (max-width: 50rem) {
     .main-nav ul {
-        flex-direction: column; /* when zoomed in, buttons on the right of the header will stack.*/
         align-items: flex-start; 
     }
     .main-nav li {
@@ -321,6 +330,23 @@ display:none    }
 
 @media (max-width: 768px){
     .lower-nav-list{font-size: 5px};
+    
+}
+
+@media (max-width: 480px) {
+    .lower-nav-list{font-size: 1px}
+}
+
+@media (max-width: 768px) {
+    .lower-nav-list a {
+        padding: 30px
+    }
+}
+
+@media (max-width: 480px) {
+    .lower-nav-list a {
+        padding: 8px
+    }
 }
 
 ul li ul.dropdown {
