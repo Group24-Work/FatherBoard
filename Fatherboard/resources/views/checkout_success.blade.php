@@ -17,10 +17,17 @@
         <div id=wrapperSubtitle>
             <p>Thank you for your order!</p>
         </div>
-        <div id=orderNumber>
-        <p>Your order number is: </p>
+        <?php
+        if (isset($order) && $order > 0)
+            ?>
+            <div id=orderNumber>
+                <p>Your order number is: {{$orderNumber}}</p>
+            </div>
 
-    </div>
+        }
+        }
+    }
     <x-slot:sheet>
     </x-slot:sheet>
 </x-lowlayout>
+}

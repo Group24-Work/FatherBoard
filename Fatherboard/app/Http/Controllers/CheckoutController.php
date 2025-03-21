@@ -75,10 +75,19 @@ class CheckoutController extends Controller
             if(($user = $AuthController->loggedIn()) == false){//Redirects to login if the user doesn't have an account
                 return redirect('/login');
             }
+        $recentOrder = Orders::latest('id')->first();
+        if ($recentOrder){
+            $recentOrderNum = $recentOrder->order_number;
+            $orderNumber = (int) substr($recentOrderNum, -9) +1;
+            
+            $orderNumber = str_pad(1,9,'0', STR_PAD_LEFT);
+        }
+        $orderNumber = '#' . $orderNumber; 
         $order = Orders::create([
             'customer_id'=> $user['id'], //Replace 1 with $user=>id
             'address_id'=>$address['id'],
-            'order_status' => 'Pending'
+            'order_status' => 'Pending',
+            'order_number' => $orderNumber,
         ]);
 
         foreach ($basketDetails as $item)
@@ -94,6 +103,6 @@ class CheckoutController extends Controller
         return redirect()->route('checkout_success');
     }
     public function success(){
-        return view('checkout_success');
+        return view('checkout_success')->with('orderNumber',$orderNumber);
     }
 }
