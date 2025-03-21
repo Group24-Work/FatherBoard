@@ -15,7 +15,7 @@ body {
     background-color: #d2d2d2 !important;
 }
 
-a{
+a {
     z-index: 5;
 }
 
@@ -24,7 +24,7 @@ a{
     text-align: center;
 } */
 
-body h1{
+body h1 {
     font-family: "Roboto", sans-serif;
 }
 
@@ -34,32 +34,35 @@ body h1{
     width: 50%;
     position: fixed;
     overflow-x: hidden;
-    padding-top:1.25rem;
+    padding-top: 1.25rem;
 }
 
-.left{
-    left:0
+.left {
+    left: 0
 }
 
 
-.right{
-    right:0;
+.right {
+    right: 0;
     padding-top: 50%;
     padding-right: 50%;
 }
 
 .centered {
     position: absolute;
-    top:37%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
+
 .centered img {
     width: auto;
     height: auto;
 }
-.container{ /* using flexbox for the header - container is used to keep items in the header.*/
+
+.container {
+    /* using flexbox for the header - container is used to keep items in the header.*/
     background-color: black;
     max-width: 100%;
     min-width: none;
@@ -70,24 +73,30 @@ body h1{
 }
 
 
-.main-header .container{ /*spacing for flexbox */
-   justify-content: space-around;
+.main-header .container {
+    /*spacing for flexbox */
+    justify-content: space-around;
 }
 
-.main-header .container:nth-child(2 ){
+.main-header .container:nth-child(2) {
     position: relative;
-    z-index: -100;
+    z-index: 1;
 }
 
 @media (max-width: 768px) {
-    .container{padding: 0rem}
+    .container {
+        padding: 0rem
+    }
 }
 
 @media (max-width: 480px) {
-    .container{padding: 0rem}
+    .container {
+        padding: 0rem
+    }
 }
 
-.SearchBar{ /*managing searchbar size, so its aligned well. */
+.SearchBar {
+    /*managing searchbar size, so its aligned well. */
     margin-left: 6em;
     flex-grow: 1;
     flex-shrink: 1;
@@ -95,17 +104,20 @@ body h1{
     min-width: 0.063rem;
 }
 
-.SearchBar input{ /* managing input bar size, so it doesn't push items when zoomed in. */
+.SearchBar input {
+    /* managing input bar size, so it doesn't push items when zoomed in. */
     width: 95%;
     padding: 0.313rem;
     font-size: 1rem;
 }
 
-.main-nav { /* stops buttons on right (account, about us basket) from shrinking */
+.main-nav {
+    /* stops buttons on right (account, about us basket) from shrinking */
     flex-shrink: 0;
 }
 
-.lower-nav li{ /* display for the buttons beneath the search bar. */
+.lower-nav li {
+    /* display for the buttons beneath the search bar. */
     display: inline;
     white-space: nowrap;
 }
@@ -120,7 +132,7 @@ body h1{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.main-nav li{ 
+.main-nav li {
     display: inline;
     white-space: nowrap;
 }
@@ -151,31 +163,34 @@ body h1{
 }
 
 @media (max-width: 480px) {
-    .main-nav a {padding: 1px;
-    font-size: 0.1rem;}
+    .main-nav a {
+        padding: 1px;
+        font-size: 0.1rem;
+    }
 }
 
 
 /* sizing for each link, and border. */
 
-.main-nav ul{
+.main-nav ul {
     margin: 0em 1em 0.5em;
     text-align: center;
     display: flex;
     padding: 0;
     margin: 0;
-    gap: 1.25rem;    
+    gap: 1.25rem;
 }
 
-/*alinging main nav  */ 
+/*alinging main nav  */
 
-.main-nav li{
+.main-nav li {
     display: inline;
 }
+
 /*display for the main nav items. */
 
 
-.lower-nav-list{
+.lower-nav-list {
     font-size: 20px;
 }
 
@@ -183,10 +198,10 @@ body h1{
 
 /*different colour link for the page the user is on. */
 
- 
 
 
-.main-nav a:hover{
+
+.main-nav a:hover {
     background-color: white;
     color: black
 }
@@ -201,7 +216,7 @@ body h1{
     flex-shrink: 0;
 }
 
-.lower-nav li{
+.lower-nav li {
     display: inline;
     white-space: nowrap;
 }
@@ -221,32 +236,36 @@ body h1{
 }
 
 @media (max-width: 768px) {
-    .lower-nav a{padding: 20px}
+    .lower-nav a {
+        padding: 20px
+    }
 }
 
 @media (max-width: 480px) {
-    .lower-nav a{padding: 10px}
+    .lower-nav a {
+        padding: 10px
+    }
 }
 
-.lower-nav ul{
+.lower-nav ul {
     margin: 0em 1em 0.5em;
     text-align: center;
     display: flex;
     padding: 0;
     margin: 0;
-    gap: 1.25rem;    
+    gap: 1.25rem;
 }
 
-.lower-nav li{
+.lower-nav li {
     display: inline;
 }
 
-.lower-nav .active{
-        background-color: purple;
-        color: white;
+.lower-nav .active {
+    background-color: purple;
+    color: white;
 }
 
-.lower-nav a{
+.lower-nav a {
     float: left;
     color: white;
     text-align: center;
@@ -255,20 +274,20 @@ body h1{
     border-radius: 0.25rem;
 }
 
-.lower-nav a:hover{
-    background-color: #ddd !important;
-    color: black !important;
-}
+
 
 
 @media screen and (max-width: 50rem) {
     .main-nav ul {
-        align-items: flex-start; 
+        align-items: flex-start;
     }
+
     .main-nav li {
-        margin-bottom: 0.625rem; /* spacing between items stacked vertically*/
+        margin-bottom: 0.625rem;
+        /* spacing between items stacked vertically*/
     }
 }
+
 /* Footer Styles */
 .main-footer {
     background-color: #333;
@@ -321,20 +340,26 @@ body h1{
     }
 }
 
-@media screen and (max-height:35rem)
-{
-    .container:has(.lower-nav){
-    
-display:none    }
+@media screen and (max-height:35rem) {
+    .container:has(.lower-nav) {
+
+        display: none
+    }
 }
 
-@media (max-width: 768px){
-    .lower-nav-list{font-size: 5px};
-    
+@media (max-width: 768px) {
+    .lower-nav-list {
+        font-size: 5px
+    }
+
+    ;
+
 }
 
 @media (max-width: 480px) {
-    .lower-nav-list{font-size: 1px}
+    .lower-nav-list {
+        font-size: 1px
+    }
 }
 
 @media (max-width: 768px) {
@@ -361,18 +386,24 @@ ul li ul.dropdown {
     top: 80%;
 }
 
-ul li a:hover {
-    background: black;
+.lower-nav-list a:hover {
+    background-color: #ddd !important;
+    color: black !important;
+}
+
+.main-nav-list>li>a:hover {
+    background-color: white;
+    color: black;
 }
 
 ul li:hover ul.dropdown {
     display: block;
 }
 
-.lower-nav-name{
+.lower-nav-name {
     padding: 54px;
 }
 
-.logo{
+.logo {
     margin-left: 5px;
 }
