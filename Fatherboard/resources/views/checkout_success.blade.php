@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/aboutus.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/checkout_success.css') }}">
     </x-slot:head>
+    <x-header></x-header>
     <x-slot:title>
         Success
     </x-slot:title>
