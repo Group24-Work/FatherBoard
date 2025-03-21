@@ -8,7 +8,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
+
     <div class="wrapper">
+        <a class="exitCross" href="{{ route('login') }}"></a>
 
     <form method="POST" action="/forgot" id="password_form">
         <h1>Forgot Password</h1>
