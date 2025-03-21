@@ -34,9 +34,7 @@
         </div>
 
         <div class="forgotPassword">
-
-
-            <a href="{{route('forgot')}}">Forgot Password?</a>
+            <a href="forgot-pass.php">Forgot Password?</a>
         </div>
 
 

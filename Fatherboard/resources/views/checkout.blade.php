@@ -22,9 +22,13 @@
                         </div>
                         <div class="row">
                             <select name="Country" required>
-                                <option value="" disabled selected>Country
+                                <option value="Select a country" disabled selected>Country
                                 <option>
                                 <option value="UK">United Kingdom</option>
+                                <option value="UK">France</option>
+                                <option value="UK">Germany</option>
+                                <option value="UK">Italy</option>
+                                <option value="UK">Spain</option>
                                 <!-- ADD CODE HERE -->
                             </select>
                             <input type="text" placeholder="City" name="City" required>

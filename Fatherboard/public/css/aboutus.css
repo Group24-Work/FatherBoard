@@ -6,14 +6,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%;
 }
 
-@media screen and (max-height:35rem)
-{
-    .container:has(.lower-nav){
-    
-display:none    }
-}
+
 body {
     font-family: Montserrat;
     background-color: #d2d2d2 !important;
@@ -78,6 +74,19 @@ body h1{
    justify-content: space-around;
 }
 
+.main-header .container:nth-child(2 ){
+    position: relative;
+    z-index: -100;
+}
+
+@media (max-width: 768px) {
+    .container{padding: 0rem}
+}
+
+@media (max-width: 480px) {
+    .container{padding: 0rem}
+}
+
 .SearchBar{ /*managing searchbar size, so its aligned well. */
     margin-left: 6em;
     flex-grow: 1;
@@ -120,13 +129,30 @@ body h1{
 
 
 .main-nav a {
-    padding: 0.5em 2em;
     text-decoration: none;
-    color: white;
     font-size: 1.125rem;
     border-radius: 0.25rem;
     padding: 0.5em 1em;
     display: block;
+    padding: .5em 3em;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
+    background-color: black;
+}
+
+@media (max-width: 768px) {
+    .main-nav a {
+        padding: 5px;
+        font-size: 0.625rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-nav a {padding: 1px;
+    font-size: 0.1rem;}
 }
 
 
@@ -149,24 +175,15 @@ body h1{
 /*display for the main nav items. */
 
 
-.main-nav a {
-    display: inline-block;
-    padding: .5em 3em;
+.lower-nav-list{
+    font-size: 20px;
 }
 
 
 
 /*different colour link for the page the user is on. */
 
-.main-nav a{
-    color: white;
-    float: left;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.125rem;
-    border-radius: 0.25rem;
-    background-color: black;
-}
+ 
 
 
 .main-nav a:hover{
@@ -191,13 +208,24 @@ body h1{
 
 
 .lower-nav a {
-    padding: 0.5em 2em;
     text-decoration: none;
-    color: white;
     font-size: 1.125rem;
     border-radius: 0.25rem;
-    padding: 0.5em 1em;
-    display: block;
+    display: inline-block;
+    padding: .5em 3em;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .lower-nav a{padding: 20px}
+}
+
+@media (max-width: 480px) {
+    .lower-nav a{padding: 10px}
 }
 
 .lower-nav ul{
@@ -211,11 +239,6 @@ body h1{
 
 .lower-nav li{
     display: inline;
-}
-
-.lower-nav a {
-    display: inline-block;
-    padding: .5em 3em;
 }
 
 .lower-nav .active{
@@ -240,7 +263,6 @@ body h1{
 
 @media screen and (max-width: 50rem) {
     .main-nav ul {
-        flex-direction: column; /* when zoomed in, buttons on the right of the header will stack.*/
         align-items: flex-start; 
     }
     .main-nav li {
@@ -297,4 +319,60 @@ body h1{
     .main-footer p {
         font-size: 0.9rem;
     }
+}
+
+@media screen and (max-height:35rem)
+{
+    .container:has(.lower-nav){
+    
+display:none    }
+}
+
+@media (max-width: 768px){
+    .lower-nav-list{font-size: 5px};
+    
+}
+
+@media (max-width: 480px) {
+    .lower-nav-list{font-size: 1px}
+}
+
+@media (max-width: 768px) {
+    .lower-nav-list a {
+        padding: 30px
+    }
+}
+
+@media (max-width: 480px) {
+    .lower-nav-list a {
+        padding: 8px
+    }
+}
+
+ul li ul.dropdown {
+    display: block;
+}
+
+ul li ul.dropdown {
+    width: 160px;
+    background: black;
+    position: absolute;
+    display: none;
+    top: 80%;
+}
+
+ul li a:hover {
+    background: black;
+}
+
+ul li:hover ul.dropdown {
+    display: block;
+}
+
+.lower-nav-name{
+    padding: 54px;
+}
+
+.logo{
+    margin-left: 5px;
 }
