@@ -136,7 +136,7 @@ if (count($data) > 0) {
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
             <p>temp</p>
             <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
-            <span slot="Price"> {{$item["Price"]}}</span>
+            <span slot="Price">{{$item["Price"]}}</span>
 
         </product-element>
         <?php
