@@ -13,10 +13,11 @@ import os
 def passGen(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
+base_url = "https://cs2team24.cs2410-web01pvm.aston.ac.uk/"
 def sendEmail(address):
     message =  EmailMessage()
     content = passGen()
-    message.set_content(f"Your new password is: {content}")
+    message.set_content(f"Reset code is: {content} \n Go to {base_url}reset/{content}")
     message['Subject'] = "Reset Password Request"
     message['From'] = "fatherboard321@gmail.com"
     message['To'] = address

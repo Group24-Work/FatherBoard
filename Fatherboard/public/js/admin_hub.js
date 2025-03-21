@@ -264,7 +264,6 @@ function revenueType_change(start_date,end_date)
           dict[category] = 0; 
         });
     
-        dict["CPU"] = 350;
         x.forEach(element => {
           console.log("Processing element:", element);
     
