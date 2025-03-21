@@ -40,5 +40,10 @@ fetch(reset_url, {
         "X-CSRF-TOKEN" : csrf_val
     },
     body: fd
+}).then(function (x)
+{
+    document.location.href = "/login"
+
 })
+
 }
