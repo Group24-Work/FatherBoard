@@ -7,6 +7,26 @@
 
     <x-header></x-header>
 
+    
+    <div id="return_container">
+
+        <a href="/settings#!history">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-2 -2 24 24" stroke=currentColor>
+        
+        <g transform="scale(-1,1) translate(-20,0)">
+        
+        <path d="M10 20A10 10 0 1 0 0 10a10 10 0 0 0 10 10zM8.711 4.3l5.7 5.766L8.7 15.711l-1.4-1.422 4.289-4.242-4.3-4.347z"/>
+        
+        </g>
+        
+        </svg>
+        
+        </a>
+        
+    </div>
+
+    
     @if ($orders->order_status === 'Pending')
         <a href="{{ route('order.return', $orders) }}" class="btn btn-danger">
             Return Order
