@@ -19,6 +19,8 @@ FatherBoard has implemented a Jenkins pipeline system to allow for automatic upd
 FatherBoard allows for admins to send email replies to users that have used the "Contact Us" feature by clicking the "New Message" button. After clicking submit, the message is automatically sent to the original users email inbox.
 This feature uses Googles SMTP server and also allows for users to request an email to reset their password if they have forgotten it.
 
+FatherBoard also offers user returns if you are unsatisfied with your product.
+
 # Who to contact
 FatherBoard is currently maintained by Group 24.
 Any questions or queries can be sent using the 'Contact us' form on the FatherBoard website, or directed to any contributor.
