@@ -24,7 +24,8 @@
     <section class="top-product">
         <div class="top-product-content">
         <h1 id=topTitle>Our Top Product!</h1>
-            <img src="images/product_images/1.jpg" alt="RTX 4060">
+
+            <img src="{{ asset('images/product_images/' . $topproduct->id . '.jpg') }}" alt="{{$topproduct->Title}}">
             <div class="top-product-details">
                 <h3>{{ implode(' ', array_slice(explode(' ', $topproduct->Title), 0, 7)) }}</h3>
                 <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$topproduct-> id}}" class="shop-now">Shop Now</a>

@@ -52,7 +52,7 @@ class HomeController extends Controller
 
 
     public function returnTopProduct() {
-        $topreview = Review::orderby("rating")->first();
+        $topreview = Review::orderby("rating","desc")->first();
 
         if (!$topreview) {
             return null;
