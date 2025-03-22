@@ -392,7 +392,7 @@ ul li ul.dropdown {
 }
 
 .main-nav-list>li>a:hover {
-    background-color: white;
+    background-color: white; 
     color: black;
 }
 

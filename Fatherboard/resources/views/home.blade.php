@@ -11,66 +11,19 @@
 
     <x-header></x-header>
 
-<!-- Banner Section -->
-<section class="banner">
-    <div class="banner-text">
-        <h1>Welcome to FatherBoard</h1>
-    </div>
-</section>
+    <div class="title">
 
-<!-- Category Icons Section -->
-
-
-    <!-- Hot Product Section -->
-    <section class="hot-product">
-        <h2>🔥 Hot Product of the Month</h2>
-        <div class="hot-product-content">
+    <section class="top-product">
+        <div class="top-product-content">
             <img src="images/product_images/1.jpg" alt="RTX 4060">
-            <div class="hot-product-details">
+            <div class="top-product-details">
                 <h3>{{ $topproduct->Title }}</h3>
-                <p>{{ $topproduct->Description }}</p>
-                <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$topproduct-> id}}" class="cta-btn">Shop Now</a>
+                <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$topproduct-> id}}" class="shop-now">Shop Now</a>
             </div>
         </div>
-    </section>
-        <!-- Carousel Section -->
-        <section class="carousel">
-        <div class="carousel-container">
-            <div class="carousel-slide">
-                <img src="images/front_images/banner1.jpg" alt="Featured Product 1">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/front_images/banner2.jpg" alt="Featured Product 2">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/front_images/banner3.jpg" alt="Featured Product 3">
-            </div>
-        </div>
-        <button class="carousel-btn prev">❮</button>
-        <button class="carousel-btn next">❯</button>
     </section>
 
-<footer class="main-footer">
-<div class="footer-container">
-    <div class="social-icons">
-        <a href="https://facebook.com" target="_blank">
-            <img src="images/front_images/facebook.png" alt="Facebook">
-        </a>
-        <a href="https://x.com" target="_blank">
-            <img src="images/front_images/twitter.png" alt="Twitter">
-        </a>
-        <a href="https://instagram.com" target="_blank">
-            <img src="images/front_images/instagram.png" alt="Instagram">
-        </a>
-        <a href="https://linkedin.com" target="_blank">
-            <img src="images/front_images/linkedin.png" alt="LinkedIn">
-        </a>
-    </div>
-    <div id="footer-link">
-        <a href="/about">About Us</a>
-    </div>
-    <p>&copy; 2024 FatherBoard. All Rights Reserved.</p>
-</div>
+
 </footer>
 <br>
 </x-lowlayout>
