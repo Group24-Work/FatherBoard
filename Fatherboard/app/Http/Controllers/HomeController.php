@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Review;
 class HomeController extends Controller
 {
-    public static function giveHome()
+    public  function giveHome()
     {
         // if (AuthController::loggedIn())
         // {
@@ -20,7 +20,15 @@ class HomeController extends Controller
         // }
 
         $product = Product::all();
-        return view("home",["data"=>$product]);
+        $topProduct = self::returnTopProduct();
+        if ($topProduct==null)
+        {
+            $topProduct = Product::inRandomOrder()->first();
+
+        }
+        return view('home', ['topproduct' => $topProduct]);
+
+
     }
 
     public function topproduct () {
@@ -37,6 +45,26 @@ class HomeController extends Controller
         }
 
         return view('home', ['topproduct' => $topproduct]);
-  
+        
+       
+
+    }
+
+
+    public function returnTopProduct() {
+        $topreview = Review::orderby("rating")->first();
+
+        if (!$topreview) {
+            return null;
+        }
+
+        $topproduct = Product::find($topreview->product_id);
+        if(!$topproduct) {
+
+            return null;
+        }
+        return $topproduct;
+       
+
     }
 }
