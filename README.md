@@ -7,7 +7,7 @@ Our goal is to provide reasonably priced PC parts to hobbyists, fanatics and pro
 
 As students, we understand the difficulty in finding appropriately priced computer parts, and how these prices create a high barrier to entry. This means that many individuals interesed in PC building, cannot reasonably access the hobby.
 
-We wanted to fix this, and share our enjoyment of PC parts and PC building.
+We wanted to fix this, and share our enjoyment of PC parts and PC building. We hope to help a wide range of people. From students with a tight budget, or parents, requiring guidance on what to gift their tech-interested child.
 
 
 # Some Features:
