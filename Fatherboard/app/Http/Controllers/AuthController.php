@@ -70,7 +70,7 @@ class AuthController extends Controller
             $length = time() + 60*60*24*30;
             if ($permanent == false)
             {
-                session_start();
+                // session_start();  // Laravel already manages sessions
                 $_SESSION["email"] = $username;
                 $_SESSION["password"] = $password;
                 return redirect('home');
@@ -275,6 +275,9 @@ class AuthController extends Controller
         $username = $_SESSION["email"];
         $password = $_SESSION["password"];
         $customer = CustomerInformation::where("Email", $username)->first(); // Fetch customer username from database
+        // dd(CustomerInformation::get(["id","Email", "First Name"])->toArray());
+        // dd($customer["id"]);
+        // dd($customer->id);
 
         if ($customer && Hash::check($password, $customer->Password)) {
             return $customer; // returns customer if username and password matches
