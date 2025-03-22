@@ -59,30 +59,7 @@
         <div id="charts">
             <h2>Welcome Admin</h2>
 
-            <div class="chart_section" id="revenue_section">
-                <button class="week">Week</button>
-                <button class="month">Month</button>
-                <div class="chartContainer" id="revenueContainer">
-                    <canvas class="chart" id="revenue"></canvas>
-                </div>
-            </div>
-
-
-            <div class="chart_section" id="revenueType_section">
-                <button class="week">Week</button>
-                <button class="month">Month</button>
-                <div class="chartContainer" id="revenueTypeContainer">
-                    <canvas class="chart" id="revenueType_chart"></canvas>
-                </div>
-            </div>
-
-            <div class="chart_section" id="registrationType_section">
-                <div class="chartContainer" id="registrationContainer">
-                    <canvas class="chart" id="registration_chart"></canvas>
-                </div>
-            </div>
-        </div>
-
+            
 
         <div id="action_container">
             <div id="current_overview">
