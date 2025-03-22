@@ -7,7 +7,7 @@ Our goal is to provide reasonably priced PC parts to hobbyists, fanatics and pro
 
 As students, we understand the difficulty in finding appropriately priced computer parts, and how these prices create a high barrier to entry. This means that many individuals interesed in PC building, cannot reasonably access the hobby.
 
-We wanted to fix this, and share our enjoyment of PC parts and PC building.
+We wanted to fix this, and share our enjoyment of PC parts and PC building. We hope to help a wide range of people. From students with a tight budget, or parents, requiring guidance on what to gift their tech-interested child.
 
 
 # Some Features:
@@ -17,6 +17,7 @@ The admin page for FatherBoard provides records regarding customer purchases, re
 FatherBoard has implemented a Jenkins pipeline system to allow for automatic updates when any new code is pushed to the main branch, ensuring that the live server is regularly, and reliably, updated.''
 
 FatherBoard allows for admins to send email replies to users that have used the "Contact Us" feature by clicking the "New Message" button. After clicking submit, the message is automatically sent to the original users email inbox.
+This feature uses Googles SMTP server and also allows for users to request an email to reset their password if they have forgotten it.
 
 # Who to contact
 FatherBoard is currently maintained by Group 24.
