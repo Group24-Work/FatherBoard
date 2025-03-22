@@ -53,6 +53,9 @@ Moosa Wahab - https://github.com/Moosa12123 <br/>
 ## Checkout Page
 ![Checkout Page](https://github.com/Group24-Work/FatherBoard/blob/main/Fatherboard/read-me-images/Checkout.png?raw=true)
 
+## Working Messages Feature
+![An image showing a message from a user, sent using the contact us form.](https://github.com/Group24-Work/FatherBoard/blob/7db9e2d728bb1e5644e94d50c6675b83899e8a01/Fatherboard/read-me-images/Messages.png?raw=true)
+
 ## Questionnaire Page
 ![Questionnaire Page](https://github.com/Group24-Work/FatherBoard/blob/d3d6c88ab82c14143664019411cf77cfebaa757f/Fatherboard/read-me-images/questionnaire.png?raw=true)
 
