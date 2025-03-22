@@ -21,7 +21,13 @@ class HomeController extends Controller
 
         $product = Product::all();
         $topProduct = self::returnTopProduct();
+        if ($topProduct==null)
+        {
+            $topProduct = Product::inRandomOrder()->first();
+
+        }
         return view('home', ['topproduct' => $topProduct]);
+
 
     }
 
@@ -49,13 +55,13 @@ class HomeController extends Controller
         $topreview = Review::orderby("rating")->first();
 
         if (!$topreview) {
-            return "No reviews found.";
+            return null;
         }
 
         $topproduct = Product::find($topreview->product_id);
         if(!$topproduct) {
 
-            return "No products or reviews found.";
+            return null;
         }
         return $topproduct;
        
