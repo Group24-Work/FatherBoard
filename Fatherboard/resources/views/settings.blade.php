@@ -279,7 +279,7 @@ if (isset($messages)) {
                     </button>
                 </li>
                 <li>
-                    <button class="option" id="logout_button">Logout
+                    <button class="option" id="logout_btn">Logout
                         <svg class="option_icon" fill="none" height="24" viewBox="0 0 24 24" width="24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path

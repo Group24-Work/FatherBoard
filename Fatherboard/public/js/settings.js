@@ -83,6 +83,7 @@ window.addEventListener("DOMContentLoaded",()=>
 
 
     logout_button = document.getElementById("logout_button");
+    logout_button2 = document.getElementById("logout_btn")
 
 
     csrf = document.getElementsByName("csrf-token")[0];
@@ -126,6 +127,7 @@ window.addEventListener("DOMContentLoaded",()=>
         admin_index_button.addEventListener("click",()=>window.location.href = "/admin");
     }
     logout_button.addEventListener("click",logOut);
+    logout_button2.addEventListener("click",logOut);
     update_personal_submit.addEventListener("click", updateSubmit);
     address_button.addEventListener("click", addressClicked);
     billing_button.addEventListener("click",billingClicked);
