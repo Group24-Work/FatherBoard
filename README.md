@@ -21,9 +21,6 @@ This feature uses Googles SMTP server and also allows for users to request an em
 
 FatherBoard also offers user returns if you are unsatisfied with your product.
 
-# Who to contact
-FatherBoard is currently maintained by Group 24.
-Any questions or queries can be sent using the 'Contact us' form on the FatherBoard website, or directed to any contributor.
 
 # Live Access
 You can access FatherBoard using this link: https://cs2team24.cs2410-web01pvm.aston.ac.uk
@@ -31,7 +28,7 @@ You can access FatherBoard using this link: https://cs2team24.cs2410-web01pvm.as
 # Contributions
 Currently, FatherBoard does not accept outside contributions.
 
-# Who to contact and Authors
+# Who to Contact and Authors
 FatherBoard is currently maintained by Group 24.
 Any questions or queries can be sent using the 'Contact us' form on the FatherBoard website, or directed to any contributor.
 Contributors can be found below.
