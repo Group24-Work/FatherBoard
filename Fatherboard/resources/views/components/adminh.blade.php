@@ -20,7 +20,7 @@
                                 <li>
                                     <a href="/accounts">Account Manage</a>
                                     <a href="/tags">Tag Manage</a>
-                                    <a href="/product_manage">Product Manage</a>
+                                    <a href="/admin/product_manage">Product Manage</a>
                                     <a href="/messages">Messages</a>
                                     <a href="/admin/products">Product Manage (Interactive)</a>
                                 </li>
