@@ -21,11 +21,12 @@ if (isset($items) && count($items) > 0) {
             <br>
             <div class="single_order">
                 <div class="single_order_content">
-                    <h2>Order</h2>
+
                     <h2 class="order_price">£ {{$order["price"]}}</h2>
                     <h2>Order Number: {{$order["order_number"]}}</h2>
 
                     <br>
+
                     <?php
         foreach ($order["elements"] as $info) {
                 ?>
@@ -51,7 +52,9 @@ if (isset($items) && count($items) > 0) {
                 </div>
 
                 <div class="return_order">
-                    <a href="{{ route('order.return', $i) }}" title="Return Product"><img src="https://www.freeiconspng.com/uploads/return-button-png-31.png" width="350" alt="Png Format Images Of Return Button" /></a>                    </a>
+                    <a href="{{ route('order.return', $i) }}" title="Return Product"><img
+                            src="{{ asset('images/setting_images/return-svgrepo-com.svg') }}" width="350"
+                            alt="Return Button" /></a> </a>
                 </div>
             </div>
             <?php
