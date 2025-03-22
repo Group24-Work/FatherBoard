@@ -24,6 +24,10 @@ class ProductController extends Controller
          return $filtered_details;
      }
 
+     public function giveAllProductType()
+     {
+         return Product::all()->pluck("Type")->unique();
+     }
 
 
     public function index(Request $rq)
@@ -313,6 +317,12 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+    public function updateStock(int $id, Request $req)
+    {
+        $newStock = $req->input("new_stock");
+        Product::find($id)->stock()->first()->update(["Stock"=>$newStock]);
+    }
     public function edit(Product $product)
     {
         return view('product', ["product"=>$product]);

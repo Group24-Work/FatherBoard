@@ -16,6 +16,7 @@ use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TagController;
 
 
@@ -70,7 +71,7 @@ Route::post("/create/product", function ()
 
 // Settings-related
 
-Route::get('/settings', [SettingController::class, 'pageSettings']);
+Route::get('/settings', [SettingController::class, 'pageSettings'])->name("settings");
 Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
 Route::post('/update/personal', [SettingController::class, 'updatePersonal']);
 
@@ -149,6 +150,12 @@ Route::post("/product/add_tags/{id}", [ProductController::class, "addTag"]);
 
 Route::post("/product/remove_tag/{id}", [ProductController::class, "removeTag"]);
 
+Route::post("/product/update-stock/{id}", [ProductController::class, "updateStock"]);
+
+Route::post("/product/all-type", [ProductController::class, "giveAllProductType"]);
+
+Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
+
 // Reports functionality
 
 Route::post("/admin/viewRevenue", [AdminController::class, "giveRevenue"]);
@@ -176,12 +183,12 @@ Route::post(uri: "/admin/registeredUsers", action: [AdminController::class, "giv
 
 Route::post(uri: "/admin/registeredUsers_time", action: [AdminController::class, "giveRegisteredUsers_time"]);
 
-
+  
 Route::post("/admin/findUser", [AdminController::class, "findUser"]);
 
 // Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
 
-Route::get('/admin', [AdminController::class, "giveAdminHub"]);
+Route::get('/admin', [AdminController::class, "giveAdminHub"])->name("adminHub");
 
 
 // Tag
@@ -198,9 +205,17 @@ Route::delete("/tags/{id}", [TagController::class, "destroy"]);
 
 // Messages
 
-Route::get("/messages", [ContactController::class, "indexPage"]);
+Route::get("/messages", [ContactController::class, "indexPage"])->name("messages");
 
 Route::delete("/messages/{id}", [ContactController::class, "destroy"]);
 
+Route::post("/message/{id}", [ContactController::class, "respond"]);
 
-Route::get("/admin/product_manage", [AdminController::class, "giveProducts"])->name('tagindex');
+
+// Accounts
+
+Route::get("/accounts", [AuthController::class, "index"])->name("accounts");
+
+Route::post("/account/getOrders/{id}", [CustomerController::class, "giveUserOrders"]);
+
+Route::post("/account/destroy/{id}", [CustomerController::class, "destroy"]);

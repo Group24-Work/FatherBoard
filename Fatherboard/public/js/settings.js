@@ -92,7 +92,7 @@ window.addEventListener("DOMContentLoaded",()=>
     }
     if (admin_index_button)
     {
-        admin_index_button.addEventListener("click",()=>window.location.href = "/admin/products");
+        admin_index_button.addEventListener("click",()=>window.location.href = "/admin");
     }
     logout_button.addEventListener("click",logOut);
     update_personal_submit.addEventListener("click", updateSubmit);

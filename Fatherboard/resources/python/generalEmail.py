@@ -10,16 +10,17 @@ import os
 #env_path = "/home/polyfilter/Uni-Code/FatherBoard/Fatherboard/.env"
 #load_dotenv(env_path)
 
-def passGen(size=6, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
 
-def sendEmail(address):
+
+def sendEmail(address, subject, content):
     message =  EmailMessage()
-    content = passGen()
-    message.set_content(f"Your new password is: {content}")
-    message['Subject'] = "Reset Password Request"
+
+    message.set_content(f"{content}")
+    message['Subject'] = subject
     message['From'] = "fatherboard321@gmail.com"
     message['To'] = address
+
+
     smtp_server= smtplib.SMTP('smtp.gmail.com', 587)
     smtp_server.ehlo()
     smtp_server.starttls()
@@ -39,4 +40,7 @@ if __name__=="__main__":
     #password = os.getenv("EMAIL_PASS")
  
     password = "lfuj hhbm vura eewj"
-    print(sendEmail(sys.argv[1]), end="")
+    if (len(sys.argv) >=3):
+        print(sendEmail(sys.argv[1], sys.argv[2], sys.argv[3]), end="")
+
+
