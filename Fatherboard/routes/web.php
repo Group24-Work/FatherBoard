@@ -51,6 +51,7 @@ Route::get("/reset/{id}", [AuthController::class, "giveReset"]);
 Route::post("/reset", [AuthController::class, "resetPassword"]);
 // Home System
 Route::get('/home', [HomeController::class, "giveHome"])->name("home");
+Route::get('/home',[HomeController::class, "topproduct"]);
 
 
 
