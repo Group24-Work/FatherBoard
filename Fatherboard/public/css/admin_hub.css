@@ -9,9 +9,16 @@
 
 .chartContainer {
     height: 300px;
-    width: 500px;
+    width: 750px;
     background-color: white;
     
+}
+
+.charts{
+    background-color: white;
+    height: 30rem;
+    width: 40rem;
+    margin: 2rem 0;
 }
 
 main
@@ -21,9 +28,9 @@ main
 }
 .chart_section
 {
-    margin: 5rem 0;
-    height:25rem;
-    width:25rem;
+    margin: 2rem 0;
+    height:30rem;
+    width:40rem;
 }
 
 #exit a
