@@ -26,6 +26,7 @@ class SettingController extends Controller
             $addr = $user->address;
             $orders = [];
 
+
             $adminStatus = $user["Admin"];
             // dd($user);
 
@@ -54,7 +55,7 @@ class SettingController extends Controller
 
                     $details = $x->order_details->all();
 
-                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[]];
+                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[], "order_number"=>$x->order_number];
 
                     foreach ($details as $x)
                     {
@@ -86,7 +87,7 @@ class SettingController extends Controller
                     )->first();
 
                     $details = $x->order_details->all();
-                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[]];
+                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[],"order_number"=>$x->order_number];
 
                     foreach ($details as $x)
                     {
@@ -99,7 +100,7 @@ class SettingController extends Controller
 
 
                 }
-                return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders]);
+                return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders,]);
             }
 
         }
