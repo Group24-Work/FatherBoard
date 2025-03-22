@@ -14,11 +14,19 @@
     
 }
 
+.chart{
+    width: 500px;
+}
+
 .charts{
     background-color: white;
     height: 30rem;
     width: 40rem;
     margin: 2rem 0;
+}
+
+#revenueTypeContainer{
+    width: 600px;
 }
 
 main
