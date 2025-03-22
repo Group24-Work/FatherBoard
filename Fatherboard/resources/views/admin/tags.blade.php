@@ -50,6 +50,7 @@
                     </div>
         </div>
         </div>
+        <h1 id="tagTitle">Tags</h1>
         <?php
 foreach ($tags as $tag) {
         ?>

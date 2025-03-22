@@ -62,6 +62,10 @@
 
 }
 
+#tagTitle{
+    padding-top: 40px;
+}
+
 .tagElement {
     text-align: center;
     align-items: center;
