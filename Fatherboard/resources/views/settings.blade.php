@@ -76,24 +76,69 @@ if (isset($items) && count($items) > 0) {
                 margin: 0;
                 padding: 0;
             }
+            button
+            {
+                border:none;
+                position:relative;
+                width:50%;
+                font-size: 100%;
+                transform:translateY(50%);
+                /* padding: 10px 20px; */
+                background-color: lightcoral;
+                height:50%;
+
+                font-size: 24px; /* Adjust this value to make the minus symbol larger */
+                 padding: 10px; 
+                
+            }
+            button::before {
+                content: "\2716";  /* Unicode for the ✘ symbol */
+                font-size: 32px;  /* Make the symbol larger */
+                color: red;  /* Optional: Change color of the symbol */
+                position: absolute;
+                /* left: 50%;;  */
+                 top: 50%; 
+                 transform: translate(-50%, -50%);  /* Center vertically and horizontally */
+            }
+
+            button:hover
+            {
+                color:darkmagenta;
+            }
+            .address_options
+            {
+                width:20%;
+
+            }
+            .address_item
+            {
+                display:flex;
+                justify-content: space-between;
+                
+            }
         </style>
 
+        <div class="address_item">
+        <div class="address_content">
+            <p id="Country">
+                <slot name="Country">Unknown Country</slot>
+            </p>
+            <p id="City">
+                <slot name="City">Unknown City</slot>
+            </p>
+            <p id="AddressLine">
+                <slot name="AddressLine">Unknown Address</slot>
+            </p>
+            <p id="PostCode">
+                <slot name="PostCode">Unknown PostCode</slot>
+            </p>
+        </div>
 
-        <p id="Country">
-            <slot name="Country">Unknown Country</slot>
-        </p>
-        <p id="City">
-            <slot name="City">Unknown City</slot>
-        </p>
-        <p id="AddressLine">
-            <slot name="AddressLine">Unknown Address</slot>
-        </p>
-        <p id="PostCode">
-            <slot name="PostCode">Unknown PostCode</slot>
-        </p>
+        <div class="address_options">
+            <button name="remove-item"></button>
+        </div>
+    </div>
 
-
-        <button name="remove-item">-</button>
     </template>
 
 
@@ -325,11 +370,12 @@ if ($user["Admin"]) {
 foreach ($addr as $single) {
             ?>
             <address-element>
-                <p name="address_id" value="{{$single["id"]}}" hidden>{{$single["id"]}}</p>
-                <p slot="Country">{{$single["Country"]}}</p>
-                <p slot="City">{{$single["City"]}}</p>
-                <p slot="PostCode">{{$single["PostCode"]}}</p>
-                <p slot="AddressLine">{{$single["Address Line"]}}</p>
+                    <p name="address_id" value="{{$single["id"]}}" hidden>{{$single["id"]}}</p>
+                    <p slot="Country">{{$single["Country"]}}</p>
+                    <p slot="City">{{$single["City"]}}</p>
+                    <p slot="PostCode">{{$single["PostCode"]}}</p>
+                    <p slot="AddressLine">{{$single["Address Line"]}}</p>
+                
             </address-element>
             <?php
 }
