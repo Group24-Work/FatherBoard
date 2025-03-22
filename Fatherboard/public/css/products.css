@@ -19,9 +19,9 @@
     display: flex;
     padding-left: 5rem;
     overflow-x: hidden;
-    /* Restrict horizontal overflow */
+    /* Restrict horizontal overflow /
     flex-wrap: wrap;
-    /* Allow items to wrap if needed */
+    / Allow items to wrap if needed */
 }
 
 
@@ -114,7 +114,6 @@ img:not(#logo) {
     background-color: rgb(158, 157, 157);
 
 }
-
 a:hover{
     cursor: pointer;
 }
@@ -179,6 +178,16 @@ h2 {
 #addProductTag:hover {
     background-color: rgb(78, 1, 78);
 }
+
+.price {
+    color: black;
+}
+
+
+.checked{
+    color:gold;
+}
+
 
 .basketButton{
     margin-top: 2rem;

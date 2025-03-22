@@ -4,6 +4,7 @@
         <script src={{ asset('js/products.js') }}></script>
         <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
         <title>Products</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--https://www.w3schools.com/HOWTO/howto_css_star_rating.asp-->
     </x-slot:head>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -32,8 +33,8 @@
 
             </b>
         </p>
-
-        <span><slot class="basketButton" name="basketButton">Add to Basket</slot></span>   
+        <span><slot class="reviews" name="reviews"></slot></span>
+        <span><slot class="basketButton" name="basketButton">Add to Basket</slot></span>
     </template>
     <?php
 
@@ -128,6 +129,17 @@
         <?php
 if (count($data) > 0) {
     foreach ($data as $item) {
+        $rating = DB::table("reviews")->where("product_id",$item["ID"])->select(DB::raw("avg(rating) as avg_rating"))->first();
+        $numOfStars = App\Utility\Utility::numberClosest($rating->avg_rating ?? 0, [1,2,3,4,5]);
+
+        $starDisplay="";
+        for ($i = 1; $i <=5; $i++){
+            if ($i<=$numOfStars){ // using a different star to product page, as that uses images - harder to format being smaller (also can display missing stars)
+                $starDisplay .= '<span class="fa fa-star checked"></span>';
+            } else{
+                $starDisplay .= '<span class="fa fa-star"></span>';
+            }
+        }
             ?>
 
 
@@ -144,6 +156,7 @@ if (count($data) > 0) {
                 <input type="hidden" name="product_id" value="{{ $item['ID'] }}">
                <button type="submit" class="basketButton" id="basket_button">Add to Basket</button></span>
             </form>
+            <span slot="reviews"><?php echo $starDisplay; ?></span>
 
         </product-element>
         <?php
