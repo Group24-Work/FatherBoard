@@ -32,6 +32,7 @@
         </a>
     </div>
     <div id="tag-menu">
+    <div class="wrapper">
         <h2>Tag Management</h2>
 
         <meta id="csrf_token" content="{{csrf_token()}}">
@@ -45,6 +46,7 @@
                         <input type="text" id="inp_tag_modify_text" name="TagModifyName"></input>
 
                     </div>
+</div>
         </div>
         <?php
 foreach ($tags as $tag) {
