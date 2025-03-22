@@ -14,7 +14,9 @@ We wanted to fix this, and share our enjoyment of PC parts and PC building.
 FatherBoard features a state-of-the-art questionnaire feature, which provides users with guidance on what PC parts would be the best for their build. This aims to lower the barrier of entry to PC building, and make it more accessible. 
 Consumers can contact the site admins by using the built in contact form. This may be regarding general questions, or site issues.
 The admin page for FatherBoard provides records regarding customer purchases, registered users and items in stock, allowing the admins to easily manage products and gain insights to customer interests.
-FatherBoard has implemented a Jenkins pipeline system to allow for automatic updates when any new code is pushed to the main branch, ensuring that the live server is regularly, and reliably, updated.
+FatherBoard has implemented a Jenkins pipeline system to allow for automatic updates when any new code is pushed to the main branch, ensuring that the live server is regularly, and reliably, updated.''
+
+FatherBoard allows for admins to send email replies to users that have used the "Contact Us" feature by clicking the "New Message" button. After clicking submit, the message is automatically sent to the original users email inbox.
 
 # Who to contact
 FatherBoard is currently maintained by Group 24.
