@@ -160,7 +160,7 @@ if (isset($messages)) {
 }
         ?>
     </div>
-    <div id="update_personal" hidden>
+    <div id="update_personal">
         <form action="/update/personal" method="POST" id="update_personal_form">
             <meta name="type" content="">
             <input type="text" name="personal_text" placeholder="change" id="personal_text"></input>

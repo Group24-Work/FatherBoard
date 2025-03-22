@@ -238,7 +238,11 @@ customElements.define(
 
 function addressClicked()
 {
+    // Pre-button setup
+
     console.log("Address clicked");
+
+    clearForms();
 
     const nextURL = '/settings#!address';
     const nextTitle = 'Address';
@@ -261,7 +265,12 @@ function addressClicked()
 
 function billingClicked()
 {
+    // Pre-button setup
+
     moveCurrentBar(2);
+
+    clearForms()
+
 
     const nextURL = '/settings#!billing';
     const nextTitle = 'Address';
@@ -274,8 +283,11 @@ function billingClicked()
 }
 function historyClicked()
 {
-
+    // Pre-button setup
     moveCurrentBar(3);
+
+
+    clearForms()
 
     const nextURL = '/settings#!history';
     const nextTitle = 'History';
@@ -295,6 +307,10 @@ function historyClicked()
 }
 function personalClicked()
 {
+    // Pre-button setup
+
+    clearForms()
+
     moveCurrentBar(0);
 
     const nextURL = '/settings#!personal';
@@ -669,6 +685,19 @@ function updateSubmit(ev)
         console.log(err)
     })
 }
+
+function clearForms()
+{
+    let form = document.getElementById("update_personal_form");
+
+    form.style.display = "none";
+
+
+    let address_box = document.getElementById("add_address_box")
+
+    address_box.setAttribute("hidden", "");
+}
+
 
 function toggleAddPersonalUI()
 {
