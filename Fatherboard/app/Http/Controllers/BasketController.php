@@ -20,13 +20,17 @@ use Illuminate\Support\Facades\Bus;
             $quantity = $request->input('quantity', 1);
 
             $customerId = AuthController::loggedIn();
-
+            // dd(CustomerInformation::all()->pluck("Email"));
+            // dd(CustomerInformation::get(["id","Email", "First Name"])->toArray());
+            // dd(Product::all());
+            // dd($customerId);
+            // dd($customerId);
             if ($customerId) {
                $basket = Basket::firstOrCreate([
-                    'customer_information_id' => $customerId["id"],
+                    'customer_information_id' => $customerId->id
                      ]);
 
-            $id = $customerId["id"];
+            $id = $customerId->id;
 
             BasketItem::updateOrCreate([
                 'customer_information_id'=>$id,
