@@ -17,8 +17,10 @@ use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ReturnedOrderController;
+use App\Models\Questionnaire;
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 // Route::get('/',function(){
@@ -111,6 +113,7 @@ Route::get('/questionnaire', function()
     return view('questionnaire');
 });
 
+Route::get("/questionnaire/filter", [QuestionnaireController::class, "filter"])->name("filter");
 Route::get('/questionnaire', [TagController::class, 'questionnaire'])->name('questionnaire');
 
 //basket side back-end
