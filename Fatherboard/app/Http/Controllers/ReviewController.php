@@ -50,6 +50,22 @@ public function create()
         return json_encode($data);
     }
 
+    public static function showAll($id)
+    {
+        $info = Review::where("product_id",$id)->all();
+
+        return json_encode($info);
+    }
+
+    public static function showAverage($id)
+    {
+
+        $avg = Review::where("product_id",$id)->selectRaw("SELECT AVG(rating) as rating")->first();
+
+        return json_encode($avg);
+    }
+
+
     public static function add()
     {
         $rating = request("rating");

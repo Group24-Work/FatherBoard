@@ -32,6 +32,10 @@ Route::get('/product/{id}/review', [ReviewController::class,'showReview'])->name
 
 Route::post("/add/review", [ReviewController::class, 'add']);
 
+Route::post("/reviews/{id}", [ReviewController::class, "showAll"]);
+
+Route::post("/reviews/average/{id}", [ReviewController::class, "showAverage"]);
+
 // Login / Authentication System
 Route::post('/submit-review',[ReviewController::class,'store'])->name('submitReview');
 Route::post('/_login', [AuthController::class, 'form_login']);

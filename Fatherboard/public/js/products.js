@@ -97,6 +97,47 @@ function showProduct(info)
     product_element.setAttribute("class","ProductItem")
 
 
+    numArr = [1,2,3,4,5]
+
+    let avg_review =  elem["avgReview"]
+    console.log("AVERAGE REVIEW")
+    console.log(avg_review);
+
+    let newArr = []
+    for (let i  =0; i < numArr.length; i++)
+    {
+      newArr.push(Math.abs(avg_review-numArr[i]));
+    }
+
+    console.log("NEw Array")
+    console.log(newArr);
+
+    let closestNum = Math.min(...newArr);
+
+    let ind = newArr.indexOf(closestNum);
+
+    console.log("index")
+    console.log(ind);
+
+    reviewNum = numArr[ind];
+
+    let starHTML = ``;
+
+    for (let x =0; x< 5; x++)
+    {
+      console.log("hello")
+      console.log(reviewNum);
+      if (x < reviewNum)
+      {
+        starHTML += '<span class="fa fa-star checked"></span>';
+      }
+      else
+      {
+        starHTML += '<span class="fa fa-star"></span>';
+      }
+    }
+    console.log(starHTML)
+
     let id_text = document.createElement("p")
     id_text.hidden = true;
     id_text.textContent = elem["ID"]
@@ -124,13 +165,32 @@ function showProduct(info)
     price_text.setAttribute("slot","Price");
     price_text.textContent = elem["Price"];
 
+    
+    const button = document.createElement("span");
+
+    button.setAttribute("slot","basketButton")
+      // button.
+    // <button type="submit" class="basketButton" id="basket_button">Add to Basket</button></span>
+
+    const reviews = document.createElement("div")
+    reviews.setAttribute("slot", "reviews");
+
+    reviews.innerHTML = starHTML;
+    
+
     product_element.appendChild(id_text);
       product_element.appendChild(price_text)
     product_element.appendChild(title_text);
     product_element.appendChild(description_text);
     product_element.appendChild(manufacturer_text);
       product_element.appendChild(image_content)
-    
+    product_element.appendChild(reviews);
+      button.innerHTML = `<form action="{{ route('basketAdd') }}" method="POST">
+                <input type="hidden" name="product_id" value="${elem["id"]}">
+               <button type="submit" class="basketButton" id="basket_button">Add to Basket</button>
+            </form>`
+    // button.insertAdjacentHTML("beforeend", `<button type="submit" class="basketButton" id="basket_button">Add to Basket</button></span>`);
+    product_element.appendChild(button)
     product_container.append(product_element);
 
     }
