@@ -5,7 +5,6 @@
         <title>FatherBoard - Homepage</title>
         <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
         <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
-        <script src="{{asset('js/carousel.js')}}" defer></script> <!-- Link for homepage-specific styles -->
     </x-slot:head>
 
 
