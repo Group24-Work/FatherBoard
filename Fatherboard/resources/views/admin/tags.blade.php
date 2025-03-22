@@ -32,20 +32,25 @@
         </a>
     </div>
     <div id="tag-menu">
+    <div class="wrapper">
         <h2>Tag Management</h2>
+        <p>To rename a tag, type the new name into the modify tag name box, and then click on the edit button of the tag!</p>
 
         <meta id="csrf_token" content="{{csrf_token()}}">
         <div>
             <h3>Create a tag<h3>
-                    <input type="text" id="inp_tag_text" name="TagName"></input>
+                    <input type="text" id="inp_tag_text" name="TagName"></input>                    
+                    <div class="btn-wrapper">
                     <button id="create_tag">Create Tag</button>
-
+                    </div>
                     <div>
                         <h3>Modify Tag Name</h3>
                         <input type="text" id="inp_tag_modify_text" name="TagModifyName"></input>
 
                     </div>
         </div>
+        </div>
+        <h1 id="tagTitle">Tags</h1>
         <?php
 foreach ($tags as $tag) {
         ?>
@@ -102,6 +107,7 @@ foreach ($tags as $tag) {
 
             </div>
         </div>
+</div>
         <?php
 }
     ?>

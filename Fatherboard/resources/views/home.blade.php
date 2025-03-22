@@ -5,7 +5,6 @@
         <title>FatherBoard - Homepage</title>
         <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
         <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
-        <script src="{{asset('js/carousel.js')}}" defer></script> <!-- Link for homepage-specific styles -->
     </x-slot:head>
 
 
@@ -24,7 +23,8 @@
     <section class="top-product">
         <div class="top-product-content">
         <h1 id=topTitle>Our Top Product!</h1>
-            <img src="images/product_images/1.jpg" alt="RTX 4060">
+
+            <img src="{{ asset('images/product_images/' . $topproduct->id . '.jpg') }}" alt="{{$topproduct->Title}}">
             <div class="top-product-details">
                 <h3>{{ implode(' ', array_slice(explode(' ', $topproduct->Title), 0, 7)) }}</h3>
                 <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$topproduct-> id}}" class="shop-now">Shop Now</a>

@@ -58,8 +58,9 @@
     <main>
         <div id="charts">
             <h2>Welcome Admin</h2>
-
+            
             <div class="chart_section" id="revenue_section">
+            <p id="chartStitle"><b>Revenue Chart</b></p>
                 <button class="week">Week</button>
                 <button class="month">Month</button>
                 <div class="chartContainer" id="revenueContainer">
@@ -69,6 +70,7 @@
 
 
             <div class="chart_section" id="revenueType_section">
+            <p id="chartStitle"><b>Revenue Type Chart</b></p>
                 <button class="week">Week</button>
                 <button class="month">Month</button>
                 <div class="chartContainer" id="revenueTypeContainer">
@@ -77,6 +79,8 @@
             </div>
 
             <div class="chart_section" id="registrationType_section">
+            <p id="chartStitle"><b>Registration Chart</b></p>
+
                 <div class="chartContainer" id="registrationContainer">
                     <canvas class="chart" id="registration_chart"></canvas>
                 </div>

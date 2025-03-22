@@ -51,6 +51,7 @@
                 <div class="item_order">
                     <img src="{{ asset('images/product_images/' . $x['image'] . '.jpg') }}" />
                     <h2>{{ $x['Title'] }}</h2>
+                    <h2>Order Number: {{$orders->order_number}}</h2>
                 </div>
             @endforeach
         </div>

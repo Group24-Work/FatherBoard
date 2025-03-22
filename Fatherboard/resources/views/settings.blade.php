@@ -23,6 +23,7 @@ if (isset($items) && count($items) > 0) {
                 <div class="single_order_content">
                     <h2>Order</h2>
                     <h2 class="order_price">£ {{$order["price"]}}</h2>
+                    <h2>Order Number: {{$order["order_number"]}}</h2>
 
                     <br>
                     <?php
@@ -279,7 +280,7 @@ if (isset($messages)) {
                     </button>
                 </li>
                 <li>
-                    <button class="option" id="logout_button">Logout
+                    <button class="option" id="logout_btn">Logout
                         <svg class="option_icon" fill="none" height="24" viewBox="0 0 24 24" width="24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
