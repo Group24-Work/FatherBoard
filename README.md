@@ -31,12 +31,12 @@ FatherBoard is currently maintained by Group 24.
 Any questions or queries can be sent using the 'Contact us' form on the FatherBoard website, or directed to any contributor.
 Contributors can be found below.
 
-Lewis Forster - https://github.com/LewisForster - 240391579@gmail.com
-Mohammed Ridwan - https://github.com/sylindrical
-Rohan Mistry - https://github.com/romistry19
-(Not Semester 2) - Benjamin Lee- https://github.com/Airnyan
-Muhammad Ahsen Sajid -https://github.com/Ahsen-afk
-Hamadjoda Bala - https://github.com/balatinho
-Sameer Mahmood - https://github.com/SaMEer27-10
-Diljot Singh - https://github.com/Diljxt
-Moosa Wahab - https://github.com/Moosa12123
+Lewis Forster - https://github.com/LewisForster - 240391579@gmail.com <br/>
+Mohammed Ridwan - https://github.com/sylindrical <br/>
+Rohan Mistry - https://github.com/romistry19 <br/>
+(Not Semester 2) - Benjamin Lee- https://github.com/Airnyan <br/>
+Muhammad Ahsen Sajid -https://github.com/Ahsen-afk <br/>
+Hamadjoda Bala - https://github.com/balatinho <br/>
+Sameer Mahmood - https://github.com/SaMEer27-10 <br/>
+Diljot Singh - https://github.com/Diljxt <br/>
+Moosa Wahab - https://github.com/Moosa12123 <br/>
