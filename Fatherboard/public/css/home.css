@@ -62,7 +62,7 @@ body {
     display: flex;
     flex-direction: column;
     z-index: 1;
-    background-color: white;
+
 }
 
 .homeText{
@@ -72,7 +72,7 @@ body {
 
 .top-product{
     margin-top: 0;
-    background-color: white;
+
 }
 
 .homeSubtitle{
