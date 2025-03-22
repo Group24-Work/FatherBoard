@@ -40,3 +40,19 @@ Hamadjoda Bala - https://github.com/balatinho <br/>
 Sameer Mahmood - https://github.com/SaMEer27-10 <br/>
 Diljot Singh - https://github.com/Diljxt <br/>
 Moosa Wahab - https://github.com/Moosa12123 <br/>
+
+
+# Screenshots
+
+## Products Page
+![Products Page](https://github.com/Group24-Work/FatherBoard/blob/main/Fatherboard/read-me-images/Products.png?raw=true)
+
+## Basket Page
+![Basket Page](https://github.com/Group24-Work/FatherBoard/blob/main/Fatherboard/read-me-images/Basket.png?raw=true)
+
+## Checkout Page
+![Checkout Page](https://github.com/Group24-Work/FatherBoard/blob/main/Fatherboard/read-me-images/Checkout.png?raw=true)
+
+## Admin Hub Graphs
+![Admin Hub Revenue Graph](https://github.com/Group24-Work/FatherBoard/blob/6421faaf481d570dccc8ec9a2093d703865cc3d1/Fatherboard/read-me-images/Admin1.png?raw=true)
+![Admin Hub Revenue by Type and User Registration Graph](https://github.com/Group24-Work/FatherBoard/blob/6421faaf481d570dccc8ec9a2093d703865cc3d1/Fatherboard/read-me-images/Admin2.png?raw=true)
