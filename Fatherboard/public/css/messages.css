@@ -71,6 +71,7 @@ textarea
     flex-direction: row;
     border: 1px solid black;
     border-radius: 0.4rem;
+    background-color: white;
 }
 
 .message p
