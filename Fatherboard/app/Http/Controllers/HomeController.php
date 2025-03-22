@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Review;
 class HomeController extends Controller
 {
-    public static function giveHome()
+    public  function giveHome()
     {
         // if (AuthController::loggedIn())
         // {
@@ -19,6 +20,45 @@ class HomeController extends Controller
         // }
 
         $product = Product::all();
-        return view("home",["data"=>$product]);
+        $topProduct = self::returnTopProduct();
+        return view('home', ['topproduct' => $topProduct]);
+
+    }
+
+    public function topproduct () {
+        $topreview = Review::orderby("rating","desc")->first();
+
+        if (!$topreview) {
+            return "No reviews found.";
+        }
+
+        $topproduct = Product::find($topreview->product_id);
+        if(!$topproduct) {
+
+            return "No products or reviews found.";
+        }
+
+        return view('home', ['topproduct' => $topproduct]);
+        
+       
+
+    }
+
+
+    public function returnTopProduct() {
+        $topreview = Review::orderby("rating")->first();
+
+        if (!$topreview) {
+            return "No reviews found.";
+        }
+
+        $topproduct = Product::find($topreview->product_id);
+        if(!$topproduct) {
+
+            return "No products or reviews found.";
+        }
+        return $topproduct;
+       
+
     }
 }

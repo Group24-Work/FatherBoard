@@ -21,10 +21,10 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\ReturnedOrderController;
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
-Route::get('/',function(){
+// Route::get('/',function(){
 
-    return view('home');
-});
+//     return view('home');
+// });
 //review side back-end
 Route::post('/review',[ReviewController::class,'store'])->name('submitReview');
 Route::get('/review', [ReviewController::class, 'create'])->name('createReview');
@@ -51,6 +51,8 @@ Route::get("/reset/{id}", [AuthController::class, "giveReset"]);
 Route::post("/reset", [AuthController::class, "resetPassword"]);
 // Home System
 Route::get('/home', [HomeController::class, "giveHome"])->name("home");
+// Route::get('/home',[HomeController::class, "topproduct"])->name("home");
+Route::get('/',[HomeController::class, "giveHome"])->name("home");
 
 
 
