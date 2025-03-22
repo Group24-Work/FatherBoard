@@ -99,7 +99,7 @@ Route::get("/contact", [ContactFormController::class, "giveContact"])->name("con
 Route::get('/about', function()
 {
     return view('about');
-});
+})->name('about');
 
 
 Route::get('/questionnaire', function()
@@ -107,7 +107,7 @@ Route::get('/questionnaire', function()
     return view('questionnaire');
 });
 
-Route::get('/questionnaire', [TagController::class, 'questionnaire']);
+Route::get('/questionnaire', [TagController::class, 'questionnaire'])->name('questionnaire');
 
 //basket side back-end
 Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
