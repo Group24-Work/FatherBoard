@@ -56,7 +56,8 @@
 
     <div class="item_options">
 
-        <span><slot class="basketButton" name="basketButton">Add to Basket</slot></span>   
+        <span><slot class="basketButton" name="basketButton">Add to Basket</slot></span> 
+        <slot name="reviews"></slot>  
     </div>
     </template>
     <?php
@@ -177,9 +178,10 @@ if (count($data) > 0) {
             <form action="{{ route('basketAdd') }}" method="POST">
                 @csrf <!-- Include CSRF token for security -->
                 <input type="hidden" name="product_id" value="{{ $item['ID'] }}">
-               <button type="submit" class="basketButton" id="basket_button">Add to Basket</button></span>
+               <button type="submit" class="basketButton" id="basket_button">Add to Basket</button>
             </form>
-            <span slot="reviews"><?php echo $starDisplay; ?></span>
+            </span>
+            <div slot="reviews"><?php echo $starDisplay; ?></div>
 
         </product-element>
         <?php

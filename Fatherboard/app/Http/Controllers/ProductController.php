@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Utility\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Review;
 class ProductController extends Controller
 {
 
@@ -18,8 +18,11 @@ class ProductController extends Controller
      {
          $filtered_details = $data->map(function ($x)
          {
+            $rev = Review::where("product_id",operator: $x["id"])->selectRaw(" AVG(rating) as avg_rating")->first()["avg_rating"];
+
              $image = $x["id"] > 25 ? 1 : $x["id"];
-             return ["ID"=>$x["id"],"Title"=>$x["Title"], "Description"=>$x["Description"], "Manufacturer"=>$x["Manufacturer"],"Price"=> $x->price()->first()["price"], "Image"=>$image, "tags"=>$x->tags->pluck('name')->toArray()];
+             return ["ID"=>$x["id"],"Title"=>$x["Title"], "Description"=>$x["Description"], "Manufacturer"=>$x["Manufacturer"],"Price"=> $x->price()->first()["price"], "Image"=>$image, "tags"=>$x->tags->pluck('name')->toArray()
+             , "avgReview"=>$rev];
          });
          return $filtered_details;
      }
