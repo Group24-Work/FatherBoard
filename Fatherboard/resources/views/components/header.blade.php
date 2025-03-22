@@ -21,7 +21,7 @@
                         </svg>
                     </a>
                     <ul class="dropdown">
-                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/settings#!personal">Settings</a></li>
                         <li><a href="/settings#!history">History</a></li>
                         <li><a id="logout_button">Logout</a></li>
                     </ul>

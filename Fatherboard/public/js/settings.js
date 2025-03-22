@@ -31,6 +31,37 @@ let csrf =null;
 let csrf_val =null;
 
 
+window.addEventListener('hashchange', function() {
+
+
+    const hash = window.location.hash;
+
+    let part = hash.replace("#!","")
+
+
+    if (part=="" || part=="personal")
+        {
+            personalClicked()
+        }
+        else if (part == "address")
+            {
+                addressClicked()
+            }
+            else if (part == "history")
+            {
+                historyClicked()
+            }
+            else if (part=="billing")
+            {
+                billingClicked()
+            }
+            else
+            {
+                personalClicked()
+            }
+            
+});
+
 window.addEventListener("DOMContentLoaded",()=>
 {
     address_button = document.getElementById("button_address");
