@@ -407,3 +407,37 @@ ul li:hover ul.dropdown {
 .logo {
     margin-left: 5px;
 }
+
+
+ul li ul.dropdown {
+    width: 160px;
+    background: black;
+    position: absolute;
+    z-index: 100;
+    display: none;
+    top: 100%;
+    left: 0;
+    border-radius: 4px;
+    padding: 5px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-nav-list>li {
+    position: relative;
+}
+
+.main-nav-list>li>ul.dropdown>li {
+    display: block;
+}
+
+.main-nav-list>li>ul.dropdown>li>a {
+    padding: 8px 15px;
+    display: block;
+    text-align: left;
+}
+
+
+.main-header .container {
+    position: relative;
+    z-index: 10;
+}

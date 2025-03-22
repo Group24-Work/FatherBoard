@@ -50,9 +50,7 @@ if (isset($items) && count($items) > 0) {
                 </div>
 
                 <div class="return_order">
-                    <a href="{{ route('order.return', $i) }}">
-                        <h2>here</h2>
-                    </a>
+                    <a href="{{ route('order.return', $i) }}" title="Return Product"><img src="https://www.freeiconspng.com/uploads/return-button-png-31.png" width="350" alt="Png Format Images Of Return Button" /></a>                    </a>
                 </div>
             </div>
             <?php

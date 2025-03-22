@@ -12,6 +12,7 @@
     text-align: center;
     border-radius: 5px;
     background-color: white;
+    position:relative;
 
 }
 
@@ -100,10 +101,10 @@ img:not(#logo) {
 }
 
 
-.ProductItem:hover {
+/* .ProductItem:hover {
     background-color: rgb(158, 157, 157);
     cursor: pointer;
-}
+} */
 
 .filter-button:hover {
     background-color: rgb(78, 1, 78);

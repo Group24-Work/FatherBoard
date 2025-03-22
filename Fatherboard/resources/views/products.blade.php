@@ -19,22 +19,45 @@
             .price {
                 color: black;
             }
+            .item_options
+            {
+                position:absolute;
+                width:80%;
+                left:50%;
+                transform: translateX(-50%);
+                bottom:5%;
+            }
+            .item_content:hover
+            {
+                background-color: rgb(158, 157, 157);
+
+            }
+            .item_content
+            {
+                padding-bottom: 70px;
+            }
         </style>
 
-        <slot name="ProductImage">No image available</slot>
-        <h2>
-            <slot name="Title">No Title</slot>
-        </h2>
-        <p>
-            <b>
+        <div class="item_content">
 
-                <span>£<slot class="price" name="Price">0.00</slot></span>
+            <slot name="ProductImage">No image available</slot>
+            <h2>
+                <slot name="Title">No Title</slot>
+            </h2>
+            <p>
+                <b>
+
+                    <span>£<slot class="price" name="Price">0.00</slot></span>
 
 
-            </b>
-        </p>
-        <span><slot class="reviews" name="reviews"></slot></span>
-        <span><slot class="basketButton" name="basketButton">Add to Basket</slot></span>
+                </b>
+            </p>
+        </div>
+
+    <div class="item_options">
+
+        <span><slot class="basketButton" name="basketButton">Add to Basket</slot></span>   
+    </div>
     </template>
     <?php
 
