@@ -21,10 +21,11 @@
                 justify-content: space-between;
                 align-items: center;
                 width: 80%;
+                background-color: white;
             }
 
             .email_content {
-                width: 50%;
+                width: 100%;
             }
 
             .alter_icon {
@@ -95,7 +96,7 @@
         </div>
 
         <div id="emailSuggestion_container">
-            <h3>No matching users</h3>
+            <h3 id="matchText">No matching users</h3>
         </div>
 
         <div class="single_order" hidden>
