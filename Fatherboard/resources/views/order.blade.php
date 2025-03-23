@@ -49,7 +49,7 @@
 
     <div id="order_block">
         <div id="order_container">
-            <h2>Order Number: {{$orders->order_number}}</h2>
+            <h2>Order Number: #{{$orders->order_number}}</h2>
             @foreach ($data as $x)
                 <div class="item_order">
                     <img src="{{ asset('images/product_images/' . $x['image'] . '.jpg') }}" />
