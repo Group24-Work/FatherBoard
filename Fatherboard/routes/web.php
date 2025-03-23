@@ -182,7 +182,7 @@ Route::post("/admin/viewCategoryRevenue", [AdminController::class, "giveCategory
 
 
 // User
-Route::post("/admin/findUser/");;
+// Route::post("/admin/findUser/");;
 
 Route::get(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
 

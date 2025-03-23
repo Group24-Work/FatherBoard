@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('restricted_users', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(CustomerInformation::class)->constrained()->cascadeOnDelete();
-            $table->boolean("Restricted");
+            $table->boolean("Restricted")->default(false);
             $table->timestamps();
         });
     }

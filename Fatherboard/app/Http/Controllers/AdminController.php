@@ -314,7 +314,12 @@ class AdminController extends Controller
     public function findUser()
     {
         $email = request()->input("email") ?? null;
-        $res =DB::table("customer_information")->where("Email", "LIKE", "$email%")->get(["id", "First Name", "Last Name", "Email"]);
+        $res =DB::table("customer_information")
+        ->join("restricted_users", "restricted_users.customer_information_id","=","customer_information.id")
+        ->where("Email", "LIKE", "$email%")
+        ->get(["customer_information.id", "First Name", "Last Name", "Email", "Restricted"]);
+        // dd($res);
+
         return json_encode($res);
     }
 

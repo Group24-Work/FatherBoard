@@ -14,6 +14,20 @@ class CustomerInformation extends Model
 
     protected $fillable = ["Email","Password", "First Name", "Last Name", "Admin"];
 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($customer) {
+            RestrictedUsers::create([
+                'customer_information_id' => $customer->id,
+                // 'Restricted' => false, No need as it will be restricted by default
+            ]);
+        });
+    }
+
+
     public function setPasswordAttribute($value)
     {
         

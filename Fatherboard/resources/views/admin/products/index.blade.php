@@ -51,7 +51,7 @@
     </template>
     <!-- header.html -->
 
-    <div id="exit">
+    {{-- <div id="exit">
         <a href="{{asset(route("adminHub"))}}">
             <p>Exit</p>
 
@@ -72,7 +72,7 @@
                 </g>
             </svg>
         </a>
-    </div>
+    </div> --}}
 
     <h2>Admin - Products</h2>
     <div class="button-container">

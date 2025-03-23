@@ -98,6 +98,8 @@ function emailClick()
       {
          let elem = document.createElement("email-suggestion-item");
          let delete_svg = elem.shadowRoot.querySelector(".delete_svg")
+
+         let lock_svg = elem.shadowRoot.querySelector(".lock_svg");
   
          let name_text = y["First Name"] + " " + y["Last Name"];
 
@@ -119,6 +121,11 @@ function emailClick()
          elem.appendChild(email);
          elem.appendChild(id)
 
+         lock_svg.addEventListener("click", function(x)
+        {
+            lock_user()
+        })
+
          delete_svg.addEventListener("click", function(x)
         {
             delete_user(y["id"])
@@ -127,7 +134,7 @@ function emailClick()
 
          elem.addEventListener("click",function(x)
          {
-            specific_user(y["Email"],y,name_text)
+            specific_user(y["Email"],y,name_text, y["Restricted"])
       });
 
   
@@ -138,6 +145,11 @@ function emailClick()
   });
 
  
+}
+
+function lock_user()
+{
+    console.log("Lock user")
 }
 function delete_user(id)
 {
@@ -155,7 +167,7 @@ function delete_user(id)
 
 
 }
-function specific_user(email,y, name)
+function specific_user(email,y, name,restrict_status)
 {
     let specific_email = document.getElementById("specific_email")
 
@@ -166,6 +178,18 @@ function specific_user(email,y, name)
 
     let order_container = document.getElementById("order_container")
 
+    let specific_restricted = document.getElementById("specific_restricted");
+
+    if (restrict_status ==0)
+    {
+        specific_restricted.textContent = "Account not restricted";
+
+    }
+    else
+    {
+        specific_restricted.textContent = "Account is restricted";
+
+    }
 
     specific_id.textContent = y["id"];
 
