@@ -7,15 +7,26 @@
 }
 
 body {
-    font-family: Montserrat;
-    line-height: 1.6;
-    background-color: white !important;
     background-image: url('/images/front_images/homeBackground.png');
-    background-position: center top;
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
     overflow-x: hidden;
 }
+
+@media screen and (max-width: 1024px) {
+    body {
+        background-size: contain;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        background-size: contain;
+    }
+}
+
 
 .homeContainer {
     display: flex;
