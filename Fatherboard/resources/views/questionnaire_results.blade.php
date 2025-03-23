@@ -1,5 +1,6 @@
 <x-lowlayout>
     <x-slot:head>
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
         <link rel="stylesheet" href="{{asset("/css/questionnaire_results.css")}}">
         <script src="{{asset("/js/questionnaire_results.js")}}"></script>
         <title>Questionnaire Results</title>
@@ -65,6 +66,9 @@
             No revs</slot>  
     </div>
     </template>
+    <canvas id="confetti">
+        
+    </canvas>
     <div id="title_content">
         <h3>Questionnaire results</h3>
     </div>

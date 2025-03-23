@@ -173,7 +173,11 @@ h2 {
     text-align: center;
 
 }
-
+canvas
+{
+    width:0;
+    height:0;
+}
 #addProductTag:hover {
     background-color: rgb(78, 1, 78);
 }

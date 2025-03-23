@@ -1,3 +1,4 @@
+
 class ProductElement extends HTMLElement
 {
     constructor()
@@ -20,4 +21,13 @@ customElements.define(
 document.addEventListener("DOMContentLoaded", function(x)
 {
     console.log("LoadedLove")
+    let canvas = document.getElementById("confetti");
+
+    setTimeout(function()
+{
+    const confettilib = new JSConfetti();
+    let audio = new Audio("../audio/children_celebration.mp3")
+    audio.play()
+    confettilib.addConfetti();
+},250)
 })
