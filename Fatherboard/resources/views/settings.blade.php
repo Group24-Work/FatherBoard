@@ -23,7 +23,7 @@ if (isset($items) && count($items) > 0) {
             <div class="single_order">
                 <div class="single_order_content">
                 <hr>
-                    <h2>Order Number: {{$order["order_number"]}}</h2>
+                    <h2>Order Number: #{{$order["order_number"]}}</h2>
                     <h2 class="order_price">£ {{$order["price"]}}</h2>
 
                     <br>
