@@ -29,7 +29,21 @@
                 <h3>{{ implode(' ', array_slice(explode(' ', $topproduct->Title), 0, 7)) }}</h3>
                 <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$topproduct-> id}}" class="shop-now">Shop Now</a>
             </div>
+
+            <img src="{{ asset('images/product_images/' . $secondproduct->id . '.jpg') }}" alt="{{$secondproduct->Title}}">
+            <div class="top-product-details">
+                <h3>{{ implode(' ', array_slice(explode(' ', $secondproduct->Title), 0, 7)) }}</h3>
+                <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$secondproduct-> id}}" class="shop-now">Shop Now</a>
+            </div>
+
+            <img src="{{ asset('images/product_images/' . $thirdproduct->id . '.jpg') }}" alt="{{$thirdproduct->Title}}">
+            <div class="top-product-details">
+                <h3>{{ implode(' ', array_slice(explode(' ', $thirdproduct->Title), 0, 7)) }}</h3>
+                <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$thirdproduct-> id}}" class="shop-now">Shop Now</a>
+            </div>
         </div>
+
+        
     </section>
     </div>
 
