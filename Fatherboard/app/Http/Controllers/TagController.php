@@ -71,7 +71,37 @@ class TagController extends Controller
 
     return view("questionnaire", ["tags" => $tags]);
     }
+public function processQuestionnaire(Request $request){
 
+    $selectedTags = json_decode($request->input('selected_tags'), true);
+$questionResponses = json_decode($request->input('question_responses'), true);
+    //above should grab the tags from a request and store as a json(array)
+
+    $showingAllCategories =[
+        'usage'=> false,
+        'ram'=> false,
+        'storage' =>false
+    ];
+
+foreach($questionResponses as $response){
+    if(isset($response['isSpecial']) && $response['isSpecial']){
+        if(strpos($response['questionText'], 'use your PC for') !== false){
+            $showAllCategories['usage']= true;
+        } elseif(strpos($response['questionText'], 'RAM do you need') !== false){
+            $showAllCategories['ram']=true;
+        }elseif(strpos($response['questionText'], 'storage would you like')!==false){
+            $showAllCategories['storage'] =true;
+        }
+    }
+}
+session([
+    'questionnaire_tags'=>$selectedTags,
+    'question_responses'=>$questionResponses,
+    'show_all_categories'=>$showAllCategories
+]);
+
+
+}
 
     /**
      * Update the specified resource in storage.
