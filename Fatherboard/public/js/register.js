@@ -97,12 +97,14 @@ function checkPassword(test_password, length)
     }
     
 }
+
+
 function checkEmail(test_email,def_regex=default_regex)
 {
     reg = new RegExp(def_regex);
     return reg.test(test_email);
 }
-
+// export default checkEmail;
 
 function clearBoxes()
 {
