@@ -297,6 +297,34 @@ class ProductController extends Controller
             Product::find($id)->stock->Stock = $newStock;
         }
     }
+
+    //email alert for low stock
+    public function checkLowStock(){
+$lowStockProducts = Product::whereHas('stock', function($query){
+    $query->where('stock','<',20);
+
+})->get();
+if($lowStockProducts->counts() > 0){
+    $productList='';
+    foreach($lowStockProducts as $product){
+        $stockLevel = $product->stock()->first()->Stock;
+        $productList .= "Product ID:{$product->id}, Title: {$product->Title}, Current Stock: {$stockLevel}\n";
+    }
+        $subject = "Low Stock Alert - Products reaching low stock level";
+$content = "The following(s) products are running Low:\n\n{$productList}";
+$adminEmail =config('app.admin_email','roschoolacc@gmail.com');
+
+$pythonScriptPath = base_path('path/to/generalemail.py');
+$command ="python {$pythonScriptPath} \"{$adminEmail}\" \"{$subject}\" \"{$content}\"";
+$result = shell_exec($command);
+
+return $result;
+}
+return "No low stock products";
+    }
+
+
+
     private function p_giveTags(int $id)
     {
         return Product::find($id)->tags()->get();
@@ -335,7 +363,22 @@ class ProductController extends Controller
     {
         $newStock = $req->input("new_stock");
         Product::find($id)->stock()->first()->update(["Stock"=>$newStock]);
+
+        if($newStock < 20){
+            $product = Product::find($id);
+            $subject = "low stock alert - {$product->Title}";
+            $content = "Product ID: {$product->id}, Title: {$product->Title}, has reached low stock level: {$newStock}";
+
+         $adminEmail = config('app.admin_email','roschoolacc@gmail.com');
+
+         $pythonScriptPath = base_path('resources\\python\\generalEmail.py');
+         $command = "python \"{$pythonScriptPath}\" \"{$adminEmail}\" \"{$subject}\" \"{$content}\"";
+         shell_exec($command);
+            }
+
     }
+
+
     public function edit(Product $product)
     {
         return view('product', ["product"=>$product]);
