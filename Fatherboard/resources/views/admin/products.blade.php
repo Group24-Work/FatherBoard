@@ -50,7 +50,7 @@
             <p id="product_title"></p>
             <p id="product_id" hidden></p>
             <div id="product_stock_area">
-                200
+                
             </div>
             <button id="add_tag">+</button>
             <div id="tag_container">
@@ -76,7 +76,7 @@ foreach ($products as $product) {
                     <td class="product_id">{{$product["id"]}}</td>
                     <td name="product_title">{{$product["Title"]}}</td>
                     <td class="table_description">{{$product["Description"]}}</td>
-                    <td>{{$product["Stock"]}}</td>
+                    <td class="product_stock">{{$product["Stock"]}}</td>
                     <td name="product_tags">
                         <?php
     foreach ($product["Tags"] as $tag) {

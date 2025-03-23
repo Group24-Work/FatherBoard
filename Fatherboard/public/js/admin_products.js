@@ -91,7 +91,10 @@ return res;
 }
 
 function updateStockOnServer(newStock) {
-    let productId = document.getElementById("product_id").textContent;  // Example, you should have product ID attribute
+    let productId = document.getElementById("product_id").textContent;  
+
+
+    // csrf_token stored here
     let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     if (productId!=null)
@@ -107,6 +110,7 @@ function updateStockOnServer(newStock) {
     }).then(response => {
         if (response.ok) {
             console.log("Stock updated successfully!");
+            window.location.reload(true);
         } else {
             console.log("Failed to update stock.");
         }
@@ -144,33 +148,30 @@ document.addEventListener("DOMContentLoaded", function(y)
         console.log("Click")
         let currentStock = product_stock_area.textContent;
 
-        // Create an input field with the current value
+
         let input = document.createElement("input");
         input.type = "number";
         input.value = currentStock;
-        input.style.width = "60px";
 
-        // Replace the content of the div with the input field
+
+        // Make the stock area be interactable
         product_stock_area.innerHTML = "";
         product_stock_area.appendChild(input);
 
-        // Focus on the input field
         input.focus();
 
         input.addEventListener("blur", function() {
-            // Get the updated value
             let newStock = input.value;
 
-            // Update the stock display with the new value
             product_stock_area.textContent = newStock;
 
-            // Optionally, you can save the updated stock value to the server
             updateStockOnServer(newStock);
         });
 
+        // When user presses enter, call the blur to save
         input.addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
-                input.blur();  // Trigger blur to save value
+                input.blur(); 
             }
         });
     })
@@ -212,7 +213,9 @@ document.addEventListener("DOMContentLoaded", function(y)
         console.log(y)
         console.log(product_region)
 
+        let prod_stock = elem.querySelector(".product_stock");
 
+        product_stock_area.textContent = prod_stock.textContent
 
         s_tag.innerHTML = "";
 
@@ -224,6 +227,8 @@ document.addEventListener("DOMContentLoaded", function(y)
 
 
         prod_id.textContent = id.textContent;
+
+        // Tags removing and adding
         for (let tag of all_tags)
         {
             let indiv_tag_container = document.createElement("div")
@@ -232,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function(y)
             tagElem.textContent = tag.textContent
 
             let removeElem = document.createElement("span")
-            removeElem.textContent = "+"
+            removeElem.textContent = "-"
             removeElem.addEventListener("click",function(x)
             {
                 console.log(tag_assoc)
