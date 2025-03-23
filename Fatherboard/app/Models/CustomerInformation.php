@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\RestrictedUsers;
 class CustomerInformation extends Model
 {
     use HasFactory;
@@ -24,6 +25,10 @@ class CustomerInformation extends Model
         return $this->belongsToMany(AddressInformation::class, "address_customer");
     }
 
+    public function restriction()
+    {
+        return $this->hasOne(RestrictedUsers::class);
+    }
     public static function newFactory()
     {
         return CustomerFactory::new();

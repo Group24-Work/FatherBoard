@@ -6,6 +6,8 @@ use App\Models\CustomerInformation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\AddressInformation;
+use App\Models\RestrictedUsers;
+
 /**
  */
 class CustomerFactory extends Factory
@@ -29,6 +31,11 @@ class CustomerFactory extends Factory
     public function hasAddr(int $num)
     {
         return $this->has(AddressInformation::factory($num), 'address');
+    }
+
+    public function restriction()
+    {
+        return $this->has(RestrictedUsers::factory(), "restriction");
     }
 
     public function admin()
