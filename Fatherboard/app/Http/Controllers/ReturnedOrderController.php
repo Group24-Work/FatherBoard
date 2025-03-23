@@ -13,6 +13,7 @@ class ReturnedOrderController extends Controller
 {
     public function show(Orders $orders)
     {
+
         $customerId = AuthController::loggedIn();
                 if ($orders->customer_id !== $customerId->id) {
             abort(403, 'Unauthorized action.');
