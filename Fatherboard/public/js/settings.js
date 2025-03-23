@@ -690,7 +690,7 @@ function updateSubmit(ev)
 
 function clearForms()
 {
-    let form = document.getElementById("update_personal_form");
+    let form = document.getElementById("update_personal");
 
     form.style.display = "none";
 
@@ -703,7 +703,7 @@ function clearForms()
 
 function toggleAddPersonalUI()
 {
-    let form = document.getElementById("update_personal_form");
+    let form = document.getElementById("update_personal");
 
 
     if (form.style.display === "") {
@@ -711,7 +711,7 @@ function toggleAddPersonalUI()
     }
 
     if (form.style.display == "none") {
-        form.style.display = "flex";
+        form.style.display = "block";
     } else {
         form.style.display = "none";
     }
