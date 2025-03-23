@@ -6,6 +6,29 @@
 }
 
 
+.wrapper{
+    width:50%;
+    height: 100%;
+    margin-left: 26%;
+    margin-top: 50px;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    color: #333;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    padding:10px 40px;
+}
+
+hr{
+    margin-top: 5px;
+    width: 50%;
+}
+
 #order_container
 
 {
@@ -16,11 +39,14 @@
     margin: 0 auto;
 }
 
+#return-text{
+    margin-left: 3rem;
+}
+
 #return_container
 {
     color:white;
     position:relative;
-    left: 8rem;
     top:1rem;
     width:3rem;
     height: 3rem;
@@ -28,6 +54,7 @@
     padding: 0.2rem;
     background-color: black;
     border-radius: 0.5rem;
+    margin-left: 3rem;
 }
 
 #return_container:hover
@@ -53,6 +80,7 @@ img
     width:5rem;
     height:5rem;
     float:left;
+    margin-right: 1.5rem;
 }
 
 .item_order

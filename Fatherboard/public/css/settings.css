@@ -227,6 +227,17 @@ address-element:hover {
 }
 
 
+.return-wrapper{
+    position: absolute;
+    margin-top: 30px;
+}
+
+
+
+.order-detail-wrapper{
+    margin-top: 30px;
+}
+
 .option {
     display: block;
     width: 100%;
