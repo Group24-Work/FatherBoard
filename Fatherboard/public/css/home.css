@@ -92,6 +92,7 @@ body {
 .top-product-content .top-product-details {
     align-items: center;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .top-product-details h3 {

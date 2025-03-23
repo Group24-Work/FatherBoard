@@ -22,7 +22,7 @@
         </div>
     <section class="top-product">
         <div class="top-product-content">
-        <h1 id=topTitle>Our Top Product!</h1>
+        <h1 id=topTitle>Our Top Products!</h1>
 
             <img src="{{ asset('images/product_images/' . $topproduct->id . '.jpg') }}" alt="{{$topproduct->Title}}">
             <div class="top-product-details">
