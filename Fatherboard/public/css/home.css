@@ -31,9 +31,16 @@ body {
     text-align: right;
     gap: 20px;
     margin-left: 500px;
+   
 
     height: 2000px;
 }
+
+/*.products-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}*/
 
 #topTitle{
     margin-left: 975px;
@@ -85,6 +92,7 @@ body {
 .top-product-content .top-product-details {
     align-items: center;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .top-product-details h3 {
