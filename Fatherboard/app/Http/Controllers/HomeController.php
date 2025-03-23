@@ -67,4 +67,41 @@ class HomeController extends Controller
        
 
     }
+
+    public function findSecondProduct () {
+        $secondreview = Review::orderby("rating","desc")->first();
+
+        if (!$secondreview) {
+            return "No reviews found.";
+        }
+
+        $secondproduct = Product::find($secondreview->product_id);
+        if(!$secondproduct) {
+
+            return "No products or reviews found.";
+        }
+
+        return view('home', ['secondproduct' => $secondproduct]);
+        
+       
+
+    }
+
+
+    public function returnSecondProduct() {
+        $secondreview = Review::orderby("rating","desc")->skip(1)->first();
+
+        if (!$secondreview) {
+            return null;
+        }
+
+        $secondproduct = Product::find($secondreview->product_id);
+        if(!$secondproduct) {
+
+            return null;
+        }
+        return $secondproduct;
+       
+
+    }
 }
