@@ -6,11 +6,14 @@ use App\Models\Orders;
 use App\Models\ReturnedOrder;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ReturnedOrderController extends Controller
 {
     public function show(Orders $orders)
     {
+
         $customerId = AuthController::loggedIn();
                 if ($orders->customer_id !== $customerId->id) {
             abort(403, 'Unauthorized action.');
@@ -20,10 +23,25 @@ class ReturnedOrderController extends Controller
     }
 
 
-    public function create(Orders $orders)
+    public function create(int $orders)
     {
-        $customerId = AuthController::loggedIn();
-                if ($orders->customer_id !== $customerId->id) {
+        $user = AuthController::loggedIn();
+
+        $customerID = $user->id;
+        $order_select = DB::select("
+            SELECT * FROM (
+                SELECT *, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY created_at ASC) AS order_rank
+                FROM orders
+            ) ranked_orders
+            WHERE customer_id = ? and order_rank = ?
+        ", [$user["id"], $orders]);
+
+
+        $orderId = $order_select[0]->id ?? null;
+
+        $orders = Orders::find($orderId);
+
+        if ($orders->customer_id !== $customerID) {
             abort(403, 'Unauthorized action.');
         }
 
