@@ -18,7 +18,7 @@
                 border-radius: 0.3rem;
                 margin: 0.5rem;
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
                 width: 80%;
                 background-color: white;
