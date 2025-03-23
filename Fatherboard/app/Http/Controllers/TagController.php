@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use App\Models\Tag;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -85,11 +86,11 @@ $questionResponses = json_decode($request->input('question_responses'), true);
 
 foreach($questionResponses as $response){
     if(isset($response['isSpecial']) && $response['isSpecial']){
-        if(strpos($response['questionText'], 'use your PC for') !== false){
+        if(stripos($response['questionText'], 'use your PC for') !== false){
             $showAllCategories['usage']= true;
-        } elseif(strpos($response['questionText'], 'RAM do you need') !== false){
+        } elseif(stripos($response['questionText'], 'RAM do you need') !== false){
             $showAllCategories['ram']=true;
-        }elseif(strpos($response['questionText'], 'storage would you like')!==false){
+        }elseif(stripos($response['questionText'], 'storage would you like')!==false){
             $showAllCategories['storage'] =true;
         }
     }
@@ -100,7 +101,7 @@ session([
     'show_all_categories'=>$showAllCategories
 ]);
 
-
+return redirect()->route('questionnaire.results');
 }
 
     /**
@@ -128,4 +129,84 @@ session([
     {
         Tag::destroy($id);
     }
+
+    public function displayResults(){
+        $selectedTags = session('questionnaire_tags',[]);
+        $questionResponses = session('question_responses',[]);
+        $showAllCategories = session('show_all_categories',[]);
+
+        $products = collect();
+//use
+        if(isset($showAllCategories['usage']) && $showAllCategories['usage']) {
+            $usageProducts = \App\Models\Product::whereHas('tags',function($query){
+                $query->whereIn('name',['gaming','office','rendering']);
+            })->get();
+
+        $products = $products->merge($usageProducts);
+        } else{
+            $usageTags = array_intersect($selectedTags, ['gaming','office','rendering']);
+            if (!empty($usageTags)){
+                $usageProducts = \App\Models\Product::whereHas('tags', function($query) use ($usageTags){
+                    $query->whereIn('name',$usageTags);
+
+                })->get();
+                $products = $products->merge($usageProducts);
+            }
+        }
+//ram
+if(isset($showAllCategories['ram']) && $showAllCategories['ram']) {
+    $ramProducts = \App\Models\Product::whereHas('tags',function($query){
+        $query->whereIn('name',['16GB','32GB','64GB']);
+    })->get();
+
+$products = $products->merge($ramProducts);
+} else{
+    $ramTags = array_intersect($selectedTags, ['16GB','32GB','64GB']);
+    if (!empty($ramTags)){
+        $ramProducts = \App\Models\Product::whereHas('tags', function($query) use ($ramTags){
+            $query->whereIn('name',$ramTags);
+
+        })->get();
+        $products = $products->merge($ramProducts);
+    }
+}
+//storage
+if(isset($showAllCategories['storage']) && $showAllCategories['storage']) {
+    $storageProducts = \App\Models\Product::whereHas('tags',function($query){
+        $query->whereIn('name',['gaming','office','rendering']);
+    })->get();
+
+$products = $products->merge($storageProducts);
+} else{
+    $storageTags = array_intersect($selectedTags, ['gaming','office','rendering']);
+    if (!empty($storageTags)){
+        $storageProducts = \App\Models\Product::whereHas('tags', function($query) use ($storageTags){
+            $query->whereIn('name',$storageTags);
+
+        })->get();
+        $products = $products->merge($storageProducts);
+    }
+}
+$formattedProducts = $products->map(function($product){
+    $rev = Review::where("product_id",$product->id)->selectRaw("AVG(rating) as avg_rating")->first()["avg_rating"] ?? 0;
+    $image = $product->id >25 ? 1: $product->id;
+    return[
+        "ID"=>$product->id,
+        "Title"=>$product->Title,
+        "Description"=>$product->Description,
+        "Manufacturer"=>$product->Manufacturer,
+        "Price"=> $product->price()->first()["price"] ?? 0,
+        "image" => $image,
+        "tags" => $product->tags->pluck('name')->toArray(),
+        "avgReview"=>$rev
+    ];
+});
+
+return view('questionnaire.results',[
+    'products' => $products,
+    'selectedTags' => $selectedTags,
+    'showAllCategories' => $showAllCategories
+]);
+    }
+
 }

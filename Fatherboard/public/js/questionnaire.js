@@ -56,7 +56,7 @@ function saveAnswer() {
             questionText: QUESTIONS[indexQuestion].question,
             selectedChoice: selectedChoice,
             selectedTags: selectedChoiceTags,
-            isSpecial: selectedChoice == "unsure" || selectedChoice === "hybrid"
+            isSpecial: selectedChoice.toLowerCase() === "unsure" || selectedChoice.toLowerCase() === "hybrid"
         };
         if (selectedChoiceTags && selectedChoiceTags.length > 0)
             selectedChoiceTags.forEach(tag => {
@@ -79,17 +79,11 @@ function nextQuestion() {
         document.getElementById("btnNext").style.display = "none";
         document.getElementById("btnSubmit").style.display = "block";
 
-        const tagsInput = document.createElement("input");
-        tagsInput.type = "hidden";
-        tagsInput.name = "selected_tags";
+        const tagsInput = document.getElementById("selected_tags");
         tagsInput.value = JSON.stringify(selectedTags);
-        document.getElementById("questionnaireForm").appendChild(tagsInput);
 
-        const responsesInput = document.createElement("input");
-        responsesInput.type = "hidden";
-        responsesInput.name = "question_responses"
+        const responsesInput = document.getElementById("question_responses");
         responsesInput.value = JSON.stringify(questionResponses);
-        document.getElementById("questionnaireForm").appendChild(responsesInput);
     }
 }
 
@@ -98,13 +92,11 @@ function nextQuestion() {
 function loadQuestion(indexQuestion) {
     document.getElementById("question").textContent = QUESTIONS[indexQuestion].question;
     var choices = "";
-    var i = 0
-    while (i < QUESTIONS[indexQuestion].choices.length) {
-        choices += "<option value='" + i + "'>" + QUESTIONS[indexQuestion].choices[i].choices[i].choice + "</option>";
-        i++
+    for (var i = 0; i < QUESTIONS[indexQuestion].choices.length; i++) {
+        choices += "<option value='" + i + "'>" + QUESTIONS[indexQuestion].choices[i].choices.choice + "</option>";
+
     }
     document.getElementById("choice").innerHTML = choices;
-    document.getElementById("choice").addEventListener("change", selectAnswer)
 }
 function submitQuestionnaire() {
     document.getElementById("questionnaireForm").submit();

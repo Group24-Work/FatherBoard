@@ -115,6 +115,11 @@ Route::get('/questionnaire', function()
 
 Route::get("/questionnaire/filter", [QuestionnaireController::class, "filter"])->name("filter");
 Route::get('/questionnaire', [TagController::class, 'questionnaire'])->name('questionnaire');
+Route::post('/questionnaire/submit',[tagController:: class, 'submitQuestionnaire'])->name('questionnaire.submit');
+
+
+
+
 
 //basket side back-end
 Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
