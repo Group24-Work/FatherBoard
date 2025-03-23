@@ -265,17 +265,27 @@ class ProductController extends Controller
         $curRating = DB::table("reviews")->where("product_id",$id)->select(DB::raw("avg(rating) as avg_rating"))->first();
         $image = "rtx2070.png";
         $amountStar = Utility::numberClosest($curRating->avg_rating, [1,2,3,4,5]);
-        if ($id <=25)
-        {
-            $image = $id . ".jpg";
-        }
-        else
-        {
-            $image = "rtx2070.png";
-
-        }
-        return view('product',["product"=>$product,"image"=>$image, "rating"=>$curRating->avg_rating, "amount"=>$amountStar]);
+        
+        $image = ($id <= 25) ? 
+        
+        "$id.jpg" : "rtx2070.png";
+        
+        
+        $stock = optional ($product->stock()->first())->stock ?? 0; 
+        $lowStockThreshold = 5; 
+    
+        $lowStockAlert = $stock < $lowStockThreshold ? "Warning: Low stock ({$stock} left)!" : null;
+    
+        return view('product', [
+            "product" => $product,
+            "image" => $image,
+            "rating" => $curRating->avg_rating,
+            "amount" => $amountStar,
+            "lowStockAlert" => $lowStockAlert
+        ]);
     }
+
+
 
     // Changes stock of a given item to any number
     public function changeStock(int $id, Request $rq)
