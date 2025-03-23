@@ -20,13 +20,25 @@ class HomeController extends Controller
         // }
 
         $product = Product::all();
+
         $topProduct = self::returnTopProduct();
         if ($topProduct==null)
         {
+
+
             $topProduct = Product::inRandomOrder()->first();
 
         }
-        return view('home', ['topproduct' => $topProduct]);
+        //return view('home', ['topproduct' => $topProduct]);
+
+        $secondProduct = self::returnSecondProduct();
+        if ($secondProduct==null)
+        {
+            $secondProduct = Product::inRandomOrder()->first();
+
+        }
+        return view('home', ['topproduct' => $topProduct, 'secondproduct' => $secondProduct]);
+        
 
 
     }

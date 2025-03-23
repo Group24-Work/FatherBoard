@@ -37,10 +37,10 @@
                 <div class="product-item top-product">
                     <div class="top-product-content">
                         <h3 id="topTitle">Our Second Rated Product!</h3>
-                        <img src="{{ asset('images/product_images/' . $topproduct->id . '.jpg') }}" alt="{{$topproduct->Title}}">
-                        <div class="second-product-details">
-                            <h3>{{ implode(' ', array_slice(explode(' ', $topproduct->Title), 0, 7)) }}</h3>
-                            <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$topproduct-> id}}" class="shop-now">Shop Now</a>
+                        <img src="{{ asset('images/product_images/' . $secondproduct->id . '.jpg') }}" alt="{{$secondproduct->Title}}">
+                        <div class="top-product-details">
+                            <h3>{{ implode(' ', array_slice(explode(' ', $secondproduct->Title), 0, 7)) }}</h3>
+                            <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$secondproduct-> id}}" class="shop-now">Shop Now</a>
                         </div>
                     </div>
                 </div>
