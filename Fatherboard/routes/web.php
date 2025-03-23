@@ -18,6 +18,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\QuestionnaireController;
+use App\Http\Controllers\RestrictedController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ReturnedOrderController;
 use App\Models\Questionnaire;
@@ -234,3 +235,8 @@ Route::post("/account/getOrders/{id}", [CustomerController::class, "giveUserOrde
 
 Route::post("/account/destroy/{id}", [CustomerController::class, "destroy"]);
 
+
+// Restrict Account
+
+Route::post("/restrict/update/{id}", [RestrictedController::class, "update"]);
+Route::post("/restrict/show/{id}", [RestrictedController::class, "show"]);
