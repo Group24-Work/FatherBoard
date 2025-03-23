@@ -75,6 +75,10 @@ class CheckoutController extends Controller
             if(($user = $AuthController->loggedIn()) == false){//Redirects to login if the user doesn't have an account
                 return redirect('/login');
             }
+            if ($AuthController->isRestricted($user["id"]))
+            {
+                return redirect("/restricted");
+            }
             $recentOrder = Orders::latest('id')->first();
             $nextOrderNumber = 1;
             if ($recentOrder && !is_null($recentOrder->order_number)) {

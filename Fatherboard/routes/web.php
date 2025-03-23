@@ -17,8 +17,11 @@ use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\QuestionnaireController;
+use App\Http\Controllers\RestrictedController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ReturnedOrderController;
+use App\Models\Questionnaire;
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 // Route::get('/',function(){
@@ -31,6 +34,10 @@ Route::get('/review', [ReviewController::class, 'create'])->name('createReview')
 Route::get('/product/{id}/review', [ReviewController::class,'showReview'])->name('review.show');
 
 Route::post("/add/review", [ReviewController::class, 'add']);
+
+Route::post("/reviews/{id}", [ReviewController::class, "showAll"]);
+
+Route::post("/reviews/average/{id}", [ReviewController::class, "showAverage"]);
 
 // Login / Authentication System
 Route::post('/submit-review',[ReviewController::class,'store'])->name('submitReview');
@@ -54,7 +61,10 @@ Route::get('/home', [HomeController::class, "giveHome"])->name("home");
 // Route::get('/home',[HomeController::class, "topproduct"])->name("home");
 Route::get('/',[HomeController::class, "giveHome"])->name("home");
 
+// Restricted Users
 
+
+Route::get("/restricted", [AuthController::class, "giveRestricted"])->name("restricted");
 
 // Handles products
 Route::get('/product/{id}', action: [ProductController::class, "show"]);
@@ -99,7 +109,7 @@ Route::get("/contact", [ContactFormController::class, "giveContact"])->name("con
 Route::get('/about', function()
 {
     return view('about');
-});
+})->name('about');
 
 
 Route::get('/questionnaire', function()
@@ -107,7 +117,8 @@ Route::get('/questionnaire', function()
     return view('questionnaire');
 });
 
-Route::get('/questionnaire', [TagController::class, 'questionnaire']);
+Route::get("/questionnaire/filter", [QuestionnaireController::class, "filter"])->name("filter");
+Route::get('/questionnaire', [TagController::class, 'questionnaire'])->name('questionnaire');
 
 //basket side back-end
 Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
@@ -174,7 +185,7 @@ Route::post("/admin/viewCategoryRevenue", [AdminController::class, "giveCategory
 
 
 // User
-Route::post("/admin/findUser/");;
+// Route::post("/admin/findUser/");;
 
 Route::get(uri: "/admin/registeredUsers", action: [AdminController::class, "giveRegisteredUsers"]);
 
@@ -227,3 +238,8 @@ Route::post("/account/getOrders/{id}", [CustomerController::class, "giveUserOrde
 
 Route::post("/account/destroy/{id}", [CustomerController::class, "destroy"]);
 
+
+// Restrict Account
+
+Route::post("/restrict/update/{id}", [RestrictedController::class, "update"]);
+Route::post("/restrict/show/{id}", [RestrictedController::class, "show"]);

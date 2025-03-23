@@ -15,8 +15,17 @@ class AdminController extends Controller
 {
     public function giveAdminHub()
     {
-        return view('admin_hub');
+        if (AuthController::loggedIn_withAdmin())
+        {
+            return view('admin_hub');
+        }
+        else
+        {
+            // $controller = new HomeController();
+            return redirect()->route("home");
+        }
     }
+
 
  
 
@@ -286,24 +295,34 @@ class AdminController extends Controller
 
     public function giveProducts()
     {
-        $products = Product::with(["price", "stock", "tags"])->get();
-
-        $filteredProducts = $products->map(function($y)
+        if (AuthController::loggedIn_withAdmin())
         {
-            return ["id"=>$y["id"],
-                "Tags"=>$y["tags"],
-                "Title"=>$y["Title"], 
-            "Description"=>$y["Description"],
-            "Price"=>$y["Price"],
-        "Stock"=>$y["Stock"]->Stock ?? 0];
-        });
+            $products = Product::with(["price", "stock", "tags"])->get();
 
-        $allTags = Tag::all();
-        // dd($filteredProducts);
-        
-        // dd($filteredProducts);
-        // $products
-        return view("admin.products", ["products"=>$filteredProducts, "tags"=>$allTags]);
+            $filteredProducts = $products->map(function($y)
+            {
+                return ["id"=>$y["id"],
+                    "Tags"=>$y["tags"],
+                    "Title"=>$y["Title"], 
+                "Description"=>$y["Description"],
+                "Price"=>$y["Price"],
+            "Stock"=>$y["Stock"]->Stock ?? 0];
+            });
+    
+            $allTags = Tag::all();
+            // dd($filteredProducts);
+            
+            // dd($filteredProducts);
+            // $products
+            return view("admin.products", ["products"=>$filteredProducts, "tags"=>$allTags]);        }
+        else
+        {
+            // $controller = new HomeController();
+            return redirect()->route("home");
+        }
+    
+
+
     }
 
     // Returns all accounts from a given email in the format listed below
@@ -314,7 +333,12 @@ class AdminController extends Controller
     public function findUser()
     {
         $email = request()->input("email") ?? null;
-        $res =DB::table("customer_information")->where("Email", "LIKE", "$email%")->get(["id", "First Name", "Last Name", "Email"]);
+        $res =DB::table("customer_information")
+        ->join("restricted_users", "restricted_users.customer_information_id","=","customer_information.id")
+        ->where("Email", "LIKE", "$email%")
+        ->get(["customer_information.id", "First Name", "Last Name", "Email", "Restricted"]);
+        // dd($res);
+
         return json_encode($res);
     }
 

@@ -24,16 +24,28 @@ main
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    background-color: grey;
+    border: 0.2rem solid black;
+
+    background-color: #f6f9fc;
+    box-shadow: 5px 5px 5px black;
 }
 #user_search_button
 {
-    background-color: #c31eff;
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
     padding: 0.5rem;
-    border-radius: 0.3rem;
     border: none;
-    margin: 2rem 0;
-    width:25%;
+    width: 50%;
+    color: white;
+
 }
+
+#user_search_button:hover{
+    cursor: pointer;
+}
+
 .order_item
 {
     background-color: aliceblue;
@@ -45,18 +57,27 @@ main
 
 #specific_user
 {
-    grid-column: 1 / span 2;
-    grid-row: 3 / span 3;
+
     padding:1rem;
-    border: 0.1rem solid black;
-    border-radius: 0.5rem;
-    overflow: scroll;
+    border: 0.2rem solid black;
+    background-color: #f7f2fc;
+    height:fit-content;
+    box-shadow: 5px 5px 5px black
 }
 
+#order_container
+{
+    overflow: scroll;
+    height:10rem;
+
+}
 email-suggestion-item
 {
     /* border: 1px solid black; */
-    border-radius: 0.5rem;;
+    border-radius: 0.0rem;;
+    width: 100%;
+    display:flex;
+    justify-content: center;
 }
 
 #delete_account
@@ -76,20 +97,28 @@ email-suggestion-item
 {
     grid-column-start: 2;
     grid-row-start: 1 ;
-    grid-row-end: 3;
+    grid-row-end: 5;
     overflow:scroll;
     display:flex;
     justify-content: start;
     flex-direction: column;
     text-align: center;
+    width: 100%;
+    height: 100%;
+
 }
+
+#matchText{
+    padding-bottom: 75%;
+}
+
 #emailSuggestion_container h3
 {
     align-self: center;
     justify-self: center;
     position:relative;
-    top:50%;
-    transform: translateY(-50%);
+    top:75%;
+    transform: translateY(-25%);
 }
 
 email-suggestion-item

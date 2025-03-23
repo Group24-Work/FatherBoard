@@ -12,8 +12,23 @@
     margin: 20px 0;
 
 }
-
-.delete_svg {}
+.wrapper{
+    width:50%;
+    height: 100%;
+    margin-left: 26%;
+    margin-top: 50px;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    color: #333;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    padding:10px 40px;
+}
 
 .alter_icon {
     height: 2rem;
@@ -26,7 +41,9 @@
 
 }
 
-
+#create_tag{
+    margin-top: 10px;
+}
 
 .option_container {
     display: flex;
@@ -42,15 +59,22 @@
 #tag-menu {
     text-align: center;
     align-items: center;
+
+}
+
+#tagTitle{
+    padding-top: 40px;
 }
 
 .tagElement {
     text-align: center;
     align-items: center;
+    justify-content: center;
     width: fit-content;
     background-color: white;
     border: black;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+    margin-left: 46%;
 }
 
 #Capa_1:hover {
@@ -58,6 +82,7 @@
     text-align: center;
     align-items: center;
 }
+
 
 button {
     margin-top: 2rem;

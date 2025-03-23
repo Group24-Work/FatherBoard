@@ -26,6 +26,7 @@ class SettingController extends Controller
             $addr = $user->address;
             $orders = [];
 
+
             $adminStatus = $user["Admin"];
             // dd($user);
 
@@ -54,7 +55,7 @@ class SettingController extends Controller
 
                     $details = $x->order_details->all();
 
-                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[]];
+                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[], "order_number"=>$x->order_number, "order_status"=>$x->order_status];
 
                     foreach ($details as $x)
                     {
@@ -86,7 +87,7 @@ class SettingController extends Controller
                     )->first();
 
                     $details = $x->order_details->all();
-                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[]];
+                    $orderProduct = ["price"=>$orderPrice->total_amount, "elements"=>[], "order_number"=>$x->order_number, "order_status"=>$x->order_status];
 
                     foreach ($details as $x)
                     {
@@ -99,7 +100,7 @@ class SettingController extends Controller
 
 
                 }
-                return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders]);
+                return view('settings', ["addr"=>$addr, "user"=>$filteredUser, "messages"=>ContactForm::all(), "items"=>$orders,]);
             }
 
         }
@@ -286,7 +287,7 @@ public static function showOrder($id)
     ->join('products', 'order_details.products_id', '=', 'products.id')
     ->join("product_prices", "products.id", "=", "product_prices.product_id") // Join products with order_details on product_id
     ->where('order_details.order_id', $orderId) // Optional: Filter by specific order_id
-    ->select('products.id', 'products.Title', "product_prices.price") // Select specific columns from the products table
+    ->select('products.id', 'products.Title', "product_prices.price", "order_details.quantity") // Select specific columns from the products table
     ->get();
 
     
@@ -295,7 +296,7 @@ public static function showOrder($id)
     {
         $imageId = $x->id;
         $imageId = $imageId > 25 ?  1 :  $imageId;
-        return ["id"=>$x->id, "Title"=>$x->Title, "price"=>$x->price, "image"=>$imageId];
+        return ["id"=>$x->id, "Title"=>$x->Title, "price"=>$x->price, "image"=>$imageId, "quantity"=>$x->quantity];
     });
   
 

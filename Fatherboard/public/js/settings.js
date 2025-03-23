@@ -83,6 +83,7 @@ window.addEventListener("DOMContentLoaded",()=>
 
 
     logout_button = document.getElementById("logout_button");
+    logout_button2 = document.getElementById("logout_btn")
 
 
     csrf = document.getElementsByName("csrf-token")[0];
@@ -126,6 +127,7 @@ window.addEventListener("DOMContentLoaded",()=>
         admin_index_button.addEventListener("click",()=>window.location.href = "/admin");
     }
     logout_button.addEventListener("click",logOut);
+    logout_button2.addEventListener("click",logOut);
     update_personal_submit.addEventListener("click", updateSubmit);
     address_button.addEventListener("click", addressClicked);
     billing_button.addEventListener("click",billingClicked);
@@ -238,7 +240,11 @@ customElements.define(
 
 function addressClicked()
 {
+    // Pre-button setup
+
     console.log("Address clicked");
+
+    clearForms();
 
     const nextURL = '/settings#!address';
     const nextTitle = 'Address';
@@ -261,7 +267,12 @@ function addressClicked()
 
 function billingClicked()
 {
+    // Pre-button setup
+
     moveCurrentBar(2);
+
+    clearForms()
+
 
     const nextURL = '/settings#!billing';
     const nextTitle = 'Address';
@@ -274,8 +285,11 @@ function billingClicked()
 }
 function historyClicked()
 {
-
+    // Pre-button setup
     moveCurrentBar(3);
+
+
+    clearForms()
 
     const nextURL = '/settings#!history';
     const nextTitle = 'History';
@@ -295,6 +309,10 @@ function historyClicked()
 }
 function personalClicked()
 {
+    // Pre-button setup
+
+    clearForms()
+
     moveCurrentBar(0);
 
     const nextURL = '/settings#!personal';
@@ -670,9 +688,22 @@ function updateSubmit(ev)
     })
 }
 
+function clearForms()
+{
+    let form = document.getElementById("update_personal");
+
+    form.style.display = "none";
+
+
+    let address_box = document.getElementById("add_address_box")
+
+    address_box.setAttribute("hidden", "");
+}
+
+
 function toggleAddPersonalUI()
 {
-    let form = document.getElementById("update_personal_form");
+    let form = document.getElementById("update_personal");
 
 
     if (form.style.display === "") {
@@ -680,7 +711,7 @@ function toggleAddPersonalUI()
     }
 
     if (form.style.display == "none") {
-        form.style.display = "flex";
+        form.style.display = "block";
     } else {
         form.style.display = "none";
     }

@@ -44,6 +44,15 @@ class AuthController extends Controller
 
     }
 
+    public function isRestricted($id)
+    {
+        return CustomerInformation::find($id)->restriction()->first()->Restricted;
+    }
+
+    public function giveRestricted()
+    {
+        return view("account_restricted");
+    }
     public static function index()
     {
         return view("admin.accounts");
@@ -70,7 +79,7 @@ class AuthController extends Controller
             $length = time() + 60*60*24*30;
             if ($permanent == false)
             {
-                session_start();
+                // session_start();  // Laravel already manages sessions
                 $_SESSION["email"] = $username;
                 $_SESSION["password"] = $password;
                 return redirect('home');
@@ -275,6 +284,9 @@ class AuthController extends Controller
         $username = $_SESSION["email"];
         $password = $_SESSION["password"];
         $customer = CustomerInformation::where("Email", $username)->first(); // Fetch customer username from database
+        // dd(CustomerInformation::get(["id","Email", "First Name"])->toArray());
+        // dd($customer["id"]);
+        // dd($customer->id);
 
         if ($customer && Hash::check($password, $customer->Password)) {
             return $customer; // returns customer if username and password matches
@@ -351,7 +363,20 @@ class AuthController extends Controller
 
 
     }
+    private static function isAdmin($id)
+    {
+        return CustomerInformation::find($id)->Admin;
+    }
 
+    public static function loggedIn_withAdmin()
+    {
+        $user = self::loggedIn();
+        if ($user && $user->Admin)
+        {
+            return $user;
+        }
+        return false;
+    }
     public static function loggedIn()
     {
 

@@ -18,13 +18,14 @@
                 border-radius: 0.3rem;
                 margin: 0.5rem;
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
                 width: 80%;
+                background-color: white;
             }
 
             .email_content {
-                width: 50%;
+                width: 100%;
             }
 
             .alter_icon {
@@ -78,7 +79,8 @@
                         </g>
                     </g>
                 </svg>
-            </div>
+
+                <svg class="alter_icon lock_svg" fill="#000000" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="XMLID_823_"> <path id="XMLID_824_" d="M265,130h-15V84.999C250,38.13,211.869,0,165,0S80,38.13,80,84.999V130H65c-8.284,0-15,6.716-15,15v170 c0,8.284,6.716,15,15,15h200c8.284,0,15-6.716,15-15V145C280,136.716,273.284,130,265,130z M110,84.999 C110,54.673,134.673,30,165,30s55,24.673,55,54.999V130H110V84.999z M250,300H80V160h15h140h15V300z"></path> <path id="XMLID_828_" d="M196.856,198.144c-5.857-5.858-15.355-5.858-21.213,0L165,208.787l-10.644-10.643 c-5.857-5.858-15.355-5.858-21.213,0c-5.858,5.858-5.858,15.355,0,21.213L143.787,230l-10.643,10.644 c-5.858,5.858-5.858,15.355,0,21.213c2.929,2.929,6.768,4.394,10.606,4.394s7.678-1.464,10.606-4.394L165,251.213l10.644,10.644 c2.929,2.929,6.768,4.394,10.606,4.394s7.678-1.464,10.606-4.394c5.858-5.858,5.858-15.355,0-21.213L186.213,230l10.643-10.644 C202.715,213.499,202.715,204.001,196.856,198.144z"></path> </g> </g></svg>              </div>
         </div>
     </template>
 
@@ -95,11 +97,10 @@
         </div>
 
         <div id="emailSuggestion_container">
-            <h3>No matching users</h3>
+            <h3 id="matchText">No matching users</h3>
         </div>
 
         <div class="single_order" hidden>
-            <h2 class="order_">Orders</h2>
             <p class="order_details"></p>
         </div>
 
@@ -108,7 +109,11 @@
             <p id="specific_id" hidden></p>
             <p id="specific_name"></p>
 
+            <p id="specific_restricted">Account Restriction</p>
+
             <p id="specific_email"></p>
+            <h2 class="order_">Orders</h2>
+
 
             {{-- <button id="delete_account">Delete Account</button> --}}
 
