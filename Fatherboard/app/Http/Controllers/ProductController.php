@@ -266,13 +266,22 @@ class ProductController extends Controller
         {
             $image = $id . ".jpg";
         }
-        else
-        {
-            $image = "rtx2070.png";
-
-        }
-        return view('product',["product"=>$product,"image"=>$image, "rating"=>$curRating->avg_rating, "amount"=>$amountStar]);
+        
+        $stock = $product->stock ?? 0; 
+        $lowStockThreshold = 5; 
+    
+        $lowStockAlert = $stock < $lowStockThreshold ? "Warning: Low stock ({$stock} left)!" : null;
+    
+        return view('product', [
+            "product" => $product,
+            "image" => $image,
+            "rating" => $curRating->avg_rating,
+            "amount" => $amountStar,
+            "lowStockAlert" => $lowStockAlert
+        ]);
     }
+
+
 
     // Changes stock of a given item to any number
     public function changeStock(int $id, Request $rq)
