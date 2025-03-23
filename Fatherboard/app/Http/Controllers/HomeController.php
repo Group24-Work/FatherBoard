@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Review;
 class HomeController extends Controller
 {
-    public  function giveHome()
+    public function giveHome()
     {
         // if (AuthController::loggedIn())
         // {
@@ -20,7 +20,7 @@ class HomeController extends Controller
         // }
 
         $product = Product::all();
-        $topProduct = self::returnTopProduct();
+        $topProduct = static::returnTopProduct();
         if ($topProduct==null)
         {
             $topProduct = Product::inRandomOrder()->first();

@@ -15,8 +15,17 @@ class AdminController extends Controller
 {
     public function giveAdminHub()
     {
-        return view('admin_hub');
+        if (AuthController::loggedIn_withAdmin())
+        {
+            return view('admin_hub');
+        }
+        else
+        {
+            // $controller = new HomeController();
+            return redirect()->route("home");
+        }
     }
+
 
  
 
@@ -286,24 +295,34 @@ class AdminController extends Controller
 
     public function giveProducts()
     {
-        $products = Product::with(["price", "stock", "tags"])->get();
-
-        $filteredProducts = $products->map(function($y)
+        if (AuthController::loggedIn_withAdmin())
         {
-            return ["id"=>$y["id"],
-                "Tags"=>$y["tags"],
-                "Title"=>$y["Title"], 
-            "Description"=>$y["Description"],
-            "Price"=>$y["Price"],
-        "Stock"=>$y["Stock"]->Stock ?? 0];
-        });
+            $products = Product::with(["price", "stock", "tags"])->get();
 
-        $allTags = Tag::all();
-        // dd($filteredProducts);
-        
-        // dd($filteredProducts);
-        // $products
-        return view("admin.products", ["products"=>$filteredProducts, "tags"=>$allTags]);
+            $filteredProducts = $products->map(function($y)
+            {
+                return ["id"=>$y["id"],
+                    "Tags"=>$y["tags"],
+                    "Title"=>$y["Title"], 
+                "Description"=>$y["Description"],
+                "Price"=>$y["Price"],
+            "Stock"=>$y["Stock"]->Stock ?? 0];
+            });
+    
+            $allTags = Tag::all();
+            // dd($filteredProducts);
+            
+            // dd($filteredProducts);
+            // $products
+            return view("admin.products", ["products"=>$filteredProducts, "tags"=>$allTags]);        }
+        else
+        {
+            // $controller = new HomeController();
+            return redirect()->route("home");
+        }
+    
+
+
     }
 
     // Returns all accounts from a given email in the format listed below

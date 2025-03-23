@@ -354,7 +354,20 @@ class AuthController extends Controller
 
 
     }
+    private static function isAdmin($id)
+    {
+        return CustomerInformation::find($id)->Admin;
+    }
 
+    public static function loggedIn_withAdmin()
+    {
+        $user = self::loggedIn();
+        if ($user && $user->Admin)
+        {
+            return $user;
+        }
+        return false;
+    }
     public static function loggedIn()
     {
 
