@@ -59,12 +59,18 @@ main
 {
 
     padding:1rem;
-    overflow: scroll;
     border: 0.2rem solid black;
     background-color: #f7f2fc;
+    height:fit-content;
     box-shadow: 5px 5px 5px black
 }
 
+#order_container
+{
+    overflow: scroll;
+    height:10rem;
+
+}
 email-suggestion-item
 {
     /* border: 1px solid black; */

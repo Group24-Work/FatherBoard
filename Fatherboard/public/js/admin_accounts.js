@@ -123,7 +123,7 @@ function emailClick()
 
          lock_svg.addEventListener("click", function(x)
         {
-            lock_user()
+            lock_user(y["id"])
         })
 
          delete_svg.addEventListener("click", function(x)
@@ -147,9 +147,28 @@ function emailClick()
  
 }
 
-function lock_user()
+function lock_user(id)
 {
     console.log("Lock user")
+    
+    let fd = new FormData();
+
+    fd.append("new_value", 1);
+
+    let url = `/restrict/update/${id}`
+
+    fetch(url,
+        {
+            method: "POST",
+            headers : {
+                "X-CSRF-TOKEN" : csrf_token_val
+            },
+            body: fd
+        }
+    ).then(function(x)
+{
+    // window.location.reload(true);
+})
 }
 function delete_user(id)
 {
