@@ -8,8 +8,25 @@
     <x-header></x-header>
 
 
-    <div id="return_container">
+    @if ($orders->order_status === 'Pending')
+        <a href="{{ route('order.return', $orders) }}" class="btn btn-danger">
+            Return Order
+        </a>
+    @endif
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+</div>
+    <div id="return_container">
         <a href="/settings#!history">
 
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-2 -2 24 24"
@@ -28,34 +45,18 @@
 
     </div>
 
-
-    @if ($orders->order_status === 'Pending')
-        <a href="{{ route('order.return', $orders) }}" class="btn btn-danger">
-            Return Order
-        </a>
-    @endif
-
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-
+    
+    <div class="wrapper">
     <div id="order_block">
         <div id="order_container">
             <h2>Order Number: {{$orders->order_number}}</h2>
             @foreach ($data as $x)
                 <div class="item_order">
                     <img src="{{ asset('images/product_images/' . $x['image'] . '.jpg') }}" />
-                    <h2>{{ $x['Title'] }}</h2>
-                    <h2>£{{ $x['price'] }}</h2>
-                    <h2>QUANTITY</h2>
+                    <p><b>Item:</b> {{ $x['Title'] }}</p>
+                    <p><b>Price:</b> £{{ $x['price'] }}</p>
+                    <p><b>Quantity:</b> {{ $x['quantity'] }}</p>
+                    <hr>
 
                 </div>
             @endforeach

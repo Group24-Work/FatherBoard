@@ -227,6 +227,10 @@ address-element:hover {
 }
 
 
+.return-wrapper{
+    position: absolute;
+}
+
 .option {
     display: block;
     width: 100%;

@@ -36,6 +36,7 @@ if (isset($items) && count($items) > 0) {
         }
         ?>
                 </div>
+                <div class="order-detail-wrapper">
                 <div class="single_order_options">
                     <a href=" {{ route('show.order', $i) }}">
                         <svg viewBox="0 0 1024 1024" class="single_info_icon" version="1.1"
@@ -50,12 +51,16 @@ if (isset($items) && count($items) > 0) {
                         </svg>
                     </a>
                 </div>
-
+    </div>
+                @if ($order["order_status"] === 'Pending')
+                <div class="return-wrapper">
                 <div class="return_order">
                     <a href="{{ route('order.return', $i) }}" title="Return Product"><img
                             src="{{ asset('images/setting_images/return-svgrepo-com.svg') }}" width="350"
                             alt="Return Button" /></a> </a>
                 </div>
+    </div>
+                @endif
             </div>
             <?php
 
@@ -66,6 +71,11 @@ if (isset($items) && count($items) > 0) {
             <?php
 }
         ?>
+
+        </a>
+
+
+                
         </div>
     </div>
     </div>
