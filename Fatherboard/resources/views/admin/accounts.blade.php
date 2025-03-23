@@ -18,7 +18,7 @@
                 border-radius: 0.3rem;
                 margin: 0.5rem;
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
                 width: 80%;
                 background-color: white;
@@ -101,7 +101,6 @@
         </div>
 
         <div class="single_order" hidden>
-            <h2 class="order_">Orders</h2>
             <p class="order_details"></p>
         </div>
 
@@ -113,6 +112,8 @@
             <p id="specific_restricted">Account Restriction</p>
 
             <p id="specific_email"></p>
+            <h2 class="order_">Orders</h2>
+
 
             {{-- <button id="delete_account">Delete Account</button> --}}
 

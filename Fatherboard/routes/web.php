@@ -61,7 +61,10 @@ Route::get('/home', [HomeController::class, "giveHome"])->name("home");
 // Route::get('/home',[HomeController::class, "topproduct"])->name("home");
 Route::get('/',[HomeController::class, "giveHome"])->name("home");
 
+// Restricted Users
 
+
+Route::get("/restricted", [AuthController::class, "giveRestricted"])->name("restricted");
 
 // Handles products
 Route::get('/product/{id}', action: [ProductController::class, "show"]);

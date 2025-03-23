@@ -44,6 +44,15 @@ class AuthController extends Controller
 
     }
 
+    public function isRestricted($id)
+    {
+        return CustomerInformation::find($id)->restriction()->first()->Restricted;
+    }
+
+    public function giveRestricted()
+    {
+        return view("account_restricted");
+    }
     public static function index()
     {
         return view("admin.accounts");

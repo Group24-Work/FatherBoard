@@ -24,7 +24,7 @@ class RestrictedController extends Controller
 
         if (($newValue >= 0) && ($newValue <=1) )
         {
-            $restricted = $user->first()->restriction()->first()->updateOrFail(["Restricted"=>$newValue]);
+            $restricted = $user->restriction()->first()->updateOrFail(["Restricted"=>$newValue]);
 
             return response()->json(["Message"=>"Updated the quality"], 200);
         }
