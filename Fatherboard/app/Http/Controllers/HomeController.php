@@ -37,7 +37,16 @@ class HomeController extends Controller
             $secondProduct = Product::inRandomOrder()->first();
 
         }
-        return view('home', ['topproduct' => $topProduct, 'secondproduct' => $secondProduct]);
+
+        $thirdProduct = self::returnThirdProduct();
+        if ($thirdProduct==null)
+        {
+            $thirdProduct = Product::inRandomOrder()->first();
+
+        }
+
+
+        return view('home', ['topproduct' => $topProduct, 'secondproduct' => $secondProduct, 'thirdproduct' => $thirdProduct]);
         
 
 
@@ -116,4 +125,44 @@ class HomeController extends Controller
        
 
     }
+
+    public function findThirdProduct () {
+        $thirdreview = Review::orderby("rating","desc")->first();
+
+        if (!$thirdreview) {
+            return "No reviews found.";
+        }
+
+        $thirdproduct = Product::find($thirdreview->product_id);
+        if(!$thirdproduct) {
+
+            return "No products or reviews found.";
+        }
+
+        return view('home', ['thirdproduct' => $thirdproduct]);
+        
+       
+
+    }
+
+
+    public function returnThirdProduct() {
+        $thirdreview = Review::orderby("rating","desc")->skip(2)->first();
+
+        if (!$thirdreview) {
+            return null;
+        }
+
+        $thirdproduct = Product::find($thirdreview->product_id);
+        if(!$thirdproduct) {
+
+            return null;
+        }
+        return $thirdproduct;
+       
+
+    }
+
+
+
 }

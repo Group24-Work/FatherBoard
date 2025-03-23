@@ -58,7 +58,7 @@ Route::post("/reset", [AuthController::class, "resetPassword"]);
 // Home System
 Route::get('/home', [HomeController::class, "giveHome"])->name("home");
 // Route::get('/home',[HomeController::class, "topproduct"])->name("home");
-//Route::get('/home',[HomeController::class, "secondproduct"])->name("home")
+
 Route::get('/',[HomeController::class, "giveHome"])->name("home");
 
 
