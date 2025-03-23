@@ -39,32 +39,50 @@ function loadApplication() {
 
 function clickNext() {
     saveAnswer();
-    checkAnswer();
+    // checkAnswer();
+    nextQuestion()
 }
 
 function saveAnswer() {
     const selectElement = document.getElementById("choice"); // should get the tag db
     const selectedIndex = selectElement.selectedIndex;
+    // console.log(selectedIndex);
 
     if (selectedIndex >= 0) {
         const selectedTags = QUESTIONS[indexQuestion].choices[selectedIndex].tags;
-        const selectedChoiceTags = QUESTIONS[indexQuestion].choices[selectedIndex].tags;
+        const selectedChoiceTags = QUESTIONS[indexQuestion].choices[selectedIndex].choice;
         // line above should get associated tags with the options from above
 
         const questionKey = "question_" + indexQuestion;
+
+        console.log(selectedTags)
+        console.log(selectedChoiceTags)
+
+        
         questionResponses[questionKey] = {
             questionText: QUESTIONS[indexQuestion].question,
-            selectedChoice: selectedChoice,
-            selectedTags: selectedChoiceTags,
-            isSpecial: selectedChoice.toLowerCase() === "unsure" || selectedChoice.toLowerCase() === "hybrid"
+            selectedChoice: selectedChoiceTags,
+            selectedTags: selectedTags,
+            // isSpecial: selectedChoice.toLowerCase() === "unsure" || selectedChoice.toLowerCase() === "hybrid"
         };
-        if (selectedChoiceTags && selectedChoiceTags.length > 0)
-            selectedChoiceTags.forEach(tag => {
-                if (!selectedTags.includes(tag)) {
-                    selectedTags.push(tag);
-                }
-            });
 
+        questionResponses[questionKey] = {
+            questionText: QUESTIONS[indexQuestion].question,
+            selectedChoice: selectedChoiceTags,
+            selectedTags: selectedTags,
+            // isSpecial: selectedChoice.toLowerCase() === "unsure" || selectedChoice.toLowerCase() === "hybrid"
+        };
+
+        // what is bro smoking?
+        // if (selectedChoiceTags && selectedChoiceTags.length > 0)
+        //     selectedChoiceTags.forEach(tag => {
+        //         if (!selectedTags.includes(tag)) {
+        //             selectedTags.push(tag);
+        //         }
+        //     });
+
+
+        console.log(questionResponses)   
     }
 }
 
@@ -92,10 +110,13 @@ function nextQuestion() {
 function loadQuestion(indexQuestion) {
     document.getElementById("question").textContent = QUESTIONS[indexQuestion].question;
     var choices = "";
+    console.log(QUESTIONS[indexQuestion].choices.length)
+
     for (var i = 0; i < QUESTIONS[indexQuestion].choices.length; i++) {
-        choices += "<option value='" + i + "'>" + QUESTIONS[indexQuestion].choices[i].choices.choice + "</option>";
+        choices += "<option value='" + i + "'>" + QUESTIONS[indexQuestion].choices[i].choice + "</option>";
 
     }
+    // console.log(choices);
     document.getElementById("choice").innerHTML = choices;
 }
 function submitQuestionnaire() {

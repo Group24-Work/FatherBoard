@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.ProductItem {
+    flex-basis: 30%;
+    flex-shrink: 0;
+    margin: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+    position:relative;
+
+}
+
+#ProductContainer {
+    display: flex;
+    padding-left: 5rem;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+}
+
+
+.lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.25rem;
+}
+
+
+
+
+.filter-sidebar {
+    padding-top: 1.563rem;
+    margin-left: 5rem;
+    width: 17.625rem;
+    height: 42.438rem;
+    min-height: 12.5rem;
+    position: -webkit-sticky;
+    position: sticky;
+    float: left;
+    top: 5%;
+}
+
+#filter-button {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+
+}
+
+#filter-button:hover{
+    cursor: pointer;
+}
+
+
+.filter-sidebar p {
+    text-align: left;
+    padding: 0.313rem;
+}
+
+.main-content {
+    margin-right: 22.375rem;
+    width: 46.8%;
+    height: 42.438rem;
+    min-height: 12.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content,
+.filter-sidebar {
+
+    background-color: FFFFFF;
+
+    padding: 0.938rem;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+img:not(#logo) {
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 0.5rem;
+    margin-top: 20px;
+}
+
+
+/* .ProductItem:hover {
+    background-color: rgb(158, 157, 157);
+    cursor: pointer;
+} */
+
+.filter-button:hover {
+    background-color: rgb(78, 1, 78);
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    background-color: rgb(158, 157, 157);
+
+}
+a:hover{
+    cursor: pointer;
+}
+
+#addProduct {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#addTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addTag:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+#addProduct:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#addProductTag {
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    color: white;
+    width: fit-content;
+    text-align: center;
+
+}
+
+#addProductTag:hover {
+    background-color: rgb(78, 1, 78);
+}
+
+.price {
+    color: black;
+}
+
+
+.checked{
+    color:gold;
+}
+
+#title_content
+{
+    margin: 2rem 0;
+    text-align: center;
+}
+#title_content > h3
+{
+    text-align: center;
+    /* background-color: red; */
+}
+
+.basketButton{
+    margin-top: 2rem;
+    background-color: #800080;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    color: white;
+    width: 50%;
+}
+
+.basketButton:hover{
+    cursor: pointer;
+    background-color: black;
+}

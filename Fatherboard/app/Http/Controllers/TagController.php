@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Models\Tag;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class TagController extends Controller
 {
@@ -66,6 +67,22 @@ class TagController extends Controller
 
     }
 
+
+    private static function data_productsFormat($data)
+     {
+        // dd($data);
+         $filtered_details = $data->map(function ($x)
+         {
+            $rev = Review::where("product_id",operator: $x["id"])->selectRaw(" AVG(rating) as avg_rating")->first()["avg_rating"];
+
+             $image = $x["id"] > 25 ? 1 : $x["id"];
+             return ["ID"=>$x["id"],"Title"=>$x["Title"], "Description"=>$x["Description"], "Manufacturer"=>$x["Manufacturer"],"Price"=> $x->price()->first()["price"], "Image"=>$image, "tags"=>$x->tags->pluck('name')->toArray()
+             , "avgReview"=>$rev];
+         });
+         return $filtered_details;
+     }
+
+
     public function questionnaire()
     {
     $tags = Tag::all();
@@ -74,8 +91,12 @@ class TagController extends Controller
     }
 public function processQuestionnaire(Request $request){
 
-    $selectedTags = json_decode($request->input('selected_tags'), true);
-$questionResponses = json_decode($request->input('question_responses'), true);
+    // $selectedTags = json_decode($request->input('selected_tags'), true);
+    $questionResponses = json_decode($request->input('question_responses'), true);
+
+    // dd($selectedTags);
+
+    // dd($questionResponses);
     //above should grab the tags from a request and store as a json(array)
 
     $showingAllCategories =[
@@ -84,25 +105,71 @@ $questionResponses = json_decode($request->input('question_responses'), true);
         'storage' =>false
     ];
 
-foreach($questionResponses as $response){
-    if(isset($response['isSpecial']) && $response['isSpecial']){
-        if(stripos($response['questionText'], 'use your PC for') !== false){
-            $showAllCategories['usage']= true;
-        } elseif(stripos($response['questionText'], 'RAM do you need') !== false){
-            $showAllCategories['ram']=true;
-        }elseif(stripos($response['questionText'], 'storage would you like')!==false){
-            $showAllCategories['storage'] =true;
+    
+
+    foreach($questionResponses as $response){
+        if(isset($response['isSpecial']) && $response['isSpecial']){
+            if(stripos($response['questionText'], 'use your PC for') !== false){
+                $showAllCategories['usage']= true;
+            } elseif(stripos($response['questionText'], 'RAM do you need') !== false){
+                $showAllCategories['ram']=true;
+            }elseif(stripos($response['questionText'], 'storage would you like')!==false){
+                $showAllCategories['storage'] =true;
+            }
         }
     }
-}
-session([
-    'questionnaire_tags'=>$selectedTags,
-    'question_responses'=>$questionResponses,
-    'show_all_categories'=>$showAllCategories
-]);
+    $allTags = [];
 
-return redirect()->route('questionnaire.results');
-}
+    foreach($questionResponses as $response){
+        $allTags = array_merge($allTags, $response["selectedTags"]);
+        // dd($response["selectedTags"]);
+
+        // if(isset($response['isSpecial']) && $response['isSpecial']){
+        //     if(stripos($response['questionText'], 'use your PC for') !== false){
+        //         $showAllCategories['usage']= true;
+        //     } elseif(stripos($response['questionText'], 'RAM do you need') !== false){
+        //         $showAllCategories['ram']=true;
+        //     }elseif(stripos($response['questionText'], 'storage would you like')!==false){
+        //         $showAllCategories['storage'] =true;
+        //     }
+        // }
+    }
+    // dd($allTags);
+    $res = Product
+    ::join("product_tag", "products.id","=","product_tag.product_id")
+    ->join("tags","tags.id","=","product_tag.tag_id")
+    ->groupBy("products.id")
+    ->select("products.id")
+    ->whereIn("tags.Name", $allTags) // Filters only products with these tags
+    // ->get(["products.id","tags.Name"])->toArray();
+    ->get(["product.id"]);
+
+    $productIds = $res->pluck('id')->toArray();
+
+    $products = Product::whereIn('id', $productIds)->get();
+
+    $productFormat = self::data_productsFormat($products);
+    session([
+        'questionnaire_results' => $productFormat, 
+    ]);
+    // return json_encode($res);
+// session([
+//     'questionnaire_tags'=>$selectedTags,
+//     'question_responses'=>$questionResponses,
+//     'show_all_categories'=>$showAllCategories
+// ]);
+
+
+    return redirect()->route('questionnaire.results');
+
+    }
+
+    public function showResults()
+    {
+        $data = session('questionnaire_results', []);
+        // dd($data);
+        return view("questionnaire_results", ["data"=>$data]);
+    }
 
     /**
      * Update the specified resource in storage.

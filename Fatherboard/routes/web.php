@@ -108,17 +108,17 @@ Route::get('/about', function()
 })->name('about');
 
 
-Route::get('/questionnaire', function()
-{
-    return view('questionnaire');
-});
+// Route::get('/questionnaire', function()
+// {
+//     return view('questionnaire');
+// });
 
 Route::get("/questionnaire/filter", [QuestionnaireController::class, "filter"])->name("filter");
 Route::get('/questionnaire', [TagController::class, 'questionnaire'])->name('questionnaire');
 Route::post('/questionnaire/submit',[tagController:: class, 'submitQuestionnaire'])->name('questionnaire.submit');
 Route::post('/questionnaire/process', [TagController::class, 'processQuestionnaire'])->name('questionnaire.process');
 
-
+Route::get("/questionnaire/showResults", [TagController::class, "showResults"])->name("questionnaire.results");
 
 
 //basket side back-end
