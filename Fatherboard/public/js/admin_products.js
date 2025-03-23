@@ -237,7 +237,8 @@ document.addEventListener("DOMContentLoaded", function(y)
             tagElem.textContent = tag.textContent
 
             let removeElem = document.createElement("span")
-            removeElem.textContent = "-"
+            removeElem.classList.add("remove_button")
+            removeElem.textContent = "X"
             removeElem.addEventListener("click",function(x)
             {
                 console.log(tag_assoc)
