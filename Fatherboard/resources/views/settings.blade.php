@@ -14,6 +14,7 @@
             <?php
 if (isset($items) && count($items) > 0) {
     $i = 0;
+    
     foreach ($items as $order) {
         $i = $i + 1;
 
@@ -21,19 +22,18 @@ if (isset($items) && count($items) > 0) {
             <br>
             <div class="single_order">
                 <div class="single_order_content">
-
-                    <h2 class="order_price">£ {{$order["price"]}}</h2>
+                <hr>
                     <h2>Order Number: {{$order["order_number"]}}</h2>
+                    <h2 class="order_price">£ {{$order["price"]}}</h2>
 
                     <br>
-
                     <?php
         foreach ($order["elements"] as $info) {
                 ?>
 
                     <p>{{$info}}</p>
                     <?php
-        }
+        }           
         ?>
                 </div>
                 <div class="order-detail-wrapper">
