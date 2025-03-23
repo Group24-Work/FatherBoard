@@ -109,6 +109,7 @@ body {
 .products-grid {
     display: flex;
     justify-content: center;
+    gap: 30px;
 }
 
 .product-item {
