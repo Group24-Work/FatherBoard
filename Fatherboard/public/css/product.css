@@ -21,10 +21,11 @@
     width: 80%;
     height: 90%;
     display: grid;
-    margin: 5rem auto 2rem auto;
+    margin: 4rem auto 2rem auto;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 300px 300px;
+    grid-template-rows: auto auto;
     grid-template-areas: "";
+    gap: 20px;
 }
 
 #basket_button {
@@ -44,21 +45,25 @@
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
+    align-self: start;
 }
 
 #content {
     margin-left: 2rem;
+    margin-top: 0;
+    padding-top: 0;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    justify-content: center;
+    justify-content: start;
     display: flex;
     flex-flow: column;
 }
 
 #title {
-    text-align: center;
+    text-align: left;
+    margin-top: 0;
 }
 
 #rating_summary {
