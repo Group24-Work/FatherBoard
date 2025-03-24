@@ -45,6 +45,10 @@
     float: left;
     top: 5%;
 }
+.filter-sidebar span
+{
+    padding-left: 1rem;
+}
 
 #filter-button {
     margin-top: 2rem;

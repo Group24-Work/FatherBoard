@@ -86,23 +86,36 @@
             <h4 style="padding-left: 1.563rem;">Category:</h4>
             <br>
             <div class="checkbox">
-                <label><input type="checkbox" rel="Memory" />Memory</label>
+                <label>
+                    <input type="checkbox" rel="Memory" />
+                    <span>Memory</span>
+                </label>
             </div>
             <br>
             <div class="checkbox">
-                <label><input type="checkbox" rel="CPU" href="CPUs" />CPUs</label>
+                <label><input type="checkbox" rel="CPU" href="CPUs" />
+                    <span>CPUs</span>
+                </label>
             </div>
             <br>
             <div class="checkbox">
-                <label><input type="checkbox" rel="Prebuilt" />Prebuilt Computers</label>
+                <label>
+                    <input type="checkbox" rel="Prebuilt" />
+                    <span>Prebuilt Computers</span>
+                </label>
             </div>
             <br>
             <div class="checkbox">
-                <label><input type="checkbox" rel="GPU" />GPUs</label>
+                <label><input type="checkbox" rel="GPU" />
+                    <span>GPUs</span>
+                </label>
             </div>
             <br>
             <div class="checkbox">
-                <label><input type="checkbox" rel="PSU" />PSUs</label>
+                <label>
+                    <input type="checkbox" rel="PSU" />
+                    <span>PSUs</span>
+                </label>
             </div>
             <br>
 
@@ -117,31 +130,49 @@
 
         <div class="prices">
             <div class="checkbox">
-                <label><input type="checkbox" rel="50-100" /> £50-100 </label>
+                <label>
+                    <input type="checkbox" rel="50-100" />
+                     <span>£50-100</span>
+                </label>
             </div>
             <br>
 
             <div class="checkbox">
-                <label><input type="checkbox" rel="100-200" /> £100-200 </label>
+                <label>
+                    <input type="checkbox" rel="100-200" />
+                     <span>£100-200</span>
+                    </label>
             </div>
             <br>
             <div class="checkbox">
-                <label><input type="checkbox" rel="200-300" />£200-300 </label>
-            </div>
-            <br>
-
-            <div class="checkbox">
-                <label><input type="checkbox" rel="300-400" />£300-400</label>
-            </div>
-            <br>
-
-            <div class="checkbox">
-                <label><input type="checkbox" rel="400-500" /> £400-500</label>
+                <label>
+                    <input type="checkbox" rel="200-300" />
+                    <span>£200-300</span>
+                </label>
             </div>
             <br>
 
             <div class="checkbox">
-                <label><input type="checkbox" rel="500+" /> £500+ </label>
+                <label>
+                    <input type="checkbox" rel="300-400" />
+                    <span>£300-400</span>
+                </label>
+            </div>
+            <br>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" rel="400-500" /> 
+                    <span>£400-500</span>
+                </label>
+            </div>
+            <br>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" rel="500+" /> 
+                    <span>£500+</span>
+                </label>
             </div>
 
         </div>

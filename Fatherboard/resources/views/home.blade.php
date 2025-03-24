@@ -68,5 +68,4 @@
     <x-footer>
     </x-footer>
 
-    <br>
 </x-lowlayout>
