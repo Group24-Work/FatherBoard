@@ -185,8 +185,9 @@ function showProduct(info)
     product_element.appendChild(manufacturer_text);
       product_element.appendChild(image_content)
     product_element.appendChild(reviews);
-      button.innerHTML = `<form action="{{ route('basketAdd') }}" method="POST">
-                <input type="hidden" name="product_id" value="${elem["id"]}">
+      button.innerHTML = `<form action="/basket/add" method="POST">
+                      <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').getAttribute('content')}">
+                <input type="hidden" name="product_id" value="${elem["ID"]}">
                <button type="submit" class="basketButton" id="basket_button">Add to Basket</button>
             </form>`
     // button.insertAdjacentHTML("beforeend", `<button type="submit" class="basketButton" id="basket_button">Add to Basket</button></span>`);
