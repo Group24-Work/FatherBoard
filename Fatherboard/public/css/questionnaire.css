@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: Montserrat;
+    font-family: "Montserrat";
 }
 
 .title {
@@ -82,7 +82,23 @@ h3{
     background-color: #800080;
     border-radius: 2rem;
     padding: 0.5rem 3rem;
-
+font-weight: 500;
     border: none;
     color: white;
+}
+form
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.icon
+{
+    width: 2rem;
+    height: 2rem;;
+    /* position: absolute;
+    right: 0;
+    top: 10%; */
+    /* object-fit: contain; */
 }
