@@ -9,7 +9,7 @@
     </x-slot:head>
     <x-adminh></x-adminh>
 
-    <div id="exit">
+    {{-- <div id="exit">
         <a href="{{asset(route("adminHub"))}}">
             <p>Exit</p>
 
@@ -30,7 +30,7 @@
                 </g>
             </svg>
         </a>
-    </div>
+    </div> --}}
     <div id="tag-menu">
     <div class="wrapper">
         <h2>Tag Management</h2>
