@@ -28,7 +28,7 @@
 
             <br>
             <br>
-            <p>£{{ $product->Price->price }}</p>
+            <p class="current_price">£{{ $product->Price->price }}</p>
             <br>
 
             <form action="{{ route('basketAdd') }}" method="POST">

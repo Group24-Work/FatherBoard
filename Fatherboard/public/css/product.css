@@ -9,7 +9,12 @@
 
 
 
-
+.current_price
+{
+    font-size: 2rem;
+    color:#49fc03;
+    font-weight: 500;;
+}
 
 
 #product_image {
