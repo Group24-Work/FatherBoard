@@ -102,6 +102,13 @@ public function remove(Request $request)
     if (isset($basket[$productId])) {
         unset($basket[$productId]);
     }
+    else
+    {
+        return redirect()->route('basketIndex')->withErrors([
+            'product_id' => 'The selected product is not in your basket.'
+        ]);
+    }
+
     session()->put('basket', $basket);
 
     return redirect()->route('basketIndex')->with('success', 'Product removed!');

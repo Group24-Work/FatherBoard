@@ -371,6 +371,8 @@ class AuthController extends Controller
     public static function loggedIn_withAdmin()
     {
         $user = self::loggedIn();
+        dd($user);
+
         if ($user && $user->Admin)
         {
             return $user;

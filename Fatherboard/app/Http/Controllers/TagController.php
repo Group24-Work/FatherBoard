@@ -42,9 +42,14 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $name = request()->input("Name");
+        if ($name == null)
+        {
+            return response()->json(['message'=>'Cannot create tags with no names'], 400);
 
+        }
         if (!Tag::where("Name",$name)->exists())
         {
+            
             Tag::create(["Name"=>$name]);
             return response()->json(['message'=>'Created tag'], 201);
         }

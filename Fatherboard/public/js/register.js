@@ -139,3 +139,4 @@ function infoBox(container, string)
     container.innerHTML += text_info_box;
 
 }
+

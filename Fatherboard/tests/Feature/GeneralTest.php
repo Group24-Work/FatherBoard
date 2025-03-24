@@ -8,6 +8,7 @@ use Tests\TestCase;
 
 use Database\Seeders\DatabaseSeeder;
 
+use App\Models\Product;
 
 trait SeedsTestDatabase
 {
@@ -44,7 +45,6 @@ class GeneralTest extends TestCase
         $response->assertStatus(200);  
 
     }
-
     public function test_about_page()
     {
         $response = $this->get('/about');
@@ -52,6 +52,39 @@ class GeneralTest extends TestCase
         $response->assertStatus(200);  
 
 
+    }
+    public function test_contact_us()
+    {
+
+        $response = $this->get("/contact");
+        $response->assertStatus(200);
+    }
+
+    public function test_product_page()
+    {
+        $response = $this->get("/products");
+        $response->assertStatus(200);
+    }
+
+
+    public function testProductPageShowsCorrectInformation()
+{
+        $product = Product::factory()->create([
+            'id' => 5,
+            'Title' => 'Test Product',
+            'Description' => 'This is a test product description'
+        ]);
+
+        $response = $this->get('/product/5');
+
+        $response->assertStatus(200);
+
+        // Assert the view has the correct product data
+        $response->assertViewHas('product', function ($viewProduct) use ($product) {
+            return $viewProduct->id === $product->id;
+        });
+
+        $response->assertSee($product->Title);
     }
 
 

@@ -53,7 +53,17 @@ class CustomerController extends Controller
 
     public function destroy($id)
     {
+        $user = CustomerInformation::find($id);
+
+        if ($user->count() >1)
+        {
         CustomerInformation::destroy($id);
+        }
+        else
+        {
+            return response()->json(['Message'=>"User does not exist"], 400);
+  
+        }
 
         return response()->json(['Message'=>"User deleted"], 200);
     }
