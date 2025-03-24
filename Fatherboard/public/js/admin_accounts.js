@@ -99,8 +99,14 @@ function emailClick()
          let elem = document.createElement("email-suggestion-item");
          let delete_svg = elem.shadowRoot.querySelector(".delete_svg")
 
+         let background = elem.shadowRoot.querySelector(".email_item");
+
+
+
          let lock_svg = elem.shadowRoot.querySelector(".lock_svg");
   
+         let unlock_svg = elem.shadowRoot.querySelector(".unlock_svg")
+
          let name_text = y["First Name"] + " " + y["Last Name"];
 
          let id = document.createElement("p");
@@ -120,7 +126,24 @@ function emailClick()
          elem.appendChild(name);
          elem.appendChild(email);
          elem.appendChild(id)
+        if (y["Restricted"] ==0)
+        {
+            unlock_svg.style.display = "None"
+            lock_svg.style.display = "inline"
+        }
+        else
+        {
+            background.style.background = "#fff6e0"
+            unlock_svg.style.display = "inline"
+            lock_svg.style.display = "None"
 
+
+        }
+
+        unlock_svg.addEventListener("click", function(x)
+    {
+        unlock_user(y["id"])
+    })
          lock_svg.addEventListener("click", function(x)
         {
             lock_user(y["id"])
@@ -146,7 +169,29 @@ function emailClick()
 
  
 }
+function unlock_user(id)
+{
+    console.log("UnLock user")
+    
+    let fd = new FormData();
 
+    fd.append("new_value", 0);
+
+    let url = `/restrict/update/${id}`
+
+    fetch(url,
+        {
+            method: "POST",
+            headers : {
+                "X-CSRF-TOKEN" : csrf_token_val
+            },
+            body: fd
+        }
+    ).then(function(x)
+{
+    window.location.reload(true);
+})
+}
 function lock_user(id)
 {
     console.log("Lock user")
@@ -167,7 +212,7 @@ function lock_user(id)
         }
     ).then(function(x)
 {
-    // window.location.reload(true);
+    window.location.reload(true);
 })
 }
 function delete_user(id)
