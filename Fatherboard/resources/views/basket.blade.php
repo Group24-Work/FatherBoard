@@ -97,5 +97,11 @@
             </div>
             </div>
         </main>
+        <x-footer>
+
+
+        </x-footer>
     </body>
+
+
 </x-lowlayout>

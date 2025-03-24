@@ -34,5 +34,10 @@
             <button id="btnSubmit" type="submit" style="display: none;">Submit</button>
         </form>
     </body>
+    <x-footer-space>
+    </x-footer-space>
+    <x-footer>
 
+
+    </x-footer>
 </x-lowlayout>

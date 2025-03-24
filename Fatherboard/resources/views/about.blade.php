@@ -4,7 +4,7 @@
     </x-slot:head>
     <x-header></x-header>
     <div class="split left"> <!--https://www.w3schools.com/howto/howto_css_split_screen.asp -->
-            <div class="centered"> 
+        <div class="centered">
             <h1>About Us</h1>
             <br>
 
@@ -13,28 +13,32 @@
                 <br>
                 <br>
                 <br>
-                As students, we understand the difficulty in finding appropriately priced computer parts, and how these prices create a high barrier to entry.
+                As students, we understand the difficulty in finding appropriately priced computer parts, and how these
+                prices create a high barrier to entry.
                 This means that many individuals interesed in PC building, cannot reasonably access the hobby.
                 <br>
                 <br>
-                We wanted to fix this, and share our enjoyment of PC parts and PC building. 
+                We wanted to fix this, and share our enjoyment of PC parts and PC building.
                 <br>
                 <br>
-                At FatherBoard, we believe in transparent communication. If you have any issues or queries, please <a href="{{ route("contact")}}">contact us.</a>
+                At FatherBoard, we believe in transparent communication. If you have any issues or queries, please <a
+                    href="{{ route("contact")}}">contact us.</a>
             </p>
-            </div>
         </div>
-        <div class="split right">
-            <div class="centered">
-                <br>
-                <br>
-                <br>
-                <br>
-                <img src="{{asset('images/front_images/FatherboardBackground.png')}}" id="logo"alt="FatherBoard Logo" width="1000" height="700">
-            </div>
-            
+    </div>
+    <div class="split right">
+        <div class="centered">
+            <br>
+            <br>
+            <br>
+            <br>
+            <img src="{{asset('images/front_images/FatherboardBackground.png')}}" id="logo" alt="FatherBoard Logo"
+                width="1000" height="700">
         </div>
 
-        <x-footer>
-        </x-footer>
+    </div>
+    <x-footer-space>
+    </x-footer-space>
+    <x-footer>
+    </x-footer>
 </x-lowlayout>

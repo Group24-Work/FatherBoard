@@ -113,4 +113,10 @@ if (count($product->reviews()->get()) == 0) {
 
     </main>
 
+    <x-footer-space>
+    </x-footer-space>
+    <x-footer>
+
+
+    </x-footer>
 </x-lowlayout>
