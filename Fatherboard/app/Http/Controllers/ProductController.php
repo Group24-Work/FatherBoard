@@ -20,8 +20,9 @@ class ProductController extends Controller
          {
             $rev = Review::where("product_id",operator: $x["id"])->selectRaw(" AVG(rating) as avg_rating")->first()["avg_rating"];
 
+            $shortTitle = implode(' ', array_slice(explode(' ', $x['Title']), 0, 7));
              $image = $x["id"] > 25 ? 1 : $x["id"];
-             return ["ID"=>$x["id"],"Title"=>$x["Title"], "Description"=>$x["Description"], "Manufacturer"=>$x["Manufacturer"],"Price"=> $x->price()->first()["price"], "Image"=>$image, "tags"=>$x->tags->pluck('name')->toArray()
+             return ["ID"=>$x["id"],"Title"=>$shortTitle, "Description"=>$x["Description"], "Manufacturer"=>$x["Manufacturer"],"Price"=> $x->price()->first()["price"], "Image"=>$image, "tags"=>$x->tags->pluck('name')->toArray()
              , "avgReview"=>$rev];
          });
          return $filtered_details;
