@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="footer-container">
-        <div class="social-icons">
+        {{-- <div class="social-icons">
             <a href="https://facebook.com" target="_blank">
                 <img src="images/front_images/facebook.png" alt="Facebook">
             </a>
@@ -13,7 +13,7 @@
             <a href="https://linkedin.com" target="_blank">
                 <img src="images/front_images/linkedin.png" alt="LinkedIn">
             </a>
-        </div>
+        </div> --}}
         <div id="footer-link">
             <a href="{{route("contact")}}">Contact Us</a>
 
