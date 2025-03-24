@@ -62,7 +62,8 @@
             </div>
         </section>
     </div>
-
+    <x-footer-space>
+    </x-footer-space>
     <x-footer>
     </x-footer>
 
