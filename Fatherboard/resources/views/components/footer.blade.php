@@ -1,7 +1,7 @@
 <footer class="main-footer">
     <div class="footer-container">
-        {{-- <div class="social-icons">
-            <a href="https://facebook.com" target="_blank">
+        <div class="social-icons">
+            {{-- <a href="https://facebook.com" target="_blank">
                 <img src="images/front_images/facebook.png" alt="Facebook">
             </a>
             <a href="https://x.com" target="_blank">
@@ -12,8 +12,11 @@
             </a>
             <a href="https://linkedin.com" target="_blank">
                 <img src="images/front_images/linkedin.png" alt="LinkedIn">
-            </a>
-        </div> --}}
+            </a> --}}
+                    <img class="logo" src="{{asset('images/FatherboardTransparentCrop.png')}}" id="logo" alt="FatherBoard Logo"
+                width="100" height="50">
+        </div> 
+
         <div id="footer-link">
             <a href="{{route("contact")}}">Contact Us</a>
 
