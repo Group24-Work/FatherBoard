@@ -26,42 +26,43 @@
         <br>
         <br>
         <br>
-        <section class="top-product">
-            <div class="top-product-content">
-                <h1 id="topTitle">Our Top Products!</h1>
+        
+    </div>
+    <section class="top-product">
+        <div class="top-product-content">
+            <h1 id="topTitle">Our Top Products!</h1>
 
-                <div class="products-container">
-                    <div class="product-card">
-                        <img src="{{ asset('images/product_images/' . $topproduct->id . '.jpg') }}"
-                            alt="{{$topproduct->Title}}">
-                        <div class="top-product-details">
-                            <h3>{{ implode(' ', array_slice(explode(' ', $topproduct->Title), 0, 7)) }}</h3>
-                            <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$topproduct->id}}"
-                                class="shop-now">Shop Now</a>
-                        </div>
+            <div class="products-container">
+                <div class="product-card">
+                    <img src="{{ asset('images/product_images/' . $topproduct->id . '.jpg') }}"
+                        alt="{{$topproduct->Title}}">
+                    <div class="top-product-details">
+                        <h3>{{ implode(' ', array_slice(explode(' ', $topproduct->Title), 0, 7)) }}</h3>
+                        <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$topproduct->id}}"
+                            class="shop-now">Shop Now</a>
                     </div>
-                    <div class="product-card">
-                        <img src="{{ asset('images/product_images/' . $secondproduct->id . '.jpg') }}"
-                            alt="{{$secondproduct->Title}}">
-                        <div class="top-product-details">
-                            <h3>{{ implode(' ', array_slice(explode(' ', $secondproduct->Title), 0, 7)) }}</h3>
-                            <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$secondproduct->id}}"
-                                class="shop-now">Shop Now</a>
-                        </div>
+                </div>
+                <div class="product-card">
+                    <img src="{{ asset('images/product_images/' . $secondproduct->id . '.jpg') }}"
+                        alt="{{$secondproduct->Title}}">
+                    <div class="top-product-details">
+                        <h3>{{ implode(' ', array_slice(explode(' ', $secondproduct->Title), 0, 7)) }}</h3>
+                        <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$secondproduct->id}}"
+                            class="shop-now">Shop Now</a>
                     </div>
-                    <div class="product-card">
-                        <img src="{{ asset('images/product_images/' . $thirdproduct->id . '.jpg') }}"
-                            alt="{{$thirdproduct->Title}}">
-                        <div class="top-product-details">
-                            <h3>{{ implode(' ', array_slice(explode(' ', $thirdproduct->Title), 0, 7)) }}</h3>
-                            <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$thirdproduct->id}}"
-                                class="shop-now">Shop Now</a>
-                        </div>
+                </div>
+                <div class="product-card">
+                    <img src="{{ asset('images/product_images/' . $thirdproduct->id . '.jpg') }}"
+                        alt="{{$thirdproduct->Title}}">
+                    <div class="top-product-details">
+                        <h3>{{ implode(' ', array_slice(explode(' ', $thirdproduct->Title), 0, 7)) }}</h3>
+                        <a href="https://cs2team24.cs2410-web01pvm.aston.ac.uk/product/{{$thirdproduct->id}}"
+                            class="shop-now">Shop Now</a>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
     <x-footer-space>
     </x-footer-space>
     <x-footer>

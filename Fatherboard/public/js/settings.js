@@ -126,7 +126,7 @@ window.addEventListener("DOMContentLoaded",()=>
     {
         admin_index_button.addEventListener("click",()=>window.location.href = "/admin");
     }
-    logout_button.addEventListener("click",logOut);
+    // logout_button.addEventListener("click",logOut);
     logout_button2.addEventListener("click",logOut);
     update_personal_submit.addEventListener("click", updateSubmit);
     address_button.addEventListener("click", addressClicked);
