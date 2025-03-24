@@ -26,13 +26,14 @@
                 <button id="btnNext">Next</button>
             </div>
         </div>
-
+        <div id="submitContainer">
         <form id="questionnaireForm" method="POST" action="{{ route('questionnaire.process') }}">
             @csrf
             <input type="hidden" id="selected_tags" name="selected_tags" value="">
             <input type="hidden" id="question_responses" name="question_responses" value="">
             <button id="btnSubmit" type="submit" style="display: none;">Submit</button>
         </form>
+    </div>
     </body>
     <x-footer-space>
     </x-footer-space>
