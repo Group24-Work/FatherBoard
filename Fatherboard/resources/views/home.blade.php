@@ -59,7 +59,8 @@
         </section>
     </div>
 
+    <x-footer>
+    </x-footer>
 
-    </footer>
     <br>
 </x-lowlayout>
