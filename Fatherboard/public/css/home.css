@@ -17,7 +17,7 @@ body {
     background-repeat: no-repeat;
     background-size: 100% auto;
     min-height: 100vh;
-    color: white;
+    color: #333;
 }
 
 
@@ -28,7 +28,7 @@ body {
     background-color: white;
     width: 100%;
     position: relative;
-    z-index: 2
+    z-index: 2;
 }
 
 .top-product-content {
@@ -175,4 +175,9 @@ body {
     align-items: center;
     width: 100px;
     margin-bottom: 20px;
+}
+
+.content-spacer {
+    height: 700px;
+    width: 100%;
 }
