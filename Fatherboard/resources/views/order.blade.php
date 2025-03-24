@@ -6,14 +6,6 @@
     </x-slot:head>
 
     <x-header></x-header>
-
-
-    @if ($orders->order_status === 'Pending')
-        <a href="{{ route('order.return', $orders) }}" class="btn btn-danger">
-            Return Order
-        </a>
-    @endif
-
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -25,7 +17,7 @@
             {{ session('error') }}
         </div>
     @endif
-</div>
+    </div>
     <div id="return_container">
         <a href="/settings#!history">
 
@@ -45,23 +37,28 @@
 
     </div>
 
-    
+
     <div class="wrapper">
-    <div id="order_block">
-        <div id="order_container">
-            <h2>Order Number: #{{$orders->order_number}}</h2>
-            @foreach ($data as $x)
-                <div class="item_order">
-                    <img src="{{ asset('images/product_images/' . $x['image'] . '.jpg') }}" />
-                    <p><b>Item:</b> {{ $x['Title'] }}</p>
-                    <p><b>Price:</b> £{{ $x['price'] }}</p>
-                    <p><b>Quantity:</b> {{ $x['quantity'] }}</p>
-                    <hr>
+        <div id="order_block">
+            <div id="order_container">
+                <h2>Order Number: #{{$orders->order_number}}</h2>
+                @foreach ($data as $x)
+                    <div class="item_order">
+                        <img src="{{ asset('images/product_images/' . $x['image'] . '.jpg') }}" />
+                        <p><b>Item:</b> {{ $x['Title'] }}</p>
+                        <p><b>Price:</b> £{{ $x['price'] }}</p>
+                        <p><b>Quantity:</b> {{ $x['quantity'] }}</p>
+                        <hr>
 
-                </div>
-            @endforeach
+                    </div>
+                @endforeach
+                @if ($orders->order_status === 'Pending')
+                    <a href="{{ route('order.return', $orders) }}" class="btn btn-danger">
+                        Return Order
+                    </a>
+                @endif
+            </div>
+
+
         </div>
-
-
-    </div>
 </x-lowlayout>

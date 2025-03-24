@@ -97,11 +97,13 @@
             </div>
             </div>
         </main>
-        <x-footer>
 
-
-        </x-footer>
     </body>
 
+    <x-footer-space>
+    </x-footer-space>
+    <x-footer>
 
+
+    </x-footer>
 </x-lowlayout>

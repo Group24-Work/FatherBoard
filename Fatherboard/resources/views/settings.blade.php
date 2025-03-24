@@ -14,7 +14,7 @@
             <?php
 if (isset($items) && count($items) > 0) {
     $i = 0;
-    
+
     foreach ($items as $order) {
         $i = $i + 1;
 
@@ -22,7 +22,7 @@ if (isset($items) && count($items) > 0) {
             <br>
             <div class="single_order">
                 <div class="single_order_content">
-                <hr>
+                    <hr>
                     <h2>Order Number: #{{$order["order_number"]}}</h2>
                     <h2 class="order_price">£ {{$order["price"]}}</h2>
 
@@ -33,33 +33,33 @@ if (isset($items) && count($items) > 0) {
 
                     <p>{{$info}}</p>
                     <?php
-        }           
+        }
         ?>
                 </div>
                 <div class="order-detail-wrapper">
-                <div class="single_order_options">
-                    <a href=" {{ route('show.order', $i) }}">
-                        <svg viewBox="0 0 1024 1024" class="single_info_icon" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path
-                                    d="M320 89.6h640v76.8H320V89.6z m0 768h640v76.8H320v-76.8z m-256-768h128v76.8H64V89.6z m256 384h640v76.8H320V473.6z m-256 0h128v76.8H64V473.6z m0 384h128v76.8H64v-76.8z"
-                                    fill="#000000"></path>
-                            </g>
-                        </svg>
-                    </a>
+                    <div class="single_order_options">
+                        <a href=" {{ route('show.order', $i) }}">
+                            <svg viewBox="0 0 1024 1024" class="single_info_icon" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        d="M320 89.6h640v76.8H320V89.6z m0 768h640v76.8H320v-76.8z m-256-768h128v76.8H64V89.6z m256 384h640v76.8H320V473.6z m-256 0h128v76.8H64V473.6z m0 384h128v76.8H64v-76.8z"
+                                        fill="#000000"></path>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-    </div>
                 @if ($order["order_status"] === 'Pending')
-                <div class="return-wrapper">
-                <div class="return_order">
-                    <a href="{{ route('order.return', $i) }}" title="Return Product"><img
-                            src="{{ asset('images/setting_images/return-svgrepo-com.svg') }}" width="350"
-                            alt="Return Button" /></a> </a>
-                </div>
-    </div>
+                    <div class="return-wrapper">
+                        <div class="return_order">
+                            <a href="{{ route('order.return', $i) }}" title="Return Product"><img
+                                    src="{{ asset('images/setting_images/return-svgrepo-com.svg') }}" width="350"
+                                    alt="Return Button" /></a> </a>
+                        </div>
+                    </div>
                 @endif
             </div>
             <?php
@@ -72,10 +72,10 @@ if (isset($items) && count($items) > 0) {
 }
         ?>
 
-        </a>
+            </a>
 
 
-                
+
         </div>
     </div>
     </div>
@@ -86,68 +86,73 @@ if (isset($items) && count($items) > 0) {
                 margin: 0;
                 padding: 0;
             }
-            button
-            {
-                border:none;
-                position:relative;
-                width:50%;
+
+            button {
+                border: none;
+                position: relative;
+                width: 50%;
                 font-size: 100%;
-                transform:translateY(50%);
+                transform: translateY(50%);
                 /* padding: 10px 20px; */
                 background-color: lightcoral;
-                height:50%;
+                height: 50%;
 
-                font-size: 24px; /* Adjust this value to make the minus symbol larger */
-                 padding: 10px; 
-                
+                font-size: 24px;
+                /* Adjust this value to make the minus symbol larger */
+                padding: 10px;
+
             }
+
             button::before {
-                content: "\2716";  /* Unicode for the ✘ symbol */
-                font-size: 32px;  /* Make the symbol larger */
-                color: red;  /* Optional: Change color of the symbol */
+                content: "\2716";
+                /* Unicode for the ✘ symbol */
+                font-size: 32px;
+                /* Make the symbol larger */
+                color: red;
+                /* Optional: Change color of the symbol */
                 position: absolute;
                 /* left: 50%;;  */
-                 top: 50%; 
-                 transform: translate(-50%, -50%);  /* Center vertically and horizontally */
+                top: 50%;
+                transform: translate(-50%, -50%);
+                /* Center vertically and horizontally */
             }
 
-            button:hover
-            {
-                color:darkmagenta;
+            button:hover {
+                color: darkmagenta;
             }
-            .address_options
-            {
-                width:20%;
+
+            .address_options {
+                width: 20%;
 
             }
-            .address_item
-            {
-                display:flex;
+
+            .address_item {
+                display: flex;
                 justify-content: space-between;
-                
+
             }
         </style>
 
         <div class="address_item">
-        <div class="address_content">
-            <p id="Country">
-                <slot name="Country">Unknown Country</slot>
-            </p>
-            <p id="City">
-                <slot name="City">Unknown City</slot>
-            </p>
-            <p id="AddressLine">
-                <slot name="AddressLine">Unknown Address</slot>
-            </p>
-            <p id="PostCode">
-                <slot name="PostCode">Unknown PostCode</slot>
-            </p>
-        </div>
+            <div class="address_content">
+                <p id="Country">
+                    <slot name="Country">Unknown Country</slot>
+                </p>
+                <p id="City">
+                    <slot name="City">Unknown City</slot>
+                </p>
+                <p id="AddressLine">
+                    <slot name="AddressLine">Unknown Address</slot>
+                </p>
+                <p id="PostCode">
+                    <slot name="PostCode">Unknown PostCode</slot>
+                </p>
+            </div>
 
-        <div class="address_options">
-            <button name="remove-item"></button>
+            <div class="address_options">
+                <button name="remove-item"></button>
+            </div>
         </div>
-    </div>
 
     </template>
 
@@ -380,12 +385,12 @@ if ($user["Admin"]) {
 foreach ($addr as $single) {
             ?>
             <address-element>
-                    <p name="address_id" value="{{$single["id"]}}" hidden>{{$single["id"]}}</p>
-                    <p slot="Country">{{$single["Country"]}}</p>
-                    <p slot="City">{{$single["City"]}}</p>
-                    <p slot="PostCode">{{$single["PostCode"]}}</p>
-                    <p slot="AddressLine">{{$single["Address Line"]}}</p>
-                
+                <p name="address_id" value="{{$single["id"]}}" hidden>{{$single["id"]}}</p>
+                <p slot="Country">{{$single["Country"]}}</p>
+                <p slot="City">{{$single["City"]}}</p>
+                <p slot="PostCode">{{$single["PostCode"]}}</p>
+                <p slot="AddressLine">{{$single["Address Line"]}}</p>
+
             </address-element>
             <?php
 }
@@ -436,5 +441,8 @@ foreach ($addr as $single) {
 
         </div>
     </main>
-
+    <x-footer-space>
+    </x-footer-space>
+    <x-footer>
+    </x-footer>
 </x-lowlayout>

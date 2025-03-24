@@ -44,4 +44,9 @@
                 <button type="submit" class="btn-return">Confirm Return</button>
             </form>
         </div>
+        <x-footer-space>
+        </x-footer-space>
+        <x-footer>
+        </x-footer>
+
 </x-lowlayout>
