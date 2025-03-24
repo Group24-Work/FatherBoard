@@ -34,7 +34,9 @@
             }
             .item_content
             {
-                padding-bottom: 70px;
+                /* width:100%; */
+                height:16.2rem;
+                padding-bottom:1.5rem;
             }
         </style>
 
