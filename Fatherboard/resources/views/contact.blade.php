@@ -46,4 +46,6 @@
                 <input type="submit" id="contSubmit" value="Submit">
             </form>
         </div>
+        <x-footer>
+        </x-footer>
     </x-lowlayout>

@@ -193,4 +193,8 @@ if (count($data) > 0) {
 ;
     ?>
     </div>
+    <x-footer-space>
+    </x-footer-space>
+    <x-footer>
+    </x-footer>
 </x-lowlayout>

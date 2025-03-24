@@ -35,4 +35,6 @@
             
         </div>
 
+        <x-footer>
+        </x-footer>
 </x-lowlayout>
