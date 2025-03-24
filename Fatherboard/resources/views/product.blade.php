@@ -27,6 +27,7 @@
             <h2 id="title">{{ $product->Title}} </h2>
 
             <br>
+            <br>
             <p>£{{ $product->Price->price }}</p>
             <br>
 
@@ -37,6 +38,7 @@
 
                 <button type="submit" id="basket_button">Add To Basket</button>
             </form>
+            <br>
             <p>{{ $product["Description"]}} </p>
             <p>{{ $product["Manufacturer"] }}</p>
         </div>
