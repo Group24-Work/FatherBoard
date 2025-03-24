@@ -89,13 +89,16 @@
     justify-content: space-between;
 }
 
-
-
-img:not(#logo) {
+.product-image
+{
     width: 6.25rem;
     height: 6.25rem;
     border-radius: 0.5rem;
     margin-top: 20px;
+}
+
+img:not(#logo) {
+ 
 }
 
 
