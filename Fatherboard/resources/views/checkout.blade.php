@@ -90,5 +90,9 @@
                 </div>
             </div>
         </main>
+        <x-footer-space>
+        </x-footer-space>
+        <x-footer>
+        </x-footer>
     </body>
 </x-lowlayout>

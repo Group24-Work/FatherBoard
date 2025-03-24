@@ -94,16 +94,14 @@
                             <button id="checkout-btn">Proceed To Checkout</button>
                         </form>
                 @endif
-            </div>
+                </div>
             </div>
         </main>
-
+        <x-footer-space>
+        </x-footer-space>
+        <x-footer>
+        </x-footer>
     </body>
 
-    <x-footer-space>
-    </x-footer-space>
-    <x-footer>
-
-
-    </x-footer>
+   
 </x-lowlayout>
