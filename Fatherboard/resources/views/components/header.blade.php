@@ -23,7 +23,7 @@
                     <ul class="dropdown">
                         <li><a href="/settings#!personal">Settings</a></li>
                         <li><a href="/settings#!history">History</a></li>
-                        <li><a id="logout_button">Logout</a></li>
+                        <li><a href="{{route("logout")}}">Logout</a></li>
                     </ul>
                 </li>
                 <li><a href="/basket"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
