@@ -289,11 +289,15 @@ body h1 {
 }
 
 /* Footer Styles */
+#footer-icon
+{
+    transform: scale(0.75)
+}
 .main-footer {
     background-color: #333;
     position:fixed;
     bottom:0;
-    height:150px;
+    height:125px;
     width:100%;
     margin-top: 100px;
     color: white;
@@ -327,7 +331,10 @@ a:visited
 {
     text-decoration: none;
 }
+@media only screen and (max-height:500px)
+{
 
+}
 .footer-container {
     max-width: 1200px;
     display:flex;

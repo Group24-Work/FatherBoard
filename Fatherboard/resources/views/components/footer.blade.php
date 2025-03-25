@@ -13,7 +13,7 @@
             <a href="https://linkedin.com" target="_blank">
                 <img src="images/front_images/linkedin.png" alt="LinkedIn">
             </a> --}}
-                    <img class="logo" src="{{asset('images/FatherboardTransparentCrop.png')}}" id="logo" alt="FatherBoard Logo"
+                    <img id="footer-icon" src="{{asset('images/FatherboardTransparentCrop.png')}}" id="logo" alt="FatherBoard Logo"
                 width="100" height="50">
         </div> 
 

@@ -32,7 +32,7 @@
             <br>
             <br>
             <br>
-            <img src="{{asset('images/front_images/FatherboardBackground.png')}}" id="logo" alt="FatherBoard Logo"
+            <img src="{{asset('images/front_images/FatherboardBackground.png')}}" id="logo"  alt="FatherBoard Logo"
                 width="1000" height="700">
         </div>
 
