@@ -4,7 +4,9 @@
         <script src={{ asset('js/products.js') }}></script>
         <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
         <title>Products</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--https://www.w3schools.com/HOWTO/howto_css_star_rating.asp-->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--https://www.w3schools.com/HOWTO/howto_css_star_rating.asp-->
     </x-slot:head>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,24 +21,24 @@
             .price {
                 color: black;
             }
-            .item_options
-            {
-                position:absolute;
-                width:80%;
-                left:50%;
+
+            .item_options {
+                position: absolute;
+                width: 80%;
+                left: 50%;
                 transform: translateX(-50%);
-                bottom:5%;
+                bottom: 5%;
             }
-            .item_content:hover
-            {
+
+            .item_content:hover {
                 background-color: rgb(158, 157, 157);
 
             }
-            .item_content
-            {
+
+            .item_content {
                 /* width:100%; */
-                height:16.2rem;
-                padding-bottom:1.5rem;
+                height: 16.2rem;
+                padding-bottom: 1.5rem;
             }
         </style>
 
@@ -56,11 +58,13 @@
             </p>
         </div>
 
-    <div class="item_options">
+        <div class="item_options">
 
-        <span><slot class="basketButton" name="basketButton">Add to Basket</slot></span> 
-        <slot name="reviews"></slot>  
-    </div>
+            <span>
+                <slot class="basketButton" name="basketButton">Add to Basket</slot>
+            </span>
+            <slot name="reviews"></slot>
+        </div>
     </template>
     <?php
 
@@ -132,7 +136,7 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" rel="50-100" />
-                     <span>£50-100</span>
+                    <span>£50-100</span>
                 </label>
             </div>
             <br>
@@ -140,8 +144,8 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" rel="100-200" />
-                     <span>£100-200</span>
-                    </label>
+                    <span>£100-200</span>
+                </label>
             </div>
             <br>
             <div class="checkbox">
@@ -162,7 +166,7 @@
 
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" rel="400-500" /> 
+                    <input type="checkbox" rel="400-500" />
                     <span>£400-500</span>
                 </label>
             </div>
@@ -170,7 +174,7 @@
 
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" rel="500+" /> 
+                    <input type="checkbox" rel="500+" />
                     <span>£500+</span>
                 </label>
             </div>
@@ -186,14 +190,14 @@
         <?php
 if (count($data) > 0) {
     foreach ($data as $item) {
-        $rating = DB::table("reviews")->where("product_id",$item["ID"])->select(DB::raw("avg(rating) as avg_rating"))->first();
-        $numOfStars = App\Utility\Utility::numberClosest($rating->avg_rating ?? 0, [1,2,3,4,5]);
+        $rating = DB::table("reviews")->where("product_id", $item["ID"])->select(DB::raw("avg(rating) as avg_rating"))->first();
+        $numOfStars = App\Utility\Utility::numberClosest($rating->avg_rating ?? 0, [1, 2, 3, 4, 5]);
 
-        $starDisplay="";
-        for ($i = 1; $i <=5; $i++){
-            if ($i<=$numOfStars){ // using a different star to product page, as that uses images - harder to format being smaller (also can display missing stars)
+        $starDisplay = "";
+        for ($i = 1; $i <= 5; $i++) {
+            if ($i <= $numOfStars) { // using a different star to product page, as that uses images - harder to format being smaller (also can display missing stars)
                 $starDisplay .= '<span class="fa fa-star checked"></span>';
-            } else{
+            } else {
                 $starDisplay .= '<span class="fa fa-star"></span>';
             }
         }
@@ -208,13 +212,13 @@ if (count($data) > 0) {
             <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
             <span slot="Price"> {{$item["Price"]}}</span>
             <span slot=basketButton>
-            <form action="{{ route('basketAdd') }}" method="POST">
-                @csrf <!-- Include CSRF token for security -->
-                <input type="hidden" name="product_id" value="{{ $item['ID'] }}">
-               <button type="submit" class="basketButton" id="basket_button">Add to Basket</button>
-            </form>
+                <form action="{{ route('basketAdd') }}" method="POST">
+                    @csrf <!-- Include CSRF token for security -->
+                    <input type="hidden" name="product_id" value="{{ $item['ID'] }}">
+                    <button type="submit" class="basketButton" id="basket_button">Add to Basket</button>
+                </form>
             </span>
-            <div slot="reviews"><?php echo $starDisplay; ?></div>
+            <div slot="reviews"><?php        echo $starDisplay; ?></div>
 
         </product-element>
         <?php
