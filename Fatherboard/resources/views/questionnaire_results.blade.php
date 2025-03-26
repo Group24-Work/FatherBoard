@@ -101,7 +101,7 @@ if (count($data) > 0) {
                 alt="product image" class="product-image">
             <p hidden class="product_identity"> {{$item["ID"]}} </p>
             <p>temp</p>
-            <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 7)) }}</span>
+            <span slot="Title">{{ implode(' ', array_slice(explode(' ', $item['Title']), 0, 5)) }}</span>
             <span slot="Price"> {{$item["Price"]}}</span>
             <span slot=basketButton>
                 <form action="{{ route('basketAdd') }}" method="POST">
