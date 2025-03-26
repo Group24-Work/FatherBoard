@@ -39,5 +39,6 @@ if __name__=="__main__":
 
     #password = os.getenv("EMAIL_PASS")
  
-    password = "lfuj hhbm vura eewj"
+    password_old = "lfuj hhbm vura eewj"
+    password = "bpbu wxoc pgxh tvdm "
     print(sendEmail(sys.argv[1]), end="")
