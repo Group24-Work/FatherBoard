@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use App\Models\CustomerInformation;
 use App\Models\BasketItem;
 use App\Models\PasswordReset;
@@ -103,26 +104,42 @@ class AuthController extends Controller
     // This form of login returns a json output of whether the user has logged in successfully
     public static function explicit_login()
     {
+        // dd();
         $email = request("email");
         $password = request("password");
         $firstName = request("firstName");
         $lastName = request("lastName");
 
         $permanent = request('permanent');
-
+        // dd($permanent);
+        
         if (self::login($email,$password)  )
         {
             // "permanent" style login will be 1 hour in duration
             $length = time() + 60*60*24*30;
-            if ($permanent == false)
+            if ($permanent == "false")
             {
                 session_start();
                 $_SESSION["email"] = $email;
                 $_SESSION["password"] = $password;
+                Log::info('Session Login', [
+                    'pre_basket' => session('basket'),
+                    'session_id_before' => session()->getId(),
+                    'user_id' => AuthController::loggedIn(), // If using Laravel's auth
+                    'request_path' => request()->path()
+                ]);
                 return json_encode(["conn" =>true]);
+                
             }
             else
             {
+                session_start();
+                Log::info('Cookie Login', [
+                    'pre_basket' => session('basket'),
+                    'session_id_before' => session()->getId(),
+                    'user_id' => AuthController::loggedIn(), // If using Laravel's auth
+                    'request_path' => request()->path()
+                ]);
                 setcookie("email", $email, $length, "/");
                 setcookie("password", $password, $length, "/");
                 return json_encode(["conn" =>true]);
@@ -421,16 +438,46 @@ class AuthController extends Controller
 
     public static function sessionLogOut()
     {
-        session_start();
+        session()->flush();
+        session()->save();
+
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+        $_SESSION = array();
         session_unset();
         session_destroy();
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000, 
+                $params["path"], 
+                $params["domain"], 
+                $params["secure"], 
+                $params["httponly"]
+            );
+        }
+        
     }
     public static function logOut()
     {
-      session()->forget('basket'); //forgets basket data when logout
+        // dd(AuthController::loggedIn());
+        Log::info('Logout Process', [
+            'pre_basket' => session('basket'),
+            'session_id_before' => session()->getId(),
+            'user_id' => AuthController::loggedIn(), // If using Laravel's auth
+            'request_path' => request()->path()
+        ]);
+    
+        session(["basket"=>[]]);
+        // $_SESSION[["basket"=>null]];
         self::cookieLogout();
         self::sessionLogOut();
-
+    
+        Log::info('Post-Logout Session Data', [
+            'basket' => session('basket'),
+            'session_id' => session()->getId()
+        ]);
+    
         return redirect("/login");
     }
 

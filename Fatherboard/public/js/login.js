@@ -92,7 +92,7 @@ function form_submit(ev)
 
 
 
-    fd.append("permanent", persist.value);
+    fd.append("permanent", persist.checked);
     let token_el = document.getElementsByName("csrf-token")[0];
     let token = token_el.getAttribute("content");
     console.log(token);

@@ -63,7 +63,8 @@ public function index()
 {
 
     $basket = session()->get('basket', []);
-
+    // dd($basket);
+    // print_r($basket);
     $basketDetails = [];
     foreach ($basket as $item) {
         $product = Product::find($item['product_id']);

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\AddressInformation;
 use PhpParser\NodeVisitor\FirstFindingVisitor;
 use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -60,6 +61,8 @@ class CheckoutController extends Controller
         $basket=session()->get('basket',[]);
 
             $basketDetails = [];
+            if ($basket)
+            {
             foreach ($basket as $item) {
                 $product = Product::find($item['product_id']);
                 if ($product) {
@@ -71,7 +74,9 @@ class CheckoutController extends Controller
                     ];
                 }
             }
+        }
             $AuthController = new AuthController;
+            $user = null;
             if(($user = $AuthController->loggedIn()) == false){//Redirects to login if the user doesn't have an account
                 return redirect('/login');
             }
@@ -103,11 +108,16 @@ class CheckoutController extends Controller
                 'quantity'=>$item['quantity'],
             ]);
         }
-        session()->forget('basket'); //Removes basket data after checkout finishes(?)
-
+        session()->forget('basket');
+session()->put('basket', []);
+session()->save();
+        DB::table("basket_items")->where("customer_information_id",$user["id"])->delete();
         return redirect()->route('checkout_success', $orderNumber);    }
     public function success($orderNumber)
 {  
+    // session()->forget('basket');
+    // session()->put('basket', []);
+    // session()->save();
     return view('checkout_success', ['orderNumber' => $orderNumber]);
 }
     
